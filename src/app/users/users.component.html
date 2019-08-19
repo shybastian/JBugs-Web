@@ -1,0 +1,9 @@
+<a *ngFor="let user of users" class="col-1-4">
+  <div>
+    <h4>
+      <a [routerLink]="[user.id, 'edit']">
+        {{user.name}}
+      </a>
+    </h4>
+  </div>
+</a>
