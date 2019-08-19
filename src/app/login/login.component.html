@@ -4,6 +4,8 @@
     LOGIN
   </h1>
 
+  <p></p>
+
   <div>
     <label for="username">Username</label>
     <input
@@ -41,17 +43,22 @@
 
   </div>
 
-
-  <p>
-    {{loginForm.value | json}}
-  </p>
+  <p></p>
 
   <button class="btn btn-primary"
           (click)="login(loginForm)"
           [disabled]="loginForm.invalid">LOGIN
   </button>
 
+  <a routerLink="/register">Register</a>
+
+  <p></p>
+
   <div class="container" style="background-color:#f1f1f1">
-    <span class="psw">Forgot <a href="#">password?</a></span>
+    <span class="psw">Forgot <a routerLink="/forgot-password">password?</a></span>
   </div>
 </form>
+
+<p>
+  {{loginForm.value | json}}
+</p>

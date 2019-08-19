@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
 
   submit(form: NgForm) {
     console.log('NgForm', form);
+    // utf8arrayFromString = nacl.util.decodeUTF8(string)
+    // const hashPassword = sha256(['m', 'y', 'p', 'a', 's', 's', 'w', 'o', 'r', 'd']); // default export is hash
+
     // backendservice.get(username, password)..returns UserDTO
     // redirect to Dashboard
     // writes in session data about user... like if admin or not
