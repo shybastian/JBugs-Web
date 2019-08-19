@@ -1,21 +1,33 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
   }
 
   ngOnInit() {
   }
 
-  login(form) {
-    console.log("Form Log In ", form);
+  log(value) {
+    console.log('NgModel', value);
+  }
+
+  submit(form: NgForm) {
+    console.log('NgForm', form);
+    // backendservice.get(username, password)..returns UserDTO
+    // redirect to Dashboard
+    // writes in session data about user... like if admin or not
+  }
+
+  login(loginForm: NgForm) {
+    // console.log(loginForm);
     this.router.navigate(['/dashboard']);
   }
 }

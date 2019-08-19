@@ -1,38 +1,57 @@
-<form #form="ngForm">
-  <div class="form-group">
+<form #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
+
+  <h1>
+    LOGIN
+  </h1>
+
+  <div>
     <label for="username">Username</label>
-    <input class="form-control"
-           type="text"
-           id="username"
-           name="username"
-           ngModel
-           required
-           #username="ngModel">
+    <input
+      required
+      class="form-control"
+      type="text"
+      id="username"
+      name="username"
+      ngModel
+      #username="ngModel"
+      (ngModelChange)="log(username)"
+    >
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
-      <div *ngIf="username.errors.required">This fiels is required</div>
+      <div *ngIf="username.errors.required">
+        Username is required.
+      </div>
     </div>
+
+    <label for="password">Password</label>
+    <input
+      required
+      class="form-control"
+      type="password"
+      id="password"
+      name="password"
+      ngModel
+      #password="ngModel"
+      (ngModelChange)="log(password)"
+    >
+    <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+      <div *ngIf="password.errors.required">
+        Password is required.
+      </div>
+    </div>
+
   </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input class="form-control"
-           type="password"
-           id="password"
-           name="password"
-           ngModel
-           required
-           #password="ngModel">
-  </div>
 
   <p>
-    {{form.value | json}}
+    {{loginForm.value | json}}
   </p>
 
-  <button
-    class="btn btn-primary"
-    type="button"
-    (click)="login(form)"
-    [disabled]="form.invalid">
-    Login
+  <button class="btn btn-primary"
+          (click)="login(loginForm)"
+          [disabled]="loginForm.invalid">LOGIN
   </button>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
 </form>
