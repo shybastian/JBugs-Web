@@ -11,7 +11,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -28,9 +35,17 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

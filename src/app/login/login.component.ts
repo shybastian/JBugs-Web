@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -9,13 +9,14 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router) {
+
   }
 
   ngOnInit() {
   }
 
   login(form) {
-    console.log("Form Log In ", form);
+    console.log('Form Log In ', form);
     this.router.navigate(['/dashboard']);
   }
 }
