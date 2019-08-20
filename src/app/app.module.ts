@@ -13,6 +13,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import { BugViewComponent } from './bugs/bug-view/bug-view.component';
+import {TableModule} from 'primeng/table';
+import {MultiSelectModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { BugViewComponent } from './bugs/bug-view/bug-view.component';
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
