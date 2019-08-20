@@ -1,25 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import sha256 from 'fast-sha256';
-import {BackendService} from '../../core/backend/services/backend.service';
-import {CaptchaService} from '../services/captcha.service';
-
+import {CaptchaService} from './services/captcha.service';
+import {CryptoService} from './services/crypto.service';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  // private captchaService = new CaptchaService();
   private hashedPassword: string;
 
-  constructor(public router: Router, private backendservice: BackendService, private captchaService: CaptchaService) {
-  }
-
-  ngOnInit() { // wont update captcha text, because it's run after init inputs
+  constructor(public router: Router, private loginService: LoginService,
+              private captchaService: CaptchaService, private cryptoService: CryptoService) {
   }
 
   log(value) {
@@ -28,28 +24,21 @@ export class LoginComponent implements OnInit {
 
   submit(loginForm: NgForm) {
     console.log('NgForm', loginForm);
-    this.captchaService.atSubmit(loginForm);
-    // backendservice.get(username, password)..returns UserDTO
-    // redirect to Dashboard
-    // writes in session data about user... like if admin or not
+
   }
 
   login(loginForm: NgForm) {
-    this.getHashedPassword(loginForm.form.value.password);
+    const captchaIsGood = this.captchaService.isSuccessAtSubmit(loginForm);
+    if (captchaIsGood) {
+      const hashedPassword = this.cryptoService.getHashedPassword(loginForm.form.value.password);
 
-    // this.backendservice.post('', '');
-    // console.log(loginForm);
-    // this.router.navigate(['/dashboard']);
-  }
+      this.loginService.loginGetUser(loginForm.form.value.username, hashedPassword).subscribe(response => {
+      });
 
-  getHashedPassword(password: string): string {
-    const enc = new TextEncoder(); // always utf-8
-    const utf8arrayFromPassw = (enc.encode(password));
-    const utf8arrayHashedPassw = sha256(utf8arrayFromPassw);
-    const dec = new TextDecoder('utf-8');
-    this.hashedPassword = dec.decode(utf8arrayHashedPassw);
-
-    return this.hashedPassword;
+      // this.backendservice.post('', '');
+      // this.router.navigate(['/dashboard']);
+      // writes in session data about user... like if admin or not
+    }
   }
 
   // Generate new rand CAPTCHA code
@@ -57,4 +46,7 @@ export class LoginComponent implements OnInit {
     this.captchaService.generateCaptchaUpdateForm(loginForm);
   }
 
+  alertForgotPass() {
+    alert('Contact ADMIN to recover your password.');
+  }
 }

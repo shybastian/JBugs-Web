@@ -8,7 +8,7 @@ export class CaptchaService {
   private firedOnce = false;
   private lastGeneratedCode = '';
 
-  atSubmit(loginForm: NgForm) {
+  isSuccessAtSubmit(loginForm: NgForm): boolean {
     let why = '';
     if (loginForm.form.value.captchaInput === '') {
       why += '- Please Enter CAPTCHA Code.\n';
@@ -23,7 +23,10 @@ export class CaptchaService {
 
       this.firedOnce = false;
       this.generateCaptchaUpdateForm(loginForm);
+
+      return false;
     }
+    return true;
   }
 
   // Generate new rand CAPTCHA code

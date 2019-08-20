@@ -22,3 +22,8 @@ export interface Permission {
   type: string;
   description: string;
 }
+
+export interface LoginData {
+  username: string;
+  password: string;
+}

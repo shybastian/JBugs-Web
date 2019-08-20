@@ -7,7 +7,6 @@ import {BugsComponent} from './bugs/bugs.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {ForgotPasswordComponent} from './user-management/login/forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
@@ -15,10 +14,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent
   },
   {
     path: 'login',
