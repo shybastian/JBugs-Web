@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import { BugViewComponent } from './bugs/bug-view/bug-view.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     UserEditComponent,
     UsersComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BugViewComponent
   ],
   imports: [
     BrowserModule,
