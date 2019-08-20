@@ -12,11 +12,13 @@ import {FormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import {BugCreateComponent} from "./bug-create/bug-create.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     BugsComponent,
+    BugCreateComponent,
     LoginComponent,
     UserEditComponent,
     UsersComponent,
