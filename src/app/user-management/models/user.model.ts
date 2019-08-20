@@ -25,5 +25,5 @@ export interface Permission {
 
 export interface LoginData {
   username: string;
-  password: string;
+  hashedPassword: string;
 }

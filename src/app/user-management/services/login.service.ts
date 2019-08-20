@@ -12,9 +12,19 @@ export class LoginService {
   }
 
   loginGetUser(username: string, hashedPassword: string): Observable<any> {
-    const loginData: LoginData = {
+    let loginData: LoginData;
+    loginData = {
       username,
-      password: hashedPassword
+      hashedPassword
+    };
+    return this.backendService.post('http://localhost:8080/jbugs/api/login', loginData);
+  }
+
+  loginGetUserWithoutHashedPass(username: string, password: string): Observable<any> {
+    let loginData: LoginData;
+    loginData = {
+      username,
+      hashedPassword: password
     };
     return this.backendService.post('http://localhost:8080/jbugs/api/login', loginData);
   }

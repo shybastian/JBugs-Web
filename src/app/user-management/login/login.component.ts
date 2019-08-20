@@ -32,7 +32,13 @@ export class LoginComponent {
     if (captchaIsGood) {
       const hashedPassword = this.cryptoService.getHashedPassword(loginForm.form.value.password);
 
+      this.loginService.loginGetUserWithoutHashedPass(loginForm.form.value.username, loginForm.form.value.password)
+        .subscribe(response => {
+          console.log(response);
+        });
+
       this.loginService.loginGetUser(loginForm.form.value.username, hashedPassword).subscribe(response => {
+        console.log(response);
       });
 
       // this.backendservice.post('', '');
