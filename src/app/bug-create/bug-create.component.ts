@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../user-management/models/user.model";
 import {UserService} from "../user-management/services/user.service";
-import {FormControl} from "@angular/forms";
+import {FormControl, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-bug-create',
@@ -10,7 +10,7 @@ import {FormControl} from "@angular/forms";
 })
 export class BugCreateComponent implements OnInit {
   private todayDate = new Date();
-  private bugStatus = "New";
+  private bugStatusText = "New";
 
   private users: User[];
 
@@ -25,7 +25,10 @@ export class BugCreateComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.bugForm)
+  onSubmit(form: NgForm) {
+    console.log(form)
+
+    let jsonString = JSON.stringify(form.value);
+    console.log(jsonString)
   }
 }
