@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { BugViewComponent } from './bugs/bug-view/bug-view.component';
 import {TableModule} from 'primeng/table';
 import {MultiSelectModule} from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MultiSelectModule} from 'primeng/primeng';
     CommonModule,
     HttpClientModule,
     TableModule,
-    MultiSelectModule
+    MultiSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
