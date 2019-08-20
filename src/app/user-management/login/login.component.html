@@ -45,6 +45,42 @@
 
   <p></p>
 
+  <!-- START CAPTCHA -->
+  <br>
+  <div class="capbox">
+
+    <div id="captchaDiv"></div>
+
+    <div class="capbox-inner">
+      Type the above number:<br>
+
+      <input
+        type="hidden"
+        id="txtCaptcha"
+        name="txtCaptcha"
+        ngModel
+        #txtCaptcha="ngModel"
+        (ngModelChange)="log(txtCaptcha)"
+      >
+      <input
+        type="text"
+        name="captchaInput"
+        id="captchaInput"
+        ngModel
+        #captchaInput="ngModel"
+        (ngModelChange)="log(captchaInput)"
+        (click)="generateCaptchaUpdateForm(loginForm)"
+        size="15"
+      >
+      <br>
+
+    </div>
+  </div>
+  <br><br>
+  <!-- END CAPTCHA -->
+
+  <p></p>
+
   <button class="btn btn-primary"
           (click)="login(loginForm)"
           [disabled]="loginForm.invalid">LOGIN
@@ -57,7 +93,13 @@
   </div>
 </form>
 
+<p></p>
+
 <p>
   {{loginForm.value | json}}
+</p>
+
+<p>
+  {{hashedPassword}}
 </p>
 

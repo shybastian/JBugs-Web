@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+
 /**
  * Base backend service. Business services should import this instead of using HttpClient directly.
  */
@@ -31,7 +32,6 @@ export class BackendService {
     return this.invoke('PUT', url, data, params);
   }
 
-
   /**
    *
    * @param url URL to call
@@ -41,7 +41,6 @@ export class BackendService {
   public patch(url: string, data: any, params?: any): Observable<any> {
     return this.invoke('PATCH', url, data, params);
   }
-
 
   /**
    *
@@ -61,7 +60,6 @@ export class BackendService {
   public delete(url: string, params?: any): Observable<any> {
     return this.invoke('DELETE', url, null, params);
   }
-
 
   private invoke(method: string, url: string, data: any = {}, params?: any): Observable<any> {
     const options = {
