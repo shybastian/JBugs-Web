@@ -37,10 +37,11 @@ export class LoginComponent {
           console.log(response);
         });
 
+      /*
       this.loginService.loginGetUser(loginForm.form.value.username, hashedPassword).subscribe(response => {
         console.log(response);
       });
-
+*/
       // this.backendservice.post('', '');
       // this.router.navigate(['/dashboard']);
       // writes in session data about user... like if admin or not
