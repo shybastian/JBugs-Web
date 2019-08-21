@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BugsComponent} from './bugs/bugs.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './user-management/login/login.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -28,7 +28,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserEditComponent,
     UsersComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

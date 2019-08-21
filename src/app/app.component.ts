@@ -10,11 +10,12 @@ export class AppComponent {
   title = 'routing';
 
   constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'ro']);
-    translate.setDefaultLang('en');
+    this.switchLanguage();
   }
 
-  switchLanguage(language: string) {
-    this.translate.use(language);
+  private switchLanguage() {
+    this.translate.addLangs(['en', 'ro']);
+    this.translate.setDefaultLang('en');
   }
+
 }
