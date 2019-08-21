@@ -5,6 +5,7 @@ import {CaptchaService} from './services/captcha.service';
 import {CryptoService} from './services/crypto.service';
 import {LoginService} from '../services/login.service';
 import {TranslateService} from '@ngx-translate/core';
+import {PermissionType, RoleType, User, UserStatusType} from '../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,6 @@ export class LoginComponent {
 
   submit(loginForm: NgForm) {
     console.log('NgForm', loginForm);
-
   }
 
   login(loginForm: NgForm) {
@@ -33,10 +33,60 @@ export class LoginComponent {
     if (captchaIsGood) {
       const hashedPassword = this.cryptoService.getHashedPassword(loginForm.form.value.password);
 
-      this.loginService.loginGetUserWithoutHashedPass(loginForm.form.value.username, loginForm.form.value.password)
+      const temp_passw = loginForm.form.value.password;
+
+      this.loginService.loginGetUser(loginForm.form.value.username, temp_passw)
         .subscribe(response => {
-          console.log(response);
-        });
+          console.log('response', response);
+          // if response status !== 200, then redirect to localhost/4200 ?! or LABEL / (pop-up) invalid credentials
+        })
+
+      let user: User;
+      user = {
+        id: 1,
+        firstName: 'adminFN',
+        lastName: 'adminLN',
+        username: 'admin',
+        email: 'me@home',
+        mobileNumber: '0040987656789',
+        status: UserStatusType.Active,
+        roles: [{
+          id: 1,
+          type: RoleType.ADM,
+          permissions: [
+            {
+              id: 1,
+              type: PermissionType.USER_MANAGEMENT,
+              description: ''
+            },
+            {
+              id: 2,
+              type: PermissionType.BUG_MANAGEMENT,
+              description: ''
+            },
+            {
+              id: 3,
+              type: PermissionType.BUG_CLOSE,
+              description: ''
+            },
+            {
+              id: 4,
+              type: PermissionType.PERMISSION_MANAGEMENT,
+              description: ''
+            },
+            {
+              id: 5,
+              type: PermissionType.BUG_EXPORT_PDF,
+              description: ''
+            },
+            {
+              id: 6,
+              type: PermissionType.CURRENT_USER,
+              description: ''
+            },
+          ]
+        }]
+      };
 
       /*
       this.loginService.loginGetUser(loginForm.form.value.username, hashedPassword).subscribe(response => {
@@ -47,11 +97,6 @@ export class LoginComponent {
       // this.router.navigate(['/dashboard']);
       // writes in session data about user... like if admin or not
     }
-  }
-
-  // Generate new rand CAPTCHA code
-  generateCaptchaUpdateForm(loginForm: NgForm) {
-    this.captchaService.generateCaptchaUpdateForm(loginForm);
   }
 
   alertForgotPass() {

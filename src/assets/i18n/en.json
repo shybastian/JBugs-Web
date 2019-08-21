@@ -6,8 +6,9 @@
     "MESSAGE": "LOGIN",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "CAPTCHA": "CAPTCHA code:",
-    "FORGOT_PASS": "Forgot password?",
+    "CAPTCHA": "CAPTCHA code",
+    "FORGOT": "Forgot ",
+    "PASS": "password?",
     "ALERTUSER": "Username is required",
     "ALERTPASS": "Password is required",
     "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"

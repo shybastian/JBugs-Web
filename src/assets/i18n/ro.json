@@ -6,8 +6,9 @@
     "MESSAGE": "LOGARE",
     "USERNAME": "Nume utilizator",
     "PASSWORD": "Parola",
-    "CAPTCHA": "Codul CAPTCHA:",
-    "FORGOT_PASS": "Ați uitat parola?",
+    "CAPTCHA": "Codul CAPTCHA",
+    "FORGOT": "Ați uitat ",
+    "PASS": "parola?",
     "ALERTUSER": "Nume utilizator invalid",
     "ALERTPASS": "Parola invalida",
     "ALERT_FORGOTPASS": "Contacteaza ADMIN pentru a recupera parola!"

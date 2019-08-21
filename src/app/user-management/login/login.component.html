@@ -1,10 +1,9 @@
-<form #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
+<div id="formPlaceHolder">
+  <form id='loginForm' #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
 
   <h1>
     {{ 'LOGIN.MESSAGE' | translate }}
   </h1>
-
-  <p></p>
 
   <div>
     <label for="username">{{ 'LOGIN.USERNAME' | translate }}</label>
@@ -23,6 +22,8 @@
         {{'LOGIN.ALERTUSER' | translate}}
       </div>
     </div>
+
+    <p></p>
 
     <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
     <input
@@ -46,7 +47,6 @@
   <p></p>
 
   <!-- START CAPTCHA -->
-  <br>
   <div class="capbox">
 
     <div id="captchaDiv"></div>
@@ -69,7 +69,7 @@
         ngModel
         #captchaInput="ngModel"
         (ngModelChange)="log(captchaInput)"
-        (click)="generateCaptchaUpdateForm(loginForm)"
+        (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
         size="15"
       >
       <br>
@@ -91,20 +91,23 @@
 
   <div class="container" style="background-color:#f1f1f1">
     <span class="psw">
+      <label>{{'LOGIN.FORGOT' | translate }}</label>
       <a style="color: #039be5" (click)="alertForgotPass()">
-      {{'LOGIN.FORGOT_PASS' | translate }}
+      {{'LOGIN.PASS' | translate }}
       </a>
     </span>
   </div>
-</form>
 
-<p></p>
 
-<p>
-  {{loginForm.value | json}}
-</p>
+    <p></p>
 
-<p>
-  {{hashedPassword}}
-</p>
+    <p>
+      {{loginForm.value | json}}
+    </p>
 
+    <p>
+      {{hashedPassword}}
+    </p>
+
+  </form>
+</div>
