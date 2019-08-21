@@ -14,9 +14,6 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { BugViewComponent } from './bugs/bug-view/bug-view.component';
-import {TableModule} from 'primeng/table';
-import {MultiSelectModule} from 'primeng/primeng';
 
 
 // AoT requires an exported function for factories
@@ -32,8 +29,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserEditComponent,
     UsersComponent,
     DashboardComponent,
-    PageNotFoundComponent,
-    BugViewComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +37,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     CommonModule,
     HttpClientModule,
-    TableModule,
-    MultiSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
