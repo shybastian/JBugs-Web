@@ -14,6 +14,7 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {BugCreateComponent} from './bug-create/bug-create.component';
 
 
 // AoT requires an exported function for factories

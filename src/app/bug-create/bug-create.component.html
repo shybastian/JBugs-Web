@@ -1,16 +1,14 @@
-<form novalidate [formGroup]="bugCreateForm">
+<form [formGroup]="bugCreateForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="title">Title</label>
     <input
       class="form-control"
       id="title"
       name="title"
-      ngModel
-      required
-      #title="ngModel"
+      formControlName="title"
     >
-    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-      <div *ngIf="title.errors.required">Can not be blank</div>
+    <div class="alert alert-danger" *ngIf="bugCreateForm.get('title').touched && bugCreateForm.get('title').invalid">
+      <div *ngIf="bugCreateForm.get('title').errors.required">Can not be blank</div>
     </div>
   </div>
 
@@ -21,17 +19,14 @@
       id="description"
       name="description"
       minlength="250"
-      ngModel
-      required
-      #description="ngModel"
+      formControlName="description"
     >
-    <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
-      <div *ngIf="description.errors.required">Can not be blank.</div>
-      <div *ngIf="description.errors.minlength">
-        Description must be a minimum of {{description.errors.minlength.requiredLength}} characters.<br>
-        There are currently only {{description.errors.minlength.actualLength}} characters.
-      </div>
-    </div>
+    <!--    <div class="alert alert-danger" *ngIf="bugCreateForm.get('description').touched && bugCreateForm.get('description').invalid">-->
+    <!--      <div *ngIf="bugCreateForm.get('description').errors.required">Can not be blank.</div>-->
+    <!--      <div *ngIf="bugCreateForm.get('description').hasError('maxlength')">-->
+    <!--        Description must not exceed 250 characters.-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 
   <div class="form-group">
@@ -40,14 +35,13 @@
       class="form-control"
       id="version"
       name="version"
-      ngModel
-      required
-      #version="ngModel"
       pattern="[a-zA-Z0-9.]+"
+      formControlName="version"
     >
-    <div class="alert alert-danger" *ngIf="version.touched && version.invalid">
-      <div *ngIf="version.errors.required">Can not be blank.</div>
-      <div *ngIf="version.errors.minlength">
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('version').touched && bugCreateForm.get('version').invalid">
+      <div *ngIf="bugCreateForm.get('version').errors.required">Can not be blank.</div>
+      <div *ngIf="bugCreateForm.get('version').errors.minlength">
         Version must include only alphanumeric characters split by dots.
       </div>
     </div>
@@ -59,9 +53,8 @@
       class="form-control"
       id="fixedVersion"
       name="fixedVersion"
-      ngModel
       disabled
-      #fixedVersion="ngModel"
+      formControlName="fixedVersion"
     >
   </div>
 
@@ -73,11 +66,11 @@
       id="targetDate"
       name="targetDate"
       min="{{todayDate | date:'yyyy-MM-dd'}}"
-      ngModel
-      #targetDate="ngModel"
+      formControlName="targetDate"
     >
-    <div class="alert alert-danger" *ngIf="targetDate.touched && targetDate.invalid">
-      <div *ngIf="version.errors.min">Can not be a day before today.</div>
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('targetDate').touched && bugCreateForm.get('targetDate').invalid">
+      <div *ngIf="bugCreateForm.get('targetDate').errors.min">Can not be a day before today.</div>
     </div>
   </div>
 
@@ -88,16 +81,16 @@
       id="severity"
       name="severity"
       required
-      ngModel
-      #severity="ngModel"
+      formControlName="severity"
     >
       <option value="critical">Critical</option>
       <option value="high">High</option>
       <option value="medium">Medium</option>
       <option value="low">Low</option>
     </select>
-    <div class="alert alert-danger" *ngIf="severity.touched && severity.invalid">
-      <div *ngIf="version.errors">Must not be blank</div>
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('severity').touched && bugCreateForm.get('severity').invalid">
+      <div *ngIf="bugCreateForm.get('severity').errors">Must not be blank</div>
     </div>
   </div>
 
@@ -108,10 +101,8 @@
       id="CREATED_ID"
       name="CREATED_ID"
       required
-      ngModel
-      #CREATED_ID="ngModel"
       disabled
-      [(ngModel)]="bugCreatedID"
+      formControlName="CREATED_ID"
     >
   </div>
 
@@ -123,8 +114,7 @@
       name="status"
       required
       disabled
-      [(ngModel)]="bugStatusText"
-      #status="ngModel"
+      formControlName="status"
     >
   </div>
 
@@ -134,8 +124,7 @@
       class="form-group"
       id="ASSIGNED_ID"
       name="ASSIGNED_ID"
-      ngModel
-      #ASSIGNED_ID="ngModel"
+      formControlName="ASSIGNED_ID"
     >
       <option
         class="form-group"
@@ -154,8 +143,7 @@
         name="attachment"
         type="file"
         accept=".pdf,.doc,.odf,.xlsx,.xls"
-        ngModel
-        #attachment="ngModel"
+        formControlName="attachment"
       >
     </div>
   </div>
@@ -164,8 +152,6 @@
     <button
       class="form-control"
       type="submit"
-      [disabled]="!bugCreateForm.valid"
-      (click)="onSubmit()"
     >
       Submit
     </button>

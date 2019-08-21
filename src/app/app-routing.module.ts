@@ -7,6 +7,7 @@ import {BugsComponent} from './bugs/bugs.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {BugCreateComponent} from './bug-create/bug-create.component';
 
 
 const routes: Routes = [
