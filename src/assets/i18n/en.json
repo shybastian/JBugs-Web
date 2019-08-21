@@ -1,0 +1,15 @@
+{
+  "LANGUAGE": {
+    "SELECT": "Language "
+  },
+  "LOGIN": {
+    "MESSAGE": "LOGIN",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "CAPTCHA": "CAPTCHA code:",
+    "FORGOT_PASS": "Forgot password?",
+    "ALERTUSER": "Username is required",
+    "ALERTPASS": "Password is required",
+    "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
+  }
+}

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {CaptchaService} from './services/captcha.service';
 import {CryptoService} from './services/crypto.service';
 import {LoginService} from '../services/login.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   private hashedPassword: string;
 
   constructor(public router: Router, private loginService: LoginService,
-              private captchaService: CaptchaService, private cryptoService: CryptoService) {
+              private captchaService: CaptchaService, private cryptoService: CryptoService, public translate: TranslateService) {
   }
 
   log(value) {
@@ -54,6 +55,6 @@ export class LoginComponent {
   }
 
   alertForgotPass() {
-    alert('Contact ADMIN to recover your password.');
+    alert('Contact ADMIN to recover your password!');
   }
 }

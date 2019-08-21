@@ -1,13 +1,13 @@
 <form #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
 
   <h1>
-    LOGIN
+    {{ 'LOGIN.MESSAGE' | translate }}
   </h1>
 
   <p></p>
 
   <div>
-    <label for="username">Username</label>
+    <label for="username">{{ 'LOGIN.USERNAME' | translate }}</label>
     <input
       required
       class="form-control"
@@ -20,11 +20,11 @@
     >
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
       <div *ngIf="username.errors.required">
-        Username is required.
+        {{'LOGIN.ALERTUSER' | translate}}
       </div>
     </div>
 
-    <label for="password">Password</label>
+    <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
     <input
       required
       class="form-control"
@@ -37,7 +37,7 @@
     >
     <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
       <div *ngIf="password.errors.required">
-        Password is required.
+        {{'LOGIN.ALERTPASS' | translate}}
       </div>
     </div>
 
@@ -52,7 +52,7 @@
     <div id="captchaDiv"></div>
 
     <div class="capbox-inner">
-      CAPTCHA code:<br>
+      {{ 'LOGIN.CAPTCHA' | translate }}<br>
 
       <input
         type="hidden"
@@ -83,13 +83,18 @@
 
   <button class="btn btn-primary"
           (click)="login(loginForm)"
-          [disabled]="loginForm.invalid">LOGIN
+          [disabled]="loginForm.invalid">
+    {{ 'LOGIN.MESSAGE' | translate }}
   </button>
 
   <p></p>
 
   <div class="container" style="background-color:#f1f1f1">
-    <span class="psw">Forgot <a style="color: #039be5" (click)="alertForgotPass()">password?</a></span>
+    <span class="psw">
+      <a style="color: #039be5" (click)="alertForgotPass()">
+      {{'LOGIN.FORGOT_PASS' | translate }}
+      </a>
+    </span>
   </div>
 </form>
 
