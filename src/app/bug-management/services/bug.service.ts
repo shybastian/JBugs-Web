@@ -7,12 +7,14 @@ import {Bug} from "../model/bug.model";
   providedIn: 'root'
 })
 export class BugService {
+  private base_url: string = "http://localhost:8080/jbugs/api/bugs";
 
   constructor(private backendService: BackendService) {
   }
 
-  submitBug(bugJSON: string): void {
-    this.backendService.post("http://localhost:8080/jbugs/api/bugs", bugJSON);
+  submitBug(bug: Bug): void {
+    // this.backendService.post("http://localhost:8080/jbugs/api/bugs", bugJSON);
+    this.backendService.post("http://localhost:8080/jbugs/api/bugs", bug);
   }
 
   getAllBugs(): Observable<Bug[]> {
