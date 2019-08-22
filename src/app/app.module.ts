@@ -14,9 +14,14 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {UserCreateComponent} from './user-create/user-create.component';
 import {MultiSelectModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
+import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
+import {UserViewComponent} from './user-management/user-view/user-view.component';
+import {NotificationComponent} from './notification/notification.component';
 
 
 // AoT requires an exported function for factories
@@ -33,7 +38,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UsersComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    BugViewComponent,
+    BugCreateComponent,
+    UserViewComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
