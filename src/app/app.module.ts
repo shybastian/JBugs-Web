@@ -15,6 +15,21 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
+import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
+import {UserViewComponent} from './user-management/user-view/user-view.component';
+import {NotificationComponent} from './notification/notification.component';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+}
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -29,7 +44,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserEditComponent,
     UsersComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserCreateComponent,
+    BugViewComponent,
+    BugCreateComponent,
+    UserViewComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
