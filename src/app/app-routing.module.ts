@@ -7,7 +7,11 @@ import {BugsComponent} from './bugs/bugs.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {BugViewComponent} from "./bugs/bug-view/bug-view.component";
+import {UserViewComponent} from "./user-management/user-view/user-view.component";
+import {UserCreateComponent} from "./user-management/user-create/user-create.component";
+import {NotificationComponent} from "./notification/notification.component";
+import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {BugCreateComponent} from "./bug-management/bug-create/bug-create.component";
 
 
 const routes: Routes = [
@@ -33,23 +37,35 @@ const routes: Routes = [
             component: UsersComponent
           },
           {
-            path: ':userId',
-            children: [
-              {
-                path: 'edit',
-                component: UserEditComponent
-              }
-            ]
+            path: 'view',
+            component: UserViewComponent
+          },
+          {
+            path: 'create',
+            component: UserCreateComponent
           }
         ]
       },
       {
         path: 'bugs',
-        component: BugsComponent
+        children: [
+          {
+            path: '',
+            component: BugsComponent
+          },
+          {
+            path: 'view',
+            component: BugViewComponent
+          },
+          {
+            path: 'create',
+            component: BugCreateComponent
+          }
+        ]
       },
       {
-        path: 'bugs-view-filter',
-        component: BugViewComponent
+        path: 'notifications',
+        component: NotificationComponent
       }
     ]
   },

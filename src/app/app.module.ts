@@ -19,6 +19,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
 import {BugViewComponent} from './bugs/bug-view/bug-view.component';
 
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
+import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
+import {UserViewComponent} from './user-management/user-view/user-view.component';
+import {NotificationComponent} from './notification/notification.component';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -34,7 +40,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UsersComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    BugViewComponent
+    UserCreateComponent,
+    BugViewComponent,
+    BugCreateComponent,
+    UserViewComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
