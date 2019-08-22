@@ -24,6 +24,6 @@ export class UserService {
       mobileNumber: phone,
       roles: roleList
     };
-    return this.backendService.post(' http://localhost:8080/jbugs/api/users', user);
+    return this.backendService.post(' http://localhost:8080/jbugs/api/users/create-user', user);
   }
 }
