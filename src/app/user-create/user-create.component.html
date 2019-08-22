@@ -4,6 +4,7 @@
     <label for="firstName">{{'ADD_USER.FIRST_NAME' | translate}}</label>
     <input
       required
+      pattern="^[A-ZÜÄÖÂÎĂȚȘ][a-zA-Zșțăîâäöüß]*"
       minlength="3"
       maxlength="14"
       class="form-control"
@@ -21,6 +22,9 @@
       <div *ngIf="firstName.errors.minlength || firstName.errors.maxlength">
         {{'ADD_USER.ALERT_FIRSTNAME_DIMENSION' | translate}}
       </div>
+      <div *ngIf="firstName.errors.pattern">
+        {{'ADD_USER.ALERT_FIRSTNAME_INCORRECT' | translate}}
+      </div>
     </div>
   </div>
 
@@ -29,6 +33,7 @@
     <label for="lastName">{{'ADD_USER.LAST_NAME' | translate}}</label>
     <input
       required
+      pattern="^[A-ZÜÄÖÂÎĂȚȘ][a-zA-Zșțăîâäöüß]*"
       minlength="3"
       maxlength="14"
       class="form-control"
@@ -45,6 +50,9 @@
       </div>
       <div *ngIf="lastName.errors.minlength || lastName.errors.maxlength">
         {{'ADD_USER.ALERT_LASTNAME_DIMENSION' | translate}}
+      </div>
+      <div *ngIf="lastName.errors.pattern">
+        {{'ADD_USER.ALERT_LASTNAME_INCORRECT' | translate}}
       </div>
     </div>
 
