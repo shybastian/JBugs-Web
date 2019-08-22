@@ -17,11 +17,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MultiSelectModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
+import {UserCreateComponent} from "./user-create/user-create.component";
 
 
 // AoT requires an exported function for factories
