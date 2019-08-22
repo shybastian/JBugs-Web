@@ -4,6 +4,9 @@ import {UserService} from '../user-management/services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BugService} from '../bug-management/services/bug.service';
 import {Bug} from '../bug-management/model/bug.model';
+import {BugCreateValidator} from './bug-create.validator';
+import {Attachment} from '../bug-management/model/attachment';
+import {BugAttachmentWrapper} from '../bug-management/model/BugAttachmentWrapper';
 
 @Component({
   selector: 'app-bug-create',
@@ -54,6 +57,17 @@ export class BugCreateComponent implements OnInit {
     ASSIGNED_ID: undefined
   };
 
+  private attachmentToCreate: Attachment = {
+    ID: 0,
+    attContent: '',
+    bugID: undefined,
+  };
+
+  private wrapper: BugAttachmentWrapper = {
+    bug: undefined,
+    attachment: undefined,
+  };
+
   constructor(private userService: UserService, private bugService: BugService, private formBuilder: FormBuilder) {
   }
 
@@ -61,8 +75,8 @@ export class BugCreateComponent implements OnInit {
     this.bugCreateForm = this.formBuilder.group({
       title: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required, Validators.maxLength(250)]),
-      version: new FormControl(null, [Validators.required]),
-      fixedVersion: new FormControl(null),
+      version: new FormControl(null, [Validators.required, BugCreateValidator.validateVersion]),
+      fixedVersion: new FormControl(null,),
       targetDate: new FormControl(null),
       severity: new FormControl(null, [Validators.required]),
       CREATED_ID: new FormControl(null, [Validators.required]),
@@ -81,7 +95,10 @@ export class BugCreateComponent implements OnInit {
     });
   }
 
+  // TODO : clean code down here.
   onSubmit() {
+
+    // creating the BUG entity first
     this.bugToCreate.title = this.bugCreateForm.get('title').value.toString();
     // this.bugToCreate.description = this.bugCreateForm.get('description').value.toString();
     this.bugToCreate.description = 'a';
@@ -95,6 +112,14 @@ export class BugCreateComponent implements OnInit {
     // this.bugToCreate.ASSIGNED_ID = this.bugCreateForm.get('ASSIGNED_ID').value.toString();
     this.bugToCreate.ASSIGNED_ID = this.assignedUser;
 
-    this.bugService.submitBug(this.bugToCreate);
+    // creating the ATTACHMENT entity here
+    this.attachmentToCreate.attContent = this.bugCreateForm.get('attachment').value.toString();
+    this.attachmentToCreate.bugID = this.bugToCreate;
+
+    // creating the wrapper to have both the BUG and the ATTACHMENT inside a json object.
+    this.wrapper.bug = this.bugToCreate;
+    this.wrapper.attachment = this.attachmentToCreate;
+
+    this.bugService.submitBug(this.wrapper);
   }
 }

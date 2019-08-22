@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
-import {Bug} from '../model/bug.model';
+import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
+import {Bug} from "../model/bug.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class BugService {
   constructor(private backendService: BackendService) {
   }
 
-  submitBug(bug: Bug): void {
-    const bugJSON = JSON.stringify(bug);
+  submitBug(bugWrapper: BugAttachmentWrapper): void {
+    const bugJSON = JSON.stringify(bugWrapper);
     console.log(bugJSON);
     this.backendService.post(this.baseUrl, bugJSON).subscribe(success => {
         if (success.Result) {
