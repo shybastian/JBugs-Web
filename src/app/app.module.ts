@@ -8,12 +8,15 @@ import {LoginComponent} from './user-management/login/login.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {UserCreateComponent} from './user-create/user-create.component';
+import {MultiSelectModule} from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 // AoT requires an exported function for factories
@@ -29,7 +32,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserEditComponent,
     UsersComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MultiSelectModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

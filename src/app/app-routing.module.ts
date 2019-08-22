@@ -7,6 +7,7 @@ import {BugsComponent} from './bugs/bugs.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {UserCreateComponent} from "./user-create/user-create.component";
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'bugs',
         component: BugsComponent
+      },
+      {
+        path: 'user-create',
+        component: UserCreateComponent
       }
     ]
   },
