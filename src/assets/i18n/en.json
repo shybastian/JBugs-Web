@@ -19,6 +19,27 @@
     "LOGIN-003": "User was deactivated",
     "LOGIN-004": "Incorrect password"
   },
+  "ADD_USER": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ROLES": "Roles",
+    "ADD": "Add User",
+    "ALERT_FIRSTNAME_REQUIRED": "First name is required!",
+    "ALERT_FIRSTNAME_DIMENSION": "First name is too long/short! Must be between 3 and 14 characters!",
+    "ALERT_FIRSTNAME_INCORRECT": "First name is incorrect!",
+    "ALERT_LASTNAME_INCORRECT": "Last name is incorrect!",
+    "ALERT_LASTNAME_REQUIRED": "First name is required!",
+    "ALERT_LASTNAME_DIMENSION": "First name is too long/short! Must be between 3 and 14 characters!",
+    "ALERT_PHONE_REQUIRED": "Phone number is required!",
+    "ALERT_PHONE_INCORRECT": "Phone number is incorrect!",
+    "ALERT_EMAIL_REQUIRED": "Email address is required!",
+    "ALERT_EMAIL_INCORRECT": "Email address is incorrect!",
+    "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!",
+    "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
+    "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
+  },
   "BUG-VIEW": {
     "Title": "Title",
     "Description": "Description",
