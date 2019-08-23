@@ -1,12 +1,12 @@
-<div>
-  <h1 class="title">JBugger</h1>
-  {{ 'LANGUAGE.SELECT' | translate }}
-  <select #langSelect (change)="translate.use(langSelect.value)">
-    <option *ngFor="let lang of translate.getLangs()" [value]="lang"
-            [selected]="lang === translate.currentLang">
-      {{ lang.toUpperCase() }}</option>
-  </select>
-</div>
-<router-outlet></router-outlet>
+<!--<div>-->
+<!--  <h1 class="title">JBugger</h1>-->
+<!--  {{ 'LANGUAGE.SELECT' | translate }}-->
+<!--  <select #langSelect (change)="translate.use(langSelect.value)">-->
+<!--    <option *ngFor="let lang of translate.getLangs()" [value]="lang"-->
+<!--            [selected]="lang === translate.currentLang">-->
+<!--      {{ lang.toUpperCase() }}</option>-->
+<!--  </select>-->
+<!--</div>-->
+<!--<router-outlet></router-outlet>-->
 
-<!--<app-user-create></app-user-create>-->
+<app-edit-permissions></app-edit-permissions>

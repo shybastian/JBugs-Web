@@ -2,14 +2,13 @@ import {Injectable} from '@angular/core';
 import {RoleWrapper, User, UserInsertWrapper} from '../models/user.model';
 import {Observable} from 'rxjs';
 import {BackendService} from '../../core/backend/services/backend.service';
-import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private backendService: BackendService, private httpClient: HttpClient) {
+  constructor(private backendService: BackendService) {
   }
 
   getAllUsers(): Observable<User[]> {

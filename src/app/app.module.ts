@@ -14,7 +14,7 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {MultiSelectModule} from 'primeng/primeng';
+import {DropdownModule, ListboxModule, MultiSelectModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
@@ -22,6 +22,7 @@ import {BugCreateComponent} from './bug-management/bug-create/bug-create.compone
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from "./user-create/user-create.component";
+import {EditPermissionsComponent} from './premissions-management/edit-permissions/edit-permissions.component';
 
 
 // AoT requires an exported function for factories
@@ -42,7 +43,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugViewComponent,
     BugCreateComponent,
     UserViewComponent,
-    NotificationComponent
+    NotificationComponent,
+    EditPermissionsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    DropdownModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
