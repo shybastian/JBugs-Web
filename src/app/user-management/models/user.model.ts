@@ -6,6 +6,7 @@ export interface User {
   lastName: string;
   username: string;
   email: string;
+  password: string;
   mobileNumber: string;
   status: number;
   roles: Role[];
