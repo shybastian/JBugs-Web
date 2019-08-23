@@ -35,7 +35,7 @@ export class LoginComponent {
           if (response.token === null || response.token === '' || response.message != LoginComponent.SUCCESS_RESPONSE_MESSAGE) {
             alert(response.message);
           } else {
-            this.storageService.updateSessionStorageWithUser(response);
+            this.storageService.atLogin(response);
 
             // testing:
             console.log('session storage', sessionStorage);

@@ -2,7 +2,7 @@
   <h2>Menu</h2>
 
   <div>
-    <button [routerLink]="['users']" class="dropdown-btn" (click)="activeUserButton() ">
+    <button *ngIf="!disableUser" [routerLink]="['users']" class="dropdown-btn" (click)="activeUserButton() ">
       Users
     </button>
     <div *ngIf="currentUserButton==true ">
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <button [routerLink]="['bugs']" class="dropdown-btn" (click)="activeBugButton() ">
+    <button *ngIf="!disableBug" [routerLink]="['bugs']" class="dropdown-btn" (click)="activeBugButton() ">
       Bugs
     </button>
     <div *ngIf="currentBugButton==true ">
@@ -20,12 +20,22 @@
       </div>
     </div>
 
+    <button *ngIf="!disablePermission" class="dropdown-btn" [routerLink]="['permissions']" (click)="activePermButton()">
+      Permissions
+    </button>
+    <div *ngIf="currentPermButton==true ">
+      <div *ngFor="let perm of permissionButtonContainers">
+        <a [routerLink]="['permissions',perm.router]">{{perm.name}}</a>
+      </div>
+    </div>
+
     <button class="dropdown-btn" [routerLink]="['notifications']">
       Notifications
     </button>
 
-  </div>
+    <button class="btn btn-primary" (click)="atLogout()">Log Out</button>
 
+  </div>
 
 </div>
 
