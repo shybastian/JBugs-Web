@@ -19,7 +19,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
 
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
-import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
@@ -40,7 +39,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DashboardComponent,
     PageNotFoundComponent,
     UserCreateComponent,
-    BugViewComponent,
     BugCreateComponent,
     UserViewComponent,
     NotificationComponent
