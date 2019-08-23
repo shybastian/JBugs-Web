@@ -1,9 +1,10 @@
-<div id="formPlaceHolder">
-  <form id='loginForm' #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
+<form id='loginForm' #loginForm='ngForm'>
 
   <h1>
     {{ 'LOGIN.MESSAGE' | translate }}
   </h1>
+
+  <p></p>
 
   <div>
     <label for="username">{{ 'LOGIN.USERNAME' | translate }}</label>
@@ -15,7 +16,6 @@
       name="username"
       ngModel
       #username="ngModel"
-      (ngModelChange)="log(username)"
     >
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
       <div *ngIf="username.errors.required">
@@ -34,7 +34,6 @@
       name="password"
       ngModel
       #password="ngModel"
-      (ngModelChange)="log(password)"
     >
     <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
       <div *ngIf="password.errors.required">
@@ -60,7 +59,6 @@
         name="txtCaptcha"
         ngModel
         #txtCaptcha="ngModel"
-        (ngModelChange)="log(txtCaptcha)"
       >
       <input
         type="text"
@@ -68,7 +66,6 @@
         id="captchaInput"
         ngModel
         #captchaInput="ngModel"
-        (ngModelChange)="log(captchaInput)"
         (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
         size="15"
       >
@@ -97,17 +94,4 @@
       </a>
     </span>
   </div>
-
-
-    <p></p>
-
-    <p>
-      {{loginForm.value | json}}
-    </p>
-
-    <p>
-      {{hashedPassword}}
-    </p>
-
-  </form>
-</div>
+</form>

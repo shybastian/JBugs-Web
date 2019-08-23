@@ -9,6 +9,18 @@ export interface User {
   roles: Role[];
 }
 
+export interface UserToSaveOnSession {
+  // id: number;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  mobileNumber: string;
+  permissions: PermissionType[];
+  token: string;
+  message: string;
+}
+
 export interface Role {
   id: number;
   type: string;
@@ -23,7 +35,7 @@ export interface Permission {
 
 export interface LoginData {
   username: string;
-  hashedPassword: string;
+  password: string;
 }
 
 export enum UserStatusType {
