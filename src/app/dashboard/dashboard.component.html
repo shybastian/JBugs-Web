@@ -1,7 +1,32 @@
-<div><h1>Dashboard</h1></div>
-<nav>
-  <a routerLinkActive="active current" routerLink="users">Users</a>
-  <a routerLinkActive="active current" routerLink="bugs">Bugs</a>
-  <a routerLinkActive="active current" routerLink="bugs-view-filter">Bugs View(Fiter)</a>
-</nav>
+<div class="sidenav">
+  <h2>Menu</h2>
+
+  <div>
+    <button [routerLink]="['users']" class="dropdown-btn" (click)="activeUserButton() ">
+      Users
+    </button>
+    <div *ngIf="currentUserButton==true ">
+      <div *ngFor="let userButtonContainer of userButtonContainers">
+        <a [routerLink]="['users',userButtonContainer.router]">{{userButtonContainer.name}}</a>
+      </div>
+    </div>
+
+    <button [routerLink]="['bugs']" class="dropdown-btn" (click)="activeBugButton() ">
+      Bugs
+    </button>
+    <div *ngIf="currentBugButton==true ">
+      <div *ngFor="let bugButtonContainer of bugButtonContainers">
+        <a [routerLink]="['bugs',bugButtonContainer.router]">{{bugButtonContainer.name}}</a>
+      </div>
+    </div>
+
+    <button class="dropdown-btn" [routerLink]="['notifications']">
+      Notifications
+    </button>
+
+  </div>
+
+
+</div>
+
 <router-outlet></router-outlet>

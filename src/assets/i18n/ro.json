@@ -1,6 +1,6 @@
 {
   "LANGUAGE": {
-    "SELECT": "Limba "
+    "SELECT": "Selectati Limba "
   },
   "LOGIN": {
     "MESSAGE": "LOGARE",
@@ -12,5 +12,18 @@
     "ALERTUSER": "Nume utilizator invalid",
     "ALERTPASS": "Parola invalida",
     "ALERT_FORGOTPASS": "Contacteaza ADMIN pentru a recupera parola!"
+  },
+  "BUG-VIEW": {
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data-tinta",
+    "Status": "Status",
+    "FixedVersion": "Fixat in versiunea",
+    "Severity":"Severitate",
+    "Created by": "Creat de",
+    "Assigned to": "Atribuit",
+    "Attachments": "Atasamente"
   }
+
 }
