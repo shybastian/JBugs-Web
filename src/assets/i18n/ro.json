@@ -28,5 +28,9 @@
     "ALERT_EMAIL_REQUIRED": "Adresa de email este obligatorie!",
     "ALERT_EMAIL_INCORRECT": "Adresa de email este incorecta!",
     "ALERT_ROLES_REQUIRED": "**Cel putin un rol trebuie sa fie selectat!"
+  },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permisiuni",
+    "ROLES": "Roluri"
   }
 }

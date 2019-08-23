@@ -21,7 +21,7 @@ export class EditPermissionsComponent implements OnInit {
 
   selectedRole: RoleWrapper;
 
-  permissions: PermissionDTO[] = [
+  allPermissions: PermissionDTO[] = [
     {id: 1, type: Permission.PERMISSION_MANAGEMENT},
     {id: 2, type: Permission.USER_MANAGEMENT},
     {id: 3, type: Permission.BUG_MANAGEMENT},
@@ -29,23 +29,43 @@ export class EditPermissionsComponent implements OnInit {
     {id: 5, type: Permission.BUG_EXPORT_PDF}
   ];
 
+  adminPermissions: PermissionDTO[] = [
+    {id: 2, type: Permission.USER_MANAGEMENT},
+    {id: 3, type: Permission.BUG_MANAGEMENT},
+    {id: 4, type: Permission.BUG_CLOSE},
+    {id: 5, type: Permission.BUG_EXPORT_PDF}
+  ];
+
+  permissions: PermissionDTO[];
   rolePermissions: PermissionDTO[];
 
   constructor(private service: PermissionService) {
   }
 
   ngOnInit() {
+    this.service.getRolePermissions(this.roles[0]).subscribe(permissions => {
+      this.rolePermissions = permissions;
+    });
+    this.selectedRole = this.roles[0];
+    this.permissions = this.adminPermissions;
   }
 
-  handlePermissionChange($event: any) {
-    console.log(this.rolePermissions);
+  handlePermissionChange(obj) {
+    this.service.setRolePermissions(this.selectedRole, this.rolePermissions)
+      .subscribe(data => {
+      }, Error => {
+      });
   }
 
   handleRoleChange($event: any) {
-    debugger;
+    if (this.selectedRole.id == 1) {
+      this.permissions = this.adminPermissions;
+    } else {
+      this.permissions = this.allPermissions;
+    }
+
     this.service.getRolePermissions(this.selectedRole).subscribe(permissions => {
       this.rolePermissions = permissions;
     });
-    console.log(this.selectedRole)
   }
 }
