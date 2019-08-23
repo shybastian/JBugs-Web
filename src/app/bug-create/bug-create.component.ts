@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from '../user-management/models/user.model';
 import {UserService} from '../user-management/services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -14,8 +14,13 @@ import {BugAttachmentWrapper} from '../bug-management/model/BugAttachmentWrapper
   styleUrls: ['./bug-create.component.scss']
 })
 export class BugCreateComponent implements OnInit {
+  private reader = new FileReader();
   private todayDate = new Date();
   private listOfUsersToAssign: User[];
+  private file: File;
+
+  private attachmentData: string | ArrayBuffer = '';
+  private fileName: any = '';
 
   private createdUser: User = {
     id: 3,
@@ -59,7 +64,7 @@ export class BugCreateComponent implements OnInit {
 
   private attachmentToCreate: Attachment = {
     ID: 0,
-    attContent: '',
+    attContent: undefined,
     bugID: undefined,
   };
 
@@ -68,7 +73,8 @@ export class BugCreateComponent implements OnInit {
     attachment: undefined,
   };
 
-  constructor(private userService: UserService, private bugService: BugService, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private bugService: BugService, private formBuilder: FormBuilder,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -113,13 +119,49 @@ export class BugCreateComponent implements OnInit {
     this.bugToCreate.ASSIGNED_ID = this.assignedUser;
 
     // creating the ATTACHMENT entity here
-    this.attachmentToCreate.attContent = this.bugCreateForm.get('attachment').value.toString();
+    //this.attachmentToCreate.attContent = this.bugCreateForm.get('attachment').value;
+    //this.attachmentToCreate.attContent = this.attachmentData;
+    //this.attachmentToCreate.attContent = this.file;
+
+    //console.log(this.bugCreateForm.get('attachment').value.toString());
+
+    //this.attachmentToCreate.attContent = this.attachmentData;
+    //this.attachmentToCreate.attContent = this.bugCreateForm.get('attachment').value.toString();
+    //this.attachmentToCreate.attContent = this.attachmentData;
+    this.attachmentToCreate.attContent = this.file;
+
+    //console.log(this.attachmentToCreate.attContent.toString());
+
     this.attachmentToCreate.bugID = this.bugToCreate;
 
     // creating the wrapper to have both the BUG and the ATTACHMENT inside a json object.
-    this.wrapper.bug = this.bugToCreate;
-    this.wrapper.attachment = this.attachmentToCreate;
+    // this.wrapper.bug = this.bugToCreate;
+    // this.wrapper.attachment = this.attachmentToCreate;
 
-    this.bugService.submitBug(this.wrapper);
+    this.bugService.submitBug(this.bugToCreate, this.attachmentToCreate, this.file);
+
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files.length) {
+
+      const uploadedFile = event.target.files[0];
+      this.file = uploadedFile;
+
+      console.log('THIS IS THE UPLOADED FILE', uploadedFile);
+
+      // this.reader.onload = (e) => {
+      //   this.attachmentData = this.reader.result;
+      // };
+      //this.reader.readAsText(files);
+      //this.reader.readAsBinaryString(files);
+      //this.reader.readAsDataURL(uploadedFile);
+      //this.reader.readAsDataURL(files);
+      //this.reader.readAsArrayBuffer(files);
+
+      //this.bugCreateForm.patchValue(['uploadFile'], files);
+
+      this.cd.markForCheck();
+    }
   }
 }

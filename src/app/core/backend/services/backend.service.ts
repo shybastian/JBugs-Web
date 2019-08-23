@@ -67,7 +67,8 @@ export class BackendService {
       params,
       headers: {
         'Accept-Language': 'en',
-        'Content-Type': 'application/json'
+        'Content-Type': ['application/json'],
+        'Accept': 'application/json'
       }
     };
     if (!url) {
