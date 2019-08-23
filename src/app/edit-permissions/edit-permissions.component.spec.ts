@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {BugViewComponent} from './bug-view.component';
+import {EditPermissionsComponent} from './edit-permissions.component';
 
-describe('BugViewComponent', () => {
-  let component: BugViewComponent;
-  let fixture: ComponentFixture<BugViewComponent>;
+describe('EditPermissionsComponent', () => {
+  let component: EditPermissionsComponent;
+  let fixture: ComponentFixture<EditPermissionsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BugViewComponent]
+      declarations: [EditPermissionsComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BugViewComponent);
+    fixture = TestBed.createComponent(EditPermissionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,4 @@
-<html>
-<form #loginForm='ngForm' (ngSubmit)="submit(loginForm)">
+<form id='loginForm' #loginForm='ngForm'>
 
   <h1>
     {{ 'LOGIN.MESSAGE' | translate }}
@@ -17,13 +16,14 @@
       name="username"
       ngModel
       #username="ngModel"
-      (ngModelChange)="log(username)"
     >
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
       <div *ngIf="username.errors.required">
         {{'LOGIN.ALERTUSER' | translate}}
       </div>
     </div>
+
+    <p></p>
 
     <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
     <input
@@ -34,7 +34,6 @@
       name="password"
       ngModel
       #password="ngModel"
-      (ngModelChange)="log(password)"
     >
     <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
       <div *ngIf="password.errors.required">
@@ -47,7 +46,6 @@
   <p></p>
 
   <!-- START CAPTCHA -->
-  <br>
   <div class="capbox">
 
     <div id="captchaDiv"></div>
@@ -61,7 +59,6 @@
         name="txtCaptcha"
         ngModel
         #txtCaptcha="ngModel"
-        (ngModelChange)="log(txtCaptcha)"
       >
       <input
         type="text"
@@ -69,8 +66,7 @@
         id="captchaInput"
         ngModel
         #captchaInput="ngModel"
-        (ngModelChange)="log(captchaInput)"
-        (click)="generateCaptchaUpdateForm(loginForm)"
+        (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
         size="15"
       >
       <br>
@@ -92,10 +88,10 @@
 
   <div class="container" style="background-color:#f1f1f1">
     <span class="psw">
+      <label>{{'LOGIN.FORGOT' | translate }}</label>
       <a style="color: #039be5" (click)="alertForgotPass()">
-      {{'LOGIN.FORGOT_PASS' | translate }}
+      {{'LOGIN.PASS' | translate }}
       </a>
     </span>
   </div>
 </form>
-</html>
