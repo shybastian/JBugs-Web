@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
-import {Bug} from "../model/bug.model";
+import {Bug} from '../model/bug.model';
 import {Attachment} from "../model/attachment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -91,6 +91,8 @@ export class BugService {
         console.log(error);
       });
 
+  submitBug(bugJSON: string): void {
+    this.backendService.post("http://localhost:8080/jbugs/api/bugs", bugJSON);
   }
 
   getAllBugs(): Observable<Bug[]> {

@@ -1,15 +1,49 @@
 {
   "LANGUAGE": {
-    "SELECT": "Change language "
+    "SELECT": "Language "
   },
   "LOGIN": {
     "MESSAGE": "LOGIN",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "CAPTCHA": "Type the above number",
-    "FORGOT_PASS": "Forgot password?",
-    "ALERTUSER": "Username is required!",
-    "ALERTPASS": "Password is required!",
+    "CAPTCHA": "CAPTCHA code",
+    "FORGOT": "Forgot ",
+    "PASS": "password?",
+    "ALERTUSER": "Username is required",
+    "ALERTPASS": "Password is required",
     "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
+  },
+  "ADD_USER": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ROLES": "Roles",
+    "ADD": "Add User",
+    "ALERT_FIRSTNAME_REQUIRED": "First name is required!",
+    "ALERT_FIRSTNAME_DIMENSION": "First name is too long/short! Must be between 3 and 14 characters!",
+    "ALERT_FIRSTNAME_INCORRECT": "First name is incorrect!",
+    "ALERT_LASTNAME_INCORRECT": "Last name is incorrect!",
+    "ALERT_LASTNAME_REQUIRED": "First name is required!",
+    "ALERT_LASTNAME_DIMENSION": "First name is too long/short! Must be between 3 and 14 characters!",
+    "ALERT_PHONE_REQUIRED": "Phone number is required!",
+    "ALERT_PHONE_INCORRECT": "Phone number is incorrect!",
+    "ALERT_EMAIL_REQUIRED": "Email address is required!",
+    "ALERT_EMAIL_INCORRECT": "Email address is incorrect!",
+    "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!",
+    "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
+    "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
+  },
+  "BUG-VIEW": {
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "TargetDate",
+    "Status": "Status",
+    "FixedVersion": "FixedVersion",
+    "Severity":"Severity",
+    "Created_by": "Created by",
+    "Assigned_to": "Assigned to",
+    "Attachments": "Attachments"
   }
 }
