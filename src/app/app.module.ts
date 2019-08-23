@@ -10,12 +10,14 @@ import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {MultiSelectModule} from 'primeng/primeng';
+import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
+import {MultiSelectModule} from 'primeng/primeng';
 
 import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
@@ -52,19 +54,23 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    TableModule,
     MultiSelectModule,
     BrowserAnimationsModule,
+    DialogModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    ButtonModule,
+    DropdownModule,
+    CalendarModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

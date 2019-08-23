@@ -1,6 +1,6 @@
 {
   "LANGUAGE": {
-    "SELECT": "Schimba limba "
+    "SELECT": "Selectati Limba "
   },
   "LOGIN": {
     "MESSAGE": "LOGARE",
@@ -32,5 +32,18 @@
     "ALERT_ROLES_REQUIRED": "**Cel putin un rol trebuie sa fie selectat!",
     "ALERT_SUCCESS_CREATED_USER": "Utilizator creat cu succes!",
     "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
+  },
+  "BUG-VIEW": {
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data-tinta",
+    "Status": "Status",
+    "FixedVersion": "Fixat in versiunea",
+    "Severity":"Severitate",
+    "Created by": "Creat de",
+    "Assigned to": "Atribuit",
+    "Attachments": "Atasamente"
   }
+
 }
