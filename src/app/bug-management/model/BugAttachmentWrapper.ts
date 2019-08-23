@@ -4,4 +4,5 @@ import {Attachment} from './attachment';
 export interface BugAttachmentWrapper {
   bug: Bug;
   attachment: Attachment;
+  token: string;
 }

@@ -20,7 +20,6 @@ export class StorageService {
   isSomeoneLoggedIn(): boolean {
     return this.someoneIsLoggedIn;
   }
-
   updateSessionStorageWithUser(user: UserToSaveOnSession) {
     if (!this.isSessionStorageAvailable()) {
       alert('session storage not available. Try using another browser or opening another tab :)');
@@ -64,7 +63,6 @@ export class StorageService {
 
     return user;
   }
-
   getPermissionsFromSessionStorage(): PermissionType[] {
     const nrPermissions = +sessionStorage.getItem('user_nr_permissions');
     const permissions: PermissionType[] = new Array(nrPermissions);
@@ -115,5 +113,9 @@ export class StorageService {
         // acknowledge QuotaExceededError only if there's something already stored
         (storage && storage.length !== 0);
     }
+  }
+
+  getToken(): string {
+    return sessionStorage.getItem('token');
   }
 }

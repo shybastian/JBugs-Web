@@ -1,1 +1,163 @@
-<h1>bug-create works!</h1>
+<form [formGroup]="bugCreateForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      class="form-control"
+      id="title"
+      name="title"
+      formControlName="title"
+    >
+    <div class="alert alert-danger" *ngIf="bugCreateForm.get('title').touched && bugCreateForm.get('title').invalid">
+      <div *ngIf="bugCreateForm.get('title').errors.required">Can not be blank</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input
+      class="form-control"
+      id="description"
+      name="description"
+      minlength="250"
+      formControlName="description"
+    >
+    <!--    <div class="alert alert-danger" *ngIf="bugCreateForm.get('description').touched && bugCreateForm.get('description').invalid">-->
+    <!--      <div *ngIf="bugCreateForm.get('description').errors.required">Can not be blank.</div>-->
+    <!--      <div *ngIf="bugCreateForm.get('description').hasError('maxlength')">-->
+    <!--        Description must not exceed 250 characters.-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+
+  <div class="form-group">
+    <label for="version">Version</label>
+    <input
+      class="form-control"
+      id="version"
+      name="version"
+      pattern="[a-zA-Z0-9.]+"
+      formControlName="version"
+    >
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('version').touched && bugCreateForm.get('version').invalid">
+      <div *ngIf="bugCreateForm.get('version').errors.required">Can not be blank.</div>
+      <div *ngIf="bugCreateForm.get('version').errors.minlength">
+        Version must include only alphanumeric characters split by dots.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="fixedVersion">Fixed In Version</label>
+    <input
+      class="form-control"
+      id="fixedVersion"
+      name="fixedVersion"
+      disabled
+      formControlName="fixedVersion"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="targetDate">Target Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="targetDate"
+      name="targetDate"
+      min="{{todayDate | date:'yyyy-MM-dd'}}"
+      formControlName="targetDate"
+    >
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('targetDate').touched && bugCreateForm.get('targetDate').invalid">
+      <div *ngIf="bugCreateForm.get('targetDate').errors.min">Can not be a day before today.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="severity">Severity</label>
+    <select
+      class="form-control"
+      id="severity"
+      name="severity"
+      required
+      formControlName="severity"
+    >
+      <option value="critical">Critical</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('severity').touched && bugCreateForm.get('severity').invalid">
+      <div *ngIf="bugCreateForm.get('severity').errors">Must not be blank</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="CREATED_ID">Created By</label>
+    <input
+      class="form-control"
+      id="CREATED_ID"
+      name="CREATED_ID"
+      required
+      disabled
+      formControlName="CREATED_ID"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status</label>
+    <input
+      class="form-control"
+      id="status"
+      name="status"
+      required
+      disabled
+      formControlName="status"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="ASSIGNED_ID">Assign To</label><br>
+    <select
+      class="form-group"
+      id="ASSIGNED_ID"
+      name="ASSIGNED_ID"
+      formControlName="ASSIGNED_ID"
+    >
+      <option
+        class="form-group"
+        *ngFor="let user of listOfUsersToAssign" [value]="user.id"
+      >
+        {{user.username}}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>AttachmentModel</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        id="attachment"
+        name="attachment"
+        type="file"
+        accept=".pdf,.doc,.odf,.xlsx,.xls"
+        formControlName="attachment"
+      >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      class="form-control"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+
+  <p>{{bugCreateForm.value | json}}</p>
+
+</form>
