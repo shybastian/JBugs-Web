@@ -29,6 +29,8 @@
     "ALERT_PHONE_INCORRECT": "Phone number is incorrect!",
     "ALERT_EMAIL_REQUIRED": "Email address is required!",
     "ALERT_EMAIL_INCORRECT": "Email address is incorrect!",
-    "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!"
+    "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!",
+    "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
+    "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   }
 }

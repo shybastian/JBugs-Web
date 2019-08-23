@@ -38,10 +38,10 @@ export class UserCreateComponent implements OnInit {
   addUser(userForm: NgForm) {
     this.service.addUser(this.firstNameValue, this.lastNameValue, this.phoneValue, this.emailValue, this.selectedRoles)
       .subscribe(data => {
-        alert('User successfully created.');
+        alert(this.translate.instant('ADD_USER.ALERT_SUCCESS_CREATED_USER'));
         this.router.navigate(['/dashboard'])
       }, Error => {
-        alert('Failed while creating user.');
+        alert(this.translate.instant('ADD_USER.ALERT_FAIL_CREATED_USER'));
       });
   }
 
