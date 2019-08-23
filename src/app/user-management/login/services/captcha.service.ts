@@ -9,7 +9,7 @@ export class CaptchaService {
   private firedOnce = false;
   private lastGeneratedCode = '';
 
-  constructor(private translate: TranslateService) {
+  constructor(public translate: TranslateService) {
   }
 
   isSuccessAtSubmit(loginForm: NgForm): boolean {

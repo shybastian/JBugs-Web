@@ -51,15 +51,6 @@ const routes: Routes = [
       {
         path: 'notifications',
         component: NotificationComponent
-      },
-      {
-        path: 'permissions',
-        children: [
-          {
-            path: 'edit',
-            component: EditPermissionsComponent
-          }
-        ]
       }
     ]
   },

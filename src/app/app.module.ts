@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BugsComponent} from './bugs/bugs.component';
 import {LoginComponent} from './user-management/login/login.component';
+import {UserEditComponent} from './user-edit/user-edit.component';
 import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -13,15 +14,22 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, ListboxModule, MultiSelectModule} from 'primeng/primeng';
+import {
+  ButtonModule,
+  CalendarModule,
+  DialogModule,
+  DropdownModule,
+  ListboxModule,
+  MultiSelectModule
+} from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
-import {UserCreateComponent} from './user-management/user-create/user-create.component';
-import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
+import {UserCreateComponent} from "./user-create/user-create.component";
+import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
 
 // AoT requires an exported function for factories
@@ -34,6 +42,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     BugsComponent,
     LoginComponent,
+    UserEditComponent,
     UsersComponent,
     DashboardComponent,
     PageNotFoundComponent,
