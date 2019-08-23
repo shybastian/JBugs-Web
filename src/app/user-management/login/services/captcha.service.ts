@@ -1,5 +1,6 @@
 import {NgForm} from '@angular/forms';
 import {Injectable} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,17 @@ export class CaptchaService {
   private firedOnce = false;
   private lastGeneratedCode = '';
 
+  constructor(private translate: TranslateService) {
+  }
+
   isSuccessAtSubmit(loginForm: NgForm): boolean {
     let why = '';
     if (loginForm.form.value.captchaInput === '') {
-      why += '- Please Enter CAPTCHA Code.\n';
+      why += this.translate.instant('LOGIN.CAPTCHA_EMPTY');
     }
     if (loginForm.form.value.captchaInput !== '') {
       if (this.validCaptcha(loginForm.form.value.captchaInput) === false) {
-        why += '- The CAPTCHA Code Does Not Match.\n';
+        why += this.translate.instant('LOGIN.CAPTCHA_WRONG');
       }
     }
     if (why !== '') {

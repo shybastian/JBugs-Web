@@ -1,4 +1,4 @@
-import {PermissionType, UserToSaveOnSession} from '../../models/user.model';
+import {PermissionType, User, UserToSaveOnSession} from '../../models/user.model';
 import {Injectable} from '@angular/core';
 
 @Injectable({
@@ -21,6 +21,9 @@ export class StorageService {
     return this.someoneIsLoggedIn;
   }
 
+  getToken(): string {
+    return sessionStorage.getItem('token');
+  }
   updateSessionStorageWithUser(user: UserToSaveOnSession) {
     if (!this.isSessionStorageAvailable()) {
       alert('session storage not available. Try using another browser or opening another tab :)');
@@ -28,7 +31,6 @@ export class StorageService {
       sessionStorage.clear();
       sessionStorage.setItem('token', user.token);
 
-      // sessionStorage.setItem('user_id', '' + user.id); // not needed since encoded in TOKEN
       sessionStorage.setItem('user_firstName', '' + user.firstName);
       sessionStorage.setItem('user_lastName', '' + user.lastName);
       sessionStorage.setItem('user_username', '' + user.username); // also encoded in TOKEN
@@ -44,6 +46,29 @@ export class StorageService {
     }
   }
 
+  getUserWithoutIdRolesCounterStatusFromSessionStorage(): User {
+    let user: User = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      mobileNumber: '',
+
+      status: 0,
+      counter: 0,
+      roles: []
+    };
+
+    user.firstName = sessionStorage.getItem('user_firstName');
+    user.lastName = sessionStorage.getItem('user_lastName');
+    user.username = sessionStorage.getItem('user_username');
+    user.email = sessionStorage.getItem('user_email');
+    user.mobileNumber = sessionStorage.getItem('user_mobileNumber');
+
+    return user;
+  }
+
   getUserWithoutPermissionsFromSessionStorage(): UserToSaveOnSession {
     let user: UserToSaveOnSession = {
       firstName: '',
@@ -52,7 +77,7 @@ export class StorageService {
       email: '',
       mobileNumber: '',
       permissions: [],
-      message: '',
+      messageCode: '',
       token: ''
     };
 
