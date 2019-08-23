@@ -69,5 +69,4 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

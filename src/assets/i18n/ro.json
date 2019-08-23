@@ -1,16 +1,17 @@
 {
   "LANGUAGE": {
-    "SELECT": "Schimba limba "
+    "SELECT": "Selectati Limba "
   },
   "LOGIN": {
     "MESSAGE": "LOGARE",
     "USERNAME": "Nume utilizator",
     "PASSWORD": "Parola",
-    "CAPTCHA": "Tastați numărul de mai sus",
-    "FORGOT_PASS": "Ați uitat parola?",
-    "ALERTUSER": "Nume utilizator - obligatoriu!",
-    "ALERTPASS": "Parola - obligatoriu!",
-    "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
+    "CAPTCHA": "Codul CAPTCHA",
+    "FORGOT": "Ați uitat ",
+    "PASS": "parola?",
+    "ALERTUSER": "Nume utilizator invalid",
+    "ALERTPASS": "Parola invalida",
+    "ALERT_FORGOTPASS": "Contacteaza ADMIN pentru a recupera parola!"
   },
   "BUG-VIEW": {
     "Title": "Titlu",

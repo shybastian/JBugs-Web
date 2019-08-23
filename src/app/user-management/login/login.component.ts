@@ -5,6 +5,7 @@ import {CaptchaService} from './services/captcha.service';
 import {CryptoService} from './services/crypto.service';
 import {LoginService} from '../services/login.service';
 import {TranslateService} from '@ngx-translate/core';
+import {StorageService} from './services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,38 +14,35 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent {
 
-  private hashedPassword: string;
+  public static SUCCESS_RESPONSE_MESSAGE = 'SUCCESS';
+
+  // private hashedPassword: string;
 
   constructor(public router: Router, private loginService: LoginService,
-              private captchaService: CaptchaService, private cryptoService: CryptoService, public translate: TranslateService) {
-  }
-
-  log(value) {
-    console.log('NgModel', value);
-  }
-
-  submit(loginForm: NgForm) {
-    console.log('NgForm', loginForm);
-
+              private captchaService: CaptchaService, private cryptoService: CryptoService,
+              public storageService: StorageService, public translate: TranslateService) {
   }
 
   login(loginForm: NgForm) {
     const captchaIsGood = this.captchaService.isSuccessAtSubmit(loginForm);
     if (captchaIsGood) {
-      const hashedPassword = this.cryptoService.getHashedPassword(loginForm.form.value.password);
+      // this.hashedPassword = this.cryptoService.getHashedPassword(loginForm.form.value.password);
 
-      this.loginService.loginGetUser(loginForm.form.value.username, hashedPassword).subscribe(response => {
-      });
+      this.loginService.loginGetUser(loginForm.form.value.username, loginForm.form.value.password)
+        .subscribe(response => {
+          // console.log('response', response);
 
-      // this.backendservice.post('', '');
-      // this.router.navigate(['/dashboard']);
-      // writes in session data about user... like if admin or not
+          if (response.token === null || response.token === '' || response.message != LoginComponent.SUCCESS_RESPONSE_MESSAGE) {
+            alert(response.message);
+          } else {
+            this.storageService.updateSessionStorageWithUser(response);
+
+            // testing:
+            console.log('session storage', sessionStorage);
+            this.router.navigate(['/dashboard']).then();
+          }
+        });
     }
-  }
-
-  // Generate new rand CAPTCHA code
-  generateCaptchaUpdateForm(loginForm: NgForm) {
-    this.captchaService.generateCaptchaUpdateForm(loginForm);
   }
 
   alertForgotPass() {

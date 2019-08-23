@@ -34,13 +34,38 @@ export class CaptchaService {
     if (this.firedOnce) {
       return;
     } else {
-      const a = Math.ceil(Math.random() * 9) + '';
-      const b = Math.ceil(Math.random() * 9) + '';
-      const c = Math.ceil(Math.random() * 9) + '';
-      const d = Math.ceil(Math.random() * 9) + '';
-      const e = Math.ceil(Math.random() * 9) + '';
+      let a = Math.floor((Math.random() * 126) + 33) + ''; // between 33 ! and  126 ~ // UTF16 decimal
+      let b = Math.floor((Math.random() * 126) + 33) + '';
+      let c = Math.floor((Math.random() * 126) + 33) + '';
+      let d = Math.floor((Math.random() * 126) + 33) + '';
+      let e = Math.floor((Math.random() * 126) + 33) + '';
+
+      while (+a > 126) {
+        a = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+b > 126) {
+        b = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+c > 126) {
+        c = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+d > 126) {
+        d = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+e > 126) {
+        e = Math.floor((Math.random() * 126) + 33) + '';
+      }
+
+      // console.log(a, b, c, d, e);
+
+      a = String.fromCharCode(+a);
+      b = String.fromCharCode(+b);
+      c = String.fromCharCode(+c);
+      d = String.fromCharCode(+d);
+      e = String.fromCharCode(+e);
 
       this.lastGeneratedCode = a + b + c + d + e;
+      // this.lastGeneratedCode = a + '  ' + b + '  ' +  c + '  ' +  d + '  ' +  e;
 
       loginForm.form.value.txtCaptcha = this.lastGeneratedCode;
       document.getElementById('captchaDiv').innerHTML = this.lastGeneratedCode;
