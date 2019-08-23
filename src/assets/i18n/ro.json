@@ -11,5 +11,18 @@
     "ALERTUSER": "Nume utilizator - obligatoriu!",
     "ALERTPASS": "Parola - obligatoriu!",
     "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
+  },
+  "BUG-VIEW": {
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data-tinta",
+    "Status": "Status",
+    "FixedVersion": "Fixat in versiunea",
+    "Severity":"Severitate",
+    "Created by": "Creat de",
+    "Assigned to": "Atribuit",
+    "Attachments": "Atasamente"
   }
+
 }
