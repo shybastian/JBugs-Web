@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
 import {Bug} from '../model/bug.model';
-import {UpdateStatusData} from "../model/bug-view.model";
+import {updateData} from "../model/bug-view.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +21,6 @@ export class BugService {
   }
 
   updateBug(newStatus: string, bugID: number): Observable<number>{
-    const updateData : UpdateStatusData = {
-      status: newStatus,
-      bugID: bugID
-    };
 
     return this.backendService.put('http://localhost:8080/jbugs/api/bugs/update-bug-status/' + bugID, newStatus);
   }

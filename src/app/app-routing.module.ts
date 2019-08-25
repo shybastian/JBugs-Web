@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './user-management/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {UsersComponent} from './users/users.component';
 import {BugsComponent} from './bugs/bugs.component';
@@ -10,15 +9,9 @@ import {UserViewComponent} from "./user-management/user-view/user-view.component
 import {UserCreateComponent} from "./user-management/user-create/user-create.component";
 import {NotificationComponent} from "./notification/notification.component";
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-//import {BugCreateComponent} from "./bug-management/bug-create/bug-create.component";
-import {LoginComponent} from "./login/login.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {UsersComponent} from "./users/users.component";
-import {UserEditComponent} from "./user-edit/user-edit.component";
-import {LoggedInGuard} from "./logged-in.guard";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-import {BugUpdateStatusComponent} from "./bug-management/bug-update-status/bug-update-status.component";
+import {BugCreateComponent} from "./bug-management/bug-create/bug-create.component";
+import {LoginComponent} from "./user-management/login/login.component";
+
 
 
 const routes: Routes = [
@@ -64,10 +57,10 @@ const routes: Routes = [
             path: 'view',
             component: BugViewComponent
           },
-          //  {
-          // path: 'create',
-          //    component: BugCreateComponent
-          // }
+           {
+          path: 'create',
+             component: BugCreateComponent
+          }
         ]
        },
       {

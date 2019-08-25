@@ -67,7 +67,7 @@ export class BackendService {
       params,
       headers: {
         'Accept-Language': 'en',
-        'Content-Type' : '*/*'
+        'Content-Type' : 'text/plain'
       }
     };
     if (!url) {

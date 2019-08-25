@@ -13,16 +13,22 @@
     "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
   },
 
-  "BUG-VIEW": {
-    "Title": "Title",
-    "Description": "Description",
-    "Version": "Version",
-    "TargetDate": "TargetDate",
-    "Status": "Status",
-    "FixedVersion": "FixedVersion",
-    "Severity":"Severity",
-    "Created_by": "Created by",
-    "Assigned_to": "Assigned to",
-    "Attachments": "Attachments"
+  "BUG_VIEW": {
+    "TITLE": "Title",
+    "DESCRIPTION": "Description",
+    "VERSION": "Version",
+    "TARGET_DATE": "TargetDate",
+    "STATUS": "Status",
+    "FIXED_VERSION": "FixedVersion",
+    "SEVERITY":"Severity",
+    "CREATED_BY": "Created by",
+    "ASSIGNED_TO": "Assigned to",
+    "ATTACHMENTS": "Attachments"
+  },
+  "UPDATE_STATUS":{
+     "SUCCESS_UPDATE": "The status update was successful!",
+     "ERROR_UPDATE": "An error occurred while updating the status!",
+     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+
   }
 }

@@ -12,17 +12,23 @@
     "ALERTPASS": "Parola - obligatoriu!",
     "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
   },
-  "BUG-VIEW": {
-    "Title": "Titlu",
-    "Description": "Descriere",
-    "Version": "Versiune",
-    "TargetDate": "Data-tinta",
-    "Status": "Status",
-    "FixedVersion": "Fixat in versiunea",
-    "Severity":"Severitate",
-    "Created_by": "Creat de",
-    "Assigned_to": "Atribuit",
-    "Attachments": "Atasamente"
+  "BUG_VIEW": {
+    "TITLE": "Titlu",
+    "DESCRIPTION": "Descriere",
+    "VERSION": "Versiune",
+    "TARGET_DATE": "Data-tinta",
+    "STATUS": "Status",
+    "FIXED_VERSION": "Fixat in versiunea",
+    "SEVERITY":"Severitate",
+    "CREATED_BY": "Creat de",
+    "ASSIGNED_TO": "Atribuit",
+    "ATTACHMENTS": "Atasamente"
+  },
+  "UPDATE_STATUS":{
+    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+
   }
 
 }
