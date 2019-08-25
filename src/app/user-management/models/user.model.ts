@@ -2,17 +2,19 @@ import {Role} from './role';
 
 export interface User {
   id: number;
+
   firstName: string;
   lastName: string;
   username: string;
   email: string;
   mobileNumber: string;
+
   status: number;
+  counter: number;
   roles: Role[];
 }
 
 export interface UserToSaveOnSession {
-  // id: number;
   firstName: string;
   lastName: string;
   username: string;
@@ -20,7 +22,7 @@ export interface UserToSaveOnSession {
   mobileNumber: string;
   permissions: PermissionType[];
   token: string;
-  message: string;
+  messageCode: string;
 }
 
 export interface Role {
