@@ -10,11 +10,13 @@ import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import { BugViewComponent } from './bugs/bug-view/bug-view.component';
 import {TableModule} from 'primeng/table';
-import {MultiSelectModule} from 'primeng/primeng';
+import {CalendarModule, DialogModule, MultiSelectModule, PaginatorModule} from 'primeng/primeng';
+import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import { BugUpdateStatusComponent } from './bug-management/bug-update-status/bug-update-status.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MultiSelectModule} from 'primeng/primeng';
     UsersComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    BugViewComponent
+    BugViewComponent,
+    BugUpdateStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +37,13 @@ import {MultiSelectModule} from 'primeng/primeng';
     CommonModule,
     HttpClientModule,
     TableModule,
-    MultiSelectModule
+    MultiSelectModule,
+    PaginatorModule,
+    CalendarModule,
+    DialogModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

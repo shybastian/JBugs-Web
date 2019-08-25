@@ -1,6 +1,4 @@
-import {User} from '../../user-management/models/user.model';
-
-export interface Bug {
+export interface BugView {
   id: number;
   title: string;
   description: string;
@@ -9,6 +7,11 @@ export interface Bug {
   status: string;
   fixedVersion: string;
   severity: string;
-  created_ID: User;
-  assigned_ID: User;
+  created_ID: string;
+  assigned_ID: string;
+}
+
+export interface UpdateStatusData {
+  status: string,
+  bugID: number
 }

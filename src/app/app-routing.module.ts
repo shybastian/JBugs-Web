@@ -3,10 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {UsersComponent} from "./users/users.component";
-import {BugsComponent} from "./bugs/bugs.component";
 import {UserEditComponent} from "./user-edit/user-edit.component";
 import {LoggedInGuard} from "./logged-in.guard";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {BugUpdateStatusComponent} from "./bug-management/bug-update-status/bug-update-status.component";
 
 
 const routes: Routes = [
@@ -43,9 +44,15 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'bugs',
-        component: BugsComponent
+        path: 'bugs-view-filter',
+        component: BugViewComponent
+      },
+      {
+        path: 'update-status',
+        component: BugUpdateStatusComponent
       }
+
+
     ]
   },
   {
