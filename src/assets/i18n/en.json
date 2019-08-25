@@ -1,0 +1,28 @@
+{
+  "LANGUAGE": {
+    "SELECT": "Change language "
+  },
+  "LOGIN": {
+    "MESSAGE": "LOGIN",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "CAPTCHA": "Type the above number",
+    "FORGOT_PASS": "Forgot password?",
+    "ALERTUSER": "Username is required!",
+    "ALERTPASS": "Password is required!",
+    "ALERT_FORGOTPASS": "Contact ADMIN to recover your password!"
+  },
+
+  "BUG-VIEW": {
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "TargetDate",
+    "Status": "Status",
+    "FixedVersion": "FixedVersion",
+    "Severity":"Severity",
+    "Created_by": "Created by",
+    "Assigned_to": "Assigned to",
+    "Attachments": "Attachments"
+  }
+}
