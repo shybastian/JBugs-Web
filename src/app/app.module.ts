@@ -14,18 +14,22 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {DropdownModule, ListboxModule, MultiSelectModule} from 'primeng/primeng';
+import {
+  ButtonModule,
+  CalendarModule,
+  DialogModule,
+  DropdownModule,
+  ListboxModule,
+  MultiSelectModule
+} from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
-import {MultiSelectModule} from 'primeng/primeng';
 
-import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from "./user-create/user-create.component";
-import {EditPermissionsComponent} from './premissions-management/edit-permissions/edit-permissions.component';
+import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
 
 // AoT requires an exported function for factories
