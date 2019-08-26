@@ -21,6 +21,13 @@ export class UsersViewComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
+    if (this.users !== undefined) {
+      return;
+    }
+    if (this.users !== null) {
+      return;
+    }
+    // only if iterable, apply changes, i.e. after getUsers
     for (let user of this.users) {
       if (user.status === UserStatusType.Active) {
         user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Active);
@@ -40,7 +47,6 @@ export class UsersViewComponent implements OnInit, DoCheck {
           user.stringStatus = UserStatusTypeSTRING.Inactive;
         }
       }
-      console.log('before', this.users);
     });
 
     this.cols = [
@@ -73,7 +79,7 @@ export class UsersViewComponent implements OnInit, DoCheck {
   }
 
   onRowSelect() {
-    console.log('selected', this.selectedUser);
+    // console.log('selected', this.selectedUser);
     this.displayDialog = true;
   }
 }

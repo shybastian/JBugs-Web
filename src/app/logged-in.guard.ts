@@ -12,7 +12,7 @@ export class LoggedInGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true; // uncomment for testing without LoggedInGuard
+    // return true; // uncomment for testing without LoggedInGuard
 
     if (this.storageService.isSomeoneLoggedIn()) {
       return true;
