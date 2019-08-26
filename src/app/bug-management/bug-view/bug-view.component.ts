@@ -7,6 +7,7 @@ import {Bug} from '../model/bug.model';
 import {DatePipe} from "@angular/common";
 import {Table} from "primeng/table";
 import {BugView} from "../model/bug-view.model";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-bug-view',
@@ -15,7 +16,8 @@ import {BugView} from "../model/bug-view.model";
 })
 export class BugViewComponent implements OnInit, AfterViewInit {
 
-  constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe) {
+  constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
+              private translateService: TranslateService) {
 
   }
 
@@ -143,6 +145,24 @@ export class BugViewComponent implements OnInit, AfterViewInit {
 
   targetDateColumn(value){
     return value === "targetDate";
+  }
+
+  bugAsString(bug: BugView):String{
+    let bugString: String = "";
+
+    bugString += this.translateService.instant('BUG_VIEW.TITLE') + ' : '+ bug.title + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.DESCRIPTION') + ' : ' + bug.description + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.VERSION') + ' : ' + bug.version + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.TARGET_DATE') + ' : ' + bug.targetDate + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.STATUS') + ' : ' + bug.status + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.FIXED_VERSION') + ' : ' + bug.fixedVersion + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.SEVERITY') + ' : ' + bug.severity + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.CREATED_BY') + ' : ' + bug.created_ID + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.ASSIGNED_TO') + ' : ' + bug.assigned_ID + '\n';
+    bugString += this.translateService.instant('BUG_VIEW.ATTACHMENTS');
+
+
+    return bugString;
   }
 
 }

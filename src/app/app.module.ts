@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {
   ButtonModule,
@@ -75,7 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ButtonModule,
     CalendarModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

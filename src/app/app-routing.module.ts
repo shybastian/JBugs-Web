@@ -9,9 +9,8 @@ import {UsersViewComponent} from './user-management/users-view/users-view.compon
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {NotificationComponent} from './notification/notification.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
-import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
+import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-//import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 
 
 const routes: Routes = [

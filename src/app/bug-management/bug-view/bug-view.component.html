@@ -9,14 +9,14 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor = "let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field">
-        <p *ngSwitchCase="'title'">{{'BUG-VIEW.Title' | translate}}</p>
-        <p *ngSwitchCase="'version'">{{'BUG-VIEW.Version' | translate}}</p>
-        <p *ngSwitchCase="'fixedVersion'">{{'BUG-VIEW.FixedVersion' | translate}}</p>
-        <p *ngSwitchCase="'severity'">{{'BUG-VIEW.Severity' | translate}}</p>
-        <p *ngSwitchCase="'status'">{{'BUG-VIEW.Status' | translate}}</p>
-        <p *ngSwitchCase="'created_ID'">{{'BUG-VIEW.Created_by' | translate}}</p>
-        <p *ngSwitchCase="'targetDate'">{{'BUG-VIEW.TargetDate' | translate}}</p>
-        <p *ngSwitchCase="'assigned_ID'">{{'BUG-VIEW.Assigned_to' | translate}}</p>
+        <p *ngSwitchCase="'title'">{{'BUG_VIEW.TITLE' | translate}}</p>
+        <p *ngSwitchCase="'version'">{{'BUG_VIEW.VERSION' | translate}}</p>
+        <p *ngSwitchCase="'fixedVersion'">{{'BUG_VIEW.FIXED_VERSION' | translate}}</p>
+        <p *ngSwitchCase="'severity'">{{'BUG_VIEW.SEVERITY' | translate}}</p>
+        <p *ngSwitchCase="'status'">{{'BUG_VIEW.STATUS' | translate}}</p>
+        <p *ngSwitchCase="'created_ID'">{{'BUG_VIEW.CREATED_BY' | translate}}</p>
+        <p *ngSwitchCase="'targetDate'">{{'BUG_VIEW.TARGET_DATE' | translate}}</p>
+        <p *ngSwitchCase="'assigned_ID'">{{'BUG_VIEW.ASSIGNED_TO' | translate}}</p>
         <p-sortIcon [field]="col.field" ariaLabel="Active to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
         <button (click)="dt.reset()" [hidden]="!targetDateColumn(col.field)">Clear Date</button>
       </th>
@@ -24,14 +24,14 @@
 
     <tr>
       <th *ngFor="let col of columns" [ngSwitch]="col.field">
-        <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
-        <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
+        <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
+        <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
         <p-multiSelect *ngSwitchCase="'created_ID'" [options]="userFilter" defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
         <p-multiSelect *ngSwitchCase="'assigned_ID'" [options]="userFilter" defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
         <p-dropdown *ngSwitchCase="'version'" [options]="versionFilter" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
         <p-dropdown *ngSwitchCase="'fixedVersion'" [options]="versionFilter" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
-        <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" *ngSwitchCase="'targetDate'" [defaultDate]="" [readonlyInput]="false" dateFormat="yy-MM-dd" (onSelect)="dt.filter($event, col.field, 'dateFilter')">
+        <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]="" [readonlyInput]="false" dateFormat="yy-MM-dd" (onSelect)="dt.filter($event, col.field, 'dateFilter')">
 
         </p-calendar>
       </th>
@@ -49,16 +49,7 @@
 
 <p-dialog header="Info" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
           [maximizable]="true" [baseZIndex]="10000">
-  <p class="text-style">{{selectedBug1 ? '\n Title' + ': ' + selectedBug1.title +
-                                         '\n Description : ' + selectedBug1.description +
-                                         '\n Version : ' + selectedBug1.version +
-                                         '\n TargetDate : ' + selectedBug1.targetDate +
-                                         '\n Status : ' + selectedBug1.status +
-                                         '\n FixedVersion : ' + selectedBug1.fixedVersion +
-                                         '\n Severity : ' + selectedBug1.severity +
-                                         '\n Created by : ' + selectedBug1.created_ID +
-                                         '\n Assigned to : ' + selectedBug1.assigned_ID +
-                                         '\n Attachments : \n'
+  <p class="text-style">{{selectedBug1 ? bugAsString(selectedBug1)
                        : 'none'}} </p>
   <p class="text-style">
         </p>
