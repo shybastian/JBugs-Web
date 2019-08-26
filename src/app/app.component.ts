@@ -10,9 +10,6 @@ import {StorageService} from "./user-management/login/services/storage.service";
 export class AppComponent {
   title = 'routing';
 
-  // displayLogOutButton: boolean;
-
-
   constructor(public translate: TranslateService, private storageService: StorageService) {
     this.switchLanguage();
   }

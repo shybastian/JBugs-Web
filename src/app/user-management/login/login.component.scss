@@ -34,3 +34,10 @@
   width: 135px;
 }
 
+body {
+  margin: auto;
+  padding: 20px;
+  max-width: 1200px;
+  display: table-cell;
+  vertical-align: middle;
+}
