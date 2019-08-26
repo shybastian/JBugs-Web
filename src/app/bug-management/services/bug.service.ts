@@ -27,7 +27,7 @@ export class BugService {
     this.http.post(this.baseUrl, wrapper).subscribe(data => {
       alert(this.translateService.instant('BUG-CREATE.ALERT_BUG_ADDED'));
     }, error => {
-      alert('ALERT_BUG_ERROR');
+      alert('BUG-CREATE.ALERT_BUG_ERROR');
     });
   }
 
