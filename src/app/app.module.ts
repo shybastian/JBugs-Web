@@ -17,9 +17,6 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
-import {MultiSelectModule} from 'primeng/primeng';
-
-import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
