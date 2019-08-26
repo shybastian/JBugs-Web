@@ -1,5 +1,6 @@
 import {NgForm} from '@angular/forms';
 import {Injectable} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,17 @@ export class CaptchaService {
   private firedOnce = false;
   private lastGeneratedCode = '';
 
+  constructor(private translate: TranslateService) {
+  }
+
   isSuccessAtSubmit(loginForm: NgForm): boolean {
     let why = '';
     if (loginForm.form.value.captchaInput === '') {
-      why += '- Please Enter CAPTCHA Code.\n';
+      why += this.translate.instant('LOGIN.CAPTCHA_EMPTY');
     }
     if (loginForm.form.value.captchaInput !== '') {
       if (this.validCaptcha(loginForm.form.value.captchaInput) === false) {
-        why += '- The CAPTCHA Code Does Not Match.\n';
+        why += this.translate.instant('LOGIN.CAPTCHA_WRONG');
       }
     }
     if (why !== '') {
@@ -34,13 +38,38 @@ export class CaptchaService {
     if (this.firedOnce) {
       return;
     } else {
-      const a = Math.ceil(Math.random() * 9) + '';
-      const b = Math.ceil(Math.random() * 9) + '';
-      const c = Math.ceil(Math.random() * 9) + '';
-      const d = Math.ceil(Math.random() * 9) + '';
-      const e = Math.ceil(Math.random() * 9) + '';
+      let a = Math.floor((Math.random() * 126) + 33) + ''; // between 33 ! and  126 ~ // UTF16 decimal
+      let b = Math.floor((Math.random() * 126) + 33) + '';
+      let c = Math.floor((Math.random() * 126) + 33) + '';
+      let d = Math.floor((Math.random() * 126) + 33) + '';
+      let e = Math.floor((Math.random() * 126) + 33) + '';
+
+      while (+a > 126) {
+        a = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+b > 126) {
+        b = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+c > 126) {
+        c = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+d > 126) {
+        d = Math.floor((Math.random() * 126) + 33) + '';
+      }
+      while (+e > 126) {
+        e = Math.floor((Math.random() * 126) + 33) + '';
+      }
+
+      // console.log(a, b, c, d, e);
+
+      a = String.fromCharCode(+a);
+      b = String.fromCharCode(+b);
+      c = String.fromCharCode(+c);
+      d = String.fromCharCode(+d);
+      e = String.fromCharCode(+e);
 
       this.lastGeneratedCode = a + b + c + d + e;
+      // this.lastGeneratedCode = a + '  ' + b + '  ' +  c + '  ' +  d + '  ' +  e;
 
       loginForm.form.value.txtCaptcha = this.lastGeneratedCode;
       document.getElementById('captchaDiv').innerHTML = this.lastGeneratedCode;
