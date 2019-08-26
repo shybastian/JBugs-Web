@@ -13,7 +13,14 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, ListboxModule, MultiSelectModule} from 'primeng/primeng';
+import {
+  ButtonModule,
+  CalendarModule,
+  DialogModule,
+  DropdownModule,
+  ListboxModule,
+  MultiSelectModule
+} from 'primeng/primeng';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -22,6 +29,7 @@ import {UsersViewComponent} from './user-management/users-view/users-view.compon
 import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
+import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
 
 
 // AoT requires an exported function for factories
@@ -41,7 +49,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugCreateComponent,
     UsersViewComponent,
     NotificationComponent,
-    EditPermissionsComponent
+    EditPermissionsComponent,
+    BugViewComponent
   ],
   imports: [
     BrowserModule,
