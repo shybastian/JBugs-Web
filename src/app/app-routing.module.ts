@@ -8,9 +8,9 @@ import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {UserViewComponent} from "./user-management/user-view/user-view.component";
 import {NotificationComponent} from "./notification/notification.component";
-import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
 import {BugCreateComponent} from "./bug-management/bug-create/bug-create.component";
 import {UserCreateComponent} from "./user-create/user-create.component";
+import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
 
 const routes: Routes = [
@@ -61,6 +61,15 @@ const routes: Routes = [
       {
         path: 'notifications',
         component: NotificationComponent
+      },
+      {
+        path: 'permissions',
+        children: [
+          {
+            path: 'edit',
+            component: EditPermissionsComponent
+          }
+        ]
       }
     ]
   },

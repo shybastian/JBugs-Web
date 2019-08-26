@@ -39,7 +39,12 @@
     "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!",
     "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
+
   },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permissions",
+    "ROLES": "Roles"
+},
   "BUG-VIEW": {
     "Title": "Title",
     "Description": "Description",

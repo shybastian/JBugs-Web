@@ -52,6 +52,10 @@
     "Created by": "Creat de",
     "Assigned to": "Atribuit",
     "Attachments": "Atasamente"
+  },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permisiuni",
+    "ROLES": "Roluri"
   }
 
 }
