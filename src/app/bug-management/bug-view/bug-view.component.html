@@ -86,11 +86,12 @@
     <p>Bug : {{selectedBugTitle}}</p>
     <p-dropdown [options]="newStatusValues"
                 #statusTypes
+                [style]="{'width': '100%'}"
                 id="statusTypes"
                 class="form-control"
                 (onClick)="selectStatus()">New status: </p-dropdown>
     <p-footer>
-      <button pButton label="Update" (click)="modifyBugStatus(statusTypes.value); dt.reset()"></button>
+      <button pButton label="Update" (click)="modifyBugStatus(statusTypes.selectedOption.value); dt.reset()"></button>
       <button pButton icon="pi pi-close" (click)="displayUpdateModal=false" label="Cancel update" class="ui-button-secondary"></button>
     </p-footer>
   </p-dialog>

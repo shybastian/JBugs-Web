@@ -101,7 +101,7 @@ export class BugViewComponent implements AfterViewInit, OnInit {
 
     this.statusInProgress = [
       {label: 'Rejected', value: 'Rejected'},
-      {label: 'InfoNeeded', value: 'InfoNeeded'},
+      {label: 'InfoNeeded', value: 'Info needed'},
       {label: 'Fixed', value: 'Fixed'}
     ];
 
@@ -164,7 +164,6 @@ export class BugViewComponent implements AfterViewInit, OnInit {
       }
     },250));
 
-
   }
 
   showInfoModal() {
@@ -226,14 +225,14 @@ export class BugViewComponent implements AfterViewInit, OnInit {
 
   modifyBugStatus(newStatus){
     console.log(this.selectedBugId);
-
+    console.log(newStatus);
     this.bugService.updateBug(newStatus, this.selectedBugId)
       .subscribe( data => {
         alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
         this.displayUpdateModal = false;
         this.displayInfoModal = false;
         this.dt.reset();
-      }, Error => {
+        }, Error => {
         alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
       })
 
