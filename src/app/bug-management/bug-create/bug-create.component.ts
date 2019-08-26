@@ -17,17 +17,21 @@ import {StorageService} from "../../user-management/login/services/storage.servi
 export class BugCreateComponent implements OnInit {
   private todayDate = new Date();
   private listOfUsersToAssign: User[];
-  private currentSelectedAssignedUser: User;
   private bugCreateForm: FormGroup;
 
   constructor(private userService: UserService, private bugService: BugService, private formBuilder: FormBuilder,
               private storageService: StorageService) {
   }
 
+  /**
+   * When this component is initialized,
+   * this function is called.
+   * It builds the reactive form and sets the the Validators.
+   */
   ngOnInit() {
     this.bugCreateForm = this.formBuilder.group({
       title: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required, Validators.maxLength(250)]),
+      description: new FormControl(null, [Validators.required]),
       version: new FormControl(null, [Validators.required, BugCreateValidator.validateVersion]),
       fixedVersion: new FormControl(null,),
       targetDate: new FormControl(null),
@@ -47,12 +51,14 @@ export class BugCreateComponent implements OnInit {
     });
   }
 
+  /**
+   * This function builds a Wrapper object and sends it to the {@link BugService} to be
+   * posted by the server.
+   */
   onSubmit() {
     const bug = this.createBugEntity();
     const attachment = this.createAttachmentEntity(bug);
     const wrapper = this.createWrapperEntity(bug, attachment);
-
-    console.log(JSON.stringify(wrapper));
 
     this.bugService.submitBug(wrapper);
   }
@@ -90,9 +96,5 @@ export class BugCreateComponent implements OnInit {
       token: this.storageService.getToken(),
     };
     return wrapper;
-  }
-
-  onClickChangeUser(user: User) {
-    this.currentSelectedAssignedUser = user;
   }
 }

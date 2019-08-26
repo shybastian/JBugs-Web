@@ -6,6 +6,7 @@ import {Attachment} from "../model/attachment";
 import {HttpClient} from "@angular/common/http";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {StorageService} from "../../user-management/login/services/storage.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ import {StorageService} from "../../user-management/login/services/storage.servi
 export class BugService {
   private baseUrl = 'http://localhost:8080/jbugs/api/bugs';
 
-  constructor(private backendService: BackendService, private http: HttpClient, private storageService: StorageService) {
+  constructor(private backendService: BackendService, private http: HttpClient, private storageService: StorageService,
+              private translateService: TranslateService) {
   }
 
   /**
@@ -23,14 +25,13 @@ export class BugService {
    */
   submitBug(wrapper: BugAttachmentWrapper) {
     this.http.post(this.baseUrl, wrapper).subscribe(data => {
-      alert('BUG_ADDED');
+      alert(this.translateService.instant('BUG-CREATE.ALERT_BUG_ADDED'));
     }, error => {
-      console.log(error.message);
-      alert('BUG_ADD_FAILED');
+      alert('ALERT_BUG_ERROR');
     });
   }
 
   getAllBugs(): Observable<Bug[]> {
-    return this.backendService.get('http://localhost:8080/jbugs/api/bugs');
+    return this.backendService.get(this.baseUrl);
   }
 }

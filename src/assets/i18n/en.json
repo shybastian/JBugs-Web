@@ -45,5 +45,28 @@
     "Created_by": "Created by",
     "Assigned_to": "Assigned to",
     "Attachments": "Attachments"
+  },
+  "BUG-CREATE": {
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "Target date",
+    "Status": "Status",
+    "FixedVersion": "Fixed In Version",
+    "Severity": "Severity",
+    "CreatedBy": "Created by",
+    "AssignedTo": "Assigned to user",
+    "Attachment": "Attachment",
+    "Submit": "Submit",
+    "MaxLength250": "The maximum allowed length is 250 characters.",
+    "NotBlank": "Can not be empty",
+    "VersionValidation": "Field must include 3 groups of 2 alphanumerical characters split by dots.",
+    "DateValidation": "Must not be a date before today.",
+    "SeverityCritical": "Critical",
+    "SeverityHigh": "High",
+    "SeverityMedium": "Medium",
+    "SeverityLow": "Low",
+    "ALERT_BUG_ADDED": "The new Entry has been added successfully!",
+    "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
   }
 }
