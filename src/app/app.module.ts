@@ -16,13 +16,13 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UserViewComponent} from './user-management/user-view/user-view.component';
 import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from "./user-create/user-create.component";
 import {EditPermissionsComponent} from './edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {DialogModule, MultiSelectModule} from "primeng/primeng";
 
 
 // AoT requires an exported function for factories

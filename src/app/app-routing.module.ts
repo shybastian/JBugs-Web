@@ -70,7 +70,6 @@ const routes: Routes = [
         component: NotificationComponent
       }
 
-
     ]
   },
   {
