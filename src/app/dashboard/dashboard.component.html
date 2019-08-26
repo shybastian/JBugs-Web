@@ -2,8 +2,8 @@
   <h2>Menu</h2>
 
   <div>
-    <button *ngIf="!disableUser" [routerLink]="['users']" class="dropdown-btn" (click)="activeUserButton() ">
-      Users
+    <button *ngIf="!disableUser" class="dropdown-btn" (click)="activeUserButton() ">
+ Users
     </button>
     <div *ngIf="currentUserButton==true ">
       <div *ngFor="let userButtonContainer of userButtonContainers">
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <button *ngIf="!disableBug" [routerLink]="['bugs']" class="dropdown-btn" (click)="activeBugButton() ">
+    <button *ngIf="!disableBug" class="dropdown-btn" (click)="activeBugButton() ">
       Bugs
     </button>
     <div *ngIf="currentBugButton==true ">
@@ -24,7 +24,7 @@
       Notifications
     </button>
 
-    <button class="dropdown-btn" [routerLink]="['permissions']" (click)="activePermissionsButton()">
+    <button class="dropdown-btn" (click)="activePermissionsButton()">
       Permissions
     </button>
     <div *ngIf="currentPermissionsButton==true ">
