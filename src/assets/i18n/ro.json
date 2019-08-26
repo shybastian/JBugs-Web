@@ -27,8 +27,8 @@
     "Status": "Status",
     "FixedVersion": "Fixat in versiunea",
     "Severity":"Severitate",
-    "Created by": "Creat de",
-    "Assigned to": "Atribuit",
+    "Created_by": "Creat de",
+    "Assigned_to": "Atribuit",
     "Attachments": "Atasamente"
   }
 

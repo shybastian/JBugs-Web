@@ -1,5 +1,5 @@
 export interface BugView {
-  ID: number;
+  id: number;
   title: string;
   description: string;
   version: string;

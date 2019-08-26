@@ -2,13 +2,15 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './user-management/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {UsersComponent} from './users/users.component';
+import {BugsComponent} from './bugs/bugs.component';
 import {LoggedInGuard} from './logged-in.guard';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {NotificationComponent} from './notification/notification.component';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
-import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
+//import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 
 
 const routes: Routes = [
@@ -43,11 +45,19 @@ const routes: Routes = [
         path: 'bugs',
         children: [
           {
-            path: 'create',
-            component: BugCreateComponent
+            path: '',
+            component: BugsComponent
+          },
+          {
+            path: 'view',
+            component: BugViewComponent
+          },
+           {
+          path: 'create',
+             component: BugCreateComponent
           }
         ]
-      },
+       },
       {
         path: 'permissions',
         children: [
