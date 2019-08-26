@@ -24,6 +24,15 @@
       Notifications
     </button>
 
+    <button class="dropdown-btn" [routerLink]="['permissions']" (click)="activePermissionsButton()">
+      Permissions
+    </button>
+    <div *ngIf="currentPermissionsButton==true ">
+      <div *ngFor="let permissionsButtonContainer of permissionsButtonContainers">
+        <a [routerLink]="['permissions',permissionsButtonContainer.router]">{{permissionsButtonContainer.name}}</a>
+      </div>
+    </div>
+
   </div>
 
 
