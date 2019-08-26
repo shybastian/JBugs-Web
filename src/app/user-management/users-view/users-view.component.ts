@@ -1,21 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {User, UserStatusType, UserStatusTypeSTRING} from '../models/user.model';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {StorageService} from '../login/services/storage.service';
 
 @Component({
   selector: 'app-users-view',
   templateUrl: './users-view.component.html',
   styleUrls: ['./users-view.component.scss']
 })
-export class UsersViewComponent implements OnInit {
+export class UsersViewComponent implements OnInit, DoCheck {
 
   displayDialog: boolean;
   selectedUser: User;
   users: User[];
   cols: any[];
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private storageService: StorageService, private translate: TranslateService, private router: Router, private userService: UserService) {
+  }
+
+  ngDoCheck(): void {
+    for (let user of this.users) {
+      if (user.status === UserStatusType.Active) {
+        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Active);
+      } else {
+        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Inactive);
+      }
+    }
   }
 
   ngOnInit() {
@@ -32,13 +44,13 @@ export class UsersViewComponent implements OnInit {
     });
 
     this.cols = [
-      {field: 'id', header: 'id'},
-      {field: 'firstName', header: 'firstName'},
-      {field: 'lastName', header: 'lastName'},
-      {field: 'username', header: 'username'},
-      {field: 'email', header: 'email'},
-      {field: 'mobileNumber', header: 'mobileNumber'},
-      {field: 'stringStatus', header: 'status'}
+      {field: 'id', header: 'ID'},
+      {field: 'firstName', header: 'FIRST_NAME'},
+      {field: 'lastName', header: 'LAST_NAME'},
+      {field: 'username', header: 'USERNAME'},
+      {field: 'email', header: 'EMAIL'},
+      {field: 'mobileNumber', header: 'PHONE'},
+      {field: 'stringStatus', header: 'STATUS'}
     ];
   }
 
