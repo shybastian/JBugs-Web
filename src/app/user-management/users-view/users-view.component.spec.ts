@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {UserEditComponent} from './user-edit.component';
+import {UsersViewComponent} from './users-view.component';
 
-describe('UserEditComponent', () => {
-  let component: UserEditComponent;
-  let fixture: ComponentFixture<UserEditComponent>;
+describe('UsersViewComponent', () => {
+  let component: UsersViewComponent;
+  let fixture: ComponentFixture<UsersViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserEditComponent]
+      declarations: [UsersViewComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserEditComponent);
+    fixture = TestBed.createComponent(UsersViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

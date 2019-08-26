@@ -20,7 +20,7 @@
     >
     <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
       <div *ngIf="username.errors.required">
-        {{'LOGIN.ALERTUSER' | translate}}
+        {{'LOGIN.ALERT_USER' | translate}}
       </div>
     </div>
 
@@ -38,7 +38,7 @@
     >
     <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
       <div *ngIf="password.errors.required">
-        {{'LOGIN.ALERTPASS' | translate}}
+        {{'LOGIN.ALERT_PASS' | translate}}
       </div>
     </div>
 
@@ -59,14 +59,12 @@
         id="txtCaptcha"
         name="txtCaptcha"
         ngModel
-        #txtCaptcha="ngModel"
       >
       <input
         type="text"
         name="captchaInput"
         id="captchaInput"
         ngModel
-        #captchaInput="ngModel"
         (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
         size="15"
       >

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {BackendService} from '../../core/backend/services/backend.service';
-import {LoginData} from '../models/user.model';
+import {LoginData, UserToSaveOnSession} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private backendService: BackendService) {
   }
 
-  loginGetUser(username: string, password: string): Observable<any> {
+  loginGetUser(username: string, password: string): Observable<UserToSaveOnSession> {
     const loginData: LoginData = {
       username,
       password

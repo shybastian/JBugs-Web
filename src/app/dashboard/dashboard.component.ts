@@ -26,6 +26,10 @@ export class DashboardComponent implements OnInit {
     {id: 1, name: 'edit', router: 'edit'}
   ];
 
+  permissionsButtonContainers = [
+    {id: 1, name: 'edit permissions', router: 'edit'}
+  ];
+
   currentUserButton = false;
   currentBugButton = false;
   currentPermButton = false;

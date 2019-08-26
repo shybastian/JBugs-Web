@@ -20,18 +20,18 @@
       </div>
     </div>
 
-    <button *ngIf="!disablePermission" class="dropdown-btn" [routerLink]="['permissions']" (click)="activePermButton()">
-      Permissions
-    </button>
-    <div *ngIf="currentPermButton==true ">
-      <div *ngFor="let perm of permissionButtonContainers">
-        <a [routerLink]="['permissions',perm.router]">{{perm.name}}</a>
-      </div>
-    </div>
-
     <button class="dropdown-btn" [routerLink]="['notifications']">
       Notifications
     </button>
+
+    <button class="dropdown-btn" [routerLink]="['permissions']" (click)="activePermissionsButton()">
+      Permissions
+    </button>
+    <div *ngIf="currentPermissionsButton==true ">
+      <div *ngFor="let permissionsButtonContainer of permissionsButtonContainers">
+        <a [routerLink]="['permissions',permissionsButtonContainer.router]">{{permissionsButtonContainer.name}}</a>
+      </div>
+    </div>
 
     <button class="btn btn-primary" (click)="atLogout()">Log Out</button>
 

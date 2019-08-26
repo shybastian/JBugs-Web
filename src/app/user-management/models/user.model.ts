@@ -1,16 +1,20 @@
+import {Role} from './role';
+
 export interface User {
   id: number;
+
   firstName: string;
   lastName: string;
   username: string;
   email: string;
   mobileNumber: string;
+
   status: number;
+  counter: number;
   roles: Role[];
 }
 
 export interface UserToSaveOnSession {
-  // id: number;
   firstName: string;
   lastName: string;
   username: string;
@@ -18,7 +22,7 @@ export interface UserToSaveOnSession {
   mobileNumber: string;
   permissions: PermissionType[];
   token: string;
-  message: string;
+  messageCode: string;
 }
 
 export interface Role {
@@ -58,4 +62,18 @@ export enum PermissionType {
   BUG_CLOSE = 'BUG_CLOSE',
   BUG_EXPORT_PDF = 'BUG_EXPORT_PDF',
   CURRENT_USER = 'CURRENT_USER' // ? pt a vizualiza notificarile...
+}
+
+export interface RoleWrapper {
+  id: number;
+  type: string;
+  role: Role;
+}
+
+export interface UserInsertWrapper {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  roles: RoleWrapper[];
 }

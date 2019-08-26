@@ -1,6 +1,6 @@
 {
   "LANGUAGE": {
-    "SELECT": "Selectati Limba "
+    "SELECT": "Limba "
   },
   "LOGIN": {
     "MESSAGE": "LOGARE",
@@ -9,9 +9,15 @@
     "CAPTCHA": "Codul CAPTCHA",
     "FORGOT": "Ați uitat ",
     "PASS": "parola?",
-    "ALERTUSER": "Nume utilizator invalid",
-    "ALERTPASS": "Parola invalida",
-    "ALERT_FORGOTPASS": "Contacteaza ADMIN pentru a recupera parola!"
+    "ALERT_USER": "Nume utilizator invalid",
+    "ALERT_PASS": "Parola invalida",
+    "ALERT_FORGOT_PASS": "Contacteaza ADMIN pentru a recupera parola!",
+    "CAPTCHA_EMPTY": "Introduceti codul CAPTCHA.",
+    "CAPTCHA_WRONG": "Codul CAPTCHA nu este corect.",
+    "LOGIN-001": "Nume utilizator invalid",
+    "LOGIN-002": "Utilizatorul este inactiv",
+    "LOGIN-003": "Utilizatorul a fost dezactivat",
+    "LOGIN-004": "Parola incorecta"
   },
   "BUG-VIEW": {
     "Title": "Titlu",
@@ -21,8 +27,8 @@
     "Status": "Status",
     "FixedVersion": "Fixat in versiunea",
     "Severity":"Severitate",
-    "Created by": "Creat de",
-    "Assigned to": "Atribuit",
+    "Created_by": "Creat de",
+    "Assigned_to": "Atribuit",
     "Attachments": "Atasamente"
   }
 
