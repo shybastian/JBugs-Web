@@ -32,10 +32,10 @@ export class LoginComponent {
         .subscribe(response => {
           // console.log('response', response);
 
-          if (response.token === null || response.token === '' || response.message != LoginComponent.SUCCESS_RESPONSE_MESSAGE) {
-            alert(response.message);
+          if (response.token === null || response.token === '' || response.messageCode != LoginComponent.SUCCESS_RESPONSE_MESSAGE) {
+            alert(this.translate.instant('LOGIN.' + response.messageCode));
           } else {
-            this.storageService.updateSessionStorageWithUser(response);
+            this.storageService.atLogin(response);
 
             // testing:
             console.log('session storage', sessionStorage);
@@ -46,6 +46,6 @@ export class LoginComponent {
   }
 
   alertForgotPass() {
-    alert('Contact ADMIN to recover your password!');
+    alert(this.translate.instant('LOGIN.ALERT_FORGOT_PASS'));
   }
 }
