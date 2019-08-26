@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user.model';
 import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-view',
@@ -21,7 +22,7 @@ export class UsersViewComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private userService: UserService) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -40,9 +41,10 @@ export class UsersViewComponent implements OnInit {
   }
 
   showDialogToAdd() {
-    this.newUser = true;
-    this.user = undefined;
-    this.displayDialog = true;
+    this.router.navigate(['/dashboard/users/create']).then();
+    // this.newUser = true;
+    // this.user = undefined;
+    // this.displayDialog = true;
   }
 
   save() {
