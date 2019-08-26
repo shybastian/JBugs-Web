@@ -1,5 +1,5 @@
 <form #bugViewForm='ngForm'>
-<p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="3" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
+<p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" [pageLinks]="2" (onPage)="paginate($event)" [first]="first" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
   <ng-template pTemplate="caption">
     <div style="text-align: right">
       <i style="margin:4px 4px 0 0"></i>
@@ -24,6 +24,7 @@
 
     <tr>
       <th *ngFor="let col of columns" [ngSwitch]="col.field">
+        <input *ngSwitchCase="'title'" pInputText type="text" (input)="dt.filter($event.target.value.toLowerCase(), col.field.toLowerCase(), 'contains')">
         <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
         <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter"  defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
         <p-multiSelect *ngSwitchCase="'created_ID'" [options]="userFilter" defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
@@ -49,11 +50,19 @@
 
 <p-dialog header="Info" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
           [maximizable]="true" [baseZIndex]="10000">
-  <p class="text-style">{{selectedBug1 ? bugAsString(selectedBug1)
-                       : 'none'}} </p>
+  <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
+    {{'BUG_VIEW.TITLE' | translate}} : <input type="text" [value]="selectedBug.title"><br>
+    {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
+    {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
+    {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
+    {{'BUG_VIEW.STATUS' | translate}} : <input type="text" [value]="selectedBug.status"><br>
+    {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
+    {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
+    {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
+    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <input type="text" [value]="selectedBug.assigned_ID"><br>
+    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
   <p class="text-style">
         </p>
-        <button pButton label="Save"></button>
         <p-footer>
           <button pButton icon="pi pi-close" (click)="display=false" label="Close" class="ui-button-secondary"></button>
         </p-footer>

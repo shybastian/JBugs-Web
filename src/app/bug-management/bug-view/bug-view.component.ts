@@ -44,7 +44,7 @@ export class BugViewComponent implements OnInit, AfterViewInit {
   @ViewChild('dt', {static: true})
   dt: Table;
 
-  log(value){
+  static log(value){
     console.log(value);
   }
 
@@ -122,12 +122,12 @@ export class BugViewComponent implements OnInit, AfterViewInit {
           return false;
         }
 
-        if(value == new DatePipe('en').transform(filter, 'yyyy-MM-dd')){
-          return true;
-        }
+        return value == new DatePipe('en').transform(filter, 'yyyy-MM-dd');
 
-        return false;
-      }
+
+      };
+
+      this.dt.reset();
     });
 
     this.userService.getAllUsers().subscribe(users => {
@@ -147,22 +147,26 @@ export class BugViewComponent implements OnInit, AfterViewInit {
     return value === "targetDate";
   }
 
-  bugAsString(bug: BugView):String{
-    let bugString: String = "";
+  selectedBug: BugView = {
+    id: 0,
+  title: "",
+  description: "",
+  version: "",
+  targetDate: "",
+  status: "",
+  fixedVersion: "",
+  severity: "",
+  created_ID: "",
+  assigned_ID: ""
+  };
+  bugAsString():void{
 
-    bugString += this.translateService.instant('BUG_VIEW.TITLE') + ' : '+ bug.title + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.DESCRIPTION') + ' : ' + bug.description + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.VERSION') + ' : ' + bug.version + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.TARGET_DATE') + ' : ' + bug.targetDate + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.STATUS') + ' : ' + bug.status + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.FIXED_VERSION') + ' : ' + bug.fixedVersion + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.SEVERITY') + ' : ' + bug.severity + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.CREATED_BY') + ' : ' + bug.created_ID + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.ASSIGNED_TO') + ' : ' + bug.assigned_ID + '\n';
-    bugString += this.translateService.instant('BUG_VIEW.ATTACHMENTS');
+    this.selectedBug = this.selectedBug1;
+  }
 
-
-    return bugString;
+  first = 1;
+  paginate(event) {
+    this.first = event.first;
   }
 
 }

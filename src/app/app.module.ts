@@ -18,6 +18,7 @@ import {
   CalendarModule,
   DialogModule,
   DropdownModule,
+  InputTextModule,
   ListboxModule,
   MultiSelectModule
 } from 'primeng/primeng';
@@ -73,7 +74,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DropdownModule,
     ListboxModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    InputTextModule
   ],
   providers: [DatePipe, TranslateService],
   bootstrap: [AppComponent]
