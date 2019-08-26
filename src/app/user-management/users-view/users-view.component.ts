@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user.model';
+import {User, UserStatusType, UserStatusTypeSTRING} from '../models/user.model';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 
@@ -11,22 +11,25 @@ import {Router} from '@angular/router';
 export class UsersViewComponent implements OnInit {
 
   displayDialog: boolean;
-
-  user: User;
-
   selectedUser: User;
-
-  newUser: boolean;
-
   users: User[];
-
   cols: any[];
 
   constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(users => this.users = users);
+    this.userService.getAllUsers().subscribe(users => {
+      this.users = users;
+      for (let user of this.users) {
+        if (user.status === UserStatusType.Active) {
+          user.stringStatus = UserStatusTypeSTRING.Active;
+        } else {
+          user.stringStatus = UserStatusTypeSTRING.Inactive;
+        }
+      }
+      console.log('before', this.users);
+    });
 
     this.cols = [
       {field: 'id', header: 'id'},
@@ -35,49 +38,30 @@ export class UsersViewComponent implements OnInit {
       {field: 'username', header: 'username'},
       {field: 'email', header: 'email'},
       {field: 'mobileNumber', header: 'mobileNumber'},
-      {field: 'status', header: 'status'},
-      {field: 'counter', header: 'counter'}
+      {field: 'stringStatus', header: 'status'}
     ];
   }
 
-  showDialogToAdd() {
+  addNewUser() {
     this.router.navigate(['/dashboard/users/create']).then();
-    // this.newUser = true;
-    // this.user = undefined;
-    // this.displayDialog = true;
   }
 
-  save() {
-    let users = [...this.users];
-    if (this.newUser) {
-      users.push(this.user);
-    } else {
-      users[this.users.indexOf(this.selectedUser)] = this.user;
-    }
-
-    this.users = users;
-    this.user = null;
+  ok() {
     this.displayDialog = false;
   }
 
-  delete() {
-    let index = this.users.indexOf(this.selectedUser);
-    this.users = this.users.filter((val, i) => i != index);
-    this.user = null;
+  edit() {
     this.displayDialog = false;
+    // send selectedUser.ID to user-EDIT component
+    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
+
+    // to be added in EDIT component
+    // in ctor :           private route: ActivatedRoute
+    // to retrieve id:     this.route.snapshot.paramMap.get('id');
   }
 
-  onRowSelect(event) {
-    this.newUser = false;
-    this.user = this.cloneUser(event.data);
+  onRowSelect() {
+    console.log('selected', this.selectedUser);
     this.displayDialog = true;
-  }
-
-  cloneUser(c: User): User {
-    let user: User;
-    for (let prop in c) {
-      user[prop] = c[prop];
-    }
-    return user;
   }
 }
