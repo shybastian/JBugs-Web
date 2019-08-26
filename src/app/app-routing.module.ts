@@ -49,6 +49,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'permissions',
+        children: [
+          {
+            path: 'edit',
+            component: EditPermissionsComponent
+          }
+        ]
+      },
+      {
         path: 'notifications',
         component: NotificationComponent
       }
