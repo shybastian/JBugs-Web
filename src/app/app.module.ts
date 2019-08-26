@@ -29,6 +29,7 @@ import {UsersViewComponent} from './user-management/users-view/users-view.compon
 import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
+import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
 
 
 // AoT requires an exported function for factories
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugCreateComponent,
     UsersViewComponent,
     NotificationComponent,
-    EditPermissionsComponent
+    EditPermissionsComponent,
+    BugViewComponent
   ],
   imports: [
     BrowserModule,
