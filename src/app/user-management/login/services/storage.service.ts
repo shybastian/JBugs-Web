@@ -54,7 +54,7 @@ export class StorageService {
       username: '',
       email: '',
       mobileNumber: '',
-
+      password: '',
       status: 0,
       counter: 0,
       roles: []
@@ -141,7 +141,4 @@ export class StorageService {
     }
   }
 
-  getToken(): string {
-    return sessionStorage.getItem('token');
-  }
 }
