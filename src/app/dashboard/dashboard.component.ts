@@ -71,13 +71,13 @@ export class DashboardComponent implements OnInit {
 
   bugButtonDisable() {
     if (this.storageService.userHasPermission(PermissionType.BUG_MANAGEMENT)) {
-      this.disableUser = false;
+      this.disableBug = false;
     }
   }
 
   permissionButtonDisable() {
     if (this.storageService.userHasPermission(PermissionType.PERMISSION_MANAGEMENT)) {
-      this.disableUser = false;
+      this.disablePermission = false;
     }
   }
 
