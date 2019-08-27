@@ -1,4 +1,4 @@
-<form #bugViewForm='ngForm' [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+<form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
   <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
            selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
     <ng-template pTemplate="caption">
@@ -59,7 +59,7 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="Info" [(visible)]="displayUpdateModal" [modal]="true" [responsive]="true"
+  <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
     <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
@@ -67,7 +67,7 @@
       {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
       {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
       {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
-      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown [options]="newStatusValues" [style]="{'width': '100%'}" #statusTypes [(ngModel)]="selectedBug.status"(onClick)="selectStatus()"></p-dropdown>
+      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}" #statusTypes [(ngModel)]="selectedStatus" name="statusTypes"(onClick)="selectStatus()"></p-dropdown>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
     {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
@@ -75,26 +75,26 @@
     {{'BUG_VIEW.ATTACHMENTS' | translate}} :
   <p class="text-style">
   </p>
-  <button pButton label="Update" (click)="modifyBugStatus(statusTypes.selectedOption.value); dt.reset()"></button>
+  <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
   <p-footer>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
 
-<!--  <p-dialog header="Update status" [(visible)]="displayUpdateModal" [modal]="true" [responsive]="true"-->
-<!--            [style]="{width: '350px', minWidth: '200px'}" [minY]="70"-->
-<!--            [maximizable]="true" [baseZIndex]="10000">-->
-<!--    <p>Bug : {{selectedBugTitle}}</p>-->
-<!--    <p-dropdown [options]="newStatusValues"-->
-<!--                #statusTypes-->
-<!--                [style]="{'width': '100%'}"-->
-<!--                id="statusTypes"-->
-<!--                class="form-control"-->
-<!--                (onClick)="selectStatus()">New status: </p-dropdown>-->
-<!--    <p-footer>-->
+  <p-dialog header="Update status" [(visible)]="displayUpdateModal" [modal]="true" [responsive]="true"
+            [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+            [maximizable]="true" [baseZIndex]="10000">
+    <p>Bug : {{selectedBugTitle}}</p>
+    <p-dropdown [options]="newStatusValues"
+                #statusTypes
+                [style]="{'width': '100%'}"
+                id="statusTypes"
+                class="form-control"
+                (onClick)="selectStatus()">New status: </p-dropdown>
+    <p-footer>
 
-<!--      <button pButton icon="pi pi-close" (click)="displayUpdateModal=false" label="Cancel update" class="ui-button-secondary"></button>-->
-<!--    </p-footer>-->
-<!--  </p-dialog>-->
+      <button pButton icon="pi pi-close" (click)="displayUpdateModal=false" label="Cancel update" class="ui-button-secondary"></button>
+    </p-footer>
+  </p-dialog>
 </form>
 

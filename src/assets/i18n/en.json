@@ -70,21 +70,10 @@
      "SUCCESS_UPDATE": "The status update was successful!",
      "ERROR_UPDATE": "An error occurred while updating the status!",
      "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+  },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",
     "ROLES": "Roles"
-  },
-  "BUG_VIEW": {
-    "TITLE": "Title",
-    "DESCRIPTION": "Description",
-    "VERSION": "Version",
-    "TARGET_DATE": "TargetDate",
-    "STATUS": "Status",
-    "FIXED_VERSION": "FixedVersion",
-    "SEVERITY":"Severity",
-    "CREATED_BY": "Created by",
-    "ASSIGNED_TO": "Assigned to",
-    "ATTACHMENTS": "Attachments"
   },
   "DASHBOARD": {
     "MENU": "Menu",

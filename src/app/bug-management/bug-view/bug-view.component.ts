@@ -44,7 +44,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    */
   selectedBug1: BugView;
   selectedBugTitle: String="";
-  selectedBugId: number = -1;
+  selectedStatus: String;
 
   statusOpen: SelectItem[];
   statusInProgress: SelectItem[];
@@ -109,7 +109,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       {label: 'Fixed', value: 'FIXED'},
       {label: 'Closed', value: 'CLOSED'},
       {label: 'Rejected', value: 'REJECTED'},
-      {label: 'Info needed', value: 'INFO_NEEDED'}
+      {label: 'Info needed', value: 'INFO_NEEDED'},
+      {label: 'Open', value: 'OPEN'}
     ];
 
     this.versionFilter = [
@@ -120,15 +121,36 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       {label: 'All', value: ''}
     ];
 
+    this.statusOpen = [
+      {label: 'In progress', value: 'IN_PROGRESS'},
+      {label: 'Rejected', value: 'REJECTED'}
+    ];
+
+    this.statusInProgress = [
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
+      {label: 'Fixed', value: 'FIXED'}
+    ];
+
+    this.statusRejected = [
+      {label: 'Closed', value: 'CLOSED'}
+    ];
+
+    this.statusFixed = [
+      {label: 'Open', value: 'OPEN'},
+      {label: 'Closed', value: 'CLOSED'}
+    ];
+
+    this.statusInfoNeeded = [
+      {label: 'In progress', value: 'IN_PROGRESS'}
+    ];
   }
 
   ngAfterViewInit() {
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
-      console.log(this.bugs);
       for (let i = 0; i < this.bugs.length; i++) {
-        console.log(this.bugs[i].targetDate);
         this.bugsView.push({
           id: this.bugs[i].id,
           title: this.bugs[i].title,
@@ -173,8 +195,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     let maxVersion;
     let maxFixedVersion;
     [maxVersion, maxFixedVersion] = this.getMaxVersion(bugList);
-
-    console.log(maxVersion + " " + maxFixedVersion);
 
     for(let i = 1; i <= maxVersion; i++){
       this.versionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString() })
@@ -223,54 +243,61 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   }
 
   selectStatus() {
-    for (let b of this.bugs) {
-      if (b.id === this.selectedBugId) {
+    debugger;
+    // console.log("From select status:" + this.selectedBug.id);
+    // console.log("From select status:" + this.selectedBug.status);
+    // for (let b of this.bugs) {
+    //   if (b.id === this.selectedBug1.id) {
 
-        if (b.status === 'Open') {
+        if (this.selectedBug.status === 'OPEN') {
           this.newStatusValues = this.statusOpen;
         }
 
-        if (b.status === 'In progress') {
+        if (this.selectedBug.status === 'IN_PROGRESS') {
           this.newStatusValues = this.statusInProgress;
         }
 
-        if (b.status === 'Rejected') {
+        if (this.selectedBug.status === 'REJECTED') {
           this.newStatusValues = this.statusRejected;
         }
 
-        if (b.status === 'Fixed') {
+        if (this.selectedBug.status === 'FIXED') {
           this.newStatusValues = this.statusFixed;
         }
 
-        if (b.status === 'Info needed') {
+        if (this.selectedBug.status === 'INFO_NEEDED') {
           this.newStatusValues = this.statusInfoNeeded;
         }
 
-        if(b.status === 'Closed'){
+        if(this.selectedBug.status === 'CLOSED'){
           this.newStatusValues = [];
         }
 
-      }
-    }
+
+     // }
+    //}
 
   }
 
   modifyBugStatus(newStatus){
-    console.log(this.selectedBugId);
-    console.log(newStatus);
+    debugger;
+    console.log("From modify:" +this.selectedBug.id);
+    console.log("From modify:" + newStatus);
     if(newStatus === "CLOSED"){
       alert(" No permission for closing bug")
     }
     else {
-      this.bugService.updateBug(newStatus, this.selectedBugId)
-        .subscribe( data => {
+      this.bugService.updateBug(newStatus, this.selectedBug.id)
+        .subscribe((data : Bug) =>{
+          console.log(data);
           alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
           this.displayUpdateModal = false;
           this.displayInfoModal = false;
           this.dt.reset();
-        }, Error => {
-          alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
         })
+        // }, Error => {
+        //   alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
+        // })
     }
 
   }
