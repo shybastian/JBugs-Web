@@ -4,9 +4,9 @@ import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
 import {User} from '../../user-management/models/user.model';
 import {Bug} from '../model/bug.model';
-import {DatePipe} from "@angular/common";
-import {Table} from "primeng/table";
-import {BugView} from "../model/bug-view.model";
+import {DatePipe} from '@angular/common';
+import {Table} from 'primeng/table';
+import {BugView} from '../model/bug-view.model';
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
@@ -122,7 +122,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
@@ -140,7 +140,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           severity: this.bugs[i].severity,
           created_ID: this.bugs[i].created_ID.username,
           assigned_ID: this.bugs[i].assigned_ID.username
-        })
+        });
       }
 
       this.constructVersionFilters(this.bugs);
@@ -198,7 +198,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   constructDateFilter(){
     this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
 
-      if (filter === undefined || filter === null || (filter.length === 0 || filter === "") && value ===null ){
+      if (filter === undefined || filter === null || (filter.length === 0 || filter === '') && value === null) {
         return true;
       }
 
@@ -208,14 +208,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
       return value == new DatePipe('en').transform(filter, 'yyyy-MM-dd');
     };
-
   }
 
   /**
    * Verify if column is targetDate in order to place clearDate button
    * @param value - column name
    */
-  targetDateColumn(value){
+  targetDateColumn(value) {
     return value === "targetDate";
   }
 

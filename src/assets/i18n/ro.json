@@ -75,6 +75,19 @@
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permisiuni",
     "ROLES": "Roluri"
+  },
+  "DASHBOARD": {
+    "MENU": "Meniul",
+    "USERS": "Utilizatori",
+    "CREATE_USER": "Crează Utilizator",
+    "VIEW_USER": "Vizualizare Utilizator",
+    "BUGS": "Bugs",
+    "CREATE_BUG": "Crează Bug",
+    "VIEW_BUG": "Vizualizare Bug",
+    "NOTIFICATION": "Notificări",
+    "PERMISSION": "Permisiuni",
+    "EDIT_PERMISSION": "Editarea Permisiunii ",
+    "LOG_OUT": "Delogare"
   }
 
 }

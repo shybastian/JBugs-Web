@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {StorageService} from "../user-management/login/services/storage.service";
+import {PermissionType} from "../user-management/models/user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,24 +10,30 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  disableUser = true;
+  disablePermission = true;
+  disableBug = true;
+
   userButtonContainers = [
-    {id: 1, name: 'create user', router: 'create'},
-    {id: 2, name: 'view users', router: 'view'}
+    {id: 1, name: 'create user', router: 'create', translation: 'DASHBOARD.CREATE_USER'},
+    {id: 2, name: 'view users', router: 'view', translation: 'DASHBOARD.VIEW_USER'}
   ];
   bugButtonContainers = [
-    {id: 1, name: 'create bug', router: 'create'},
-    {id: 2, name: 'view bugs', router: 'view'}
+    {id: 1, name: 'create bug', router: 'create', translation: 'DASHBOARD.CREATE_BUG'},
+    {id: 2, name: 'view bugs', router: 'view', translation: 'DASHBOARD.VIEW_BUG'}
   ];
-
   permissionsButtonContainers = [
-    {id: 1, name: 'edit permissions', router: 'edit'}
+    {id: 1, name: 'DASHBOARD.EDIT_PERMISSION', router: 'edit'}
   ];
 
   currentUserButton = false;
   currentBugButton = false;
   currentPermissionsButton = false;
 
-  constructor() {
+  constructor(private storageService: StorageService, private router: Router) {
+    this.userButtonDisable();
+    this.bugButtonDisable();
+    this.permissionButtonDisable();
   }
 
   ngOnInit() {
@@ -53,5 +62,30 @@ export class DashboardComponent implements OnInit {
       this.currentPermissionsButton = true;
     }
   }
+
+  userButtonDisable() {
+    if (this.storageService.userHasPermission(PermissionType.USER_MANAGEMENT)) {
+      this.disableUser = false;
+    }
+  }
+
+  bugButtonDisable() {
+    if (this.storageService.userHasPermission(PermissionType.BUG_MANAGEMENT)) {
+      this.disableBug = false;
+    }
+  }
+
+  permissionButtonDisable() {
+    if (this.storageService.userHasPermission(PermissionType.PERMISSION_MANAGEMENT)) {
+      this.disablePermission = false;
+    }
+  }
+
+//log out
+  atLogout() {
+    this.storageService.atLogout();
+    this.router.navigate(['/login']);
+  }
+
 
 }
