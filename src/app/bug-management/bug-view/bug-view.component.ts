@@ -17,7 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translateService: TranslateService) {
+              private translate: TranslateService) {
 
   }
 
@@ -130,7 +130,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       for (let i = 0; i < this.bugs.length; i++) {
         console.log(this.bugs[i].targetDate);
         this.bugsView.push({
-          id: this.bugs[i].ID,
+          id: this.bugs[i].id,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
@@ -212,13 +212,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   }
 
   /**
-   * Function to display Info pop-up
-   */
-  show() {
-    this.display = true;
-  }
-
-  /**
    * Verify if column is targetDate in order to place clearDate button
    * @param value - column name
    */
@@ -281,7 +274,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         })
     }
 
-
   }
 
+  showInfoModal(){
+    this.displayInfoModal = true;
+  }
+
+  showUpdateModal(){
+    this.displayUpdateModal = true;
+  }
 }

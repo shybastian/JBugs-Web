@@ -27,10 +27,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
-import {UserCreateComponent} from "./user-create/user-create.component";
-import {EditPermissionsComponent} from './edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from "primeng/primeng";
+import {UserCreateComponent} from "./user-management/user-create/user-create.component";
+import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
 
 // AoT requires an exported function for factories
