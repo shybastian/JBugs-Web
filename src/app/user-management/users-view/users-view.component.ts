@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user.model';
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {User, UserStatusType, UserStatusTypeSTRING} from '../models/user.model';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {StorageService} from '../login/services/storage.service';
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {DialogService} from "primeng/api";
 import {TranslateService} from "@ngx-translate/core";
@@ -12,72 +14,80 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./users-view.component.scss'],
   providers: [DialogService]
 })
-export class UsersViewComponent implements OnInit {
+export class UsersViewComponent implements OnInit, DoCheck {
 
   displayEditDialog: boolean;
 
   displayDialog: boolean;
-
-  user: User;
-
   selectedUser: User;
-
-  newUser: boolean;
-
   users: User[];
-
   cols: any[];
 
-  constructor(private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
+  constructor(private storageService: StorageService, private translate: TranslateService, private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
+  }
+
+  ngDoCheck(): void {
+    if (this.users !== undefined) {
+      return;
+    }
+    if (this.users !== null) {
+      return;
+    }
+    // only if iterable, apply changes, i.e. after getUsers
+    for (let user of this.users) {
+      if (user.status === UserStatusType.Active) {
+        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Active);
+      } else {
+        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Inactive);
+      }
+    }
   }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(users => this.users = users);
+    this.userService.getAllUsers().subscribe(users => {
+      this.users = users;
+      for (let user of this.users) {
+        if (user.status === UserStatusType.Active) {
+          user.stringStatus = UserStatusTypeSTRING.Active;
+        } else {
+          user.stringStatus = UserStatusTypeSTRING.Inactive;
+        }
+      }
+    });
 
     this.cols = [
-      {field: 'id', header: 'id'},
-      {field: 'firstName', header: 'firstName'},
-      {field: 'lastName', header: 'lastName'},
-      {field: 'username', header: 'username'},
-      {field: 'email', header: 'email'},
-      {field: 'mobileNumber', header: 'mobileNumber'},
-      {field: 'status', header: 'status'},
-      {field: 'counter', header: 'counter'}
+      {field: 'id', header: 'ID'},
+      {field: 'firstName', header: 'FIRST_NAME'},
+      {field: 'lastName', header: 'LAST_NAME'},
+      {field: 'username', header: 'USERNAME'},
+      {field: 'email', header: 'EMAIL'},
+      {field: 'mobileNumber', header: 'PHONE'},
+      {field: 'stringStatus', header: 'STATUS'}
     ];
 
     this.displayEditDialog = false;
   }
 
-  showDialogToAdd() {
+  addNewUser() {
     this.router.navigate(['/dashboard/users/create']).then();
-    // this.newUser = true;
-    // this.user = undefined;
-    // this.displayDialog = true;
   }
 
-  save() {
-    let users = [...this.users];
-    if (this.newUser) {
-      users.push(this.user);
-    } else {
-      users[this.users.indexOf(this.selectedUser)] = this.user;
-    }
-
-    this.users = users;
-    this.user = null;
+  ok() {
     this.displayDialog = false;
   }
 
-  delete() {
-    let index = this.users.indexOf(this.selectedUser);
-    this.users = this.users.filter((val, i) => i != index);
-    this.user = null;
+  edit() {
     this.displayDialog = false;
+    // send selectedUser.ID to user-EDIT component
+    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
+
+    // to be added in EDIT component
+    // in ctor :           private route: ActivatedRoute
+    // to retrieve id:     this.route.snapshot.paramMap.get('id');
   }
 
-  onRowSelect(event) {
-    this.newUser = false;
-    this.user = this.cloneUser(event.data);
+  onRowSelect() {
+    // console.log('selected', this.selectedUser);
     this.displayDialog = true;
   }
 
