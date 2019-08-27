@@ -1,6 +1,5 @@
 <form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
-  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
-           selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
+  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
     <ng-template pTemplate="caption">
       <div style="text-align: right">
         <i style="margin:4px 4px 0 0"></i>
@@ -67,7 +66,8 @@
       {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
       {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
       {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
-      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}" #statusTypes [(ngModel)]="selectedStatus" name="statusTypes"(onClick)="selectStatus()"></p-dropdown>
+      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
+                                                       [(ngModel)]="selectedStatus" name="statusTypes" (onClick)="selectStatus()" ></p-dropdown>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
     {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
