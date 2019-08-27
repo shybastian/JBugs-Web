@@ -103,7 +103,7 @@ export class BugCreateComponent implements OnInit {
     const wrapper: BugAttachmentWrapper = {
       bug: bug,
       attachment: attachment,
-      token: this.storageService.getToken(),
+      token: StorageService.getToken(),
     };
     return wrapper;
   }
