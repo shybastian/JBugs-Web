@@ -54,17 +54,17 @@
     "ALERT_SUCCESS_CREATED_USER": "Utilizator creat cu succes!",
     "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
   },
-  "BUG-VIEW": {
-    "Title": "Titlu",
-    "Description": "Descriere",
-    "Version": "Versiune",
-    "TargetDate": "Data-tinta",
-    "Status": "Status",
-    "FixedVersion": "Fixat in versiunea",
-    "Severity":"Severitate",
-    "Created by": "Creat de",
-    "Assigned to": "Atribuit",
-    "Attachments": "Atasamente"
+  "BUG_VIEW": {
+    "TITLE": "Titlu",
+    "DESCRIPTION": "Descriere",
+    "VERSION": "Versiune",
+    "TARGET_DATE": "Data-tinta",
+    "STATUS": "Status",
+    "FIXED_VERSION": "Fixat in versiunea",
+    "SEVERITY":"Severitate",
+    "CREATED_BY": "Creat de",
+    "ASSIGNED_TO": "Atribuit",
+    "ATTACHMENTS": "Atasamente"
   },
   "ADD_USER": {
     "FIRST_NAME": "Prenume",
@@ -119,6 +119,19 @@
     "ALERT_PASSWORD_DIMENSION": "Parola este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
     "ALERT_COUNTER_REQUIRED": "Counterul este obligatoriu!",
     "HEADER": "Actualizare informatii utilizator"
+  },
+  "DASHBOARD": {
+    "MENU": "Meniul",
+    "USERS": "Utilizatori",
+    "CREATE_USER": "Crează Utilizator",
+    "VIEW_USER": "Vizualizare Utilizator",
+    "BUGS": "Bugs",
+    "CREATE_BUG": "Crează Bug",
+    "VIEW_BUG": "Vizualizare Bug",
+    "NOTIFICATION": "Notificări",
+    "PERMISSION": "Permisiuni",
+    "EDIT_PERMISSION": "Editarea Permisiunii ",
+    "LOG_OUT": "Delogare"
   }
 
 }

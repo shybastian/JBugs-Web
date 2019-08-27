@@ -11,13 +11,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {
   ButtonModule,
   CalendarModule,
   DialogModule,
   DropdownModule,
+  InputTextModule,
   ListboxModule,
   MultiSelectModule
 } from 'primeng/primeng';
@@ -34,6 +35,11 @@ import {UserEditComponent} from './user-management/user-edit/user-edit.component
 
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
+import {LoggedInGuard} from "./authentication-guards/logged-in.guard";
+import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
+import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
+import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
+import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -52,6 +58,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugCreateComponent,
     UsersViewComponent,
     NotificationComponent,
+    BugViewComponent,
     EditPermissionsComponent,
     BugViewComponent,
     UserEditComponent
@@ -79,8 +86,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ButtonModule,
     CalendarModule,
     DynamicDialogModule
+    CalendarModule,
+    InputTextModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
   entryComponents: [
     UserEditComponent

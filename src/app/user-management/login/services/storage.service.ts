@@ -7,6 +7,10 @@ import {Injectable} from '@angular/core';
 export class StorageService {
   private someoneIsLoggedIn: boolean = false;
 
+  isNotLoggedOut(): boolean {
+    return sessionStorage.getItem("token") != null;
+  }
+
   atLogout() {
     sessionStorage.clear();
     this.someoneIsLoggedIn = false;
@@ -21,9 +25,10 @@ export class StorageService {
     return this.someoneIsLoggedIn;
   }
 
-  getToken(): string {
+  static getToken(): string {
     return sessionStorage.getItem('token');
   }
+
   updateSessionStorageWithUser(user: UserToSaveOnSession) {
     if (!this.isSessionStorageAvailable()) {
       alert('session storage not available. Try using another browser or opening another tab :)');

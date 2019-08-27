@@ -68,9 +68,7 @@ export class BackendService {
       params,
       headers: {
         'Accept-Language': 'en',
-        'Content-Type': 'application/json',
-        'Authorization': this.storageService.getToken(),
-        // 'Access-Control-Expose-Headers': 'Authorization',
+        'Content-Type': 'application/json'
       }
     };
     if (!url) {
