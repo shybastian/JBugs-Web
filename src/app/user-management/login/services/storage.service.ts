@@ -7,6 +7,10 @@ import {Injectable} from '@angular/core';
 export class StorageService {
   private someoneIsLoggedIn: boolean = false;
 
+  isNotLoggedOut(): boolean {
+    return sessionStorage.getItem("token") != null;
+  }
+
   atLogout() {
     sessionStorage.clear();
     this.someoneIsLoggedIn = false;
@@ -29,6 +33,7 @@ export class StorageService {
 
     return sessionStorage.getItem('token');
   }
+
   updateSessionStorageWithUser(user: UserToSaveOnSession) {
     if (!this.isSessionStorageAvailable()) {
       alert('session storage not available. Try using another browser or opening another tab :)');
@@ -59,7 +64,7 @@ export class StorageService {
       username: '',
       email: '',
       mobileNumber: '',
-
+      password: '',
       status: 0,
       stringStatus: '',
       counter: 0,
@@ -95,7 +100,6 @@ export class StorageService {
 
     return user;
   }
-
   getPermissionsFromSessionStorage(): PermissionType[] {
     const nrPermissions = +sessionStorage.getItem('user_nr_permissions');
     const permissions: PermissionType[] = new Array(nrPermissions);
@@ -147,4 +151,5 @@ export class StorageService {
         (storage && storage.length !== 0);
     }
   }
+
 }

@@ -12,11 +12,11 @@ import {PermissionService} from "../services/permission.service";
 export class EditPermissionsComponent implements OnInit {
 
   roles: RoleWrapper[] = [
-    {id: 1, type: 'Administrator', role: Role.ADMINISTRATOR},
-    {id: 2, type: 'Project Manager', role: Role.PROJECT_MANAGER},
-    {id: 3, type: 'Test Manager', role: Role.TEST_MANAGER},
-    {id: 4, type: 'Developer', role: Role.DEVELOPER},
-    {id: 5, type: 'Tester', role: Role.TESTER}
+    {id: 1, type: Role.ADMINISTRATOR, role: Role.ADMINISTRATOR},
+    {id: 2, type: Role.PROJECT_MANAGER, role: Role.PROJECT_MANAGER},
+    {id: 3, type: Role.TEST_MANAGER, role: Role.TEST_MANAGER},
+    {id: 4, type: Role.DEVELOPER, role: Role.DEVELOPER},
+    {id: 5, type: Role.TESTER, role: Role.TESTER}
   ];
 
   selectedRole: RoleWrapper;

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {StorageService} from "./user-management/login/services/storage.service";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent {
   title = 'routing';
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private storageService: StorageService) {
     this.switchLanguage();
   }
 
