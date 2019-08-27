@@ -13,6 +13,8 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TableModule} from 'primeng/table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
   CalendarModule,
@@ -22,18 +24,16 @@ import {
   ListboxModule,
   MultiSelectModule
 } from 'primeng/primeng';
-import {TableModule} from 'primeng/table';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
-import {UserCreateComponent} from './user-management/user-create/user-create.component';
-import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
 import {UserEditComponent} from './user-management/user-edit/user-edit.component';
 
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+
+import {UserCreateComponent} from "./user-management/user-create/user-create.component";
+import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
 import {LoggedInGuard} from "./authentication-guards/logged-in.guard";
 import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
@@ -50,6 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     BugsComponent,
+    BugCreateComponent,
     LoginComponent,
     UsersComponent,
     DashboardComponent,

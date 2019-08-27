@@ -9,6 +9,6 @@ export interface Bug {
   status: string;
   fixedVersion: string;
   severity: string;
-  created_ID: User;
-  assigned_ID: User;
+  CREATED_ID: User;
+  ASSIGNED_ID: User;
 }

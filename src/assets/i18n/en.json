@@ -54,10 +54,6 @@
     "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   },
-  "EDIT_PERMISSIONS": {
-    "PERMISSIONS": "Permissions",
-    "ROLES": "Roles"
-  },
   "BUG_VIEW": {
     "TITLE": "Title",
     "DESCRIPTION": "Description",
@@ -69,6 +65,15 @@
     "CREATED_BY": "Created by",
     "ASSIGNED_TO": "Assigned to",
     "ATTACHMENTS": "Attachments"
+  },
+  "UPDATE_STATUS":{
+     "SUCCESS_UPDATE": "The status update was successful!",
+     "ERROR_UPDATE": "An error occurred while updating the status!",
+     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+  },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permissions",
+    "ROLES": "Roles"
   },
   "DASHBOARD": {
     "MENU": "Menu",
@@ -111,5 +116,28 @@
     "ALERT_PASSWORD_DIMENSION": "Password is too long/short! Must be between 3 and 20 characters!",
     "ALERT_COUNTER_REQUIRED": "Counter is required!",
     "HEADER": "Update user info"
+  },
+  "BUG-CREATE": {
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "Target date",
+    "Status": "Status",
+    "FixedVersion": "Fixed In Version",
+    "Severity": "Severity",
+    "CreatedBy": "Created by",
+    "AssignedTo": "Assigned to user",
+    "Attachment": "Attachment",
+    "Submit": "Submit",
+    "MaxLength250": "The maximum allowed length is 250 characters.",
+    "NotBlank": "Can not be empty",
+    "VersionValidation": "Field must include 3 groups of 2 alphanumerical characters split by dots.",
+    "DateValidation": "Must not be a date before today.",
+    "SeverityCritical": "Critical",
+    "SeverityHigh": "High",
+    "SeverityMedium": "Medium",
+    "SeverityLow": "Low",
+    "ALERT_BUG_ADDED": "The new Entry has been added successfully!",
+    "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
   }
 }
