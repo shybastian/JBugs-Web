@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {StorageService} from '../../../user-management/login/services/storage.service';
 
-
 /**
  * Base backend service. Business services should import this instead of using HttpClient directly.
  */
@@ -69,8 +68,8 @@ export class BackendService {
       headers: {
         'Accept-Language': 'en',
         'Content-Type': 'application/json',
-        'Authorization': this.storageService.getToken(),
-        // 'Access-Control-Expose-Headers': 'Authorization',
+        'Authorization': 'Bearer ' + this.storageService.getToken(),
+        'Access-Control-Expose-Headers': 'Authorization'
       }
     };
     if (!url) {
