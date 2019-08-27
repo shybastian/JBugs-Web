@@ -53,12 +53,11 @@
     "ALERT_ROLES_REQUIRED": "**At least one role must pe selected!",
     "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
-
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",
     "ROLES": "Roles"
-},
+  },
   "BUG_VIEW": {
     "TITLE": "Title",
     "DESCRIPTION": "Description",
@@ -70,5 +69,18 @@
     "CREATED_BY": "Created by",
     "ASSIGNED_TO": "Assigned to",
     "ATTACHMENTS": "Attachments"
+  },
+  "DASHBOARD": {
+    "MENU": "Menu",
+    "USERS": "Users",
+    "CREATE_USER": "Create User",
+    "VIEW_USER": "View User",
+    "BUGS": "Bugs",
+    "CREATE_BUG": "Create Bug",
+    "VIEW_BUG": "View Bug",
+    "NOTIFICATION": "Notification",
+    "PERMISSION": "Permission",
+    "EDIT_PERMISSION": "Edit Permission",
+    "LOG_OUT": "Log Out"
   }
 }
