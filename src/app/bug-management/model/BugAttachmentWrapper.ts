@@ -1,8 +1,8 @@
-import {Bug} from './bug.model';
+import {BugModel} from './bug.model';
 import {Attachment} from './attachment.model';
 
 export interface BugAttachmentWrapper {
-  bug: Bug;
+  bug: BugModel;
   attachment: Attachment;
   token: string;
 }

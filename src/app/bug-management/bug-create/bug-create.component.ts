@@ -3,7 +3,7 @@ import {User} from '../../user-management/models/user.model';
 import {UserService} from '../../user-management/services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BugService} from '../services/bug.service';
-import {Bug} from '../model/bug.model';
+import {BugModel} from '../model/bug.model';
 import {BugCreateValidator} from './bug-create.validator';
 import {Attachment} from '../model/attachment.model';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
@@ -73,8 +73,8 @@ export class BugCreateComponent implements OnInit {
    * We set the created_ID attribute to null, because we do not know the details of the current user.
    * We will find them out through the token.
    */
-  createBugEntity(): Bug {
-    const bugToCreate: Bug = {
+  createBugEntity(): BugModel {
+    const bugToCreate: BugModel = {
       ID: 0,
       title: this.bugCreateForm.get('title').value.toString(),
       description: this.bugCreateForm.get('description').value.toString(),
@@ -90,7 +90,7 @@ export class BugCreateComponent implements OnInit {
 
   }
 
-  createAttachmentEntity(bug: Bug): Attachment {
+  createAttachmentEntity(bug: BugModel): Attachment {
     let attachmentToCreate: Attachment = {
       ID: 0,
       attContent: this.bugCreateForm.get('attachment').value,
@@ -99,7 +99,7 @@ export class BugCreateComponent implements OnInit {
     return attachmentToCreate
   }
 
-  createWrapperEntity(bug: Bug, attachment: Attachment): BugAttachmentWrapper {
+  createWrapperEntity(bug: BugModel, attachment: Attachment): BugAttachmentWrapper {
     const wrapper: BugAttachmentWrapper = {
       bug: bug,
       attachment: attachment,
