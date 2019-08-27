@@ -27,6 +27,6 @@ export class LoginService {
 
     // not using backend service since it filters for auth header (token), which is not yet generated
     return this.http.post<UserToSaveOnSession>('http://localhost:8080/jbugs/api/login',
-      loginData, {headers: headers});
+      loginData); //, {headers: headers});
   }
 }

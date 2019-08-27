@@ -26,7 +26,16 @@
     "Active": "Active",
     "Inactive": "Inactive",
     "NO_ROLE": "No role assigned",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "ID": "ID",
+    "USERNAME": "Username",
+    "STATUS": "Status",
+    "COUNTER": "Password tries",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ROLES": "Roles"
   },
   "ADD_USER": {
     "ID": "ID",
