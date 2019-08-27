@@ -25,7 +25,7 @@ export class StorageService {
     return this.someoneIsLoggedIn;
   }
 
-  getToken(): string {
+  static getToken(): string {
     return sessionStorage.getItem('token');
   }
 
@@ -61,6 +61,7 @@ export class StorageService {
       mobileNumber: '',
 
       status: 0,
+      stringStatus: '',
       counter: 0,
       roles: []
     };

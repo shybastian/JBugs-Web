@@ -43,6 +43,10 @@ const routes: Routes = [
           {
             path: 'create',
             component: UserCreateComponent
+          },
+          {
+            path: 'edit/:id',
+            component: PageNotFoundComponent
           }
         ]
       },

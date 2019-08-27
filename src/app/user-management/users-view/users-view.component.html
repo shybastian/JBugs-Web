@@ -1,12 +1,19 @@
-<p-table [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser"
-         (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+<p-table #dt [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser"
+         (onRowSelect)="onRowSelect()" [paginator]="true" [rows]="15">
   <ng-template pTemplate="caption">
-    List of Users
+    {{ 'USERS.LIST' | translate }}
+    <!--
+    <div class="ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-file-o" iconPos="left" label="{{ 'USERS.DOWNLOAD' | translate }}" (click)="dt.exportCSV()" style="float:left"></button>
+      <button type="button" pButton icon="fa fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+    </div>
+    -->
   </ng-template>
+
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-        {{col.header}}
+        {{ 'ADD_USER.' + col.header | translate }}
         <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
     </tr>
@@ -20,83 +27,99 @@
   </ng-template>
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align:left">
-      <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+      <button type="button" pButton icon="fa fa-plus" (click)="addNewUser()"
+              label="{{'ADD_USER.ADD' | translate}}"></button>
     </div>
   </ng-template>
 </p-table>
 
-<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+<p-dialog header="{{'USERS.DETAILED_USER' | translate}}" [(visible)]="displayDialog" [responsive]="true"
+          showEffect="fade" [modal]="true"
           [style]="{width: '300px'}">
-  <div class="ui-g ui-fluid" *ngIf="user">
+  <div class="ui-g ui-fluid" *ngIf="selectedUser">
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="id">ID</label>
+        <label for="id">{{'ADD_USER.ID' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="id" [(ngModel)]="user.id"/>
+        <label id="id">{{selectedUser.id}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="firstName">First Name</label>
+        <label for="firstName">{{'ADD_USER.FIRST_NAME' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="firstName" [(ngModel)]="user.firstName"/>
+        <label id="firstName">{{selectedUser.firstName}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="lastName">Last Name</label>
+        <label for="lastName">{{'ADD_USER.LAST_NAME' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="lastName" [(ngModel)]="user.lastName"/>
+        <label id="lastName">{{selectedUser.lastName}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="username">Username</label>
+        <label for="username">{{'ADD_USER.USERNAME' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="username" [(ngModel)]="user.username"/>
+        <label id="username">{{selectedUser.username}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="email">E-mail</label>
+        <label for="email">{{'ADD_USER.EMAIL' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="email" [(ngModel)]="user.email"/>
+        <label id="email">{{selectedUser.email}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="mobileNumber">Mobile Number</label>
+        <label for="mobileNumber">{{'ADD_USER.PHONE' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="mobileNumber" [(ngModel)]="user.mobileNumber"/>
+        <label id="mobileNumber">{{selectedUser.mobileNumber}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="status">Status</label>
+        <label for="status">{{'ADD_USER.STATUS' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="status" [(ngModel)]="user.status"/>
+        <label id="status">{{selectedUser.stringStatus}}</label>
       </div>
     </div>
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="counter">Counter</label>
+        <label for="counter">{{'ADD_USER.COUNTER' | translate}}</label>
       </div>
       <div class="ui-g-8">
-        <input pInputText id="counter" [(ngModel)]="user.counter"/>
+        <label id="counter">{{selectedUser.counter}}</label>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="roles">{{'EDIT_PERMISSIONS.ROLES' | translate}}</label>
+      </div>
+      <div class="ui-g-8" *ngIf="selectedUser.roles.length === 0">
+        <label id="no_role">({{'USERS.NO_ROLE' | translate}})</label>
+      </div>
+      <div class="ui-g-8">
+        <div *ngFor="let role of selectedUser.roles">
+          <label id="roles">{{role.type}}</label>
+        </div>
       </div>
     </div>
   </div>
+
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="edit()" label="{{'USERS.EDIT' | translate}}"></button>
+      <button type="button" pButton icon="fa fa-close" (click)="ok()" label="OK"></button>
     </div>
   </p-footer>
 </p-dialog>

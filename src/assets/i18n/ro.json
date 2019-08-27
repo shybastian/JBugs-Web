@@ -19,7 +19,21 @@
     "LOGIN-003": "Utilizatorul a fost dezactivat",
     "LOGIN-004": "Parola incorecta"
   },
+  "USERS": {
+    "LIST": "Lista utilizatorilor",
+    "DOWNLOAD": "Descarca",
+    "DETAILED_USER": "Detalii utilizator",
+    "Active": "Activ",
+    "Inactive": "Inactiv",
+    "NO_ROLE": "Niciun rol asignat",
+    "EDIT": "Editare"
+  },
   "ADD_USER": {
+    "ID": "ID",
+    "USERNAME": "Nume utilizator",
+    "STATUS": "Stare",
+    "COUNTER": "Incercari parola",
+
     "FIRST_NAME": "Prenume",
     "LAST_NAME": "Nume",
     "PHONE": "Numar de telefon",
@@ -40,17 +54,17 @@
     "ALERT_SUCCESS_CREATED_USER": "Utilizator creat cu succes!",
     "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
   },
-  "BUG-VIEW": {
-    "Title": "Titlu",
-    "Description": "Descriere",
-    "Version": "Versiune",
-    "TargetDate": "Data-tinta",
-    "Status": "Status",
-    "FixedVersion": "Fixat in versiunea",
-    "Severity":"Severitate",
-    "Created by": "Creat de",
-    "Assigned to": "Atribuit",
-    "Attachments": "Atasamente"
+  "BUG_VIEW": {
+    "TITLE": "Titlu",
+    "DESCRIPTION": "Descriere",
+    "VERSION": "Versiune",
+    "TARGET_DATE": "Data-tinta",
+    "STATUS": "Status",
+    "FIXED_VERSION": "Fixat in versiunea",
+    "SEVERITY":"Severitate",
+    "CREATED_BY": "Creat de",
+    "ASSIGNED_TO": "Atribuit",
+    "ATTACHMENTS": "Atasamente"
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permisiuni",
