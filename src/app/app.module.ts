@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import {
   CalendarModule,
   DialogModule,
   DropdownModule,
+  InputTextModule,
   ListboxModule,
   MultiSelectModule
 } from 'primeng/primeng';
@@ -74,9 +75,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DropdownModule,
     ListboxModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    InputTextModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,8 @@ export interface User {
   mobileNumber: string;
 
   status: number;
+  stringStatus: string;
+
   counter: number;
   roles: Role[];
 }
@@ -58,16 +60,21 @@ export interface LoginData {
 }
 
 export enum UserStatusType {
-  Active = 0,
-  Inactive = 1
+  Active = 1,
+  Inactive = 0
+}
+
+export enum UserStatusTypeSTRING {
+  Active = 'Active',
+  Inactive = 'Inactive'
 }
 
 export enum RoleType {
-  ADM = 'Administrator',
-  PM = 'Project manager',
-  TM = 'Test manager',
-  DEV = 'Developer',
-  TEST = 'Tester'
+  ADMINISTRATOR = 'ADMINISTRATOR',
+  PROJECT_MANAGER = 'PROJECT_MANAGER',
+  TEST_MANAGER = 'TEST_MANAGER',
+  DEVELOPER = 'DEVELOPER',
+  TESTER = 'TESTER'
 }
 
 export enum PermissionType {

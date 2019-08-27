@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
 import {Bug} from '../model/bug.model';
-import {Attachment} from "../model/attachment.model";
 import {HttpClient} from "@angular/common/http";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {StorageService} from "../../user-management/login/services/storage.service";
@@ -33,6 +32,10 @@ export class BugService {
     });
   }
   getAllBugs(): Observable<Bug[]> {
-    return this.backendService.get(this.baseUrl);
+    let token: String = StorageService.getToken();
+    // let headers = new HttpHeaders(
+    //   token
+    // );
+    return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 }

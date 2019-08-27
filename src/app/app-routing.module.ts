@@ -37,6 +37,10 @@ const routes: Routes = [
           {
             path: 'create',
             component: UserCreateComponent
+          },
+          {
+            path: 'edit/:id',
+            component: PageNotFoundComponent
           }
         ]
       },
@@ -52,7 +56,7 @@ const routes: Routes = [
              component: BugCreateComponent
           }
         ]
-       },
+      },
       {
         path: 'permissions',
         children: [
@@ -78,4 +82,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
