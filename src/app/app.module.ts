@@ -30,7 +30,11 @@ import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-
+import {LoggedInGuard} from "./authentication-guards/logged-in.guard";
+import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
+import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
+import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
+import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -49,6 +53,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugCreateComponent,
     UsersViewComponent,
     NotificationComponent,
+    BugViewComponent,
     EditPermissionsComponent,
     BugViewComponent
   ],
@@ -75,7 +80,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ButtonModule,
     CalendarModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

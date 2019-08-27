@@ -55,5 +55,18 @@
     "Created_by": "Created by",
     "Assigned_to": "Assigned to",
     "Attachments": "Attachments"
+  },
+  "DASHBOARD": {
+    "MENU": "Menu",
+    "USERS": "Users",
+    "CREATE_USER": "Create User",
+    "VIEW_USER": "View User",
+    "BUGS": "Bugs",
+    "CREATE_BUG": "Create Bug",
+    "VIEW_BUG": "View Bug",
+    "NOTIFICATION": "Notification",
+    "PERMISSION": "Permission",
+    "EDIT_PERMISSION": "Edit Permission",
+    "LOG_OUT": "Log Out"
   }
 }

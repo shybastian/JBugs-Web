@@ -1,39 +1,40 @@
 <div class="sidenav">
-  <h2>Menu</h2>
+  <h2>{{ 'DASHBOARD.MENU' | translate }}</h2>
 
   <div>
     <button *ngIf="!disableUser" class="dropdown-btn" (click)="activeUserButton() ">
- Users
+      {{ 'DASHBOARD.USERS' | translate }}
     </button>
     <div *ngIf="currentUserButton==true ">
       <div *ngFor="let userButtonContainer of userButtonContainers">
-        <a [routerLink]="['users',userButtonContainer.router]">{{userButtonContainer.name}}</a>
+        <a [routerLink]="['users',userButtonContainer.router]">{{ userButtonContainer.translation | translate }}</a>
       </div>
     </div>
 
     <button *ngIf="!disableBug" class="dropdown-btn" (click)="activeBugButton() ">
-      Bugs
+      {{ 'DASHBOARD.BUGS' | translate }}
     </button>
     <div *ngIf="currentBugButton==true ">
       <div *ngFor="let bugButtonContainer of bugButtonContainers">
-        <a [routerLink]="['bugs',bugButtonContainer.router]">{{bugButtonContainer.name}}</a>
+        <a [routerLink]="['bugs',bugButtonContainer.router]">{{ bugButtonContainer.translation | translate }}</a>
       </div>
     </div>
 
     <button class="dropdown-btn" [routerLink]="['notifications']">
-      Notifications
+      {{ 'DASHBOARD.NOTIFICATION' | translate }}
     </button>
 
-    <button class="dropdown-btn" (click)="activePermissionsButton()">
-      Permissions
+    <button *ngIf="!disablePermission" class="dropdown-btn" (click)="activePermissionsButton()">
+      {{ 'DASHBOARD.PERMISSION' | translate }}
     </button>
     <div *ngIf="currentPermissionsButton==true ">
       <div *ngFor="let permissionsButtonContainer of permissionsButtonContainers">
-        <a [routerLink]="['permissions',permissionsButtonContainer.router]">{{permissionsButtonContainer.name}}</a>
+        <a
+          [routerLink]="['permissions',permissionsButtonContainer.router]">{{permissionsButtonContainer.name | translate}}</a>
       </div>
     </div>
 
-    <button class="btn btn-primary" (click)="atLogout()">Log Out</button>
+    <button class="btn btn-primary" (click)="atLogout()">{{ 'DASHBOARD.LOG_OUT' | translate }}</button>
 
   </div>
 

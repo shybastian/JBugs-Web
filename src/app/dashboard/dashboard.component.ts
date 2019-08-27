@@ -15,24 +15,20 @@ export class DashboardComponent implements OnInit {
   disableBug = true;
 
   userButtonContainers = [
-    {id: 1, name: 'create user', router: 'create'},
-    {id: 2, name: 'view users', router: 'view'}
+    {id: 1, name: 'create user', router: 'create', translation: 'DASHBOARD.CREATE_USER'},
+    {id: 2, name: 'view users', router: 'view', translation: 'DASHBOARD.VIEW_USER'}
   ];
   bugButtonContainers = [
-    {id: 1, name: 'create bug', router: 'create'},
-    {id: 2, name: 'view bugs', router: 'view'}
+    {id: 1, name: 'create bug', router: 'create', translation: 'DASHBOARD.CREATE_BUG'},
+    {id: 2, name: 'view bugs', router: 'view', translation: 'DASHBOARD.VIEW_BUG'}
   ];
-  permissionButtonContainers = [
-    {id: 1, name: 'edit', router: 'edit'}
-  ];
-
   permissionsButtonContainers = [
-    {id: 1, name: 'edit permissions', router: 'edit'}
+    {id: 1, name: 'DASHBOARD.EDIT_PERMISSION', router: 'edit'}
   ];
 
   currentUserButton = false;
   currentBugButton = false;
-  currentPermButton = false;
+  currentPermissionsButton = false;
 
   constructor(private storageService: StorageService, private router: Router) {
     this.userButtonDisable();
@@ -59,11 +55,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  activePermButton() {
-    if (this.currentPermButton === true) {
-      this.currentPermButton = false;
+  activePermissionsButton() {
+    if (this.currentPermissionsButton === true) {
+      this.currentPermissionsButton = false;
     } else {
-      this.currentPermButton = true;
+      this.currentPermissionsButton = true;
     }
   }
 
