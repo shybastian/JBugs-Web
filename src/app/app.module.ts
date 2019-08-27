@@ -28,6 +28,10 @@ import {BugCreateComponent} from './bug-management/bug-create/bug-create.compone
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {UserEditComponent} from './user-management/user-edit/user-edit.component';
+
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+
 import {UserCreateComponent} from "./user-management/user-create/user-create.component";
 import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
 
@@ -57,7 +61,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotificationComponent,
     BugViewComponent,
     EditPermissionsComponent,
-    BugViewComponent
+    BugViewComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -81,9 +86,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListboxModule,
     ButtonModule,
     CalendarModule,
+    DynamicDialogModule
+    CalendarModule,
     InputTextModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserEditComponent
+  ]
 })
 export class AppModule { }

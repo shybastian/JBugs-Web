@@ -100,3 +100,19 @@ export interface UserInsertWrapper {
   roles: RoleWrapper[];
 }
 
+export interface UserEditWrapper {
+  id: number,
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  username: string;
+  password: string;
+  roles: RoleDTO[];
+  counter: number;
+  status: number;
+}
+
+export interface RoleDTO {
+  type: string;
+}
