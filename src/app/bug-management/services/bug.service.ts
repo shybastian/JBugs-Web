@@ -33,20 +33,8 @@ export class BugService {
   }
   getAllBugs(): Observable<Bug[]> {
     let token: String = StorageService.getToken();
-    // let headers = new HttpHeaders(
-    //   token
-    // );
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
-
-  // updateBug(newStatus: string, bugID: number): Observable<Bug>{
-  //   console.log("From update:" + newStatus);
-  //   console.log("From update:" + bugID);
-  //   // let updateData: updateData ={
-  //   //   type: newStatus
-  //   // }
-  //   return this.backendService.put('http://localhost:8080/jbugs/api/bugs/update-bug-status/' + bugID, newStatus);
-  // }
 
   updateBug(newStatus: string, bugID: number){
     console.log("From update:" + newStatus);

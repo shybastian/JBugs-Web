@@ -282,19 +282,10 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"))
     } else {
       this.bugService.updateBug(newStatus, this.selectedBug.id);
-        // .subscribe((data: Bug) => {
-        //   console.log(data);
-        //   alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
-        //   this.displayUpdateModal = false;
-        //   this.displayInfoModal = false;
-        //   this.dt.reset();
-        // })
+
     }
   }
 
-  // onChangeHandler(){
-  //   console.log(this.selectedStatus);
-  // }
 
   showInfoModal(){
     this.displayInfoModal = true;
