@@ -136,13 +136,13 @@ export class BugViewComponent implements OnInit, AfterViewInit {
         })
       }
 
+      this.constructVersionFilters(this.bugs);
+      this.constructUserFiler();
       this.constructDateFilter();
       this.dt.reset();
 
     });
 
-    this.constructVersionFilters(this.bugs);
-    this.constructUserFiler();
   }
 
   getMaxVersion(bugList: Bug[]): [number, number]{
