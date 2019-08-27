@@ -243,46 +243,34 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   }
 
   selectStatus() {
-    debugger;
-    // console.log("From select status:" + this.selectedBug.id);
-    // console.log("From select status:" + this.selectedBug.status);
-    // for (let b of this.bugs) {
-    //   if (b.id === this.selectedBug1.id) {
 
-        if (this.selectedBug.status === 'OPEN') {
-          this.newStatusValues = this.statusOpen;
-        }
+    if (this.selectedBug.status === 'OPEN') {
+      this.newStatusValues = this.statusOpen;
+    }
+    if (this.selectedBug.status === 'IN_PROGRESS') {
+      this.newStatusValues = this.statusInProgress;
+    }
 
-        if (this.selectedBug.status === 'IN_PROGRESS') {
-          this.newStatusValues = this.statusInProgress;
-        }
+    if (this.selectedBug.status === 'REJECTED') {
+      this.newStatusValues = this.statusRejected;
+    }
 
-        if (this.selectedBug.status === 'REJECTED') {
-          this.newStatusValues = this.statusRejected;
-        }
+    if (this.selectedBug.status === 'FIXED') {
+      this.newStatusValues = this.statusFixed;
+    }
 
-        if (this.selectedBug.status === 'FIXED') {
-          this.newStatusValues = this.statusFixed;
-        }
+    if (this.selectedBug.status === 'INFO_NEEDED') {
+      this.newStatusValues = this.statusInfoNeeded;
+    }
 
-        if (this.selectedBug.status === 'INFO_NEEDED') {
-          this.newStatusValues = this.statusInfoNeeded;
-        }
-
-        if(this.selectedBug.status === 'CLOSED'){
-          this.newStatusValues = [];
-        }
-
-
-     // }
-    //}
+    if(this.selectedBug.status === 'CLOSED'){
+      this.newStatusValues = [];
+    }
 
   }
 
   modifyBugStatus(newStatus){
-    debugger;
-    console.log("From modify:" +this.selectedBug.id);
-    console.log("From modify:" + newStatus);
+
     if(newStatus === "CLOSED"){
       alert(" No permission for closing bug")
     }
@@ -295,18 +283,11 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           this.displayInfoModal = false;
           this.dt.reset();
         })
-        // }, Error => {
-        //   alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
-        // })
     }
 
   }
 
   showInfoModal(){
     this.displayInfoModal = true;
-  }
-
-  showUpdateModal(){
-    this.displayUpdateModal = true;
   }
 }

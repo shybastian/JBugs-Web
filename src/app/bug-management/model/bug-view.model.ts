@@ -11,6 +11,3 @@ export interface BugView {
   assigned_ID: string;
 }
 
-export interface updateData {
-  type : string;
-}

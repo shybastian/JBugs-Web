@@ -81,20 +81,5 @@
   </p-footer>
 </p-dialog>
 
-  <p-dialog header="Update status" [(visible)]="displayUpdateModal" [modal]="true" [responsive]="true"
-            [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
-            [maximizable]="true" [baseZIndex]="10000">
-    <p>Bug : {{selectedBugTitle}}</p>
-    <p-dropdown [options]="newStatusValues"
-                #statusTypes
-                [style]="{'width': '100%'}"
-                id="statusTypes"
-                class="form-control"
-                (onClick)="selectStatus()">New status: </p-dropdown>
-    <p-footer>
-
-      <button pButton icon="pi pi-close" (click)="displayUpdateModal=false" label="Cancel update" class="ui-button-secondary"></button>
-    </p-footer>
-  </p-dialog>
 </form>
 
