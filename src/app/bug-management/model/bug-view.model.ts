@@ -10,3 +10,7 @@ export interface BugView {
   created_ID: string;
   assigned_ID: string;
 }
+
+export interface updateData {
+  type : string;
+}

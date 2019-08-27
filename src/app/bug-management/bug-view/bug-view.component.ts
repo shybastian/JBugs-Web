@@ -14,10 +14,10 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './bug-view.component.html',
   styleUrls: ['./bug-view.component.scss']
 })
-export class BugViewComponent implements OnInit, AfterViewInit {
+export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translateService: TranslateService) {
+              private translate: TranslateService) {
 
   }
 
@@ -36,15 +36,22 @@ export class BugViewComponent implements OnInit, AfterViewInit {
   versionFilter: SelectItem[];
   fixedVersionFilter: SelectItem[];
 
-  /**
-   * Used for displaying de info pop-up
-   */
-  display = false;
+  displayInfoModal = false;
+  displayUpdateModal = false;
 
   /**
    * The values from a selected row
    */
   selectedBug1: BugView;
+  selectedBugTitle: String="";
+  selectedStatus: String;
+
+  statusOpen: SelectItem[];
+  statusInProgress: SelectItem[];
+  statusRejected: SelectItem[];
+  statusFixed: SelectItem[];
+  statusInfoNeeded: SelectItem[];
+  newStatusValues: SelectItem[];
 
   /**
    * To be initialized with selected row values
@@ -102,7 +109,8 @@ export class BugViewComponent implements OnInit, AfterViewInit {
       {label: 'Fixed', value: 'FIXED'},
       {label: 'Closed', value: 'CLOSED'},
       {label: 'Rejected', value: 'REJECTED'},
-      {label: 'Info needed', value: 'INFO_NEEDED'}
+      {label: 'Info needed', value: 'INFO_NEEDED'},
+      {label: 'Open', value: 'OPEN'}
     ];
 
     this.versionFilter = [
@@ -113,17 +121,38 @@ export class BugViewComponent implements OnInit, AfterViewInit {
       {label: 'All', value: ''}
     ];
 
+    this.statusOpen = [
+      {label: 'In progress', value: 'IN_PROGRESS'},
+      {label: 'Rejected', value: 'REJECTED'}
+    ];
+
+    this.statusInProgress = [
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
+      {label: 'Fixed', value: 'FIXED'}
+    ];
+
+    this.statusRejected = [
+      {label: 'Closed', value: 'CLOSED'}
+    ];
+
+    this.statusFixed = [
+      {label: 'Open', value: 'OPEN'},
+      {label: 'Closed', value: 'CLOSED'}
+    ];
+
+    this.statusInfoNeeded = [
+      {label: 'In progress', value: 'IN_PROGRESS'}
+    ];
   }
 
   ngAfterViewInit() {
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
-      console.log(this.bugs);
       for (let i = 0; i < this.bugs.length; i++) {
-        console.log(this.bugs[i].targetDate);
         this.bugsView.push({
-          id: this.bugs[i].ID,
+          id: this.bugs[i].id,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
@@ -167,8 +196,6 @@ export class BugViewComponent implements OnInit, AfterViewInit {
     let maxFixedVersion;
     [maxVersion, maxFixedVersion] = this.getMaxVersion(bugList);
 
-    console.log(maxVersion + " " + maxFixedVersion);
-
     for(let i = 1; i <= maxVersion; i++){
       this.versionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString() })
     }
@@ -204,13 +231,6 @@ export class BugViewComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Function to display Info pop-up
-   */
-  show() {
-    this.display = true;
-  }
-
-  /**
    * Verify if column is targetDate in order to place clearDate button
    * @param value - column name
    */
@@ -222,4 +242,71 @@ export class BugViewComponent implements OnInit, AfterViewInit {
     this.selectedBug = this.selectedBug1;
   }
 
+  selectStatus() {
+    debugger;
+    // console.log("From select status:" + this.selectedBug.id);
+    // console.log("From select status:" + this.selectedBug.status);
+    // for (let b of this.bugs) {
+    //   if (b.id === this.selectedBug1.id) {
+
+        if (this.selectedBug.status === 'OPEN') {
+          this.newStatusValues = this.statusOpen;
+        }
+
+        if (this.selectedBug.status === 'IN_PROGRESS') {
+          this.newStatusValues = this.statusInProgress;
+        }
+
+        if (this.selectedBug.status === 'REJECTED') {
+          this.newStatusValues = this.statusRejected;
+        }
+
+        if (this.selectedBug.status === 'FIXED') {
+          this.newStatusValues = this.statusFixed;
+        }
+
+        if (this.selectedBug.status === 'INFO_NEEDED') {
+          this.newStatusValues = this.statusInfoNeeded;
+        }
+
+        if(this.selectedBug.status === 'CLOSED'){
+          this.newStatusValues = [];
+        }
+
+
+     // }
+    //}
+
+  }
+
+  modifyBugStatus(newStatus){
+    debugger;
+    console.log("From modify:" +this.selectedBug.id);
+    console.log("From modify:" + newStatus);
+    if(newStatus === "CLOSED"){
+      alert(" No permission for closing bug")
+    }
+    else {
+      this.bugService.updateBug(newStatus, this.selectedBug.id)
+        .subscribe((data : Bug) =>{
+          console.log(data);
+          alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
+          this.displayUpdateModal = false;
+          this.displayInfoModal = false;
+          this.dt.reset();
+        })
+        // }, Error => {
+        //   alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
+        // })
+    }
+
+  }
+
+  showInfoModal(){
+    this.displayInfoModal = true;
+  }
+
+  showUpdateModal(){
+    this.displayUpdateModal = true;
+  }
 }

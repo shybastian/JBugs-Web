@@ -54,10 +54,6 @@
     "ALERT_SUCCESS_CREATED_USER": "User successfully created!",
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   },
-  "EDIT_PERMISSIONS": {
-    "PERMISSIONS": "Permissions",
-    "ROLES": "Roles"
-  },
   "BUG_VIEW": {
     "TITLE": "Title",
     "DESCRIPTION": "Description",
@@ -69,6 +65,15 @@
     "CREATED_BY": "Created by",
     "ASSIGNED_TO": "Assigned to",
     "ATTACHMENTS": "Attachments"
+  },
+  "UPDATE_STATUS":{
+     "SUCCESS_UPDATE": "The status update was successful!",
+     "ERROR_UPDATE": "An error occurred while updating the status!",
+     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+  },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permissions",
+    "ROLES": "Roles"
   },
   "DASHBOARD": {
     "MENU": "Menu",

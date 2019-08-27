@@ -66,6 +66,12 @@
     "ASSIGNED_TO": "Atribuit",
     "ATTACHMENTS": "Atasamente"
   },
+  "UPDATE_STATUS":{
+    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+
+  },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permisiuni",
     "ROLES": "Roluri"
