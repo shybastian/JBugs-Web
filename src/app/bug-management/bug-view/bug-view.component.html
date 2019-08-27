@@ -1,5 +1,5 @@
 <form #bugViewForm='ngForm'>
-<p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" [pageLinks]="2" (onPage)="paginate($event)" [first]="first" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
+<p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
   <ng-template pTemplate="caption">
     <div style="text-align: right">
       <i style="margin:4px 4px 0 0"></i>
@@ -30,7 +30,7 @@
         <p-multiSelect *ngSwitchCase="'created_ID'" [options]="userFilter" defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
         <p-multiSelect *ngSwitchCase="'assigned_ID'" [options]="userFilter" defaultLabel="All" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
         <p-dropdown *ngSwitchCase="'version'" [options]="versionFilter" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
-        <p-dropdown *ngSwitchCase="'fixedVersion'" [options]="versionFilter" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+        <p-dropdown *ngSwitchCase="'fixedVersion'" [options]="fixedVersionFilter" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
         <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]="" [readonlyInput]="false" dateFormat="yy-MM-dd" (onSelect)="dt.filter($event, col.field, 'dateFilter')">
 

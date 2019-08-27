@@ -22,31 +22,56 @@ export class BugViewComponent implements OnInit, AfterViewInit {
   }
 
   public bugsView: BugView[] = [];
-
   public bugs: Bug[] = [];
-
   public users: User[];
 
   columns: any[];
 
+  /**
+   * The values from the multiSelect and dropdown
+   */
   severityFilter: SelectItem[];
-
   statusFilter: SelectItem[];
-
   userFilter: SelectItem[];
-
   versionFilter: SelectItem[];
+  fixedVersionFilter: SelectItem[];
 
+  /**
+   * Used for displaying de info pop-up
+   */
   display = false;
 
+  /**
+   * The values from a selected row
+   */
   selectedBug1: BugView;
 
+  /**
+   * To be initialized with selected row values
+   * Values for input text fields in the info pop-up
+   */
+  selectedBug: BugView = {
+    id: 0,
+    title: "",
+    description: "",
+    version: "",
+    targetDate: "",
+    status: "",
+    fixedVersion: "",
+    severity: "",
+    created_ID: "",
+    assigned_ID: ""
+  };
+
+  /**
+   * The dataTable used in form ( for dateFilter)
+   */
   @ViewChild('dt', {static: true})
   dt: Table;
 
-  static log(value){
-    console.log(value);
-  }
+  /**
+   * Initializing the values for filters
+   */
 
   ngOnInit(): void {
 
@@ -66,25 +91,26 @@ export class BugViewComponent implements OnInit, AfterViewInit {
     ];
 
     this.severityFilter = [
-      {label: 'Low', value: 'low'},
-      {label: 'Medium', value: 'medium'},
-      {label: 'High', value: 'high'},
-      {label: 'Critical', value: 'critical'}
+      {label: 'Low', value: 'LOW'},
+      {label: 'Medium', value: 'MEDIUM'},
+      {label: 'High', value: 'HIGH'},
+      {label: 'Critical', value: 'CRITICAL'}
     ];
 
     this.statusFilter = [
-      {label: 'New', value: 'New'},
-      {label: 'In progress', value: 'In Progress'},
-      {label: 'Fixed', value: 'Fixed'},
-      {label: 'Closed', value: 'Closed'},
-      {label: 'Rejected', value: 'Rejected'},
-      {label: 'Info needed', value: 'Info needed'}
+      {label: 'In progress', value: 'IN_PROGRESS'},
+      {label: 'Fixed', value: 'FIXED'},
+      {label: 'Closed', value: 'CLOSED'},
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'Info needed', value: 'INFO_NEEDED'}
     ];
 
     this.versionFilter = [
-      {label: 'All', value: ''},
-      {label: '1 - 1.9', value: '1'},
-      {label: '2 - 2.9', value: '2'}
+      {label: 'All', value: ''}
+    ];
+
+    this.fixedVersionFilter = [
+      {label: 'All', value: ''}
     ];
 
   }
@@ -110,63 +136,91 @@ export class BugViewComponent implements OnInit, AfterViewInit {
         })
       }
 
-      this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
-        console.log(value);
-        console.log("Filter: " + new DatePipe('en').transform(filter, 'yyyy-MM-dd'));
-
-        if (filter === undefined || filter === null || (filter.length === 0 || filter === "") && value ===null ){
-          return true;
-        }
-
-        if (value === undefined || value === null || value.length === 0) {
-          return false;
-        }
-
-        return value == new DatePipe('en').transform(filter, 'yyyy-MM-dd');
-
-
-      };
-
+      this.constructDateFilter();
       this.dt.reset();
+
     });
 
+    this.constructVersionFilters(this.bugs);
+    this.constructUserFiler();
+  }
+
+  getMaxVersion(bugList: Bug[]): [number, number]{
+    let maxVersion = 0;
+    let maxFixedVersion = 0;
+
+    for(let i= 0; i < bugList.length; i++){
+      if(parseInt(bugList[i].version) > maxVersion){
+        maxVersion = parseInt(bugList[i].version);
+      }
+
+      if(parseInt(bugList[i].fixedVersion) > maxFixedVersion){
+        maxFixedVersion = parseInt(bugList[i].fixedVersion);
+      }
+    }
+
+    return [maxVersion, maxFixedVersion];
+  }
+
+  constructVersionFilters(bugList: Bug[]){
+    let maxVersion;
+    let maxFixedVersion;
+    [maxVersion, maxFixedVersion] = this.getMaxVersion(bugList);
+
+    console.log(maxVersion + " " + maxFixedVersion);
+
+    for(let i = 1; i <= maxVersion; i++){
+      this.versionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString() })
+    }
+
+    for(let i = 1; i <= maxFixedVersion; i++){
+      this.fixedVersionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString()})
+    }
+
+  }
+
+  constructUserFiler(){
     this.userService.getAllUsers().subscribe(users => {
       this.users = users;
       for (let i = 0; i < users.length; i ++) {
-        console.log({label: this.users[i].username, value: this.users[i].username});
         this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
       }
     });
   }
 
+  constructDateFilter(){
+    this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
+
+      if (filter === undefined || filter === null || (filter.length === 0 || filter === "") && value ===null ){
+        return true;
+      }
+
+      if (value === undefined || value === null || value.length === 0) {
+        return false;
+      }
+
+      return value == new DatePipe('en').transform(filter, 'yyyy-MM-dd');
+    };
+
+  }
+
+  /**
+   * Function to display Info pop-up
+   */
   show() {
     this.display = true;
   }
 
+  /**
+   * Verify if column is targetDate in order to place clearDate button
+   * @param value - column name
+   */
   targetDateColumn(value){
     return value === "targetDate";
   }
 
-  selectedBug: BugView = {
-    id: 0,
-  title: "",
-  description: "",
-  version: "",
-  targetDate: "",
-  status: "",
-  fixedVersion: "",
-  severity: "",
-  created_ID: "",
-  assigned_ID: ""
-  };
   bugAsString():void{
-
     this.selectedBug = this.selectedBug1;
-  }
-
-  first = 1;
-  paginate(event) {
-    this.first = event.first;
   }
 
 }
