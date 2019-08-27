@@ -21,82 +21,9 @@
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align:left">
       <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+
+      <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
+              label="{{'EDIT_USER.EDIT' | translate}}" [disabled]="displayDialog"></button>
     </div>
   </ng-template>
 </p-table>
-
-<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          [style]="{width: '300px'}">
-  <div class="ui-g ui-fluid" *ngIf="user">
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="id">ID</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="id" [(ngModel)]="user.id"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="firstName">First Name</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="firstName" [(ngModel)]="user.firstName"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="lastName">Last Name</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="lastName" [(ngModel)]="user.lastName"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="username">Username</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="username" [(ngModel)]="user.username"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="email">E-mail</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="email" [(ngModel)]="user.email"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="mobileNumber">Mobile Number</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="mobileNumber" [(ngModel)]="user.mobileNumber"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="status">Status</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="status" [(ngModel)]="user.status"/>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="counter">Counter</label>
-      </div>
-      <div class="ui-g-8">
-        <input pInputText id="counter" [(ngModel)]="user.counter"/>
-      </div>
-    </div>
-  </div>
-  <p-footer>
-    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
-    </div>
-  </p-footer>
-</p-dialog>

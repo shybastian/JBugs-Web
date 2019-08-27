@@ -2,13 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user.model';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {UserEditComponent} from "../user-edit/user-edit.component";
+import {DialogService} from "primeng/api";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-users-view',
   templateUrl: './users-view.component.html',
-  styleUrls: ['./users-view.component.scss']
+  styleUrls: ['./users-view.component.scss'],
+  providers: [DialogService]
 })
 export class UsersViewComponent implements OnInit {
+
+  displayEditDialog: boolean;
 
   displayDialog: boolean;
 
@@ -22,7 +28,7 @@ export class UsersViewComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
   }
 
   ngOnInit() {
@@ -38,6 +44,8 @@ export class UsersViewComponent implements OnInit {
       {field: 'status', header: 'status'},
       {field: 'counter', header: 'counter'}
     ];
+
+    this.displayEditDialog = false;
   }
 
   showDialogToAdd() {
@@ -80,4 +88,19 @@ export class UsersViewComponent implements OnInit {
     }
     return user;
   }
+
+  showEditUserDialog() {
+    this.userService.getUser(this.selectedUser.id)
+      .subscribe(user => {
+        const ref = this.dialogService.open(UserEditComponent, {
+          data: user,
+          header: this.translate.instant('EDIT_USER.HEADER'),
+
+          width: '40%'
+        });
+      }, Error => {
+        alert('Error');
+      });
+  }
 }
+

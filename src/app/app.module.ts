@@ -30,6 +30,9 @@ import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from './user-management/user-create/user-create.component';
 import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {UserEditComponent} from './user-management/user-edit/user-edit.component';
+
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 
 // AoT requires an exported function for factories
@@ -50,7 +53,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UsersViewComponent,
     NotificationComponent,
     EditPermissionsComponent,
-    BugViewComponent
+    BugViewComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +77,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DropdownModule,
     ListboxModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    DynamicDialogModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserEditComponent
+  ]
 })
 export class AppModule { }
