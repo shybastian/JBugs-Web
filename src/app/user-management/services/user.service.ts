@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RoleWrapper, User, UserCreateBug, UserInsertWrapper} from '../models/user.model';
+import {RoleWrapper, User, UserInsertWrapper} from '../models/user.model';
 import {Observable} from 'rxjs';
 import {BackendService} from '../../core/backend/services/backend.service';
 
@@ -9,10 +9,6 @@ import {BackendService} from '../../core/backend/services/backend.service';
 export class UserService {
 
   constructor(private backendService: BackendService) {
-  }
-
-  getAllUsersWithoutRoles(): Observable<UserCreateBug[]> {
-    return this.backendService.get('http://localhost:8080/jbugs/api/users/noRoles');
   }
 
   getAllUsers(): Observable<User[]> {
