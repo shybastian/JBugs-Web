@@ -29,9 +29,6 @@
     <div style="text-align:left">
       <button type="button" pButton icon="fa fa-plus" (click)="addNewUser()"
               label="{{'ADD_USER.ADD' | translate}}"></button>
-
-      <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
-              label="{{'EDIT_USER.EDIT' | translate}}" [disabled]="displayDialog"></button>
     </div>
   </ng-template>
 </p-table>
@@ -121,7 +118,8 @@
 
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-check" (click)="edit()" label="{{'USERS.EDIT' | translate}}"></button>
+      <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
+              label="{{'EDIT_USER.EDIT' | translate}}" [disabled]="displayUpdateDialog"></button>
       <button type="button" pButton icon="fa fa-close" (click)="ok()" label="OK"></button>
     </div>
   </p-footer>

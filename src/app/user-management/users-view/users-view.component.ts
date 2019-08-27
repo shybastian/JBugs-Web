@@ -6,7 +6,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {StorageService} from '../login/services/storage.service';
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {DialogService} from "primeng/api";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-users-view',
@@ -17,13 +16,14 @@ import {TranslateService} from "@ngx-translate/core";
 export class UsersViewComponent implements OnInit, DoCheck {
 
   displayEditDialog: boolean;
-
   displayDialog: boolean;
+
+  displayUpdateDialog: boolean;
   selectedUser: User;
   users: User[];
   cols: any[];
 
-  constructor(private storageService: StorageService, private translate: TranslateService, private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
+  constructor(private storageService: StorageService, private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
   }
 
   ngDoCheck(): void {
@@ -78,27 +78,21 @@ export class UsersViewComponent implements OnInit, DoCheck {
 
   edit() {
     this.displayDialog = false;
-    // send selectedUser.ID to user-EDIT component
-    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
 
-    // to be added in EDIT component
-    // in ctor :           private route: ActivatedRoute
-    // to retrieve id:     this.route.snapshot.paramMap.get('id');
+    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
   }
 
   onRowSelect() {
-    // console.log('selected', this.selectedUser);
     this.displayDialog = true;
   }
 
-  cloneUser(c: User): User {
-    let user: User;
-    for (let prop in c) {
-      user[prop] = c[prop];
-    }
-    return user;
-  }
-
+  /**
+   * This function gets called when
+   *    the user click the Edit button from the User Info pop up
+   * It opens the Dynamic Dialog pop up and passes the user id to it
+   * When the user closes the Edit User pop up, it updates the users table
+   * In case of errors, it alerts the user
+   */
   showEditUserDialog() {
     this.userService.getUser(this.selectedUser.id)
       .subscribe(user => {
@@ -108,9 +102,36 @@ export class UsersViewComponent implements OnInit, DoCheck {
 
           width: '40%'
         });
+
+        ref.onClose.subscribe((user: User) => {
+
+          if (user) {
+            this.updateUser(user);
+          }
+        });
+
+        this.displayDialog = false;
       }, Error => {
-        alert('Error');
+        alert(Error);
       });
+  }
+
+  /**
+   * When a user was updated,
+   * this function gets called to update the users table
+   */
+  updateUser(user: User) {
+    //find the old user using id
+    for (let tableUser of this.users) {
+      if (tableUser.id == user.id) {
+        //it deletes the old user value and adds the new one at the end of the table
+        this.users.splice(this.users.indexOf(tableUser), 1);
+        tableUser = user;
+
+        tableUser.stringStatus = UserStatusTypeSTRING[UserStatusType[user.status]];
+        this.users.push(tableUser);
+      }
+    }
   }
 }
 

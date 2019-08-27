@@ -174,7 +174,7 @@
       [(ngModel)]="user.counter"
     >
     <div class="alert alert-danger" *ngIf="counter.touched && counter.invalid">
-      <div *ngIf="lastName.errors.required">
+      <div *ngIf="counter.errors.required">
         {{'EDIT_USER.ALERT_COUNTER_REQUIRED' | translate}}
       </div>
     </div>
@@ -182,7 +182,7 @@
   </div>
 
   <div class="form-group" *ngIf="showStatus">
-    <label for="Status">{{'EDIT_USER.ACTIVE' | translate}}</label>
+    <label for="Status">{{'EDIT_USER.STATUS' | translate}}</label>
     <input
       type="checkbox"
       id="status"
