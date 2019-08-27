@@ -56,6 +56,7 @@ export class StorageService {
       mobileNumber: '',
 
       status: 0,
+      stringStatus: '',
       counter: 0,
       roles: []
     };

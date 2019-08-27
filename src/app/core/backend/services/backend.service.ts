@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {StorageService} from '../../../user-management/login/services/storage.service';
 
 
 /**
@@ -10,7 +11,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class BackendService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storageService: StorageService) {
   }
 
   /**
@@ -67,8 +68,7 @@ export class BackendService {
       params,
       headers: {
         'Accept-Language': 'en',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${StorageService.getToken()}'
+        'Content-Type': 'application/json'
       }
     };
     if (!url) {
