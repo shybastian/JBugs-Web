@@ -19,7 +19,21 @@
     "LOGIN-003": "Utilizatorul a fost dezactivat",
     "LOGIN-004": "Parola incorecta"
   },
+  "USERS": {
+    "LIST": "Lista utilizatorilor",
+    "DOWNLOAD": "Descarca",
+    "DETAILED_USER": "Detalii utilizator",
+    "Active": "Activ",
+    "Inactive": "Inactiv",
+    "NO_ROLE": "Niciun rol asignat",
+    "EDIT": "Editare"
+  },
   "ADD_USER": {
+    "ID": "ID",
+    "USERNAME": "Nume utilizator",
+    "STATUS": "Stare",
+    "COUNTER": "Incercari parola",
+
     "FIRST_NAME": "Prenume",
     "LAST_NAME": "Nume",
     "PHONE": "Numar de telefon",
