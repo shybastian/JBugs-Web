@@ -5,6 +5,7 @@ import {Bug} from '../model/bug.model';
 import {HttpClient} from "@angular/common/http";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {StorageService} from "../../user-management/login/services/storage.service";
+import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
@@ -37,5 +38,17 @@ export class BugService {
     //   token
     // );
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
+  }
+
+  updateBug(newStatus: string, bugID: number): Observable<Bug>{
+    console.log("From update:" + newStatus);
+    console.log("From update:" + bugID);
+    return this.backendService.put('http://localhost:8080/jbugs/api/bugs/update-bug-status/' + bugID, newStatus);
+    // return this.http.put('http://localhost:8080/jbugs/api/bugs/update-bug-satus/' + bugID, newStatus, {responseType: 'text'}).subscribe((response: any) => {
+    //   if (response === 'OK'){
+    //     alert('OK');
+    //     return
+    //   }
+    // })
   }
 }

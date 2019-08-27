@@ -66,9 +66,28 @@
     "ASSIGNED_TO": "Atribuit",
     "ATTACHMENTS": "Atasamente"
   },
+  "UPDATE_STATUS":{
+    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+
+  },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permisiuni",
     "ROLES": "Roluri"
+  },
+  "DASHBOARD": {
+    "MENU": "Meniul",
+    "USERS": "Utilizatori",
+    "CREATE_USER": "Crează Utilizator",
+    "VIEW_USER": "Vizualizare Utilizator",
+    "BUGS": "Bugs",
+    "CREATE_BUG": "Crează Bug",
+    "VIEW_BUG": "Vizualizare Bug",
+    "NOTIFICATION": "Notificări",
+    "PERMISSION": "Permisiuni",
+    "EDIT_PERMISSION": "Editarea Permisiunii ",
+    "LOG_OUT": "Delogare"
   },
   "BUG-CREATE": {
     "Title": "Titlu",
