@@ -22,7 +22,7 @@ import {NotificationComponent} from './notification/notification.component';
 import {UserCreateComponent} from "./user-create/user-create.component";
 import {EditPermissionsComponent} from './edit-permissions/edit-permissions.component';
 import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
-import {DialogModule, MultiSelectModule} from "primeng/primeng";
+import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from "primeng/primeng";
 
 
 // AoT requires an exported function for factories

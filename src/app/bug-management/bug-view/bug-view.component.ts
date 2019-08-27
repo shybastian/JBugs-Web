@@ -95,27 +95,27 @@ export class BugViewComponent implements AfterViewInit, OnInit {
     ];
 
     this.statusOpen = [
-      {label: 'In progress', value: 'In progress'},
-      {label: 'Rejected', value: 'Rejected'}
+      {label: 'In progress', value: 'IN_PROGRESS'},
+      {label: 'Rejected', value: 'REJECTED'}
     ];
 
     this.statusInProgress = [
-      {label: 'Rejected', value: 'Rejected'},
-      {label: 'InfoNeeded', value: 'Info needed'},
-      {label: 'Fixed', value: 'Fixed'}
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
+      {label: 'Fixed', value: 'FIXED'}
     ];
 
     this.statusRejected = [
-      {label: 'Closed', value: 'Closed'}
+      {label: 'Closed', value: 'CLOSED'}
     ];
 
     this.statusFixed = [
-      {label: 'Open', value: 'Open'},
-      {label: 'Closed', value: 'Closed'}
+      {label: 'Open', value: 'OPEN'},
+      {label: 'Closed', value: 'CLOSED'}
     ];
 
     this.statusInfoNeeded = [
-      {label: 'In progress', value: 'In progress'}
+      {label: 'In progress', value: 'IN_PROGRESS'}
     ];
 
   }
@@ -226,15 +226,21 @@ export class BugViewComponent implements AfterViewInit, OnInit {
   modifyBugStatus(newStatus){
     console.log(this.selectedBugId);
     console.log(newStatus);
-    this.bugService.updateBug(newStatus, this.selectedBugId)
-      .subscribe( data => {
-        alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
-        this.displayUpdateModal = false;
-        this.displayInfoModal = false;
-        this.dt.reset();
+    if(newStatus === "CLOSED"){
+      alert(" No permission for closing bug")
+    }
+    else {
+      this.bugService.updateBug(newStatus, this.selectedBugId)
+        .subscribe( data => {
+          alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
+          this.displayUpdateModal = false;
+          this.displayInfoModal = false;
+          this.dt.reset();
         }, Error => {
-        alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
-      })
+          alert(this.translate.instant('UPDATE_STATUS.ERROR_UPDATE'));
+        })
+    }
+
 
   }
 
