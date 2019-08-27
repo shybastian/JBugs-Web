@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
@@ -7,14 +7,13 @@ import {Bug} from '../model/bug.model';
 import {DatePipe} from "@angular/common";
 import {Table} from "primeng/table";
 import {BugView} from "../model/bug-view.model";
-import {BehaviorSubject, Subject} from "rxjs";
 
 @Component({
   selector: 'app-bug-view',
   templateUrl: './bug-view.component.html',
   styleUrls: ['./bug-view.component.scss']
 })
-export class BugViewComponent implements OnInit {
+export class BugViewComponent implements OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe) {
 
@@ -48,6 +47,47 @@ export class BugViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userFilter = [
+      {label: 'All', value: null}
+    ];
+
+    this.columns = [
+      {field: 'title', header: 'Title'},
+      {field: 'version', header: 'Version'},
+      {field: 'targetDate', header: 'Target Date'},
+      {field: 'status', header: 'Status'},
+      {field: 'fixedVersion', header: 'Fixed in version'},
+      {field: 'severity', header: 'Severity'},
+      {field: 'created_ID', header: 'Created by'},
+      {field: 'assigned_ID', header: 'Assigned to'}
+    ];
+
+    this.severityFilter = [
+      {label: 'Low', value: 'low'},
+      {label: 'Medium', value: 'medium'},
+      {label: 'High', value: 'high'},
+      {label: 'Critical', value: 'critical'}
+    ];
+
+    this.statusFilter = [
+      {label: 'New', value: 'New'},
+      {label: 'In progress', value: 'In Progress'},
+      {label: 'Fixed', value: 'Fixed'},
+      {label: 'Closed', value: 'Closed'},
+      {label: 'Rejected', value: 'Rejected'},
+      {label: 'Info needed', value: 'Info needed'}
+    ];
+
+    this.versionFilter = [
+      {label: 'All', value: ''},
+      {label: '1 - 1.9', value: '1'},
+      {label: '2 - 2.9', value: '2'}
+    ];
+
+  }
+
+  ngAfterViewInit(){
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
@@ -88,11 +128,6 @@ export class BugViewComponent implements OnInit {
       }
     });
 
-
-    this.userFilter = [
-      {label: 'All', value: null}
-    ];
-
     this.userService.getAllUsers().subscribe(users => {
       this.users = users;
       for (let i = 0; i < users.length; i ++) {
@@ -100,40 +135,6 @@ export class BugViewComponent implements OnInit {
         this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
       }
     });
-
-    this.columns = [
-      {field: 'title', header: 'Title'},
-      {field: 'version', header: 'Version'},
-      {field: 'targetDate', header: 'Target Date'},
-      {field: 'status', header: 'Status'},
-      {field: 'fixedVersion', header: 'Fixed in version'},
-      {field: 'severity', header: 'Severity'},
-      {field: 'created_ID', header: 'Created by'},
-      {field: 'assigned_ID', header: 'Assigned to'}
-    ];
-
-    this.severityFilter = [
-      {label: 'Low', value: 'low'},
-      {label: 'Medium', value: 'medium'},
-      {label: 'High', value: 'high'},
-      {label: 'Critical', value: 'critical'}
-    ];
-
-    this.statusFilter = [
-      {label: 'New', value: 'New'},
-      {label: 'In progress', value: 'In Progress'},
-      {label: 'Fixed', value: 'Fixed'},
-      {label: 'Closed', value: 'Closed'},
-      {label: 'Rejected', value: 'Rejected'},
-      {label: 'Info needed', value: 'Info needed'}
-    ];
-
-    this.versionFilter = [
-      {label: 'All', value: ''},
-      {label: '1 - 1.9', value: '1'},
-      {label: '2 - 2.9', value: '2'}
-    ];
-
   }
 
   show() {
@@ -141,17 +142,7 @@ export class BugViewComponent implements OnInit {
   }
 
   targetDateColumn(value){
-
-    this.selectedBug1 = value;
     return value === "targetDate";
-  }
-
-  message:Subject<string> = new BehaviorSubject('loading :(');
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.message.next('all done loading :)');
-    }, 0);
   }
 
 }
