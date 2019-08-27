@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
 import {Bug} from '../model/bug.model';
-import {Attachment} from "../model/attachment";
+import {Attachment} from "../model/attachment.model";
 import {HttpClient} from "@angular/common/http";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {StorageService} from "../../user-management/login/services/storage.service";
@@ -24,13 +24,14 @@ export class BugService {
    * both the {@link Bug} & {@link Attachment} objects.
    */
   submitBug(wrapper: BugAttachmentWrapper) {
-    this.http.post(this.baseUrl, wrapper).subscribe(data => {
-      alert(this.translateService.instant('BUG-CREATE.ALERT_BUG_ADDED'));
-    }, error => {
-      alert('BUG-CREATE.ALERT_BUG_ERROR');
+    this.http.post(this.baseUrl, wrapper, {responseType: 'text'}).subscribe((response: any) => {
+      if (response === "OK") {
+        alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
+      } else if (response === "ERROR") {
+        alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ERROR"))
+      } else alert(response);
     });
   }
-
   getAllBugs(): Observable<Bug[]> {
     return this.backendService.get(this.baseUrl);
   }

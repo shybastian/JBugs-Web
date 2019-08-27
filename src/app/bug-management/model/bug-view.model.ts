@@ -7,6 +7,6 @@ export interface BugView {
   status: string;
   fixedVersion: string;
   severity: string;
-  CREATED_ID: string;
-  ASSIGNED_ID: string;
+  created_ID: string;
+  assigned_ID: string;
 }

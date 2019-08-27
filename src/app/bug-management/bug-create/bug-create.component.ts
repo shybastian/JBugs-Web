@@ -5,7 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BugService} from '../services/bug.service';
 import {Bug} from '../model/bug.model';
 import {BugCreateValidator} from './bug-create.validator';
-import {Attachment} from '../model/attachment';
+import {Attachment} from '../model/attachment.model';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from "../../user-management/login/services/storage.service";
 
@@ -15,7 +15,7 @@ import {StorageService} from "../../user-management/login/services/storage.servi
   styleUrls: ['./bug-create.component.scss']
 })
 export class BugCreateComponent implements OnInit {
-  private todayDate = new Date();
+  private todayDate;
   private listOfUsersToAssign: User[];
   private bugCreateForm: FormGroup;
 
@@ -43,12 +43,19 @@ export class BugCreateComponent implements OnInit {
     });
 
     this.bugCreateForm.get('status').setValue('NEW');
+    // This call sets the 'CREATED_ID' field of the form, to the username of the current User from the current Session.
     this.bugCreateForm.get('CREATED_ID').setValue(this.storageService.getUserWithoutPermissionsFromSessionStorage().username);
     this.bugCreateForm.get('fixedVersion').setValue('');
 
+    // This server call populates the drop-down list of 'ASSIGNED_ID' with the users inside the database.
     this.userService.getAllUsers().subscribe(users => {
       this.listOfUsersToAssign = users;
     });
+
+    /* We initialize this attribute of the component with a new Date() because, whenever this component is initialized,
+       We want to have the current date that is today inside the input type date.
+       The reason is, we can not create new Bugs, and set the targetDate before today. */
+    this.todayDate = new Date();
   }
 
   /**
@@ -59,10 +66,13 @@ export class BugCreateComponent implements OnInit {
     const bug = this.createBugEntity();
     const attachment = this.createAttachmentEntity(bug);
     const wrapper = this.createWrapperEntity(bug, attachment);
-
     this.bugService.submitBug(wrapper);
   }
 
+  /**
+   * We set the created_ID attribute to null, because we do not know the details of the current user.
+   * We will find them out through the token.
+   */
   createBugEntity(): Bug {
     const bugToCreate: Bug = {
       ID: 0,

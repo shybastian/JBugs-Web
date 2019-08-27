@@ -15,6 +15,20 @@ export interface User {
   roles: Role[];
 }
 
+export interface UserCreateBug {
+  id: number;
+
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+  mobileNumber: string;
+
+  status: number;
+  counter: number;
+}
+
 export interface UserToSaveOnSession {
   firstName: string;
   lastName: string;

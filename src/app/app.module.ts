@@ -13,6 +13,8 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TableModule} from 'primeng/table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
   CalendarModule,
@@ -21,9 +23,6 @@ import {
   ListboxModule,
   MultiSelectModule
 } from 'primeng/primeng';
-import {TableModule} from 'primeng/table';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule, CalendarModule, DialogModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
 
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';

@@ -18,15 +18,16 @@
       class="form-control"
       id="description"
       name="description"
-      minlength="250"
+      maxlength="250"
       formControlName="description"
     >
-    <!--        <div class="alert alert-danger" *ngIf="bugCreateForm.get('description').touched && bugCreateForm.get('description').invalid">-->
-    <!--          <div *ngIf="bugCreateForm.get('description').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>-->
-    <!--          <div *ngIf="bugCreateForm.get('description').hasError('maxlength')">-->
-    <!--            {{'BUG-CREATE.MaxLength250' | translate}}-->
-    <!--          </div>-->
-    <!--        </div>-->
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('description').touched && bugCreateForm.get('description').invalid">
+      <div *ngIf="bugCreateForm.get('description').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="bugCreateForm.get('description').hasError('maxlength')">
+        {{'BUG-CREATE.MaxLength250' | translate}}
+      </div>
+    </div>
   </div>
 
   <div class="form-group">

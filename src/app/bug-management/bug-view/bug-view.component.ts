@@ -63,8 +63,8 @@ export class BugViewComponent implements OnInit {
           status: this.bugs[i].status,
           fixedVersion: this.bugs[i].fixedVersion,
           severity: this.bugs[i].severity,
-          created_ID: this.bugs[i].created_ID.username,
-          assigned_ID: this.bugs[i].assigned_ID.username
+          created_ID: this.bugs[i].CREATED_ID.username,
+          assigned_ID: this.bugs[i].ASSIGNED_ID.username
         })
       }
 
