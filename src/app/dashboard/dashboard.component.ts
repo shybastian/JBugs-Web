@@ -16,8 +16,13 @@ export class DashboardComponent implements OnInit {
     {id: 2, name: 'view bugs', router: 'view'}
   ];
 
+  permissionsButtonContainers = [
+    {id: 1, name: 'edit permissions', router: 'edit'}
+  ];
+
   currentUserButton = false;
   currentBugButton = false;
+  currentPermissionsButton = false;
 
   constructor() {
   }
@@ -38,6 +43,14 @@ export class DashboardComponent implements OnInit {
       this.currentBugButton = false;
     } else {
       this.currentBugButton = true;
+    }
+  }
+
+  activePermissionsButton() {
+    if (this.currentPermissionsButton === true) {
+      this.currentPermissionsButton = false;
+    } else {
+      this.currentPermissionsButton = true;
     }
   }
 

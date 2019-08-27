@@ -14,29 +14,34 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './bug-view.component.html',
   styleUrls: ['./bug-view.component.scss']
 })
-export class BugViewComponent implements AfterViewInit, OnInit {
+export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-               public translate: TranslateService) {
+              private translateService: TranslateService) {
 
   }
 
   public bugsView: BugView[] = [];
-
   public bugs: Bug[] = [];
-
   public users: User[];
 
   columns: any[];
 
+  /**
+   * The values from the multiSelect and dropdown
+   */
   severityFilter: SelectItem[];
   statusFilter: SelectItem[];
   userFilter: SelectItem[];
   versionFilter: SelectItem[];
+  fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
   displayUpdateModal = false;
 
+  /**
+   * The values from a selected row
+   */
   selectedBug1: BugView;
   selectedBugTitle: String="";
   selectedBugId: number = -1;
@@ -48,12 +53,32 @@ export class BugViewComponent implements AfterViewInit, OnInit {
   statusInfoNeeded: SelectItem[];
   newStatusValues: SelectItem[];
 
+  /**
+   * To be initialized with selected row values
+   * Values for input text fields in the info pop-up
+   */
+  selectedBug: BugView = {
+    id: 0,
+    title: "",
+    description: "",
+    version: "",
+    targetDate: "",
+    status: "",
+    fixedVersion: "",
+    severity: "",
+    created_ID: "",
+    assigned_ID: ""
+  };
+
+  /**
+   * The dataTable used in form ( for dateFilter)
+   */
   @ViewChild('dt', {static: true})
   dt: Table;
 
-  log(value){
-    console.log(value);
-  }
+  /**
+   * Initializing the values for filters
+   */
 
   ngOnInit(): void {
 
@@ -73,61 +98,39 @@ export class BugViewComponent implements AfterViewInit, OnInit {
     ];
 
     this.severityFilter = [
-      {label: 'Low', value: 'low'},
-      {label: 'Medium', value: 'medium'},
-      {label: 'High', value: 'high'},
-      {label: 'Critical', value: 'critical'}
+      {label: 'Low', value: 'LOW'},
+      {label: 'Medium', value: 'MEDIUM'},
+      {label: 'High', value: 'HIGH'},
+      {label: 'Critical', value: 'CRITICAL'}
     ];
 
     this.statusFilter = [
-      {label: 'New', value: 'New'},
-      {label: 'In progress', value: 'In Progress'},
-      {label: 'Fixed', value: 'Fixed'},
-      {label: 'Closed', value: 'Closed'},
-      {label: 'Rejected', value: 'Rejected'},
-      {label: 'Info needed', value: 'Info needed'}
+      {label: 'In progress', value: 'IN_PROGRESS'},
+      {label: 'Fixed', value: 'FIXED'},
+      {label: 'Closed', value: 'CLOSED'},
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'Info needed', value: 'INFO_NEEDED'}
     ];
 
     this.versionFilter = [
-      {label: 'All', value: ''},
-      {label: '1 - 1.9', value: '1'},
-      {label: '2 - 2.9', value: '2'}
+      {label: 'All', value: ''}
     ];
 
-    this.statusOpen = [
-      {label: 'In progress', value: 'IN_PROGRESS'},
-      {label: 'Rejected', value: 'REJECTED'}
-    ];
-
-    this.statusInProgress = [
-      {label: 'Rejected', value: 'REJECTED'},
-      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
-      {label: 'Fixed', value: 'FIXED'}
-    ];
-
-    this.statusRejected = [
-      {label: 'Closed', value: 'CLOSED'}
-    ];
-
-    this.statusFixed = [
-      {label: 'Open', value: 'OPEN'},
-      {label: 'Closed', value: 'CLOSED'}
-    ];
-
-    this.statusInfoNeeded = [
-      {label: 'In progress', value: 'IN_PROGRESS'}
+    this.fixedVersionFilter = [
+      {label: 'All', value: ''}
     ];
 
   }
 
   ngAfterViewInit(){
 
-
-    this.bugService.getAllBugs().subscribe(bugs => setTimeout( () => {
+    this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
+      console.log(this.bugs);
       for (let i = 0; i < this.bugs.length; i++) {
+        console.log(this.bugs[i].targetDate);
         this.bugsView.push({
-          id: this.bugs[i].id,
+          id: this.bugs[i].ID,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
@@ -140,54 +143,91 @@ export class BugViewComponent implements AfterViewInit, OnInit {
         })
       }
 
-      this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
-        if (filter === undefined || filter === null || (filter.length === 0 || filter === "") && value ===null ){
-          return true;
-        }
+      this.constructVersionFilters(this.bugs);
+      this.constructUserFiler();
+      this.constructDateFilter();
+      this.dt.reset();
 
-        if (value === undefined || value === null || value.length === 0) {
-          return false;
-        }
+    });
 
-        if(value == new DatePipe('en').transform(filter, 'yyyy-MM-dd')){
-          return true;
-        }
+  }
 
-        return false;
+  getMaxVersion(bugList: Bug[]): [number, number]{
+    let maxVersion = 0;
+    let maxFixedVersion = 0;
+
+    for(let i= 0; i < bugList.length; i++){
+      if(parseInt(bugList[i].version) > maxVersion){
+        maxVersion = parseInt(bugList[i].version);
       }
-    }, 300));
 
-    this.userService.getAllUsers().subscribe(users => setTimeout(()=>{
+      if(parseInt(bugList[i].fixedVersion) > maxFixedVersion){
+        maxFixedVersion = parseInt(bugList[i].fixedVersion);
+      }
+    }
+
+    return [maxVersion, maxFixedVersion];
+  }
+
+  constructVersionFilters(bugList: Bug[]){
+    let maxVersion;
+    let maxFixedVersion;
+    [maxVersion, maxFixedVersion] = this.getMaxVersion(bugList);
+
+    console.log(maxVersion + " " + maxFixedVersion);
+
+    for(let i = 1; i <= maxVersion; i++){
+      this.versionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString() })
+    }
+
+    for(let i = 1; i <= maxFixedVersion; i++){
+      this.fixedVersionFilter.push({label: i.toString() + ' - ' + i.toString() + '.9', value: i.toString()})
+    }
+
+  }
+
+  constructUserFiler(){
+    this.userService.getAllUsers().subscribe(users => {
       this.users = users;
       for (let i = 0; i < users.length; i ++) {
         this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
       }
-    },250));
+    });
+  }
+
+  constructDateFilter(){
+    this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
+
+      if (filter === undefined || filter === null || (filter.length === 0 || filter === "") && value ===null ){
+        return true;
+      }
+
+      if (value === undefined || value === null || value.length === 0) {
+        return false;
+      }
+
+      return value == new DatePipe('en').transform(filter, 'yyyy-MM-dd');
+    };
 
   }
 
-  showInfoModal() {
-    this.displayInfoModal = true;
+  /**
+   * Function to display Info pop-up
+   */
+  show() {
+    this.display = true;
   }
 
-  showUpdateModal() {
-    this.selectedBugTitle = this.selectedBug1.title;
-    console.log(this.selectedBugTitle);
-    console.log(this.bugs[this.bugsView.indexOf(this.selectedBug1)]);
-    this.selectedBugId = this.bugs[this.bugsView.indexOf(this.selectedBug1)].id;
-    console.log(this.selectedBugId);
-
-    if(this.selectedBug1.status === "Closed"){
-      alert(this.translate.instant('UPDATE_STATUS.CLOSED_STATUS_ALERT'));
-    }
-      else{
-      this.displayUpdateModal = true;
-    }
-
-  }
-
+  /**
+   * Verify if column is targetDate in order to place clearDate button
+   * @param value - column name
+   */
   targetDateColumn(value){
     return value === "targetDate";
+  }
+
+  bugAsString():void{
+    this.selectedBug = this.selectedBug1;
   }
 
   selectStatus() {

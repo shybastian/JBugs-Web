@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {UserService} from '../user-management/services/user.service';
-import {RoleWrapper} from '../user-management/models/user.model';
-import {Role} from '../user-management/models/role';
-import {TranslateService} from "@ngx-translate/core";
-import {Router} from "@angular/router";
+import {UserService} from '../services/user.service';
+import {RoleWrapper} from '../models/user.model';
+import {Role} from '../models/role';
+import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-create',

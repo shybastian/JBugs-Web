@@ -1,12 +1,11 @@
 {
   "LANGUAGE": {
-    "SELECT": "Selectati Limba "
+    "SELECT": "Limba "
   },
   "LOGIN": {
     "MESSAGE": "LOGARE",
     "USERNAME": "Nume utilizator",
     "PASSWORD": "Parola",
-
     "CAPTCHA": "Codul CAPTCHA",
     "FORGOT": "Ați uitat ",
     "PASS": "parola?",
@@ -20,7 +19,21 @@
     "LOGIN-003": "Utilizatorul a fost dezactivat",
     "LOGIN-004": "Parola incorecta"
   },
+  "USERS": {
+    "LIST": "Lista utilizatorilor",
+    "DOWNLOAD": "Descarca",
+    "DETAILED_USER": "Detalii utilizator",
+    "Active": "Activ",
+    "Inactive": "Inactiv",
+    "NO_ROLE": "Niciun rol asignat",
+    "EDIT": "Editare"
+  },
   "ADD_USER": {
+    "ID": "ID",
+    "USERNAME": "Nume utilizator",
+    "STATUS": "Stare",
+    "COUNTER": "Incercari parola",
+
     "FIRST_NAME": "Prenume",
     "LAST_NAME": "Nume",
     "PHONE": "Numar de telefon",
@@ -58,6 +71,10 @@
     "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
     "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
 
+  },
+  "EDIT_PERMISSIONS": {
+    "PERMISSIONS": "Permisiuni",
+    "ROLES": "Roluri"
   }
 
 }
