@@ -5,7 +5,6 @@ import {Bug} from '../model/bug.model';
 import {HttpClient} from "@angular/common/http";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {StorageService} from "../../user-management/login/services/storage.service";
-import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
