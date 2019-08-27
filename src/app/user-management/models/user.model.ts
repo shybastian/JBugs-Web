@@ -7,6 +7,7 @@ export interface User {
   lastName: string;
   username: string;
   email: string;
+  password: string;
   mobileNumber: string;
 
   status: number;
@@ -14,6 +15,20 @@ export interface User {
 
   counter: number;
   roles: Role[];
+}
+
+export interface UserCreateBug {
+  id: number;
+
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+  mobileNumber: string;
+
+  status: number;
+  counter: number;
 }
 
 export interface UserToSaveOnSession {
@@ -84,3 +99,4 @@ export interface UserInsertWrapper {
   mobileNumber: string;
   roles: RoleWrapper[];
 }
+

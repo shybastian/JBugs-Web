@@ -152,7 +152,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       this.bugs = bugs;
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
-          id: this.bugs[i].id,
+          id: this.bugs[i].ID,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
@@ -160,8 +160,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           status: this.bugs[i].status,
           fixedVersion: this.bugs[i].fixedVersion,
           severity: this.bugs[i].severity,
-          created_ID: this.bugs[i].created_ID.username,
-          assigned_ID: this.bugs[i].assigned_ID.username
+          created_ID: this.bugs[i].CREATED_ID.username,
+          assigned_ID: this.bugs[i].ASSIGNED_ID.username
         });
       }
 

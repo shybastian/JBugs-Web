@@ -59,8 +59,8 @@ const routes: Routes = [
             component: BugViewComponent
           },
           {
-            path: 'create',
-            component: BugCreateComponent
+          path: 'create',
+             component: BugCreateComponent
           }
         ]
       },

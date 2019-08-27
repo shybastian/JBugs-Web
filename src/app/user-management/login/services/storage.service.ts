@@ -59,7 +59,7 @@ export class StorageService {
       username: '',
       email: '',
       mobileNumber: '',
-
+      password: '',
       status: 0,
       stringStatus: '',
       counter: 0,
@@ -95,7 +95,6 @@ export class StorageService {
 
     return user;
   }
-
   getPermissionsFromSessionStorage(): PermissionType[] {
     const nrPermissions = +sessionStorage.getItem('user_nr_permissions');
     const permissions: PermissionType[] = new Array(nrPermissions);
@@ -147,4 +146,5 @@ export class StorageService {
         (storage && storage.length !== 0);
     }
   }
+
 }

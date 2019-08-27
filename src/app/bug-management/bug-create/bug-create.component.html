@@ -1,1 +1,161 @@
-<h1>bug-create works!</h1>
+<form [formGroup]="bugCreateForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">{{'BUG-CREATE.Title' | translate}}</label>
+    <input
+      class="form-control"
+      id="title"
+      name="title"
+      formControlName="title"
+    >
+    <div class="alert alert-danger" *ngIf="bugCreateForm.get('title').touched && bugCreateForm.get('title').invalid">
+      <div *ngIf="bugCreateForm.get('title').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">{{'BUG-CREATE.Description' | translate}}</label>
+    <input
+      class="form-control"
+      id="description"
+      name="description"
+      maxlength="250"
+      formControlName="description"
+    >
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('description').touched && bugCreateForm.get('description').invalid">
+      <div *ngIf="bugCreateForm.get('description').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="bugCreateForm.get('description').hasError('maxlength')">
+        {{'BUG-CREATE.MaxLength250' | translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="version">{{'BUG-CREATE.Version' | translate}}</label>
+    <input
+      class="form-control"
+      id="version"
+      name="version"
+      formControlName="version"
+    >
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('version').touched && bugCreateForm.get('version').invalid">
+      <div *ngIf="bugCreateForm.get('version').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="bugCreateForm.get('version').errors">
+        {{'BUG-CREATE.VersionValidation' | translate}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="fixedVersion">{{'BUG-CREATE.FixedVersion' | translate}}</label>
+    <input
+      class="form-control"
+      id="fixedVersion"
+      name="fixedVersion"
+      disabled
+      formControlName="fixedVersion"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="targetDate">{{'BUG-CREATE.TargetDate' | translate}}</label>
+    <input
+      type="date"
+      class="form-control"
+      id="targetDate"
+      name="targetDate"
+      min="{{todayDate | date:'yyyy-MM-dd'}}"
+      formControlName="targetDate"
+    >
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('targetDate').touched && bugCreateForm.get('targetDate').invalid">
+      <div *ngIf="bugCreateForm.get('targetDate').errors.min">{{'BUG-CREATE.DateValidation' | translate}}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="severity">{{'BUG-CREATE.Severity' | translate}}</label>
+    <select
+      class="form-control"
+      id="severity"
+      name="severity"
+      required
+      formControlName="severity"
+    >
+      <option value="critical">{{'BUG-CREATE.SeverityCritical' | translate}}</option>
+      <option value="high">{{'BUG-CREATE.SeverityHigh' | translate}}</option>
+      <option value="medium">{{'BUG-CREATE.SeverityMedium' | translate}}</option>
+      <option value="low">{{'BUG-CREATE.SeverityLow' | translate}}</option>
+    </select>
+    <div class="alert alert-danger"
+         *ngIf="bugCreateForm.get('severity').touched && bugCreateForm.get('severity').invalid">
+      <div *ngIf="bugCreateForm.get('severity').errors">{{'BUG-CREATE.NotBlank' | translate}}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="CREATED_ID">{{'BUG-CREATE.CreatedBy' | translate}}</label>
+    <input
+      class="form-control"
+      id="CREATED_ID"
+      name="CREATED_ID"
+      required
+      disabled
+      formControlName="CREATED_ID"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="status">{{'BUG-CREATE.Status' | translate}}</label>
+    <input
+      class="form-control"
+      id="status"
+      name="status"
+      required
+      disabled
+      formControlName="status"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="ASSIGNED_ID">{{'BUG-CREATE.AssignedTo' | translate}}</label><br>
+    <select
+      class="form-group"
+      id="ASSIGNED_ID"
+      name="ASSIGNED_ID"
+      formControlName="ASSIGNED_ID"
+    >
+      <option
+        class="form-group"
+        *ngFor="let user of listOfUsersToAssign" [ngValue]="user"
+      >
+        {{user.username}}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>{{'BUG-CREATE.Attachment' | translate}}</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        id="attachment"
+        name="attachment"
+        type="file"
+        accept=".pdf,.doc,.odf,.xlsx,.xls"
+        formControlName="attachment"
+      >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      class="form-control"
+      type="submit"
+      [disabled]="bugCreateForm.invalid"
+    >
+      {{'BUG-CREATE.Submit' | translate}}
+    </button>
+  </div>
+</form>

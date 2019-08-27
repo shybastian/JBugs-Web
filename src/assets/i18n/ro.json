@@ -88,6 +88,29 @@
     "PERMISSION": "Permisiuni",
     "EDIT_PERMISSION": "Editarea Permisiunii ",
     "LOG_OUT": "Delogare"
+  },
+  "BUG-CREATE": {
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data-Tinta",
+    "Status": "Status",
+    "FixedVersion": "Fixat In Versiuna",
+    "Severity": "Severitate",
+    "CreatedBy": "Creat De",
+    "AssignedTo": "Atribuit Userului",
+    "Attachment": "Atasament",
+    "Submit": "Creaza",
+    "MaxLength250": "Limita maxima admisa este de 250 de caractere.",
+    "NotBlank": "Nu poate sa fie gol.",
+    "VersionValidation": "Campul poate contine doar 3 grupuri de cate 2 caractere alfanumerice despartite prin punct.",
+    "DateValidation": "Nu se poate alege o data anterioara celei de astazi.",
+    "SeverityCritical": "Critic",
+    "SeverityHigh": "Inalt",
+    "SeverityMedium": "Mediu",
+    "SeverityLow": "Scazut",
+    "ALERT_BUG_ADDED": "Noua intrare a fost salvata cu succes!",
+    "ALERT_BUG_ERROR": "Au fost intampinat erori la salvarea intrarii. Va rugam incercati din nou!"
   }
 
 }

@@ -1,7 +1,7 @@
 import {User} from '../../user-management/models/user.model';
 
 export interface Bug {
-  id: number;
+  ID: number;
   title: string;
   description: string;
   version: string;
@@ -9,6 +9,6 @@ export interface Bug {
   status: string;
   fixedVersion: string;
   severity: string;
-  created_ID: User;
-  assigned_ID: User;
+  CREATED_ID: User;
+  ASSIGNED_ID: User;
 }
