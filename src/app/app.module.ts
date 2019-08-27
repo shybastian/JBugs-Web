@@ -86,7 +86,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListboxModule,
     ButtonModule,
     CalendarModule,
-    DynamicDialogModule
+    DynamicDialogModule,
     CalendarModule,
     InputTextModule
   ],
