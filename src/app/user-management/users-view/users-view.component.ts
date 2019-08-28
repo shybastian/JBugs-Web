@@ -78,12 +78,6 @@ export class UsersViewComponent implements OnInit, DoCheck {
     this.displayDialog = false;
   }
 
-  edit() {
-    this.displayDialog = false;
-
-    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
-  }
-
   onRowSelect() {
     this.displayDialog = true;
   }
