@@ -1,8 +1,12 @@
 <div class="sidenav">
   <h2>{{ 'DASHBOARD.MENU' | translate }}</h2>
-
+  <button class="btn btn-primary btn-outline-light btn-block btn-lg"
+          (click)="atLogout()">{{ 'DASHBOARD.LOG_OUT' | translate }}</button>
+  <br>
   <div>
-    <button *ngIf="!disableUser" class="dropdown-btn" (click)="activeUserButton() ">
+
+    <button *ngIf="!disableUser" class="btn btn-primary btn-outline-light btn-block dropdown-toggle "
+            (click)="activeUserButton() ">
       {{ 'DASHBOARD.USERS' | translate }}
     </button>
     <div *ngIf="currentUserButton==true ">
@@ -11,7 +15,8 @@
       </div>
     </div>
 
-    <button *ngIf="!disableBug" class="dropdown-btn" (click)="activeBugButton() ">
+    <button *ngIf="!disableBug" class="btn btn-primary btn-outline-light btn-block dropdown-toggle "
+            (click)="activeBugButton() ">
       {{ 'DASHBOARD.BUGS' | translate }}
     </button>
     <div *ngIf="currentBugButton==true ">
@@ -20,11 +25,12 @@
       </div>
     </div>
 
-    <button class="dropdown-btn" [routerLink]="['notifications']">
+    <button class="btn btn-primary btn-outline-light btn-block " [routerLink]="['notifications']">
       {{ 'DASHBOARD.NOTIFICATION' | translate }}
     </button>
 
-    <button *ngIf="!disablePermission" class="dropdown-btn" (click)="activePermissionsButton()">
+    <button *ngIf="!disablePermission" class="btn btn-primary btn-outline-light btn-block dropdown-toggle "
+            (click)="activePermissionsButton()">
       {{ 'DASHBOARD.PERMISSION' | translate }}
     </button>
     <div *ngIf="currentPermissionsButton==true ">
@@ -33,8 +39,6 @@
           [routerLink]="['permissions',permissionsButtonContainer.router]">{{permissionsButtonContainer.name | translate}}</a>
       </div>
     </div>
-
-    <button class="btn btn-primary" (click)="atLogout()">{{ 'DASHBOARD.LOG_OUT' | translate }}</button>
 
   </div>
 

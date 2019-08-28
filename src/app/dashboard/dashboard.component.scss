@@ -1,19 +1,10 @@
 /* Navigation link styles */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-
-//sidebar
-
 /* Fixed sidenav, full height */
 
 h2 {
   color: #394499;
-  padding-top: 10px;
+  text-align: center;
 }
 
 .sidenav {
@@ -21,48 +12,30 @@ h2 {
   width: 130px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 103px;
   left: 0;
   background: #3881bc;
   overflow-x: hidden;
   padding-top: 20px;
+  border: 2px solid #394499;;
+  border-radius: 4px;
 }
 
 /* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
-  padding: 6px 8px 6px 16px;
+a {
+  background-color: #22a3bc;
+  text-align: center;
+  padding: 10px 8px 6px 16px;
   text-decoration: none;
-  font-size: 20px;
-  color: #0d0d0d;
+  font-size: 15px;
+  color: #394499;
   display: block;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
   cursor: pointer;
   outline: none;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
 }
 
-/* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
-}
-
-/* Add an active class to the active dropdown button */
-.active {
-  background-color: #280f99;
-  color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  //display: none;
-  background: #3881bc;
-  padding-left: 8px;
-}
-
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 4px;
+a:hover {
+  background-color: #ffffff;
 }

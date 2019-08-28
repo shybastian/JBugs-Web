@@ -1,4 +1,4 @@
-<div>
+<div CLASS="header">
   <h1 class="title">JBugger</h1>
   {{ 'LANGUAGE.SELECT' | translate }}
   <select #langSelect (change)="translate.use(langSelect.value)">
@@ -7,5 +7,4 @@
       {{ lang.toUpperCase() }}</option>
   </select>
 </div>
-
 <router-outlet></router-outlet>

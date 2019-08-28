@@ -1,3 +1,4 @@
+
 <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)">
 
   <div class="form-group">
@@ -126,4 +127,3 @@
           [disabled]="addUserForm.invalid || showMultiselectRequiredMessage">{{'ADD_USER.ADD' | translate}}</button>
 
 </form>
-

@@ -1,16 +1,20 @@
 /* Header/Logo Title */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-div {
+
+.header {
   padding: 10px;
   text-align: right;
   background: #3890bc;
   color: #394499;
   font-size: 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border: 2px solid #394499;;
+  border-radius: 4px;
 }
-
 .title {
   text-align: center;
-}
-div {
-  color: #369;
 }

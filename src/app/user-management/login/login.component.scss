@@ -34,10 +34,14 @@
   width: 135px;
 }
 
-body {
+.loginStyling {
   margin: auto;
-  padding: 20px;
-  max-width: 1200px;
+  padding: 100px 700px;
+  //max-width: 1200px;
   display: table-cell;
   vertical-align: middle;
+}
+
+h1 {
+  color: #394499;
 }
