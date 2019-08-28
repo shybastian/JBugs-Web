@@ -22,7 +22,7 @@ export class LoginService {
 
     let headers = {
       'Accept-Language': 'en',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     };
 
     // not using backend service since it filters for auth header (token), which is not yet generated
