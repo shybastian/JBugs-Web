@@ -43,8 +43,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    * The values from a selected row
    */
   selectedBug1: BugView;
-  selectedBugTitle: String="";
-  selectedStatus: String;
+  selectedStatus: string;
 
   statusOpen: SelectItem[];
   statusInProgress: SelectItem[];
@@ -122,26 +121,31 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     ];
 
     this.statusOpen = [
+      {label: "[Select status]", value: ["Select status"]},
       {label: 'In progress', value: 'IN_PROGRESS'},
       {label: 'Rejected', value: 'REJECTED'}
     ];
 
     this.statusInProgress = [
+      {label: "[Select status]", value: ["Select status"]},
       {label: 'Rejected', value: 'REJECTED'},
       {label: 'InfoNeeded', value: 'INFO_NEEDED'},
       {label: 'Fixed', value: 'FIXED'}
     ];
 
     this.statusRejected = [
+      {label: "[Select status]", value: ["Select status"]},
       {label: 'Closed', value: 'CLOSED'}
     ];
 
     this.statusFixed = [
+      {label: "[Select status]", value: ["Select status"]},
       {label: 'Open', value: 'OPEN'},
       {label: 'Closed', value: 'CLOSED'}
     ];
 
     this.statusInfoNeeded = [
+      {label: "[Select status]", value: ["Select status"]},
       {label: 'In progress', value: 'IN_PROGRESS'}
     ];
   }
@@ -150,9 +154,10 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
+      console.log(bugs);
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
-          id: this.bugs[i].ID,
+          id: this.bugs[i].id,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
@@ -160,8 +165,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           status: this.bugs[i].status,
           fixedVersion: this.bugs[i].fixedVersion,
           severity: this.bugs[i].severity,
-          created_ID: this.bugs[i].CREATED_ID.username,
-          assigned_ID: this.bugs[i].ASSIGNED_ID.username
+          created_ID: this.bugs[i].created_ID.username,
+          assigned_ID: this.bugs[i].assigned_ID.username
         });
       }
 
@@ -269,23 +274,18 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  modifyBugStatus(newStatus){
+  modifyBugStatus(newStatus) {
 
-    if(newStatus === "CLOSED"){
-      alert(" No permission for closing bug")
-    }
-    else {
-      this.bugService.updateBug(newStatus, this.selectedBug.id)
-        .subscribe((data : Bug) =>{
-          console.log(data);
-          alert(this.translate.instant('UPDATE_STATUS.SUCCESS_UPDATE'));
-          this.displayUpdateModal = false;
-          this.displayInfoModal = false;
-          this.dt.reset();
-        })
-    }
+    console.log("From modify: " + newStatus);
 
+    if (newStatus === "CLOSED") {
+      alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"))
+    } else {
+      this.bugService.updateBug(newStatus, this.selectedBug.id);
+
+    }
   }
+
 
   showInfoModal(){
     this.displayInfoModal = true;
