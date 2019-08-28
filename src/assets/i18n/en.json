@@ -69,7 +69,8 @@
   "UPDATE_STATUS":{
      "SUCCESS_UPDATE": "The status update was successful!",
      "ERROR_UPDATE": "An error occurred while updating the status!",
-     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!",
+     "NO_STATUS_CHANGE" : "No status change possible!"
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",

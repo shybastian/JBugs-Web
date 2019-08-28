@@ -66,8 +66,10 @@
       {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
       {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
       {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
-      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
-                                                       [(ngModel)]="selectedStatus" name="statusTypes" (onClick)="selectStatus()" ></p-dropdown>
+      {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}} <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
+                                                       [(ngModel)]="selectedStatus" name="statusTypes"
+                                                       (onClick)="selectStatus()"
+                                                        ></p-dropdown>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
     {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
@@ -76,6 +78,7 @@
   <p class="text-style">
   </p>
   <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
+  <button pButton label="Close bug" (click)="closeBug(); dt.reset()" *ngIf="visibleButton"></button>
   <p-footer>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
