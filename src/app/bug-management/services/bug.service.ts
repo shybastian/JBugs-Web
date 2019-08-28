@@ -23,7 +23,12 @@ export class BugService {
    * both the {@link Bug} & {@link Attachment} objects.
    */
   submitBug(wrapper: BugAttachmentWrapper) {
-    this.http.post(this.baseUrl, wrapper, {responseType: 'text'}).subscribe((response: any) => {
+    let headers = {
+      'Authorization': 'Bearer ' + this.storageService.getToken(),
+      'Access-Control-Expose-Headers': 'Authorization'
+    };
+
+    this.http.post(this.baseUrl, wrapper, {responseType: 'text', headers: headers}).subscribe((response: any) => {
       if (response === "OK") {
         alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
       } else if (response === "ERROR") {
