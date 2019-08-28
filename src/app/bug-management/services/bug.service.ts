@@ -33,21 +33,18 @@ export class BugService {
   }
   getAllBugs(): Observable<Bug[]> {
     let token: String = StorageService.getToken();
-    // let headers = new HttpHeaders(
-    //   token
-    // );
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
-  updateBug(newStatus: string, bugID: number): Observable<Bug>{
+  updateBug(newStatus: string, bugID: number){
     console.log("From update:" + newStatus);
     console.log("From update:" + bugID);
-    return this.backendService.put('http://localhost:8080/jbugs/api/bugs/update-bug-status/' + bugID, newStatus);
-    // return this.http.put('http://localhost:8080/jbugs/api/bugs/update-bug-satus/' + bugID, newStatus, {responseType: 'text'}).subscribe((response: any) => {
-    //   if (response === 'OK'){
-    //     alert('OK');
-    //     return
-    //   }
-    // })
+    this.http.put(this.baseUrl + "/update-bug-status/" + bugID, newStatus, {responseType: 'text'}).subscribe((response: any) => {
+      if (response === "OK") {
+        alert(this.translateService.instant("UPDATE_STATUS.SUCCESS_UPDATE"));
+      } else if (response === "ERROR") {
+        alert(this.translateService.instant("UPDATE_STATUS.ERROR_UPDATE"))
+      } else alert(response);
+    });
   }
 }
