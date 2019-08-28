@@ -66,9 +66,65 @@
     "ASSIGNED_TO": "Atribuit",
     "ATTACHMENTS": "Atasamente"
   },
+  "UPDATE_STATUS":{
+    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+
+  },
+  "ADD_USER": {
+    "FIRST_NAME": "Prenume",
+    "LAST_NAME": "Nume",
+    "PHONE": "Numar de telefon",
+    "EMAIL": "Email",
+    "ROLES": "Roluri",
+    "ADD": "Adaugare Utilizator",
+    "ALERT_FIRSTNAME_REQUIRED": "Prenumele este obligatoriu!",
+    "ALERT_FIRSTNAME_DIMENSION": "Prenumele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
+    "ALERT_FIRSTNAME_INCORRECT": "Prenumele este incorect!",
+    "ALERT_LASTNAME_INCORRECT": "Numele este incorect!",
+    "ALERT_LASTNAME_REQUIRED": "Numele este obligatoriu!",
+    "ALERT_LASTNAME_DIMENSION": "Numele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
+    "ALERT_PHONE_REQUIRED": "Numarul de telefon este obligatoriu!",
+    "ALERT_PHONE_INCORRECT": "Numarul de telefon este incorect!",
+    "ALERT_EMAIL_REQUIRED": "Adresa de email este obligatorie!",
+    "ALERT_EMAIL_INCORRECT": "Adresa de email este incorecta!",
+    "ALERT_ROLES_REQUIRED": "**Cel putin un rol trebuie sa fie selectat!",
+    "ALERT_SUCCESS_CREATED_USER": "Utilizator creat cu succes!",
+    "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
+  },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permisiuni",
     "ROLES": "Roluri"
+  },
+  "EDIT_USER": {
+    "FIRST_NAME": "Prenume",
+    "LAST_NAME": "Nume",
+    "PHONE": "Numar de telefon",
+    "EMAIL": "Email",
+    "ROLES": "Roluri",
+    "USERNAME": "Nume de utilizator",
+    "PASSWORD": "Parola",
+    "COUNTER": "Numar incercari logare esuate",
+    "STATUS": "Activ",
+    "EDIT": "Actualizare",
+    "ALERT_FIRSTNAME_REQUIRED": "Prenumele este obligatoriu!",
+    "ALERT_FIRSTNAME_DIMENSION": "Prenumele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
+    "ALERT_FIRSTNAME_INCORRECT": "Prenumele este incorect!",
+    "ALERT_LASTNAME_INCORRECT": "Numele este incorect!",
+    "ALERT_LASTNAME_REQUIRED": "Numele este obligatoriu!",
+    "ALERT_LASTNAME_DIMENSION": "Numele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
+    "ALERT_PHONE_REQUIRED": "Numarul de telefon este obligatoriu!",
+    "ALERT_PHONE_INCORRECT": "Numarul de telefon este incorect!",
+    "ALERT_EMAIL_REQUIRED": "Adresa de email este obligatorie!",
+    "ALERT_EMAIL_INCORRECT": "Adresa de email este incorecta!",
+    "ALERT_ROLES_REQUIRED": "**Cel putin un rol trebuie sa fie selectat!",
+    "ALERT_SUCCESS_EDIT_USER": "Utilizator actualizat cu succes!",
+    "ALERT_FAIL_EDIT_USER": "Actualizarea utilizatorului a esuat!",
+    "ALERT_PASSWORD_REQUIRED": "Parola este obligatorie!",
+    "ALERT_PASSWORD_DIMENSION": "Parola este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
+    "ALERT_COUNTER_REQUIRED": "Counterul este obligatoriu!",
+    "HEADER": "Actualizare informatii utilizator"
   },
   "DASHBOARD": {
     "MENU": "Meniul",
@@ -82,6 +138,29 @@
     "PERMISSION": "Permisiuni",
     "EDIT_PERMISSION": "Editarea Permisiunii ",
     "LOG_OUT": "Delogare"
+  },
+  "BUG-CREATE": {
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data-Tinta",
+    "Status": "Status",
+    "FixedVersion": "Fixat In Versiuna",
+    "Severity": "Severitate",
+    "CreatedBy": "Creat De",
+    "AssignedTo": "Atribuit Userului",
+    "Attachment": "Atasament",
+    "Submit": "Creaza",
+    "MaxLength250": "Limita maxima admisa este de 250 de caractere.",
+    "NotBlank": "Nu poate sa fie gol.",
+    "VersionValidation": "Campul poate contine doar 3 grupuri de cate 2 caractere alfanumerice despartite prin punct.",
+    "DateValidation": "Nu se poate alege o data anterioara celei de astazi.",
+    "SeverityCritical": "Critic",
+    "SeverityHigh": "Inalt",
+    "SeverityMedium": "Mediu",
+    "SeverityLow": "Scazut",
+    "ALERT_BUG_ADDED": "Noua intrare a fost salvata cu succes!",
+    "ALERT_BUG_ERROR": "Au fost intampinat erori la salvarea intrarii. Va rugam incercati din nou!"
   }
 
 }
