@@ -7,12 +7,13 @@ import {Bug} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bug-view',
   templateUrl: './bug-view.component.html',
-  styleUrls: ['./bug-view.component.scss']
+  styleUrls: ['./bug-view.component.scss'],
+  styles: ['kendo-pdf-export { font-family: "DejaVu Sans", "Arial", sans-serif; font-size: 12px;}']
 })
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
