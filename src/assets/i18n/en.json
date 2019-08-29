@@ -86,7 +86,8 @@
     "NOTIFICATION": "Notification",
     "PERMISSION": "Permission",
     "EDIT_PERMISSION": "Edit Permission",
-    "LOG_OUT": "Log Out"
+    "LOG_OUT": "Log Out",
+    "NOTIFICATIONS_VIEW": "Notifications List"
   },
   "EDIT_USER": {
     "FIRST_NAME": "First name",

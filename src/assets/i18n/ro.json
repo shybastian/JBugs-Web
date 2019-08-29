@@ -137,7 +137,8 @@
     "NOTIFICATION": "Notificări",
     "PERMISSION": "Permisiuni",
     "EDIT_PERMISSION": "Editarea Permisiunii ",
-    "LOG_OUT": "Delogare"
+    "LOG_OUT": "Delogare",
+    "NOTIFICATIONS_VIEW": "Lista Notificari"
   },
   "BUG-CREATE": {
     "Title": "Titlu",
