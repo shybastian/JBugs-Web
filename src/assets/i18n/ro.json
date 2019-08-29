@@ -26,7 +26,16 @@
     "Active": "Activ",
     "Inactive": "Inactiv",
     "NO_ROLE": "Niciun rol asignat",
-    "EDIT": "Editare"
+    "EDIT": "Editare",
+    "ID": "ID",
+    "USERNAME": "Nume utilizator",
+    "STATUS": "Stare",
+    "COUNTER": "Incercari parola",
+    "FIRST_NAME": "Prenume",
+    "LAST_NAME": "Nume",
+    "PHONE": "Numar de telefon",
+    "EMAIL": "Email",
+    "ROLES": "Roluri"
   },
   "ADD_USER": {
     "ID": "ID",
