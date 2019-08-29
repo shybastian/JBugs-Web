@@ -15,7 +15,6 @@ export class LoginService {
   }
 
   loginGetUser(username: string, password: string): Observable<UserToSaveOnSession> {
-    debugger
     const loginData: LoginData = {
       username,
       password
