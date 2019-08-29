@@ -39,6 +39,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
+  visibleButton: boolean = false;
+  noMoreStatusAvailable: boolean = false;
 
   /**
    * The values from a selected row
@@ -76,7 +78,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   dt: Table;
 
   user: User;
-  visibleButton: boolean;
+
 
   /**
    * Initializing the values for filters
@@ -183,7 +185,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
       this.constructVersionFilters(this.bugs);
       this.constructDateFilter();
-      this.checkPermissionForBugClose();
       this.dt.reset();
 
     });
@@ -257,7 +258,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       created_ID: "",
       assigned_ID: ""
     };
-    this.selectedBug = this.selectedBug1;
+    this.selectedBug = this.selectedBug1
+    this.checkPermissionForBugClose();
   }
 
   selectStatus() {
@@ -270,7 +272,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }
 
     if (this.selectedBug.status === 'REJECTED') {
-      this.newStatusValues = this.statusRejected;
+      //this.newStatusValues = this.statusRejected;
+      this.noMoreStatusAvailable = true;
     }
 
     if (this.selectedBug.status === 'FIXED') {
@@ -282,29 +285,22 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }
 
     if(this.selectedBug.status === 'CLOSED'){
-      this.newStatusValues = [{label: "[No status available]", value:"[No status available]"}];
+      this.noMoreStatusAvailable = true;;
     }
-
-    //this.selectedStatus = this.newStatusValues[0].value;
 
   }
 
   modifyBugStatus(newStatus) {
 
-    console.log("S", this.selectedStatus);
-    console.log("N", newStatus);
-
-    if(this.selectedStatus == "Select status" || this.selectedStatus == "[No status available]" || this.selectedStatus == ""
-        || this.selectedStatus === undefined){
-      alert("Please select a status!");
-    }
-    else
     if(this.selectedBug.status === "CLOSED"){
       alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"));
     }
-    else if(this.selectedStatus === "CLOSED" || newStatus === "CLOSED")
-    {
-      alert(this.translate.instant("UPDATE_STATUS.NO_STATUS_CHANGE"));
+    else if(this.selectedBug.status === "REJECTED"){
+      alert("This bug can only be closed(if you have permission)");
+    }
+    else if(this.selectedStatus == "Select status" || this.selectedStatus == "[No status available]" || this.selectedStatus == ""
+      || this.selectedStatus === undefined){
+      alert("Please select a status!");
     }
     else {
       this.bugService.updateBug(newStatus, this.selectedBug.id);
@@ -313,28 +309,26 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   }
 
   closeBug(){
-    console.log("From close", this.selectedBug.id);
     this.bugService.closeBug(this.selectedBug.id);
+    this.visibleButton = false;
     location.reload();
   }
 
   checkPermissionForBugClose(){
 
     console.log(this.storageService.userHasPermission(PermissionType.BUG_CLOSE));
-    console.log("Perms", this.selectedBug1.status);
-    //console.log(this.selectedBug.status == "FIXED" || this.selectedBug.status == "REJECTED");
-    if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE)) {
-        //(this.selectedBug.status == "FIXED" || this.selectedBug.status == "REJECTED")){
+    if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE) &&
+        (this.selectedBug.status === "FIXED" || this.selectedBug.status === "REJECTED")){
       this.visibleButton = true;
     }
     else{
       this.visibleButton = false;
     }
-
   }
 
 
   showInfoModal(){
+
     this.displayInfoModal = true;
     this.newStatusValues = [];
   }

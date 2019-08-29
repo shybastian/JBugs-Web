@@ -68,7 +68,7 @@
       {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
       {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}} <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
                                                        [(ngModel)]="selectedStatus" name="statusTypes"
-                                                       (onClick)="selectStatus()"
+                                                       (onClick)="selectStatus()" [disabled]="noMoreStatusAvailable"
                                                         ></p-dropdown>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
     {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
@@ -78,7 +78,7 @@
   <p class="text-style">
   </p>
   <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
-  <button pButton label="Close bug" (click)="closeBug(); dt.reset()" *ngIf="visibleButton"></button>
+  <button pButton label="Close bug" (click)="closeBug(); dt.reset()" [disabled]="!visibleButton"></button>
   <p-footer>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
