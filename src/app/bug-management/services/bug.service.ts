@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
 import {Bug} from '../model/bug.model';
-import {HttpClient} from "@angular/common/http";
-import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
-import {StorageService} from "../../user-management/login/services/storage.service";
-import {TranslateService} from "@ngx-translate/core";
+import {HttpClient} from '@angular/common/http';
+import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
+import {StorageService} from '../../user-management/login/services/storage.service';
+import {TranslateService} from '@ngx-translate/core';
 import {User} from "../../user-management/models/user.model";
 import {BugViewList} from "../model/bug-view-list.model";
 
@@ -25,7 +25,13 @@ export class BugService {
    * both the {@link Bug} & {@link Attachment} objects.
    */
   submitBug(wrapper: BugAttachmentWrapper) {
-    this.http.post(this.baseUrl, wrapper, {responseType: 'text'}).subscribe((response: any) => {
+
+    let headers = {
+      'Authorization': 'Bearer ' + this.storageService.getToken(),
+      'Access-Control-Expose-Headers': 'Authorization'
+    };
+
+    this.http.post(this.baseUrl, wrapper, {responseType: 'text', headers: headers}).subscribe((response: any) => {
       console.log("Response is: ", response);
       if (response === "OK") {
         alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
@@ -48,13 +54,19 @@ export class BugService {
   }
 
   updateBug(newStatus: string, bugID: number){
+
+    let headers = {
+      'Authorization': 'Bearer ' + this.storageService.getToken(),
+      'Access-Control-Expose-Headers': 'Authorization'
+    };
+
     console.log("From update:" + newStatus);
     console.log("From update:" + bugID);
 
     let headers = {  'Authorization': 'Bearer ' + this.storageService.getToken(),
                     'Access-Control-Expose-Headers': 'Authorization' };
 
-    this.http.put(this.baseUrl + "/update-bug-status/" + bugID, newStatus,
+    this.http.put(this.baseUrl + '/update-bug-status/' + bugID, newStatus,
               {responseType: 'text', headers: headers} ).subscribe((response: any) => {
       if (response === "OK") {
         alert(this.translateService.instant("UPDATE_STATUS.SUCCESS_UPDATE"));

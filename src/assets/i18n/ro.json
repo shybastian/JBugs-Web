@@ -26,7 +26,16 @@
     "Active": "Activ",
     "Inactive": "Inactiv",
     "NO_ROLE": "Niciun rol asignat",
-    "EDIT": "Editare"
+    "EDIT": "Editare",
+    "ID": "ID",
+    "USERNAME": "Nume utilizator",
+    "STATUS": "Stare",
+    "COUNTER": "Incercari parola",
+    "FIRST_NAME": "Prenume",
+    "LAST_NAME": "Nume",
+    "PHONE": "Numar de telefon",
+    "EMAIL": "Email",
+    "ROLES": "Roluri"
   },
   "ADD_USER": {
     "ID": "ID",
@@ -138,7 +147,8 @@
     "NOTIFICATION": "Notificări",
     "PERMISSION": "Permisiuni",
     "EDIT_PERMISSION": "Editarea Permisiunii ",
-    "LOG_OUT": "Delogare"
+    "LOG_OUT": "Delogare",
+    "NOTIFICATIONS_VIEW": "Lista Notificari"
   },
   "BUG-CREATE": {
     "Title": "Titlu",
@@ -163,17 +173,11 @@
     "ALERT_BUG_ADDED": "Noua intrare a fost salvata cu succes!",
     "ALERT_BUG_ERROR": "Au fost intampinat erori la salvarea intrarii. Va rugam incercati din nou!"
   },
-  "FILTERS":{
-    "OPEN": "Deschis",
-    "IN_PROGRESS": "In progres",
-    "FIXED": "Fixat",
-    "REJECTED": "Respins",
-    "INFO_NEEDED": "Informatii necesare",
-    "CLOSED": "Inchis",
-    "LOW": "Scazut",
-    "MEDIUM": "Mediu",
-    "HIGH": "Inalt",
-    "CRITICAL": "Critic"
+  "NOTIFICATIONS_VIEW": {
+    "TYPE": "Tip",
+    "MESSAGE": "Mesaj",
+    "DATE": "Data",
+    "BUG_URL": "Bug URL"
   }
 
 }
