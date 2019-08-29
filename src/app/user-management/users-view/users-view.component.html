@@ -15,7 +15,7 @@
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-          {{ 'ADD_USER.' + col.header | translate }}
+          {{ 'USERS.' + col.header | translate }}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
       </tr>
@@ -41,7 +41,7 @@
     <div class="ui-g ui-fluid" *ngIf="selectedUser">
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="id">{{'ADD_USER.ID' | translate}}</label>
+          <label for="id">{{'USERS.ID' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="id">{{selectedUser.id}}</label>
@@ -49,7 +49,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="firstName">{{'ADD_USER.FIRST_NAME' | translate}}</label>
+          <label for="firstName">{{'USERS.FIRST_NAME' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="firstName">{{selectedUser.firstName}}</label>
@@ -57,7 +57,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="lastName">{{'ADD_USER.LAST_NAME' | translate}}</label>
+          <label for="lastName">{{'USERS.LAST_NAME' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="lastName">{{selectedUser.lastName}}</label>
@@ -65,7 +65,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="username">{{'ADD_USER.USERNAME' | translate}}</label>
+          <label for="username">{{'USERS.USERNAME' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="username">{{selectedUser.username}}</label>
@@ -73,7 +73,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="email">{{'ADD_USER.EMAIL' | translate}}</label>
+          <label for="email">{{'USERS.EMAIL' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="email">{{selectedUser.email}}</label>
@@ -81,7 +81,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="mobileNumber">{{'ADD_USER.PHONE' | translate}}</label>
+          <label for="mobileNumber">{{'USERS.PHONE' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="mobileNumber">{{selectedUser.mobileNumber}}</label>
@@ -89,7 +89,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="status">{{'ADD_USER.STATUS' | translate}}</label>
+          <label for="status">{{'USERS.STATUS' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="status">{{selectedUser.stringStatus}}</label>
@@ -97,7 +97,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="counter">{{'ADD_USER.COUNTER' | translate}}</label>
+          <label for="counter">{{'USERS.COUNTER' | translate}}</label>
         </div>
         <div class="ui-g-8">
           <label id="counter">{{selectedUser.counter}}</label>
@@ -105,7 +105,7 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="roles">{{'EDIT_PERMISSIONS.ROLES' | translate}}</label>
+          <label for="roles">{{'USERS.ROLES' | translate}}</label>
         </div>
         <div class="ui-g-8" *ngIf="selectedUser.roles.length === 0">
           <label id="no_role">({{'USERS.NO_ROLE' | translate}})</label>

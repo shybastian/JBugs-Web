@@ -18,11 +18,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
   CalendarModule,
+  CarouselModule,
+  CodeHighlighterModule,
   DialogModule,
   DropdownModule,
   InputTextModule,
   ListboxModule,
-  MultiSelectModule
+  MultiSelectModule,
+  TabViewModule
 } from 'primeng/primeng';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
@@ -42,6 +45,10 @@ import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
 import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
 import {HeaderComponent} from './header/header.component';
 import {NavigateMenuComponent} from './dashboard/navigate-menu/navigate-menu.component';
+import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
+import {ToastModule} from "primeng/toast";
+import {VirtualScrollerModule} from "primeng/virtualscroller";
+import {DataViewModule} from "primeng/dataview";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -67,6 +74,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserEditComponent,
     HeaderComponent,
     NavigateMenuComponent
+    UserEditComponent,
+    NotificationsViewComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +101,15 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CalendarModule,
     DynamicDialogModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ToastModule,
+    CarouselModule,
+    CommonModule,
+    ButtonModule,
+    TabViewModule,
+    CodeHighlighterModule,
+    VirtualScrollerModule,
+    DataViewModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
