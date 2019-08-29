@@ -64,7 +64,8 @@
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   },
   "BUG_VIEW": {
-    "DOWNLOAD": "Download table",
+    "DOWNLOAD_TABLE": "Download table",
+    "DOWNLOAD": "Download",
 
     "TITLE": "Title",
     "DESCRIPTION": "Description",
