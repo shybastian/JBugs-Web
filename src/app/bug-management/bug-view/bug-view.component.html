@@ -77,6 +77,7 @@
   </p>
   <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
   <p-footer>
+    <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" label="EDIT"></button>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

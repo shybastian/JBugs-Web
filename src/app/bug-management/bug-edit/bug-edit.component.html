@@ -1,0 +1,169 @@
+<form #bugEditForm="ngForm" (ngSubmit)="editBug(bugEditForm)">
+  <div class="form-group">
+    <label for="title">TITLE</label>
+    <input
+      class="form-control"
+      id="title"
+      name="title"
+      ngModel
+      #title="ngModel"
+      [(ngModel)]="bug.title"
+    >
+    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+      <div *ngIf="title.errors.required">Should not be blank</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">DESCRIPTION</label>
+    <input
+      class="form-control"
+      id="description"
+      name="description"
+      maxlength="250"
+      ngModel
+      #description="ngModel"
+      [(ngModel)]="bug.description"
+    >
+    <div class="alert alert-danger"
+         *ngIf="description.touched && description.invalid">
+      <div *ngIf="description.errors.required">Should not be blank</div>
+      <div *ngIf="description.hasError('maxlength')">
+        Max Length is bound to 250 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="version">VERSION</label>
+    <input
+      class="form-control"
+      id="version"
+      name="version"
+      ngModel
+      #version="ngModel"
+      pattern="(([\w][.]){1,2}[\w])"
+      [(ngModel)]="bug.version"
+    >
+    <div class="alert alert-danger"
+         *ngIf="version.touched && version.invalid">
+      <div *ngIf="version.errors.required">NOT BLANK</div>
+      <div *ngIf="version.errors">
+        Not a valid version formatation
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="fixedVersion">FIXED VERSION</label>
+    <input
+      class="form-control"
+      id="fixedVersion"
+      name="fixedVersion"
+      ngModel
+      #fixedVersion="ngModel"
+      pattern="(([\w][.]){1,2}[\w])"
+      [(ngModel)]="bug.fixedVersion"
+    >
+    <div class="alert alert-danger"
+         *ngIf="fixedVersion.touched && fixedVersion.invalid">
+      <div *ngIf="version.errors">
+        Not a valid version formatation
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="targetDate">TARGET DATE</label>
+    <input
+      type="date"
+      class="form-control"
+      id="targetDate"
+      name="targetDate"
+      min="{{todayDate | date:'yyyy-MM-dd'}}"
+      ngModel
+      #targetDate="ngModel"
+      [(ngModel)]="bug.targetDate"
+    >
+    <div class="alert alert-danger"
+         *ngIf="targetDate.touched && targetDate.invalid">
+      <div *ngIf="targetDate.errors.min">NOT A VALID DATE</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="severity">SEVERITY</label>
+    <select
+      class="form-control"
+      id="severity"
+      name="severity"
+      ngModel
+      #severity="ngModel"
+      [(ngModel)]="bug.severity"
+    >
+      <option value="critical">CRITICAL</option>
+      <option value="high">HIGH</option>
+      <option value="medium">MEDIUM</option>
+      <option value="low">LOW</option>
+    </select>
+    <div class="alert alert-danger"
+         *ngIf="severity.touched && severity.invalid">
+      <div *ngIf="severity.errors">NOT BLANK</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="CREATED_ID">CREATED BY</label>
+    <input
+      class="form-control"
+      id="CREATED_ID"
+      name="CREATED_ID"
+      disabled
+      ngModel
+      #created_ID="ngModel"
+      [(ngModel)]="bug.CREATED_ID"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="status">STATUS</label>
+    <input
+      class="form-control"
+      id="status"
+      name="status"
+      disabled
+      ngModel
+      #status="ngModel"
+      [(ngModel)]="bug.status"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="ASSIGNED_ID">ASSIGNED TO</label><br>
+    <select
+      class="form-group"
+      id="ASSIGNED_ID"
+      name="ASSIGNED_ID"
+      ngModel
+      #assigned_ID="ngModel"
+      [(ngModel)]="bug.ASSIGNED_ID"
+    >
+      <option
+        class="form-group"
+        *ngFor="let user of listOfUsers" [ngValue]="user"
+      >
+        {{user.username}}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button
+      class="form-control"
+      type="submit"
+      [disabled]="bugEditForm.invalid || !bugEditForm.touched"
+    >
+      SUBMIT
+    </button>
+  </div>
+</form>

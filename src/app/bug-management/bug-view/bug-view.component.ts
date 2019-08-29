@@ -1,23 +1,25 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {SelectItem} from 'primeng/api';
+import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
 import {User} from '../../user-management/models/user.model';
-import {Bug} from '../model/bug.model';
+import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
 import {TranslateService} from "@ngx-translate/core";
+import {BugEditComponent} from "../bug-edit/bug-edit.component";
 
 @Component({
   selector: 'app-bug-view',
   templateUrl: './bug-view.component.html',
-  styleUrls: ['./bug-view.component.scss']
+  styleUrls: ['./bug-view.component.scss'],
+  providers: [DialogService]
 })
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translate: TranslateService) {
+              private translate: TranslateService, private dialogService: DialogService) {
 
   }
 
@@ -43,6 +45,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    * The values from a selected row
    */
   selectedBug1: BugView;
+  selectedBug2: Bug;
   selectedStatus: string;
 
   statusOpen: SelectItem[];
@@ -154,7 +157,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugs = bugs;
-      console.log(bugs);
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
           id: this.bugs[i].id,
@@ -243,8 +245,10 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     return value === "targetDate";
   }
 
+  selectedId: number = 0;
   bugAsString():void{
     this.selectedBug = this.selectedBug1;
+    this.selectedId = this.selectedBug1.id;
   }
 
   selectStatus() {
@@ -274,20 +278,52 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  modifyBugStatus(newStatus) {
-
-    console.log("From modify: " + newStatus);
-
-    if (newStatus === "CLOSED") {
-      alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"))
-    } else {
-      this.bugService.updateBug(newStatus, this.selectedBug.id);
-
-    }
-  }
-
-
   showInfoModal(){
     this.displayInfoModal = true;
+  }
+
+  showEditBugDialog() {
+    let selectedBug: BugUpdate = {
+      title: '',
+      description: '',
+      version: '',
+      targetDate: '',
+      status: '',
+      fixedVersion: '',
+      severity: '',
+    };
+    let id: number;
+    let created: User;
+    let assigned: User;
+    for (let bug of this.bugs) {
+      if (bug.id === this.selectedId) {
+        selectedBug.description = bug.description;
+        selectedBug.title = bug.title;
+        selectedBug.version = bug.version;
+        selectedBug.targetDate = bug.targetDate;
+        selectedBug.status = bug.status;
+        selectedBug.fixedVersion = bug.fixedVersion;
+        selectedBug.severity = bug.severity;
+
+        id = bug.id;
+        created = bug.created_ID;
+        assigned = bug.assigned_ID;
+
+        break;
+      }
+    }
+    const ref = this.dialogService.open(BugEditComponent, {
+      data: [selectedBug, id, created, assigned, this.users],
+      header: this.translate.instant('EDIT_BUG.HEADER'),
+
+      width: '40%'
+    });
+    this.displayInfoModal = false;
+    ref.onClose.subscribe((bug: Bug) => {
+      if (bug) {
+      }
+    }, error => {
+      alert(error);
+    });
   }
 }

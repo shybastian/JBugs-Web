@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CommonModule, DatePipe} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TableModule} from 'primeng/table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -40,6 +40,7 @@ import {PermissionPermissionGuard} from "./authentication-guards/permission-perm
 import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
 import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
 import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
+import {BugEditComponent} from './bug-management/bug-edit/bug-edit.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -62,7 +63,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugViewComponent,
     EditPermissionsComponent,
     BugViewComponent,
-    UserEditComponent
+    UserEditComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
   entryComponents: [
-    UserEditComponent
+    UserEditComponent,
+    BugEditComponent
   ]
 })
 export class AppModule { }
