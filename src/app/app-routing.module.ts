@@ -14,6 +14,7 @@ import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
 import {LoginComponent} from "./user-management/login/login.component";
 import {UserCreateComponent} from "./user-management/user-create/user-create.component";
 import {NotificationsViewComponent} from "./notifications-management/notifications-view/notifications-view.component";
+import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
 
 
 const routes: Routes = [
@@ -52,11 +53,20 @@ const routes: Routes = [
         children: [
           {
             path: 'view',
-            component: BugViewComponent
+            children: [
+              {
+                path: '',
+                component: BugViewComponent
+              },
+              {
+                path: ':bugID',
+                component: GetBugIdComponent
+              }
+            ]
           },
           {
-          path: 'create',
-             component: BugCreateComponent
+            path: 'create',
+            component: BugCreateComponent
           }
         ]
       },
@@ -79,7 +89,7 @@ const routes: Routes = [
           }
         ]
       }
-,
+      ,
     ]
   },
   {

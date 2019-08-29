@@ -1,0 +1,16 @@
+<form ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+  <p>
+    {{'BUG_VIEW.TITLE' | translate}} : <label type="text">{{returnedBug.title}}</label><br>
+    {{'BUG_VIEW.DESCRIPTION' | translate}} : <label type="text"> {{returnedBug.description}}</label><br>
+    {{'BUG_VIEW.VERSION' | translate}} : <label type="text">{{returnedBug.version}}</label><br>
+    {{'BUG_VIEW.TARGET_DATE' | translate}} : <label type="text">{{returnedBug.targetDate}}</label><br>
+    {{'BUG_VIEW.STATUS' | translate}} : <label>{{returnedBug.status}}</label><br>
+    {{'BUG_VIEW.FIXED_VERSION' | translate}} : <label type="text">{{returnedBug.fixedVersion}}</label><br>
+    {{'BUG_VIEW.SEVERITY' | translate}} : <label type="text">{{returnedBug.severity}}</label><br>
+    {{'BUG_VIEW.CREATED_BY' | translate}} : <label type="text">{{returnedBug.created_ID}}</label><br>
+    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <label type="text">{{returnedBug.assigned_ID}}</label><br>
+    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
+  </p>
+  <button class="btn btn-secondary" [routerLink]="['/dashboard/notifications/view']">Go Back</button>
+
+</form>

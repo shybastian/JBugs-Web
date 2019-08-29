@@ -47,6 +47,7 @@ import {NotificationsViewComponent} from './notifications-management/notificatio
 import {ToastModule} from "primeng/toast";
 import {VirtualScrollerModule} from "primeng/virtualscroller";
 import {DataViewModule} from "primeng/dataview";
+import {GetBugIdComponent} from './bug-management/get-bug-id/get-bug-id.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -70,7 +71,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EditPermissionsComponent,
     BugViewComponent,
     UserEditComponent,
-    NotificationsViewComponent
+    NotificationsViewComponent,
+    GetBugIdComponent
   ],
   imports: [
     BrowserModule,
