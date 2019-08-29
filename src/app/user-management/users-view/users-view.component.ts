@@ -124,12 +124,11 @@ export class UsersViewComponent implements OnInit, DoCheck {
     //find the old user using id
     for (let tableUser of this.users) {
       if (tableUser.id == user.id) {
-        //it deletes the old user value and adds the new one at the end of the table
-        this.users.splice(this.users.indexOf(tableUser), 1);
+        //update user in table
+        let index = this.users.indexOf(tableUser);
         tableUser = user;
-
         tableUser.stringStatus = UserStatusTypeSTRING[UserStatusType[user.status]];
-        this.users.push(tableUser);
+        this.users[index] = tableUser;
       }
     }
   }
