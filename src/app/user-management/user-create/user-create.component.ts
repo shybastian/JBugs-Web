@@ -35,6 +35,12 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * The method gets called when the user presses the Add button
+   *    and sends the user data to the services to be sent to the server
+   * If the user was added successfully we inform the user, if not, we
+   *    alert him
+   */
   addUser(userForm: NgForm) {
     this.service.addUser(this.firstNameValue, this.lastNameValue, this.phoneValue, this.emailValue, this.selectedRoles)
       .subscribe(data => {
@@ -45,6 +51,11 @@ export class UserCreateComponent implements OnInit {
       });
   }
 
+  /**
+   * This method gets called when the user changes the roles corresponding
+   *    to the current user
+   * It checks if an error message regarding the roles selection should be shown
+   */
   handleSelectionChange(event) {
     this.showMultiselectRequiredMessage = (this.selectedRoles.length === 0) ? true : false;
   }

@@ -61,6 +61,11 @@ export class UserEditComponent implements OnInit {
    *    alert him
    */
   editUser(editUserForm: NgForm) {
+    debugger;
+    if (!this.user.status)
+      this.user.status = 0;
+    else
+      this.user.status = 1;
     if (!this.passwordWasEdited)
       this.user.password = "";
     this.userService.editUser(this.user)
@@ -74,9 +79,9 @@ export class UserEditComponent implements OnInit {
   }
 
   /**
-   * This method gets called when the user changes the croles corresponding
+   * This method gets called when the user changes the roles corresponding
    *    to the current user
-   * It check if an error message regarding the roles selection should be shown
+   * It checks if an error message regarding the roles selection should be shown
    */
   handleSelectionChange(event) {
     this.showMultiselectRequiredMessage = (this.user.roles.length === 0) ? true : false;

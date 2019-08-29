@@ -12,6 +12,12 @@ export class UserService {
   constructor(private backendService: BackendService) {
   }
 
+  /**
+   * This method reguests all the users from the database
+   *    from the server, sending a GET request
+   * It wraps the data returned in the response in a list of User objects
+   *    and returns an observable
+   */
   getAllUsers(): Observable<User[]> {
     return this.backendService.get(' http://localhost:8080/jbugs/api/users');
   }
@@ -44,7 +50,6 @@ export class UserService {
    *    and returns an observable
    */
   addUser(firstname: string, lastname: string, phone: string, mail: string, roleList: RoleWrapper[]): Observable<UserInsertWrapper> {
-    debugger;
     const user: UserInsertWrapper = {
       firstName: firstname,
       lastName: lastname,
@@ -63,7 +68,6 @@ export class UserService {
    *    and returns an observable
    */
   editUser(user: UserEditWrapper): Observable<UserEditWrapper> {
-    debugger;
     return this.backendService.put(' http://localhost:8080/jbugs/api/users/edit-user', user);
   }
 
