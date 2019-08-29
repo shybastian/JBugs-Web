@@ -29,6 +29,15 @@ export class StorageService {
     return sessionStorage.getItem('token');
   }
 
+  getToken(): string {
+
+    if (!this.isSomeoneLoggedIn()) {
+      return '';
+    }
+
+    return sessionStorage.getItem('token');
+  }
+
   updateSessionStorageWithUser(user: UserToSaveOnSession) {
     if (!this.isSessionStorageAvailable()) {
       alert('session storage not available. Try using another browser or opening another tab :)');
