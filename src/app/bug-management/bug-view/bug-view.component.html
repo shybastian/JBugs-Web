@@ -62,20 +62,17 @@
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
     <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
-    {{'BUG_VIEW.TITLE' | translate}} : <input type="text" [value]="selectedBug.title"><br>
-      {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
-      {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
-      {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
-      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
-                                                       [(ngModel)]="selectedStatus" name="statusTypes" (onClick)="selectStatus()" ></p-dropdown>
-    {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
-    {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
-    {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
-    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <input type="text" [value]="selectedBug.assigned_ID"><br>
+    {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
+      {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
+      {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
+      {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
+      {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
+    {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
+    {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
+    {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
+    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
     {{'BUG_VIEW.ATTACHMENTS' | translate}} :
-  <p class="text-style">
-  </p>
-  <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
+  <p class="text-style"></p>
   <p-footer>
     <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" label="EDIT"></button>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>

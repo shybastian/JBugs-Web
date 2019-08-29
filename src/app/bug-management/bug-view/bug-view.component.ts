@@ -39,21 +39,11 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
-  displayUpdateModal = false;
 
   /**
    * The values from a selected row
    */
   selectedBug1: BugView;
-  selectedBug2: Bug;
-  selectedStatus: string;
-
-  statusOpen: SelectItem[];
-  statusInProgress: SelectItem[];
-  statusRejected: SelectItem[];
-  statusFixed: SelectItem[];
-  statusInfoNeeded: SelectItem[];
-  newStatusValues: SelectItem[];
 
   /**
    * To be initialized with selected row values
@@ -121,35 +111,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
     this.fixedVersionFilter = [
       {label: 'All', value: ''}
-    ];
-
-    this.statusOpen = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'},
-      {label: 'Rejected', value: 'REJECTED'}
-    ];
-
-    this.statusInProgress = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Rejected', value: 'REJECTED'},
-      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
-      {label: 'Fixed', value: 'FIXED'}
-    ];
-
-    this.statusRejected = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Closed', value: 'CLOSED'}
-    ];
-
-    this.statusFixed = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Open', value: 'OPEN'},
-      {label: 'Closed', value: 'CLOSED'}
-    ];
-
-    this.statusInfoNeeded = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'}
     ];
   }
 
@@ -251,32 +212,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     this.selectedId = this.selectedBug1.id;
   }
 
-  selectStatus() {
 
-    if (this.selectedBug.status === 'OPEN') {
-      this.newStatusValues = this.statusOpen;
-    }
-    if (this.selectedBug.status === 'IN_PROGRESS') {
-      this.newStatusValues = this.statusInProgress;
-    }
-
-    if (this.selectedBug.status === 'REJECTED') {
-      this.newStatusValues = this.statusRejected;
-    }
-
-    if (this.selectedBug.status === 'FIXED') {
-      this.newStatusValues = this.statusFixed;
-    }
-
-    if (this.selectedBug.status === 'INFO_NEEDED') {
-      this.newStatusValues = this.statusInfoNeeded;
-    }
-
-    if(this.selectedBug.status === 'CLOSED'){
-      this.newStatusValues = [];
-    }
-
-  }
 
   showInfoModal(){
     this.displayInfoModal = true;
@@ -314,7 +250,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }
     const ref = this.dialogService.open(BugEditComponent, {
       data: [selectedBug, id, created, assigned, this.users],
-      header: this.translate.instant('EDIT_BUG.HEADER'),
+      header: this.translate.instant('UPDATE.HEADER'),
 
       width: '40%'
     });

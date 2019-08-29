@@ -1,6 +1,6 @@
 <form #bugEditForm="ngForm" (ngSubmit)="editBug(bugEditForm)">
   <div class="form-group">
-    <label for="title">TITLE</label>
+    <label for="title">{{'BUG_VIEW.TITTLE' | translate}}</label>
     <input
       class="form-control"
       id="title"
@@ -15,7 +15,7 @@
   </div>
 
   <div class="form-group">
-    <label for="description">DESCRIPTION</label>
+    <label for="description">{{'BUG_VIEW.DESCRIPTION' | translate}}</label>
     <input
       class="form-control"
       id="description"
@@ -35,7 +35,7 @@
   </div>
 
   <div class="form-group">
-    <label for="version">VERSION</label>
+    <label for="version">{{'BUG_VIEW.VERSION' | translate}}</label>
     <input
       class="form-control"
       id="version"
@@ -55,7 +55,7 @@
   </div>
 
   <div class="form-group">
-    <label for="fixedVersion">FIXED VERSION</label>
+    <label for="fixedVersion">{{'BUG_VIEW.VERSION' | translate}}</label>
     <input
       class="form-control"
       id="fixedVersion"
@@ -74,7 +74,7 @@
   </div>
 
   <div class="form-group">
-    <label for="targetDate">TARGET DATE</label>
+    <label for="targetDate">{{'BUG_VIEW.TARGET_DATE' | translate}}</label>
     <input
       type="date"
       class="form-control"
@@ -92,7 +92,7 @@
   </div>
 
   <div class="form-group">
-    <label for="severity">SEVERITY</label>
+    <label for="severity">{{'BUG_VIEW.SEVERITY' | translate}}</label>
     <select
       class="form-control"
       id="severity"
@@ -101,10 +101,10 @@
       #severity="ngModel"
       [(ngModel)]="bug.severity"
     >
-      <option value="critical">CRITICAL</option>
-      <option value="high">HIGH</option>
-      <option value="medium">MEDIUM</option>
-      <option value="low">LOW</option>
+      <option value="critical">{{'BUG-CREATE.SeverityCritical' | translate}}</option>
+      <option value="high">{{'BUG-CREATE.SeverityHigh' | translate}}</option>
+      <option value="medium">{{'BUG-CREATE.SeverityMedium' | translate}}M</option>
+      <option value="low">{{'BUG-CREATE.SeverityLow' | translate}}</option>
     </select>
     <div class="alert alert-danger"
          *ngIf="severity.touched && severity.invalid">
@@ -113,33 +113,38 @@
   </div>
 
   <div class="form-group">
-    <label for="CREATED_ID">CREATED BY</label>
+    <label for="CREATED_ID">{{'BUG_VIEW.CREATED_BY' | translate}}</label>
     <input
       class="form-control"
       id="CREATED_ID"
       name="CREATED_ID"
       disabled
-      ngModel
       #created_ID="ngModel"
-      [(ngModel)]="bug.CREATED_ID"
+      ngModel="{{bug.CREATED_ID.username}}"
     >
   </div>
 
   <div class="form-group">
     <label for="status">STATUS</label>
-    <input
-      class="form-control"
-      id="status"
-      name="status"
-      disabled
-      ngModel
-      #status="ngModel"
-      [(ngModel)]="bug.status"
-    >
+    <br>
+    <p-dropdown class="form-control"
+                id="status"
+                name="status"
+                ngModel
+                optionLabel="label"
+                #status="ngModel"
+                [(ngModel)]="bug.status"
+                [options]="newStatusValues"
+                (onClick)="selectStatus()"
+                [disabled]="noStatusAvailable"
+                [style]="{'width': '100%'}">
+    </p-dropdown>
+    <br>
+    <p *ngIf="noStatusAvailable">No status available for update.</p>
   </div>
 
   <div class="form-group">
-    <label for="ASSIGNED_ID">ASSIGNED TO</label><br>
+    <label for="ASSIGNED_ID">{{'BUG_VIEW.ASSIGNED_TO' | translate}}</label><br>
     <select
       class="form-group"
       id="ASSIGNED_ID"
