@@ -1,6 +1,6 @@
 <form #bugEditForm="ngForm" (ngSubmit)="editBug(bugEditForm)">
   <div class="form-group">
-    <label for="title">{{'BUG_VIEW.TITTLE' | translate}}</label>
+    <label for="title">{{'BUG_VIEW.TITLE' | translate}}</label>
     <input
       class="form-control"
       id="title"
@@ -10,7 +10,7 @@
       [(ngModel)]="bug.title"
     >
     <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-      <div *ngIf="title.errors.required">Should not be blank</div>
+      <div *ngIf="title.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
     </div>
   </div>
 
@@ -27,9 +27,9 @@
     >
     <div class="alert alert-danger"
          *ngIf="description.touched && description.invalid">
-      <div *ngIf="description.errors.required">Should not be blank</div>
+      <div *ngIf="description.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
       <div *ngIf="description.hasError('maxlength')">
-        Max Length is bound to 250 characters
+        {{'BUG_CREATE.MaxLength250' | translate}}
       </div>
     </div>
   </div>
@@ -47,15 +47,15 @@
     >
     <div class="alert alert-danger"
          *ngIf="version.touched && version.invalid">
-      <div *ngIf="version.errors.required">NOT BLANK</div>
+      <div *ngIf="version.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
       <div *ngIf="version.errors">
-        Not a valid version formatation
+        {{'BUG_CREATE.VersionValidation' | translate}}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="fixedVersion">{{'BUG_VIEW.VERSION' | translate}}</label>
+    <label for="fixedVersion">{{'BUG_VIEW.FIXED_VERSION' | translate}}</label>
     <input
       class="form-control"
       id="fixedVersion"
@@ -68,7 +68,7 @@
     <div class="alert alert-danger"
          *ngIf="fixedVersion.touched && fixedVersion.invalid">
       <div *ngIf="version.errors">
-        Not a valid version formatation
+        {{'BUG_CREATE.VersionValidation' | translate}}
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
     >
     <div class="alert alert-danger"
          *ngIf="targetDate.touched && targetDate.invalid">
-      <div *ngIf="targetDate.errors.min">NOT A VALID DATE</div>
+      <div *ngIf="targetDate.errors.min">{{'BUG_CREATE.DateValidation' | translate}}</div>
     </div>
   </div>
 
@@ -108,7 +108,7 @@
     </select>
     <div class="alert alert-danger"
          *ngIf="severity.touched && severity.invalid">
-      <div *ngIf="severity.errors">NOT BLANK</div>
+      <div *ngIf="severity.errors">{{'BUG_CREATE.NotBlank' | translate}}</div>
     </div>
   </div>
 
@@ -125,7 +125,7 @@
   </div>
 
   <div class="form-group">
-    <label for="status">STATUS</label>
+    <label for="status">{{'BUG_VIEW.STATUS' | translate}}</label>
     <br>
     <p-dropdown class="form-control"
                 id="status"
@@ -140,7 +140,7 @@
                 [style]="{'width': '100%'}">
     </p-dropdown>
     <br>
-    <p *ngIf="noStatusAvailable">No status available for update.</p>
+    <p *ngIf="noStatusAvailable">{{'BUG_UPDATE.NoStatusAvailable' | translate}}</p>
   </div>
 
   <div class="form-group">
@@ -168,7 +168,7 @@
       type="submit"
       [disabled]="bugEditForm.invalid || !bugEditForm.touched"
     >
-      SUBMIT
+      {{'BUG_UPDATE.Update' | translate}}
     </button>
   </div>
 </form>

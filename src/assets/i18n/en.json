@@ -140,5 +140,10 @@
     "SeverityLow": "Low",
     "ALERT_BUG_ADDED": "The new Entry has been added successfully!",
     "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "No status available for update",
+    "Update": "Update"
   }
 }
+

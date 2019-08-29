@@ -9,6 +9,7 @@ import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
 import {TranslateService} from "@ngx-translate/core";
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
+import {BugViewList} from "../model/bug-view-list.model";
 
 @Component({
   selector: 'app-bug-view',
@@ -23,6 +24,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
+  public bugsViewList: BugViewList;
   public bugsView: BugView[] = [];
   public bugs: Bug[] = [];
   public users: User[];
@@ -117,7 +119,9 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     this.bugService.getAllBugs().subscribe(bugs => {
-      this.bugs = bugs;
+      this.bugsViewList = bugs;
+      this.bugs = this.bugsViewList.bugDTOList;
+      this.users = this.bugsViewList.userDTOList;
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
           id: this.bugs[i].id,
