@@ -171,7 +171,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       }
 
       this.constructVersionFilters(this.bugs);
-      this.constructUserFiler();
+      //this.constructUserFiler();
       this.constructDateFilter();
       this.dt.reset();
 
@@ -211,14 +211,14 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  constructUserFiler(){
-    this.userService.getAllUsers().subscribe(users => {
-      this.users = users;
-      for (let i = 0; i < users.length; i ++) {
-        this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
-      }
-    });
-  }
+  // constructUserFiler(){
+  //   this.userService.getAllUsers().subscribe(users => {
+  //     this.users = users;
+  //     for (let i = 0; i < users.length; i ++) {
+  //       this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
+  //     }
+  //   });
+  // }
 
   constructDateFilter(){
     this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {

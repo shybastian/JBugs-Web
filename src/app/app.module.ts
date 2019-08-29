@@ -73,7 +73,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugViewComponent,
     UserEditComponent,
     HeaderComponent,
-    NavigateMenuComponent
+    NavigateMenuComponent,
+    UserEditComponent,
     UserEditComponent,
     NotificationsViewComponent
   ],
