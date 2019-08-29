@@ -316,7 +316,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   checkPermissionForBugClose(){
 
-    console.log(this.storageService.userHasPermission(PermissionType.BUG_CLOSE));
     if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE) &&
         (this.selectedBug.status === "FIXED" || this.selectedBug.status === "REJECTED")){
       this.visibleButton = true;

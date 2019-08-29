@@ -6,7 +6,6 @@ import {HttpClient} from '@angular/common/http';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from '../../user-management/login/services/storage.service';
 import {TranslateService} from '@ngx-translate/core';
-import {User} from "../../user-management/models/user.model";
 import {BugViewList} from "../model/bug-view-list.model";
 
 @Injectable({
@@ -47,21 +46,7 @@ export class BugService {
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
-  getAllUsers(): Observable<User[]>{
-
-    let token: String = StorageService.getToken();
-    return this.backendService.get('http://localhost:8080/jbugs/api/bugs/users', token);
-  }
-
   updateBug(newStatus: string, bugID: number){
-
-    let headers = {
-      'Authorization': 'Bearer ' + this.storageService.getToken(),
-      'Access-Control-Expose-Headers': 'Authorization'
-    };
-
-    console.log("From update:" + newStatus);
-    console.log("From update:" + bugID);
 
     let headers = {  'Authorization': 'Bearer ' + this.storageService.getToken(),
                     'Access-Control-Expose-Headers': 'Authorization' };
