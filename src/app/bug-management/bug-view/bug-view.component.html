@@ -1,8 +1,13 @@
 <form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
-  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
+  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
+           selectionMode="single" [(selection)]="selectedBug1" dataKey="title" exportFilename="bugs"
+           csvSeparator=";">
     <ng-template pTemplate="caption">
-      <div style="text-align: right">
-        <i style="margin:4px 4px 0 0"></i>
+      <div class="ui-helper-clearfix" style="text-align: right">
+        <i style="margin:4px 4px 0 0">
+          <button type="button" pButton icon="fa fa-file-o" iconPos="left" label="{{'BUG_VIEW.DOWNLOAD' | translate}}"
+                  (click)="dt.exportCSV()" style="float:left"></button>
+        </i>
       </div>
     </ng-template>
 

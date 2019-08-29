@@ -64,6 +64,8 @@
     "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
   },
   "BUG_VIEW": {
+    "DOWNLOAD": "Descarca tabelul",
+
     "TITLE": "Titlu",
     "DESCRIPTION": "Descriere",
     "VERSION": "Versiune",
