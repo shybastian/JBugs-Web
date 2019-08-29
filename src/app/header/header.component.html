@@ -1,6 +1,6 @@
 <div CLASS="header">
   <h1 class="title">JBugger</h1>
-  <!--  <p>{{userName}}</p>-->
+  <!--  <child (output)="helloUser($event)">{{userName}}</child>-->
   {{ 'LANGUAGE.SELECT' | translate }}
   <select #langSelect (change)="translate.use(langSelect.value)">
     <option *ngFor="let lang of translate.getLangs()" [value]="lang"

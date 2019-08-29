@@ -6,10 +6,15 @@
   white-space: pre-wrap
 }
 
-body {
+.bugViewStyle {
   margin: auto;
-  padding: 110px 134px;
-  display: table-cell;
-  max-width: 1280px;
+  display: inline-block;
   vertical-align: middle;
+}
+
+body {
+  padding-top: 100px;
+  padding-left: 122px;
+  padding-right: 348px;
+  text-align: center;
 }

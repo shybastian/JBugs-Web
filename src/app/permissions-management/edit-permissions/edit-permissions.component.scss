@@ -1,7 +1,14 @@
-body {
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.editPermissionStyle {
   margin: auto;
-  padding: 110px 134px;
-  display: table-cell;
-  max-width: 1280px;
+  display: inline-block;
   vertical-align: middle;
+}
+
+body {
+  padding-top: 100px;
+  padding-left: 45%;
+  //text-align: center;
+  //padding-;
 }

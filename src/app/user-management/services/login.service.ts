@@ -22,4 +22,6 @@ export class LoginService {
     return this.http.post<any>('http://localhost:8080/jbugs/api/login', loginData);
     // return this.backendService.post('http://localhost:8080/jbugs/api/login', loginData);
   }
+
+
 }

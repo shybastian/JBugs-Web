@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-form {
-  padding: 120px 160px;
-  display: table-cell;
+.createUserStyle {
+  margin: auto;
+  display: inline-block;
   vertical-align: middle;
+}
+
+body {
+  padding: 100px 0px;
+  text-align: center;
 }

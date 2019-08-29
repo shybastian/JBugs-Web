@@ -36,10 +36,13 @@
 
 .loginStyling {
   margin: auto;
-  padding: 100px 700px;
-  //max-width: 1200px;
-  display: table-cell;
+  display: inline-block;
   vertical-align: middle;
+}
+
+body {
+  padding: 100px 0px;
+  text-align: center;
 }
 
 h1 {

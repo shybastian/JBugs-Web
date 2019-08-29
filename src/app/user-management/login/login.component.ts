@@ -6,6 +6,7 @@ import {CryptoService} from './services/crypto.service';
 import {LoginService} from '../services/login.service';
 import {TranslateService} from '@ngx-translate/core';
 import {StorageService} from './services/storage.service';
+import {PermissionType} from "../models/user.model";
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,7 @@ export class LoginComponent {
 
             // testing:
             console.log('session storage', sessionStorage);
-            this.router.navigate(['/dashboard']).then();
+            this.navigateAfterLogin();
           }
         });
     }
@@ -47,5 +48,18 @@ export class LoginComponent {
 
   alertForgotPass() {
     alert(this.translate.instant('LOGIN.ALERT_FORGOT_PASS'));
+  }
+
+  private navigateAfterLogin() {
+    if (this.storageService.userHasPermission(PermissionType.BUG_MANAGEMENT)) {
+      this.router.navigate(['/dashboard/bugs/view']);
+    } else {
+      if (this.storageService.userHasPermission(PermissionType.USER_MANAGEMENT)) {
+        this.router.navigate(['/dashboard/users/view']);
+      } else {
+        this.router.navigate(['/dashboard/notifications']);
+      }
+    }
+
   }
 }

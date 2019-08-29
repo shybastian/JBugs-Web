@@ -8,7 +8,6 @@ import {StorageService} from "./user-management/login/services/storage.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private userName: string = '';
 
   constructor(public translate: TranslateService, private storageService: StorageService) {
     this.switchLanguage();

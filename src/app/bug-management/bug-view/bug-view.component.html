@@ -1,5 +1,6 @@
 <body>
-<form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+<form class="bugViewStyle" #bugViewForm='ngForm' ngForm
+      [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
   <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
     <ng-template pTemplate="caption">
       <div style="text-align: right">

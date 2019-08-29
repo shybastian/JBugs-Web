@@ -1,30 +1,32 @@
 <body>
-<div class="form-group">
-  <label for="roles">{{'EDIT_PERMISSIONS.ROLES' | translate}}</label>
-  <br>
-  <p-dropdown
-    id="roles"
-    [options]="roles"
-    [(ngModel)]="selectedRole"
-    optionLabel="type"
-    name="roles"
-    (onChange)="handleRoleChange($event)">
-  </p-dropdown>
-</div>
+<form class="editPermissionStyle">
+  <div class="form-group">
+    <label for="roles">{{'EDIT_PERMISSIONS.ROLES' | translate}}</label>
+    <br>
+    <p-dropdown
+      id="roles"
+      [options]="roles"
+      [(ngModel)]="selectedRole"
+      optionLabel="type"
+      name="roles"
+      (onChange)="handleRoleChange($event)">
+    </p-dropdown>
+  </div>
 
-<div class="form-group">
-  <label for="permissions">{{'EDIT_PERMISSIONS.PERMISSIONS' | translate}}</label>
-  <br>
-  <p-listbox
-    id="permissions"
-    [options]="permissions"
-    [(ngModel)]="rolePermissions"
-    multiple="multiple"
-    checkbox="checkbox"
-    filter="filter"
-    optionLabel="type"
-    name="permissions"
-    (onChange)="handlePermissionChange($event)">
-  </p-listbox>
-</div>
+  <div class="form-group">
+    <label for="permissions">{{'EDIT_PERMISSIONS.PERMISSIONS' | translate}}</label>
+    <br>
+    <p-listbox
+      id="permissions"
+      [options]="permissions"
+      [(ngModel)]="rolePermissions"
+      multiple="multiple"
+      checkbox="checkbox"
+      filter="filter"
+      optionLabel="type"
+      name="permissions"
+      (onChange)="handlePermissionChange($event)">
+    </p-listbox>
+  </div>
+</form>
 </body>

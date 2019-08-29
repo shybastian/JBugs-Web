@@ -35,6 +35,7 @@ export class NavigateMenuComponent implements OnInit {
     this.userButtonDisable();
     this.bugButtonDisable();
     this.permissionButtonDisable();
+    // this.navigateAfterLogin()
     // this.userNameOnHeader.emit(sessionStorage.getItem('user_firstName'));
   }
 

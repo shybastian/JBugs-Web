@@ -1,9 +1,12 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-form {
+.bugCreateStyle {
   margin: auto;
-  padding: 110px 134px;
-  display: table-cell;
-  max-width: 600px;
+  display: inline-block;
   vertical-align: middle;
+}
+
+body {
+  padding: 100px 0px;
+  text-align: center;
 }
