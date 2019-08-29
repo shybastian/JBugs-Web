@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   disableUser = true;
   disablePermission = true;
   disableBug = true;
+  disableNotification = true;
 
   userButtonContainers = [
     {id: 1, name: 'create user', router: 'create', translation: 'DASHBOARD.CREATE_USER'},
@@ -25,10 +26,14 @@ export class DashboardComponent implements OnInit {
   permissionsButtonContainers = [
     {id: 1, name: 'DASHBOARD.EDIT_PERMISSION', router: 'edit'}
   ];
+  notificationsButtonContainers = [
+    {id: 1, name: 'Notifications View', router: 'view', translation: 'DASHBOARD.NOTIFICATIONS_VIEW'}
+  ];
 
   currentUserButton = false;
   currentBugButton = false;
   currentPermissionsButton = false;
+  currentNotificationsButton = false;
 
   constructor(private storageService: StorageService, private router: Router) {
     this.userButtonDisable();
@@ -63,6 +68,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  activeNotificationsButton() {
+    if (this.currentNotificationsButton === true) {
+      this.currentNotificationsButton = false;
+    } else {
+      this.currentNotificationsButton = true;
+    }
+  }
+
   userButtonDisable() {
     if (this.storageService.userHasPermission(PermissionType.USER_MANAGEMENT)) {
       this.disableUser = false;
@@ -80,6 +93,7 @@ export class DashboardComponent implements OnInit {
       this.disablePermission = false;
     }
   }
+
 
 //log out
   atLogout() {

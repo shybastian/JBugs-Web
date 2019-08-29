@@ -95,7 +95,8 @@
     "NOTIFICATION": "Notification",
     "PERMISSION": "Permission",
     "EDIT_PERMISSION": "Edit Permission",
-    "LOG_OUT": "Log Out"
+    "LOG_OUT": "Log Out",
+    "NOTIFICATIONS_VIEW": "Notifications List"
   },
   "EDIT_USER": {
     "FIRST_NAME": "First name",
@@ -148,5 +149,12 @@
     "SeverityLow": "Low",
     "ALERT_BUG_ADDED": "The new Entry has been added successfully!",
     "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
+  },
+  "NOTIFICATIONS_VIEW": {
+    "TYPE": "Type",
+    "MESSAGE": "Message",
+    "DATE": "Date",
+    "BUG_URL": "Bug URL",
+    "ERROR": "Failed at retrieving notifications data from database!"
   }
 }
