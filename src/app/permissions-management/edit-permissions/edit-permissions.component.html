@@ -23,7 +23,10 @@
     filter="filter"
     optionLabel="type"
     name="permissions"
-    (onChange)="handlePermissionChange($event)">
+    (onChange)="handlePermissionChange($event)"
+    [listStyle]="{'max-height':'150px'}"
+    [style]="{'width':'300px'}"
+  >
   </p-listbox>
 </div>
 
