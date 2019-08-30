@@ -50,9 +50,6 @@ import {DataViewModule} from 'primeng/dataview';
 import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
-import {ToastModule} from "primeng/toast";
-import {VirtualScrollerModule} from "primeng/virtualscroller";
-import {DataViewModule} from "primeng/dataview";
 import {NotifierModule, NotifierOptions} from 'angular-notifier';
 import {NotifierComponent} from './notifications-management/services/notifier/notifier.component';
 
