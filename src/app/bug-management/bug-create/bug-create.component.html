@@ -1,4 +1,6 @@
-<form [formGroup]="bugCreateForm" (ngSubmit)="onSubmit()">
+<body>
+<h2>Create Bug</h2>
+<form class="bugCreateStyle" [formGroup]="bugCreateForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="title">{{'BUG-CREATE.Title' | translate}}</label>
     <input
@@ -159,6 +161,7 @@
   <div class="form-group">
     <button
       class="form-control"
+      class="btn btn-primary"
       type="submit"
       [disabled]="bugCreateForm.invalid"
     >
@@ -166,3 +169,4 @@
     </button>
   </div>
 </form>
+</body>

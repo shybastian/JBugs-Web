@@ -1,4 +1,6 @@
-<form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)">
+<body>
+<h2>Create User</h2>
+<form class="createUserStyle" #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)">
 
   <div class="form-group">
     <label for="firstName">{{'ADD_USER.FIRST_NAME' | translate}}</label>
@@ -126,4 +128,4 @@
           [disabled]="addUserForm.invalid || showMultiselectRequiredMessage">{{'ADD_USER.ADD' | translate}}</button>
 
 </form>
-
+</body>

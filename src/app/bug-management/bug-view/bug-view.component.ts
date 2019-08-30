@@ -147,6 +147,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       }
 
       this.constructVersionFilters(this.bugs);
+      // this.constructUserFiler();
       this.constructDateFilter();
       this.dt.reset();
 
