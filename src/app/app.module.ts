@@ -44,12 +44,57 @@ import {UserPermissionGuard} from './authentication-guards/user-permission.guard
 import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
 import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
 import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
-import {ToastModule} from 'primeng/toast';
-import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {DataViewModule} from 'primeng/dataview';
+import {ToastModule} from "primeng/toast";
+import {VirtualScrollerModule} from "primeng/virtualscroller";
+import {DataViewModule} from "primeng/dataview";
+import {NotifierModule, NotifierOptions} from 'angular-notifier';
+import {NotifierComponent} from './notifications-management/services/notifier/notifier.component';
 import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 
+/**
+ * Custom angular notifier options
+ */
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'right',
+      distance: 12
+    },
+    vertical: {
+      position: 'bottom',
+      distance: 12,
+      gap: 10
+    }
+  },
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -74,6 +119,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BugViewComponent,
     UserEditComponent,
     NotificationsViewComponent,
+    NotifierComponent,
     BugEditComponent
   ],
   imports: [
@@ -109,6 +155,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CodeHighlighterModule,
     VirtualScrollerModule,
     DataViewModule,
+    NotifierModule.withConfig(customNotifierOptions),
     PDFExportModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],

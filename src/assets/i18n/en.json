@@ -163,6 +163,16 @@
     "BUG_URL": "Bug URL",
     "ERROR": "Failed at retrieving notifications data from database!"
   },
+  "NOTIFICATIONS": {
+    "WELCOME_NEW_USER": "Welcome!",
+    "USER_UPDATED": "User updated!",
+    "USER_DELETED": "User deleted!",
+    "USER_DEACTIVATED": "User deactivated!",
+    "BUG_UPDATED": "Bug updated!",
+    "BUG_CLOSED": "Bug closed!",
+    "BUG_STATUS_UPDATED": "Bug status updated!",
+    "ERROR": "Failed at retrieving notifications data from database!"
+  },
   "BUG_UPDATE": {
     "NoStatusAvailable": "No status available for update",
     "Update": "Update"
