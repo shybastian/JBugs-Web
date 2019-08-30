@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
-import {User} from '../../user-management/models/user.model';
+import {PermissionType, User} from '../../user-management/models/user.model';
 import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
@@ -227,8 +227,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     this.selectedId = this.selectedBug1.id;
   }
 
-
-
   showInfoModal(){
 
     this.displayInfoModal = true;
@@ -277,5 +275,9 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }, error => {
       alert(error);
     });
+  }
+
+  currentUserHasBUG_EXPORT_PDF(): boolean {
+    return this.storageService.userHasPermission(PermissionType.BUG_EXPORT_PDF);
   }
 }

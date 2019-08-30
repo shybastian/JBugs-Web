@@ -50,6 +50,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {BugEditComponent} from './bug-management/bug-edit/bug-edit.component';
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {ExcelExportModule} from '@progress/kendo-angular-excel-export';
+import {ExcelModule, FilterMenuModule, GridModule} from '@progress/kendo-angular-grid';
 
 
 // AoT requires an exported function for factories
@@ -112,6 +113,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DataViewModule,
     PDFExportModule,
     ExcelExportModule,
+    GridModule,
+    FilterMenuModule,
+    ExcelModule,
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
