@@ -1,16 +1,53 @@
-<form ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
-  <p>
-    {{'BUG_VIEW.TITLE' | translate}} : <label type="text">{{returnedBug.title}}</label><br>
-    {{'BUG_VIEW.DESCRIPTION' | translate}} : <label type="text"> {{returnedBug.description}}</label><br>
-    {{'BUG_VIEW.VERSION' | translate}} : <label type="text">{{returnedBug.version}}</label><br>
-    {{'BUG_VIEW.TARGET_DATE' | translate}} : <label type="text">{{returnedBug.targetDate}}</label><br>
-    {{'BUG_VIEW.STATUS' | translate}} : <label>{{returnedBug.status}}</label><br>
-    {{'BUG_VIEW.FIXED_VERSION' | translate}} : <label type="text">{{returnedBug.fixedVersion}}</label><br>
-    {{'BUG_VIEW.SEVERITY' | translate}} : <label type="text">{{returnedBug.severity}}</label><br>
-    {{'BUG_VIEW.CREATED_BY' | translate}} : <label type="text">{{returnedBug.created_ID}}</label><br>
-    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <label type="text">{{returnedBug.assigned_ID}}</label><br>
-    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
-  </p>
-  <button class="btn btn-secondary" [routerLink]="['/dashboard/notifications/view']">Go Back</button>
+<body>
+<form class="getBugStyle" ngForm
+      [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+
+  <table class="table table-hover ">
+    <tbody>
+    <tr>
+      <td>{{'BUG_VIEW.TITLE' | translate}}</td>
+      <td>{{returnedBug.title}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.DESCRIPTION' | translate}}</td>
+      <td>{{returnedBug.description}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.VERSION' | translate}}</td>
+      <td>{{returnedBug.version}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.TARGET_DATE' | translate}}</td>
+      <td>{{returnedBug.targetDate}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.STATUS' | translate}}</td>
+      <td>{{returnedBug.status}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.FIXED_VERSION' | translate}}</td>
+      <td>{{returnedBug.fixedVersion}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.SEVERITY' | translate}}</td>
+      <td>{{returnedBug.severity}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.CREATED_BY' | translate}} </td>
+      <td>{{returnedBug.created_ID}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.ASSIGNED_TO' | translate}} </td>
+      <td>{{returnedBug.assigned_ID}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.ATTACHMENTS' | translate}}</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-secondary"
+          [routerLink]="['/dashboard/notifications/view']">{{'BUG_VIEW.BACK' | translate}}</button>
 
 </form>
+</body>
