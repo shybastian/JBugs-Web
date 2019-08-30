@@ -91,7 +91,7 @@
       <option value="low">{{'BUG-CREATE.SeverityLow' | translate}}</option>
     </select>
     <div class="alert alert-danger"
-         *ngIf="bugCreateForm.get('severity').touched && bugCreateForm.get('severity').invalid">
+         *ngIf="bugCreateForm.get('severity').touched || bugCreateForm.get('severity').invalid">
       <div *ngIf="bugCreateForm.get('severity').errors">{{'BUG-CREATE.NotBlank' | translate}}</div>
     </div>
   </div>
@@ -102,7 +102,6 @@
       class="form-control"
       id="CREATED_ID"
       name="CREATED_ID"
-      required
       disabled
       formControlName="CREATED_ID"
     >
@@ -126,7 +125,6 @@
       class="form-group"
       id="ASSIGNED_ID"
       name="ASSIGNED_ID"
-      required
       formControlName="ASSIGNED_ID"
     >
       <option
@@ -137,10 +135,10 @@
       </option>
     </select>
     <div class="form-group">
-      <div class="alert alert-danger"
-           *ngIf="bugCreateForm.get('ASSIGNED_ID').errors.required && bugCreateForm.get('ASSIGNED_ID').invalid">
-        {{'BUG-CREATE.NotBlank' | translate}}
-      </div>
+      <!--      <div class="alert alert-danger"-->
+      <!--           *ngIf="bugCreateForm.get('ASSIGNED_ID').errors.required && bugCreateForm.get('ASSIGNED_ID').invalid">-->
+      <!--        {{'BUG-CREATE.NotBlank' | translate}}-->
+      <!--      </div>-->
     </div>
   </div>
 
