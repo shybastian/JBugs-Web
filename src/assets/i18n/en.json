@@ -76,7 +76,8 @@
     "SEVERITY":"Severity",
     "CREATED_BY": "Created by",
     "ASSIGNED_TO": "Assigned to",
-    "ATTACHMENTS": "Attachments"
+    "ATTACHMENTS": "Attachments",
+    "BACK": "Go Back"
   },
   "UPDATE":{
      "SUCCESS_UPDATE": "The status update was successful!",
