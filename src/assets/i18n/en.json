@@ -64,6 +64,9 @@
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   },
   "BUG_VIEW": {
+    "DOWNLOAD_TABLE": "Download table",
+    "DOWNLOAD": "Download",
+
     "TITLE": "Title",
     "DESCRIPTION": "Description",
     "VERSION": "Version",
@@ -76,10 +79,12 @@
     "ATTACHMENTS": "Attachments",
     "BACK": "Go Back"
   },
-  "UPDATE_STATUS":{
+  "UPDATE":{
      "SUCCESS_UPDATE": "The status update was successful!",
-     "ERROR_UPDATE": "An error occurred while updating the status!",
-     "CLOSED_STATUS_ALERT": "A „closed” status cannot be modified!"
+     "ERROR_UPDATE": "An error occurred while updating the bug!",
+     "NO_GOOD_STATUS": "Please select a valid status!",
+     "HEADER": "Update bug info",
+     "NO_STATUS_CHANGE" : "No status change possible!"
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",
@@ -157,5 +162,10 @@
     "DATE": "Date",
     "BUG_URL": "Bug URL",
     "ERROR": "Failed at retrieving notifications data from database!"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "No status available for update",
+    "Update": "Update"
   }
 }
+

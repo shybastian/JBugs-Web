@@ -6,7 +6,7 @@ import {TranslateService} from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class CaptchaService {
-  private firedOnce = false;
+  public firedOnce = false;
   private lastGeneratedCode = '';
 
   constructor(public translate: TranslateService) {

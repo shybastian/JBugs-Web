@@ -38,6 +38,9 @@
     "ROLES": "Roluri"
   },
   "BUG_VIEW": {
+    "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD": "Descarca",
+
     "TITLE": "Titlu",
     "DESCRIPTION": "Descriere",
     "VERSION": "Versiune",
@@ -50,10 +53,12 @@
     "ATTACHMENTS": "Atasamente",
     "BACK": "înapoi"
   },
-  "UPDATE_STATUS":{
+  "UPDATE":{
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
     "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
-    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+    "NO_GOOD_STATUS": "Selectati un status valid, va rog!",
+    "HEADER": "Actualizare informatii bug",
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
 
   },
   "ADD_USER": {
@@ -152,6 +157,9 @@
     "MESSAGE": "Mesaj",
     "DATE": "Data",
     "BUG_URL": "Bug URL"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
+    "Update": "Actualizeaza"
   }
-
 }
