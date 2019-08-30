@@ -21,7 +21,7 @@ export class BackendService {
    */
   public get(url: string, params?: any): Observable<any> {
     return this.invoke('GET', url, null, params).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError));
   }
 
@@ -33,7 +33,7 @@ export class BackendService {
    */
   public put(url: string, data: any, params?: any): Observable<any> {
     return this.invoke('PUT', url, data, params).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError));
   }
 
@@ -45,7 +45,7 @@ export class BackendService {
    */
   public patch(url: string, data: any, params?: any): Observable<any> {
     return this.invoke('PATCH', url, data, params).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError));
   }
 
@@ -57,9 +57,9 @@ export class BackendService {
    */
   public post(url: string, data: any, params?: any): Observable<any> {
     return this.invoke('POST', url, data, params).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError)).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError));
   }
 
@@ -70,7 +70,7 @@ export class BackendService {
    */
   public delete(url: string, params?: any): Observable<any> {
     return this.invoke('DELETE', url, null, params).pipe(
-      retry(1),
+      retry(0),
       catchError(this.handleError));
   }
 
