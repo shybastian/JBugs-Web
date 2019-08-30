@@ -68,6 +68,7 @@
       name="targetDate"
       min="{{todayDate | date:'yyyy-MM-dd'}}"
       formControlName="targetDate"
+      required
     >
     <div class="alert alert-danger"
          *ngIf="bugCreateForm.get('targetDate').touched && bugCreateForm.get('targetDate').invalid">

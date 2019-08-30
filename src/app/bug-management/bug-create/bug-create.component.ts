@@ -74,12 +74,19 @@ export class BugCreateComponent implements OnInit {
    * We will find them out through the token.
    */
   createBugEntity(): BugModel {
+    let date: string;
+    const dateChosen: any = this.bugCreateForm.get('targetDate').value;
+    if (dateChosen === undefined || dateChosen === '') {
+      date = '2000-01-01'
+    } else {
+      date = dateChosen;
+    }
     const bugToCreate: BugModel = {
       ID: 0,
       title: this.bugCreateForm.get('title').value.toString(),
       description: this.bugCreateForm.get('description').value.toString(),
       version: this.bugCreateForm.get('version').value.toString(),
-      targetDate: this.bugCreateForm.get('targetDate').value.toString(),
+      targetDate: date,
       status: this.bugCreateForm.get('status').value.toString(),
       fixedVersion: this.bugCreateForm.get('fixedVersion').value.toString(),
       severity: this.bugCreateForm.get('severity').value.toString(),

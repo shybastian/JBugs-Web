@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
-import {Bug} from '../model/bug.model';
+import {Bug, BugUpdateWrapper} from '../model/bug.model';
 import {HttpClient} from '@angular/common/http';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from '../../user-management/login/services/storage.service';
 import {TranslateService} from '@ngx-translate/core';
+import {BugViewList} from "../model/bug-view-list.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,13 @@ export class BugService {
    * both the {@link Bug} & {@link Attachment} objects.
    */
   submitBug(wrapper: BugAttachmentWrapper) {
-
     let headers = {
       'Authorization': 'Bearer ' + this.storageService.getToken(),
       'Access-Control-Expose-Headers': 'Authorization'
     };
 
     this.http.post(this.baseUrl, wrapper, {responseType: 'text', headers: headers}).subscribe((response: any) => {
+      console.log("Response is: ", response);
       if (response === "OK") {
         alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
       } else if (response === "ERROR") {
@@ -37,29 +38,47 @@ export class BugService {
       } else alert(response);
     });
   }
-  getAllBugs(): Observable<Bug[]> {
+
+  getAllBugs(): Observable<BugViewList> {
     let token: String = StorageService.getToken();
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
-  updateBug(newStatus: string, bugID: number){
+  // updateBug(newStatus: string, bugID: number){
+  //   console.log("From update:" + newStatus);
+  //   console.log("From update:" + bugID);
+  //   this.http.put(this.baseUrl + "/update-bug-status/" + bugID, newStatus, {responseType: 'text'}).subscribe((response: any) => {
+  //     if (response === "OK") {
+  //       alert(this.translateService.instant("UPDATE_STATUS.SUCCESS_UPDATE"));
+  //     } else if (response === "ERROR") {
+  //       alert(this.translateService.instant("UPDATE_STATUS.ERROR_UPDATE"))
+  //     } else alert(response);
+  //   });
+  // }
 
+  updateBug(wrapper: BugUpdateWrapper) {
+    console.log("wrapper in service: ", wrapper);
     let headers = {
       'Authorization': 'Bearer ' + this.storageService.getToken(),
       'Access-Control-Expose-Headers': 'Authorization'
     };
+    console.log(JSON.stringify(wrapper));
+    return this.http.put(this.baseUrl + "/update-bug/" + wrapper.bugDTO.ID, wrapper,
+      {responseType: 'text', headers: headers})
+  }
 
-    console.log("From update:" + newStatus);
-    console.log("From update:" + bugID);
-    this.http.put(this.baseUrl + '/update-bug-status/' + bugID, newStatus, {
-      responseType: 'text',
-      headers: headers
-    }).subscribe((response: any) => {
-      if (response === "OK") {
-        alert(this.translateService.instant("UPDATE_STATUS.SUCCESS_UPDATE"));
-      } else if (response === "ERROR") {
-        alert(this.translateService.instant("UPDATE_STATUS.ERROR_UPDATE"))
-      } else alert(response);
-    });
+  closeBug(bugID: number){
+
+    let headers = {  'Authorization': 'Bearer ' + this.storageService.getToken(),
+      'Access-Control-Expose-Headers': 'Authorization' };
+
+    this.http.put(this.baseUrl + '/close-bug/' + bugID, {responseType: 'text', headers: headers})
+      .subscribe((response: any) =>{
+        if (response === "OK") {
+          alert("Close successful");
+        } else if (response === "ERROR") {
+          alert("Close Error");
+        } else alert(response);
+      })
   }
 }

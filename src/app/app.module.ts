@@ -30,25 +30,27 @@ import {
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
-import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
 import {UserEditComponent} from './user-management/user-edit/user-edit.component';
 
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
-import {UserCreateComponent} from "./user-management/user-create/user-create.component";
-import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 
-import {LoggedInGuard} from "./authentication-guards/logged-in.guard";
-import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
-import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
-import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
-import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
+import {LoggedInGuard} from './authentication-guards/logged-in.guard';
+import {PermissionPermissionGuard} from './authentication-guards/permission-permission.guard';
+import {UserPermissionGuard} from './authentication-guards/user-permission.guard';
+import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
+import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
 import {HeaderComponent} from './header/header.component';
 import {NavigateMenuComponent} from './dashboard/navigate-menu/navigate-menu.component';
 import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
-import {ToastModule} from "primeng/toast";
-import {VirtualScrollerModule} from "primeng/virtualscroller";
-import {DataViewModule} from "primeng/dataview";
+import {ToastModule} from 'primeng/toast';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {DataViewModule} from 'primeng/dataview';
+import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -76,7 +78,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NavigateMenuComponent,
     UserEditComponent,
     UserEditComponent,
-    NotificationsViewComponent
+    NotificationsViewComponent,
+    BugEditComponent
   ],
   imports: [
     BrowserModule,
@@ -110,12 +113,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TabViewModule,
     CodeHighlighterModule,
     VirtualScrollerModule,
-    DataViewModule
+    DataViewModule,
+    //PDFExportModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
   entryComponents: [
-    UserEditComponent
+    UserEditComponent,
+    BugEditComponent
   ]
 })
 export class AppModule { }

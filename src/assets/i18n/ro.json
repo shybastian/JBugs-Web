@@ -37,33 +37,10 @@
     "EMAIL": "Email",
     "ROLES": "Roluri"
   },
-  "ADD_USER": {
-    "ID": "ID",
-    "USERNAME": "Nume utilizator",
-    "STATUS": "Stare",
-    "COUNTER": "Incercari parola",
-
-    "FIRST_NAME": "Prenume",
-    "LAST_NAME": "Nume",
-    "PHONE": "Numar de telefon",
-    "EMAIL": "Email",
-    "ROLES": "Roluri",
-    "ADD": "Adaugare Utilizator",
-    "ALERT_FIRSTNAME_REQUIRED": "Prenumele este obligatoriu!",
-    "ALERT_FIRSTNAME_DIMENSION": "Prenumele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
-    "ALERT_FIRSTNAME_INCORRECT": "Prenumele este incorect!",
-    "ALERT_LASTNAME_INCORRECT": "Numele este incorect!",
-    "ALERT_LASTNAME_REQUIRED": "Numele este obligatoriu!",
-    "ALERT_LASTNAME_DIMENSION": "Numele introdus este prea lung/scurt! Dimensiunea trebuie sa fie intre 3 si 14 de caractere!",
-    "ALERT_PHONE_REQUIRED": "Numarul de telefon este obligatoriu!",
-    "ALERT_PHONE_INCORRECT": "Numarul de telefon este incorect!",
-    "ALERT_EMAIL_REQUIRED": "Adresa de email este obligatorie!",
-    "ALERT_EMAIL_INCORRECT": "Adresa de email este incorecta!",
-    "ALERT_ROLES_REQUIRED": "**Cel putin un rol trebuie sa fie selectat!",
-    "ALERT_SUCCESS_CREATED_USER": "Utilizator creat cu succes!",
-    "ALERT_FAIL_CREATED_USER": "Crearea utilizatorului a esuat!"
-  },
   "BUG_VIEW": {
+    "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD": "Descarca",
+
     "TITLE": "Titlu",
     "DESCRIPTION": "Descriere",
     "VERSION": "Versiune",
@@ -75,10 +52,12 @@
     "ASSIGNED_TO": "Atribuit",
     "ATTACHMENTS": "Atasamente"
   },
-  "UPDATE_STATUS":{
+  "UPDATE":{
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
     "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
-    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+    "NO_GOOD_STATUS": "Selectati un status valid, va rog!",
+    "HEADER": "Actualizare informatii bug",
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
 
   },
   "ADD_USER": {
@@ -177,6 +156,9 @@
     "MESSAGE": "Mesaj",
     "DATE": "Data",
     "BUG_URL": "Bug URL"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
+    "Update": "Actualizeaza"
   }
-
 }
