@@ -25,9 +25,15 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-outline-light btn-block " [routerLink]="['notifications']">
+    <button class="dropdown-btn" (click)="activeNotificationsButton()">
       {{ 'DASHBOARD.NOTIFICATION' | translate }}
     </button>
+    <div *ngIf="currentNotificationsButton==true ">
+      <div *ngFor="let notificationsButtonContainer of notificationsButtonContainers">
+        <a
+          [routerLink]="['notifications',notificationsButtonContainer.router]">{{notificationsButtonContainer.translation | translate}}</a>
+      </div>
+    </div>
 
     <button *ngIf="!disablePermission" class="btn btn-primary btn-outline-light btn-block dropdown-toggle "
             (click)="activePermissionsButton()">

@@ -28,8 +28,7 @@ export class NavigateMenuComponent implements OnInit {
   currentUserButton = false;
   currentBugButton = false;
   currentPermissionsButton = false;
-
-  // @Output() private userNameOnHeader= new EventEmitter<any>();
+  currentNotificationsButton = false;
 
   constructor(private storageService: StorageService, private router: Router) {
     this.userButtonDisable();
@@ -40,6 +39,14 @@ export class NavigateMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  activeNotificationsButton() {
+    if (this.currentNotificationsButton === true) {
+      this.currentNotificationsButton = false;
+    } else {
+      this.currentNotificationsButton = true;
+    }
   }
 
   activeUserButton() {
