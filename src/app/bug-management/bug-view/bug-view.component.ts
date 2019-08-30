@@ -2,15 +2,15 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
-import {PermissionType, User} from '../../user-management/models/user.model';
+import {User} from '../../user-management/models/user.model';
 import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
 import {TranslateService} from '@ngx-translate/core';
-import {BugEditComponent} from "../bug-edit/bug-edit.component";
-import {BugViewList} from "../model/bug-view-list.model";
-import {StorageService} from "../../user-management/login/services/storage.service";
+import {BugEditComponent} from '../bug-edit/bug-edit.component';
+import {BugViewList} from '../model/bug-view-list.model';
+import {StorageService} from '../../user-management/login/services/storage.service';
 
 @Component({
   selector: 'app-bug-view',

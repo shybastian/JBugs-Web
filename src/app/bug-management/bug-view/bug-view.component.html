@@ -12,6 +12,37 @@
       </div>
     </ng-template>
 
+
+    <kendo-grid [kendoGridBinding]="dt" [height]="400">
+
+      <ng-template kendoGridToolbarTemplate>
+        <button type="button" kendoGridExcelCommand icon="file-excel">
+          EXCEL{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}}</button>
+      </ng-template>
+
+      <kendo-grid-column field="{{'BUG_VIEW.TITLE' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.VERSION' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.FIXED_VERSION' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.SEVERITY' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.STATUS' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.CREATED_BY' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.TARGET_DATE' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+      <kendo-grid-column field="{{'BUG_VIEW.ASSIGNED_TO' | translate}}" title="{{'BUG_VIEW.TITLE' | translate}}">
+      </kendo-grid-column>
+
+
+      <kendo-grid-excel fileName="bugs.xlsx" [fetchData]="dt"></kendo-grid-excel>
+
+    </kendo-grid>
+
+
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field">
@@ -67,20 +98,29 @@
   <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
-    <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
-    {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
+
+    <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+
+      <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
+      {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
       {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
       {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
       {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
       {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
-    {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
-    {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
-    {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
-    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
-    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
-  <p class="text-style"></p>
-  <p-footer>
-    <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" label="EDIT"></button>
+      {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
+      {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
+      {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
+      {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
+      {{'BUG_VIEW.ATTACHMENTS' | translate}} :
+      <p class="text-style"></p>
+
+    </kendo-pdf-export>
+
+    <p-footer>
+
+      <button kendo-button (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}}</button>
+
+      <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" label="EDIT"></button>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
