@@ -18,6 +18,7 @@ export class BugCreateComponent implements OnInit {
   private todayDate;
   private listOfUsersToAssign: User[];
   private bugCreateForm: FormGroup;
+  private defaultSeverity: 'Low';
 
   constructor(private userService: UserService, private bugService: BugService, private formBuilder: FormBuilder,
               private storageService: StorageService) {
@@ -29,6 +30,10 @@ export class BugCreateComponent implements OnInit {
    * It builds the reactive form and sets the the Validators.
    */
   ngOnInit() {
+    // This server call populates the drop-down list of 'ASSIGNED_ID' with the users inside the database.
+    this.userService.getAllUsers().subscribe(users => {
+      this.listOfUsersToAssign = users;
+    });
     this.bugCreateForm = this.formBuilder.group({
       title: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
@@ -41,16 +46,11 @@ export class BugCreateComponent implements OnInit {
       ASSIGNED_ID: new FormControl(null),
       attachment: new FormControl(null)
     });
-
     this.bugCreateForm.get('status').setValue('NEW');
     // This call sets the 'CREATED_ID' field of the form, to the username of the current User from the current Session.
     this.bugCreateForm.get('CREATED_ID').setValue(this.storageService.getUserWithoutPermissionsFromSessionStorage().username);
-    this.bugCreateForm.get('fixedVersion').setValue('');
 
-    // This server call populates the drop-down list of 'ASSIGNED_ID' with the users inside the database.
-    this.userService.getAllUsers().subscribe(users => {
-      this.listOfUsersToAssign = users;
-    });
+    this.bugCreateForm.get('fixedVersion').setValue('');
 
     /* We initialize this attribute of the component with a new Date() because, whenever this component is initialized,
        We want to have the current date that is today inside the input type date.

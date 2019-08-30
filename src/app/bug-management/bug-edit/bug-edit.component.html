@@ -2,6 +2,7 @@
   <div class="form-group">
     <label for="title">{{'BUG_VIEW.TITLE' | translate}}</label>
     <input
+      required
       class="form-control"
       id="title"
       name="title"
@@ -17,6 +18,7 @@
   <div class="form-group">
     <label for="description">{{'BUG_VIEW.DESCRIPTION' | translate}}</label>
     <input
+      required
       class="form-control"
       id="description"
       name="description"
@@ -37,12 +39,13 @@
   <div class="form-group">
     <label for="version">{{'BUG_VIEW.VERSION' | translate}}</label>
     <input
+      required
       class="form-control"
       id="version"
       name="version"
       ngModel
       #version="ngModel"
-      pattern="(([\w][.]){1,2}[\w])"
+      pattern="(^[0-9a-zA-Z]{1,2}[.]{1}[0-9a-zA-Z]{1,2}){1}([.]{1}[0-9a-zA-Z]{0,2}){0,1}"
       [(ngModel)]="bug.version"
     >
     <div class="alert alert-danger"
@@ -62,7 +65,7 @@
       name="fixedVersion"
       ngModel
       #fixedVersion="ngModel"
-      pattern="(([\w][.]){1,2}[\w])"
+      pattern="(^[0-9a-zA-Z]{1,2}[.]{1}[0-9a-zA-Z]{1,2}){1}([.]{1}[0-9a-zA-Z]{0,2}){0,1}"
       [(ngModel)]="bug.fixedVersion"
     >
     <div class="alert alert-danger"
@@ -76,6 +79,7 @@
   <div class="form-group">
     <label for="targetDate">{{'BUG_VIEW.TARGET_DATE' | translate}}</label>
     <input
+      required
       type="date"
       class="form-control"
       id="targetDate"
@@ -94,6 +98,7 @@
   <div class="form-group">
     <label for="severity">{{'BUG_VIEW.SEVERITY' | translate}}</label>
     <select
+      required
       class="form-control"
       id="severity"
       name="severity"
@@ -115,12 +120,14 @@
   <div class="form-group">
     <label for="CREATED_ID">{{'BUG_VIEW.CREATED_BY' | translate}}</label>
     <input
+      required
       class="form-control"
       id="CREATED_ID"
       name="CREATED_ID"
       disabled
       #created_ID="ngModel"
       ngModel="{{bug.CREATED_ID.username}}"
+      [value]="bug.CREATED_ID.username"
     >
   </div>
 
@@ -146,12 +153,14 @@
   <div class="form-group">
     <label for="ASSIGNED_ID">{{'BUG_VIEW.ASSIGNED_TO' | translate}}</label><br>
     <select
+      required
       class="form-group"
       id="ASSIGNED_ID"
       name="ASSIGNED_ID"
       ngModel
       #assigned_ID="ngModel"
       [(ngModel)]="bug.ASSIGNED_ID"
+      [value]="bug.ASSIGNED_ID.username"
     >
       <option
         class="form-group"
