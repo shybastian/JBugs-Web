@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from '../../user-management/login/services/storage.service';
 import {TranslateService} from '@ngx-translate/core';
+import {BugViewList} from "../model/bug-view-list.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,8 @@ export class BugService {
       } else alert(response);
     });
   }
-  getAllBugs(): Observable<Bug[]> {
+
+  getAllBugs(): Observable<BugViewList> {
     let token: String = StorageService.getToken();
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }

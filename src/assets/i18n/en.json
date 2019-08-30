@@ -160,5 +160,10 @@
     "DATE": "Date",
     "BUG_URL": "Bug URL",
     "ERROR": "Failed at retrieving notifications data from database!"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "No status available for update",
+    "Update": "Update"
   }
 }
+

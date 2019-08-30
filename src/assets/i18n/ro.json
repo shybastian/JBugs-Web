@@ -155,6 +155,9 @@
     "MESSAGE": "Mesaj",
     "DATE": "Data",
     "BUG_URL": "Bug URL"
+  },
+  "BUG_UPDATE": {
+    "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
+    "Update": "Actualizeaza"
   }
-
 }
