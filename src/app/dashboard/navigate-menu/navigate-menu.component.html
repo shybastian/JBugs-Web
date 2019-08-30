@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <button class="dropdown-btn" (click)="activeNotificationsButton()">
+    <button (click)="activeNotificationsButton()" class="btn btn-primary btn-outline-light btn-block dropdown-toggle ">
       {{ 'DASHBOARD.NOTIFICATION' | translate }}
     </button>
     <div *ngIf="currentNotificationsButton==true ">

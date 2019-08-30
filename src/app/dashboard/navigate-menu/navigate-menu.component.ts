@@ -24,6 +24,9 @@ export class NavigateMenuComponent implements OnInit {
   permissionsButtonContainers = [
     {id: 1, name: 'DASHBOARD.EDIT_PERMISSION', router: 'edit'}
   ];
+  notificationsButtonContainers = [
+    {id: 1, name: 'Notifications View', router: 'view', translation: 'DASHBOARD.NOTIFICATIONS_VIEW'}
+  ];
 
   currentUserButton = false;
   currentBugButton = false;
