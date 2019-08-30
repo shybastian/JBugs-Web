@@ -38,6 +38,9 @@
     "ROLES": "Roluri"
   },
   "BUG_VIEW": {
+    "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD": "Descarca",
+
     "TITLE": "Titlu",
     "DESCRIPTION": "Descriere",
     "VERSION": "Versiune",
