@@ -14,7 +14,7 @@ export interface Bug {
   assigned_ID: User;
 }
 
-// Bug Create
+// Bug Create AND update
 export interface BugModel {
   ID: number;
   title: string;
@@ -26,4 +26,21 @@ export interface BugModel {
   severity: string;
   CREATED_ID: User;
   ASSIGNED_ID: User;
+}
+
+// BugWrapper
+export interface BugUpdateWrapper {
+  bugDTO: BugModel;
+  token: string;
+}
+
+// Bug-View to create BugUpdate
+export interface BugUpdate {
+  title: string;
+  description: string;
+  version: string;
+  targetDate: string;
+  status: string;
+  fixedVersion: string;
+  severity: string;
 }

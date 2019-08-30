@@ -1,29 +1,32 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {SelectItem} from 'primeng/api';
+import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
 import {PermissionType, User} from '../../user-management/models/user.model';
-import {Bug} from '../model/bug.model';
+import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
 import {TranslateService} from '@ngx-translate/core';
-import {StorageService} from "../../user-management/login/services/storage.service";
+import {BugEditComponent} from "../bug-edit/bug-edit.component";
 import {BugViewList} from "../model/bug-view-list.model";
+import {StorageService} from "../../user-management/login/services/storage.service";
 
 @Component({
   selector: 'app-bug-view',
   templateUrl: './bug-view.component.html',
   styleUrls: ['./bug-view.component.scss'],
+  providers: [DialogService],
   styles: ['kendo-pdf-export { font-family: "DejaVu Sans", "Arial", sans-serif; font-size: 12px;}']
 })
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translate: TranslateService, private storageService: StorageService) {
+              private translate: TranslateService, private storageService: StorageService,private dialogService: DialogService) {
 
   }
 
+  public bugsViewList: BugViewList;
   public bugsView: BugView[] = [];
   public bugs: Bug[] = [];
   public users: User[];
@@ -40,21 +43,10 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
-  visibleButton: boolean = false;
-  noMoreStatusAvailable: boolean = false;
-
   /**
    * The values from a selected row
    */
   selectedBug1: BugView;
-  selectedStatus: string;
-
-  statusOpen: SelectItem[];
-  statusInProgress: SelectItem[];
-  statusRejected: SelectItem[];
-  statusFixed: SelectItem[];
-  statusInfoNeeded: SelectItem[];
-  newStatusValues: SelectItem[];
 
   /**
    * To be initialized with selected row values
@@ -127,37 +119,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       {label: 'All', value: ''},
       {label: 'No version assigned', value: ''}
     ];
-
-    this.statusOpen = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'},
-      {label: 'Rejected', value: 'REJECTED'}
-    ];
-
-    this.statusInProgress = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Rejected', value: 'REJECTED'},
-      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
-      {label: 'Fixed', value: 'FIXED'}
-    ];
-
-    this.statusRejected = [
-      {label: "[Bug can only be closed]", value: ["Bug can only be closed"]},
-    ];
-
-    this.statusFixed = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Open', value: 'OPEN'},
-    ];
-
-    this.statusInfoNeeded = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'}
-    ];
-
   }
-
-  bugsViewList: BugViewList;
 
   ngAfterViewInit() {
 
@@ -246,6 +208,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     return value === "targetDate";
   }
 
+  selectedId: number = 0;
   bugAsString():void{
     this.selectedBug=  {
       id: 0,
@@ -260,76 +223,59 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       assigned_ID: ""
     };
     this.selectedBug = this.selectedBug1
-    this.checkPermissionForBugClose();
+    //this.checkPermissionForBugClose();
+    this.selectedId = this.selectedBug1.id;
   }
 
-  selectStatus() {
-
-    if (this.selectedBug.status === 'OPEN') {
-      this.newStatusValues = this.statusOpen;
-    }
-    if (this.selectedBug.status === 'IN_PROGRESS') {
-      this.newStatusValues = this.statusInProgress;
-    }
-
-    if (this.selectedBug.status === 'REJECTED') {
-      //this.newStatusValues = this.statusRejected;
-      this.noMoreStatusAvailable = true;
-    }
-
-    if (this.selectedBug.status === 'FIXED') {
-      this.newStatusValues = this.statusFixed;
-    }
-
-    if (this.selectedBug.status === 'INFO_NEEDED') {
-      this.newStatusValues = this.statusInfoNeeded;
-    }
-
-    if(this.selectedBug.status === 'CLOSED'){
-      this.noMoreStatusAvailable = true;;
-    }
-
-  }
-
-  modifyBugStatus(newStatus) {
-
-    if(this.selectedBug.status === "CLOSED"){
-      alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"));
-    }
-    else if(this.selectedBug.status === "REJECTED"){
-      alert("This bug can only be closed(if you have permission)");
-    }
-    else if(this.selectedStatus == "Select status" || this.selectedStatus == "[No status available]" || this.selectedStatus == ""
-      || this.selectedStatus === undefined){
-      alert("Please select a status!");
-    }
-    else {
-      this.bugService.updateBug(newStatus, this.selectedBug.id);
-      location.reload();
-    }
-  }
-
-  closeBug(){
-    this.bugService.closeBug(this.selectedBug.id);
-    this.visibleButton = false;
-    location.reload();
-  }
-
-  checkPermissionForBugClose(){
-
-    if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE) &&
-        (this.selectedBug.status === "FIXED" || this.selectedBug.status === "REJECTED")){
-      this.visibleButton = true;
-    }
-    else{
-      this.visibleButton = false;
-    }
-  }
 
 
   showInfoModal(){
 
     this.displayInfoModal = true;
-    this.newStatusValues = [];
+  }
+
+  showEditBugDialog() {
+    let selectedBug: BugUpdate = {
+      title: '',
+      description: '',
+      version: '',
+      targetDate: '',
+      status: '',
+      fixedVersion: '',
+      severity: '',
+    };
+    let id: number;
+    let created: User;
+    let assigned: User;
+    for (let bug of this.bugs) {
+      if (bug.id === this.selectedId) {
+        selectedBug.description = bug.description;
+        selectedBug.title = bug.title;
+        selectedBug.version = bug.version;
+        selectedBug.targetDate = bug.targetDate;
+        selectedBug.status = bug.status;
+        selectedBug.fixedVersion = bug.fixedVersion;
+        selectedBug.severity = bug.severity;
+
+        id = bug.id;
+        created = bug.created_ID;
+        assigned = bug.assigned_ID;
+
+        break;
+      }
+    }
+    const ref = this.dialogService.open(BugEditComponent, {
+      data: [selectedBug, id, created, assigned, this.users],
+      header: this.translate.instant('UPDATE.HEADER'),
+
+      width: '40%'
+    });
+    this.displayInfoModal = false;
+    ref.onClose.subscribe((bug: Bug) => {
+      if (bug) {
+      }
+    }, error => {
+      alert(error);
+    });
   }
 }
