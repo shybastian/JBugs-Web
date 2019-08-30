@@ -32,6 +32,7 @@ export interface UserCreateBug {
 }
 
 export interface UserToSaveOnSession {
+  id: string;
   firstName: string;
   lastName: string;
   username: string;

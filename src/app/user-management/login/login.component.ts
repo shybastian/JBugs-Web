@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
 
       this.loginService.loginGetUser(loginForm.form.value.username, loginForm.form.value.password)
         .subscribe(response => {
-          // console.log('response', response);
+          console.log('response', response);
+
+          sessionStorage.setItem('user_id', response.id);
 
           if (response.token === null || response.token === '' || response.messageCode != LoginComponent.SUCCESS_RESPONSE_MESSAGE) {
             alert(this.translate.instant('LOGIN.' + response.messageCode));

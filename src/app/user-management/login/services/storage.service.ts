@@ -45,6 +45,7 @@ export class StorageService {
       sessionStorage.clear();
       sessionStorage.setItem('token', user.token);
 
+      sessionStorage.setItem('user_id', '' + user.id);
       sessionStorage.setItem('user_firstName', '' + user.firstName);
       sessionStorage.setItem('user_lastName', '' + user.lastName);
       sessionStorage.setItem('user_username', '' + user.username); // also encoded in TOKEN
@@ -86,6 +87,7 @@ export class StorageService {
 
   getUserWithoutPermissionsFromSessionStorage(): UserToSaveOnSession {
     let user: UserToSaveOnSession = {
+      id: '',
       firstName: '',
       lastName: '',
       username: '',
@@ -96,6 +98,7 @@ export class StorageService {
       token: ''
     };
 
+    user.id = sessionStorage.getItem('user_id');
     user.firstName = sessionStorage.getItem('user_firstName');
     user.lastName = sessionStorage.getItem('user_lastName');
     user.username = sessionStorage.getItem('user_username');
