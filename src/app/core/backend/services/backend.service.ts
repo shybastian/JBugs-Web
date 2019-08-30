@@ -58,8 +58,6 @@ export class BackendService {
   public post(url: string, data: any, params?: any): Observable<any> {
     return this.invoke('POST', url, data, params).pipe(
       retry(0),
-      catchError(this.handleError)).pipe(
-      retry(0),
       catchError(this.handleError));
   }
 
