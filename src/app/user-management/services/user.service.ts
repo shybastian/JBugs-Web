@@ -50,6 +50,7 @@ export class UserService {
    *    and returns an observable
    */
   addUser(firstname: string, lastname: string, phone: string, mail: string, roleList: RoleWrapper[]): Observable<UserInsertWrapper> {
+    debugger;
     const user: UserInsertWrapper = {
       firstName: firstname,
       lastName: lastname,
@@ -68,6 +69,7 @@ export class UserService {
    *    and returns an observable
    */
   editUser(user: UserEditWrapper): Observable<UserEditWrapper> {
+    debugger;
     return this.backendService.put(' http://localhost:8080/jbugs/api/users/edit-user', user);
   }
 
@@ -80,4 +82,5 @@ export class UserService {
   getUserNotifications(username: string): Observable<Notification[]> {
     return this.backendService.get('http://localhost:8080/jbugs/api/users/' + username + '/notifications');
   }
+
 }

@@ -14,6 +14,7 @@ import {StorageService} from './services/storage.service';
 })
 export class LoginComponent implements OnInit {
 
+  error: string;
   public static SUCCESS_RESPONSE_MESSAGE = 'SUCCESS';
 
   // private hashedPassword: string;
