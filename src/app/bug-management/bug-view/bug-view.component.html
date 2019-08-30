@@ -1,4 +1,6 @@
-<form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+<body>
+<form class="bugViewStyle" #bugViewForm='ngForm' ngForm
+      [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
   <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
            selectionMode="single" [(selection)]="selectedBug1" dataKey="title" exportFilename="bugs"
            csvSeparator=";">
@@ -33,7 +35,7 @@
       <tr>
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input *ngSwitchCase="'title'" pInputText type="text" (input)="dt.filter($event.target.value.toLowerCase(), col.field.toLowerCase(), 'contains')">
-        <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter" defaultLabel="All"
+          <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
           <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
@@ -70,10 +72,10 @@
     <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
     <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
     {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
-      {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
-      {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
-      {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
-      {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
+    {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
+    {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
+    {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
+    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
     {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
@@ -89,6 +91,6 @@
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>
   </p-footer>
 </p-dialog>
-
 </form>
+</body>>
 
