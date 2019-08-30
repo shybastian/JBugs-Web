@@ -37,6 +37,7 @@
     "@progress/kendo-data-query": "^1.5.2",
     "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-theme-default": "^4.1.0",
+    "angular-notifier": "^4.1.1",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "crypto-ts": "^1.0.2",

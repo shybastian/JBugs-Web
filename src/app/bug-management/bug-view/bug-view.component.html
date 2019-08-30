@@ -1,4 +1,5 @@
-<form #bugViewForm='ngForm' ngForm
+<body>
+<form class="bugViewStyle" #bugViewForm='ngForm' ngForm
       [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
   <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
            selectionMode="single" [(selection)]="selectedBug1" dataKey="title" exportFilename="bugs"
@@ -72,8 +73,7 @@
 
       <tr>
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
-          <input *ngSwitchCase="'title'" pInputText type="text"
-                 (input)="dt.filter($event.target.value.toLowerCase(), col.field.toLowerCase(), 'contains')">
+          <input *ngSwitchCase="'title'" pInputText type="text" (input)="dt.filter($event.target.value.toLowerCase(), col.field.toLowerCase(), 'contains')">
           <p-multiSelect *ngSwitchCase="'severity'" [options]="severityFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
           <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter" defaultLabel="All"
@@ -87,8 +87,7 @@
           <p-dropdown *ngSwitchCase="'fixedVersion'" [options]="fixedVersionFilter"
                       (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
-          <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}"
-                      *ngSwitchCase="'targetDate'" [defaultDate]=""
+          <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]=""
                       [readonlyInput]="false" dateFormat="yy-MM-dd"
                       (onSelect)="dt.filter($event, col.field, 'dateFilter')">
 
@@ -113,31 +112,27 @@
     <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
 
       <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
-      {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
-      {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
-      {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
-      {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
-      {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}<br>
-      {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
-      {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
-      {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
-      {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
-      {{'BUG_VIEW.ATTACHMENTS' | translate}} :
-      <p class="text-style"></p>
+    {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
+    {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
+    {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
+    {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
+    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
+    {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
+    {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
+    {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
+    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
+    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
+  <p class="text-style"></p>
 
     </kendo-pdf-export>
+  <p-footer>
 
-    <p-footer>
-
-      <button kendo-button *ngIf="currentUserHasBUG_EXPORT_PDF()"
-              (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}} PDF
-      </button>
-
-      <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" label="EDIT"></button>
-      <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close"
-              class="ui-button-secondary"></button>
-    </p-footer>
-  </p-dialog>
-
+    <button kendo-button *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}} PDF</button>
+    <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
+    <button pButton icon="fa fa-plus"(click)="closeBug()" [disabled]="!visibleButton" >Close Bug</button>
+    <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>
+  </p-footer>
+</p-dialog>
 </form>
+</body>>
 

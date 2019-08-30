@@ -1,126 +1,131 @@
-<p-table #dt [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser"
-         (onRowSelect)="onRowSelect()" [paginator]="true" [rows]="15">
-  <ng-template pTemplate="caption">
-    {{ 'USERS.LIST' | translate }}
-    <!--
-    <div class="ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-file-o" iconPos="left" label="{{ 'USERS.DOWNLOAD' | translate }}" (click)="dt.exportCSV()" style="float:left"></button>
-      <button type="button" pButton icon="fa fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
-    </div>
-    -->
-  </ng-template>
+<body>
+<h2>View User</h2>
+<form class="userViewStyle">
+  <p-table #dt [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser"
+           (onRowSelect)="onRowSelect()" [paginator]="true" [rows]="15">
+    <ng-template pTemplate="caption">
+      {{ 'USERS.LIST' | translate }}
+      <!--
+      <div class="ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-file-o" iconPos="left" label="{{ 'USERS.DOWNLOAD' | translate }}" (click)="dt.exportCSV()" style="float:left"></button>
+        <button type="button" pButton icon="fa fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+      </div>
+      -->
+    </ng-template>
 
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of cols" [pSortableColumn]="col.field">
-        {{ 'USERS.' + col.header | translate }}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="cols">
-    <tr [pSelectableRow]="rowData">
-      <td *ngFor="let col of cols">
-        {{rowData[col.field]}}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
-      <button type="button" pButton icon="fa fa-plus" (click)="addNewUser()"
-              label="{{'ADD_USER.ADD' | translate}}"></button>
-    </div>
-  </ng-template>
-</p-table>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+          {{ 'USERS.' + col.header | translate }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="cols">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of cols">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary" let-rowData>
+      <div style="text-align:left">
+        <button type="button" pButton icon="fa fa-plus" (click)="addNewUser()"
+                label="{{'ADD_USER.ADD' | translate}}"></button>
+      </div>
+    </ng-template>
+  </p-table>
 
-<p-dialog header="{{'USERS.DETAILED_USER' | translate}}" [(visible)]="displayDialog" [responsive]="true"
-          showEffect="fade" [modal]="true"
-          [style]="{width: '300px'}">
-  <div class="ui-g ui-fluid" *ngIf="selectedUser">
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="id">{{'USERS.ID' | translate}}</label>
+  <p-dialog header="{{'USERS.DETAILED_USER' | translate}}" [(visible)]="displayDialog" [responsive]="true"
+            showEffect="fade" [modal]="true"
+            [style]="{width: '300px'}">
+    <div class="ui-g ui-fluid" *ngIf="selectedUser">
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="id">{{'USERS.ID' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="id">{{selectedUser.id}}</label>
+        </div>
       </div>
-      <div class="ui-g-8">
-        <label id="id">{{selectedUser.id}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="firstName">{{'USERS.FIRST_NAME' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="firstName">{{selectedUser.firstName}}</label>
+        </div>
       </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="firstName">{{'USERS.FIRST_NAME' | translate}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="lastName">{{'USERS.LAST_NAME' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="lastName">{{selectedUser.lastName}}</label>
+        </div>
       </div>
-      <div class="ui-g-8">
-        <label id="firstName">{{selectedUser.firstName}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="username">{{'USERS.USERNAME' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="username">{{selectedUser.username}}</label>
+        </div>
       </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="lastName">{{'USERS.LAST_NAME' | translate}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="email">{{'USERS.EMAIL' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="email">{{selectedUser.email}}</label>
+        </div>
       </div>
-      <div class="ui-g-8">
-        <label id="lastName">{{selectedUser.lastName}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="mobileNumber">{{'USERS.PHONE' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="mobileNumber">{{selectedUser.mobileNumber}}</label>
+        </div>
       </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="username">{{'USERS.USERNAME' | translate}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="status">{{'USERS.STATUS' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="status">{{selectedUser.stringStatus}}</label>
+        </div>
       </div>
-      <div class="ui-g-8">
-        <label id="username">{{selectedUser.username}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="counter">{{'USERS.COUNTER' | translate}}</label>
+        </div>
+        <div class="ui-g-8">
+          <label id="counter">{{selectedUser.counter}}</label>
+        </div>
       </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="email">{{'USERS.EMAIL' | translate}}</label>
-      </div>
-      <div class="ui-g-8">
-        <label id="email">{{selectedUser.email}}</label>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="mobileNumber">{{'USERS.PHONE' | translate}}</label>
-      </div>
-      <div class="ui-g-8">
-        <label id="mobileNumber">{{selectedUser.mobileNumber}}</label>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="status">{{'USERS.STATUS' | translate}}</label>
-      </div>
-      <div class="ui-g-8">
-        <label id="status">{{selectedUser.stringStatus}}</label>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="counter">{{'USERS.COUNTER' | translate}}</label>
-      </div>
-      <div class="ui-g-8">
-        <label id="counter">{{selectedUser.counter}}</label>
-      </div>
-    </div>
-    <div class="ui-g-12">
-      <div class="ui-g-4">
-        <label for="roles">{{'USERS.ROLES' | translate}}</label>
-      </div>
-      <div class="ui-g-8" *ngIf="selectedUser.roles.length === 0">
-        <label id="no_role">({{'USERS.NO_ROLE' | translate}})</label>
-      </div>
-      <div class="ui-g-8">
-        <div *ngFor="let role of selectedUser.roles">
-          <label id="roles">{{role.type}}</label>
+      <div class="ui-g-12">
+        <div class="ui-g-4">
+          <label for="roles">{{'USERS.ROLES' | translate}}</label>
+        </div>
+        <div class="ui-g-8" *ngIf="selectedUser.roles.length === 0">
+          <label id="no_role">({{'USERS.NO_ROLE' | translate}})</label>
+        </div>
+        <div class="ui-g-8">
+          <div *ngFor="let role of selectedUser.roles">
+            <label id="roles">{{role.type}}</label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <p-footer>
-    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
               label="{{'EDIT_USER.EDIT' | translate}}" [disabled]="displayUpdateDialog"></button>
-      <button type="button" pButton icon="fa fa-close" (click)="ok()" label="OK"></button>
-    </div>
-  </p-footer>
-</p-dialog>
+        <button type="button" pButton icon="fa fa-close" (click)="ok()" label="OK"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</form>
+</body>

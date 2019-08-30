@@ -1,0 +1,53 @@
+<body>
+<form class="getBugStyle" ngForm
+      [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
+
+  <table class="table table-hover ">
+    <tbody>
+    <tr>
+      <td>{{'BUG_VIEW.TITLE' | translate}}</td>
+      <td>{{returnedBug.title}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.DESCRIPTION' | translate}}</td>
+      <td>{{returnedBug.description}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.VERSION' | translate}}</td>
+      <td>{{returnedBug.version}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.TARGET_DATE' | translate}}</td>
+      <td>{{returnedBug.targetDate}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.STATUS' | translate}}</td>
+      <td>{{returnedBug.status}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.FIXED_VERSION' | translate}}</td>
+      <td>{{returnedBug.fixedVersion}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.SEVERITY' | translate}}</td>
+      <td>{{returnedBug.severity}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.CREATED_BY' | translate}} </td>
+      <td>{{returnedBug.created_ID}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.ASSIGNED_TO' | translate}} </td>
+      <td>{{returnedBug.assigned_ID}}</td>
+    </tr>
+    <tr>
+      <td>{{'BUG_VIEW.ATTACHMENTS' | translate}}</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-secondary"
+          [routerLink]="['/dashboard/notifications/view']">{{'BUG_VIEW.BACK' | translate}}</button>
+
+</form>
+</body>

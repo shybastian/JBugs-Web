@@ -51,7 +51,8 @@
     "SEVERITY":"Severitate",
     "CREATED_BY": "Creat de",
     "ASSIGNED_TO": "Atribuit",
-    "ATTACHMENTS": "Atasamente"
+    "ATTACHMENTS": "Atasamente",
+    "BACK": "înapoi"
   },
   "UPDATE":{
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
@@ -143,8 +144,9 @@
     "Submit": "Creaza",
     "MaxLength250": "Limita maxima admisa este de 250 de caractere.",
     "NotBlank": "Nu poate sa fie gol.",
-    "VersionValidation": "Campul poate contine doar 3 grupuri de cate 2 caractere alfanumerice despartite prin punct.",
+    "VersionValidation": "Campul poate contine doar 2 sau 3 grupuri de cate cel putin 2 caractere alfanumerice despartite prin punct.",
     "DateValidation": "Nu se poate alege o data anterioara celei de astazi.",
+    "DateValidationInvalid": "Data nu este valida.",
     "SeverityCritical": "Critic",
     "SeverityHigh": "Inalt",
     "SeverityMedium": "Mediu",
@@ -161,5 +163,15 @@
   "BUG_UPDATE": {
     "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
     "Update": "Actualizeaza"
+  },
+  "NOTIFICATIONS": {
+    "WELCOME_NEW_USER": "Bun venit!",
+    "USER_UPDATED": "Utilizator actualizat!",
+    "USER_DELETED": "Utilizator sters!",
+    "USER_DEACTIVATED": "Utilizator dezactivat!",
+    "BUG_UPDATED": "Bug actualizat!",
+    "BUG_CLOSED": "Bug inchis!",
+    "BUG_STATUS_UPDATED": "Bug status actualizat!",
+    "ERROR": "Eroare la interogarea bazei de date!"
   }
 }

@@ -77,7 +77,8 @@
     "SEVERITY":"Severity",
     "CREATED_BY": "Created by",
     "ASSIGNED_TO": "Assigned to",
-    "ATTACHMENTS": "Attachments"
+    "ATTACHMENTS": "Attachments",
+    "BACK": "Go Back"
   },
   "UPDATE":{
      "SUCCESS_UPDATE": "The status update was successful!",
@@ -147,8 +148,9 @@
     "Submit": "Submit",
     "MaxLength250": "The maximum allowed length is 250 characters.",
     "NotBlank": "Can not be empty",
-    "VersionValidation": "Field must include 3 groups of 2 alphanumerical characters split by dots.",
+    "VersionValidation": "Field must include 2 or 3 groups of atleast 2 alphanumerical characters split by dots.",
     "DateValidation": "Must not be a date before today.",
+    "DateValidationInvalid": "Date not valid.",
     "SeverityCritical": "Critical",
     "SeverityHigh": "High",
     "SeverityMedium": "Medium",
@@ -161,6 +163,16 @@
     "MESSAGE": "Message",
     "DATE": "Date",
     "BUG_URL": "Bug URL",
+    "ERROR": "Failed at retrieving notifications data from database!"
+  },
+  "NOTIFICATIONS": {
+    "WELCOME_NEW_USER": "Welcome!",
+    "USER_UPDATED": "User updated!",
+    "USER_DELETED": "User deleted!",
+    "USER_DEACTIVATED": "User deactivated!",
+    "BUG_UPDATED": "Bug updated!",
+    "BUG_CLOSED": "Bug closed!",
+    "BUG_STATUS_UPDATED": "Bug status updated!",
     "ERROR": "Failed at retrieving notifications data from database!"
   },
   "BUG_UPDATE": {
