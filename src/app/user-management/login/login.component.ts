@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CaptchaService} from './services/captcha.service';
@@ -12,7 +12,7 @@ import {StorageService} from './services/storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   public static SUCCESS_RESPONSE_MESSAGE = 'SUCCESS';
 
@@ -21,6 +21,10 @@ export class LoginComponent {
   constructor(public router: Router, private loginService: LoginService,
               private captchaService: CaptchaService, private cryptoService: CryptoService,
               public storageService: StorageService, public translate: TranslateService) {
+  }
+
+  ngOnInit(): void {
+    this.captchaService.firedOnce = false;
   }
 
   login(loginForm: NgForm) {

@@ -1,8 +1,14 @@
 <form #bugViewForm='ngForm' ngForm [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
-  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25" selectionMode="single" [(selection)]="selectedBug1" dataKey="title">
+  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
+           selectionMode="single" [(selection)]="selectedBug1" dataKey="title" exportFilename="bugs"
+           csvSeparator=";">
     <ng-template pTemplate="caption">
-      <div style="text-align: right">
-        <i style="margin:4px 4px 0 0"></i>
+      <div class="ui-helper-clearfix" style="text-align: right">
+        <i style="margin:4px 4px 0 0">
+          <button type="button" pButton icon="fa fa-file-o" iconPos="left"
+                  label="{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}}"
+                  (click)="dt.exportCSV()" style="float:left"></button>
+        </i>
       </div>
     </ng-template>
 
@@ -61,22 +67,30 @@
   <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
-    <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
-    {{'BUG_VIEW.TITLE' | translate}} : <input type="text" [value]="selectedBug.title"><br>
+
+    <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+
+      <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
+      {{'BUG_VIEW.TITLE' | translate}} : <input type="text" [value]="selectedBug.title"><br>
       {{'BUG_VIEW.DESCRIPTION' | translate}} : <input type="text" [value]="selectedBug.description"><br>
       {{'BUG_VIEW.VERSION' | translate}} : <input type="text" [value]="selectedBug.version"><br>
       {{'BUG_VIEW.TARGET_DATE' | translate}} : <input type="text" [value]="selectedBug.targetDate"><br>
-      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown  [options]="newStatusValues" [style]="{'width': '100%'}"
-                                                       [(ngModel)]="selectedStatus" name="statusTypes" (onClick)="selectStatus()" ></p-dropdown>
-    {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
-    {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
-    {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
-    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <input type="text" [value]="selectedBug.assigned_ID"><br>
-    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
-  <p class="text-style">
-  </p>
-  <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
-  <p-footer>
+      {{'BUG_VIEW.STATUS' | translate}} : <p-dropdown [options]="newStatusValues" [style]="{'width': '100%'}"
+                                                      [(ngModel)]="selectedStatus" name="statusTypes" (onClick)="selectStatus()" ></p-dropdown>
+      {{'BUG_VIEW.FIXED_VERSION' | translate}} : <input type="text" [value]="selectedBug.fixedVersion"><br>
+      {{'BUG_VIEW.SEVERITY' | translate}} : <input type="text" [value]="selectedBug.severity"><br>
+      {{'BUG_VIEW.CREATED_BY' | translate}} : <input type="text" [value]="selectedBug.created_ID"><br>
+      {{'BUG_VIEW.ASSIGNED_TO' | translate}} : <input type="text" [value]="selectedBug.assigned_ID"><br>
+      {{'BUG_VIEW.ATTACHMENTS' | translate}} :
+      <p class="text-style"></p>
+
+    </kendo-pdf-export>
+
+    <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
+
+    <button kendo-button (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}}</button>
+
+    <p-footer>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" label="Close" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
