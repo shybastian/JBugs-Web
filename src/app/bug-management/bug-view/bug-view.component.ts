@@ -223,11 +223,42 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       created_ID: "",
       assigned_ID: ""
     };
-    this.selectedBug = this.selectedBug1
-    //this.checkPermissionForBugClose();
+    this.selectedBug = this.selectedBug1;
+    this.checkPermissionForBugClose();
+    this.checkStatusClosed();
     this.selectedId = this.selectedBug1.id;
   }
 
+  visibleButton: boolean;
+
+  closeBug(){
+    this.bugService.closeBug(this.selectedBug.id);
+    this.visibleButton = false;
+    location.reload();
+  }
+
+  checkPermissionForBugClose(){
+
+    if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE) &&
+      (this.selectedBug.status === "FIXED" || this.selectedBug.status === "REJECTED")){
+      this.visibleButton = true;
+    }
+    else{
+      this.visibleButton = false;
+    }
+  }
+
+  statusClosed: boolean;
+  checkStatusClosed(){
+    if(this.selectedBug.status === "CLOSED")
+    {
+      this.statusClosed = true;
+    }
+    else{
+      this.statusClosed = false;
+    }
+
+  }
 
 
   showInfoModal(){

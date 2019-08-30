@@ -50,6 +50,7 @@ import {ToastModule} from 'primeng/toast';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {DataViewModule} from 'primeng/dataview';
 import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
+import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 
 
 // AoT requires an exported function for factories
@@ -114,7 +115,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CodeHighlighterModule,
     VirtualScrollerModule,
     DataViewModule,
-    //PDFExportModule
+    PDFExportModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],

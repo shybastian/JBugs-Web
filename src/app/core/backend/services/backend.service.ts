@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {StorageService} from '../../../user-management/login/services/storage.service';
+import {catchError, retry} from "rxjs/operators";
 
 /**
  * Base backend service. Business services should import this instead of using HttpClient directly.
@@ -19,7 +20,9 @@ export class BackendService {
    * @param params optional parameters such as HttpHeaders, HttpParams, reportProgress etc.
    */
   public get(url: string, params?: any): Observable<any> {
-    return this.invoke('GET', url, null, params);
+    return this.invoke('GET', url, null, params).pipe(
+      retry(1),
+      catchError(this.handleError));
   }
 
   /**
@@ -29,7 +32,9 @@ export class BackendService {
    * @param params parameters such as HttpHeaders, HttpParams, reportProgress etc.
    */
   public put(url: string, data: any, params?: any): Observable<any> {
-    return this.invoke('PUT', url, data, params);
+    return this.invoke('PUT', url, data, params).pipe(
+      retry(1),
+      catchError(this.handleError));
   }
 
   /**
@@ -39,7 +44,9 @@ export class BackendService {
    * @param params parameters such as HttpHeaders, HttpParams, reportProgress etc.
    */
   public patch(url: string, data: any, params?: any): Observable<any> {
-    return this.invoke('PATCH', url, data, params);
+    return this.invoke('PATCH', url, data, params).pipe(
+      retry(1),
+      catchError(this.handleError));
   }
 
   /**
@@ -49,7 +56,11 @@ export class BackendService {
    * @param params parameters such as HttpHeaders, HttpParams, reportProgress etc.
    */
   public post(url: string, data: any, params?: any): Observable<any> {
-    return this.invoke('POST', url, data, params);
+    return this.invoke('POST', url, data, params).pipe(
+      retry(1),
+      catchError(this.handleError)).pipe(
+      retry(1),
+      catchError(this.handleError));
   }
 
   /**
@@ -58,7 +69,9 @@ export class BackendService {
    * @param params parameters such as HttpHeaders, HttpParams, reportProgress etc.
    */
   public delete(url: string, params?: any): Observable<any> {
-    return this.invoke('DELETE', url, null, params);
+    return this.invoke('DELETE', url, null, params).pipe(
+      retry(1),
+      catchError(this.handleError));
   }
 
   private invoke(method: string, url: string, data: any = {}, params?: any): Observable<any> {
@@ -77,5 +90,18 @@ export class BackendService {
     }
     const requestUrl = `${url}`;
     return this.http.request(method, requestUrl, options);
+  }
+
+  private handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }
