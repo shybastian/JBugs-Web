@@ -55,7 +55,8 @@
   "UPDATE_STATUS":{
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
     "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
-    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!"
+    "CLOSED_STATUS_ALERT": "Un status 'closed' nu poate fi modificat!",
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
 
   },
   "ADD_USER": {

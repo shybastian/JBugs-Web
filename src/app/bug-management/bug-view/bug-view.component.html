@@ -87,6 +87,7 @@
     </kendo-pdf-export>
 
     <button pButton label="Update" (click)="modifyBugStatus(selectedStatus); dt.reset()"></button>
+    <button pButton label="Close bug" (click)="closeBug(); dt.reset()" [disabled]="!visibleButton"></button>
 
     <button kendo-button (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}}</button>
 

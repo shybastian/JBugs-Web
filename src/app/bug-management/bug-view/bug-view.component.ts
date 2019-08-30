@@ -2,12 +2,14 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
-import {User} from '../../user-management/models/user.model';
+import {PermissionType, User} from '../../user-management/models/user.model';
 import {Bug} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
 import {BugView} from '../model/bug-view.model';
 import {TranslateService} from '@ngx-translate/core';
+import {StorageService} from "../../user-management/login/services/storage.service";
+import {BugViewList} from "../model/bug-view-list.model";
 
 @Component({
   selector: 'app-bug-view',
@@ -18,7 +20,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translate: TranslateService) {
+              private translate: TranslateService, private storageService: StorageService) {
 
   }
 
@@ -38,7 +40,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
-  displayUpdateModal = false;
+  visibleButton: boolean = false;
+  noMoreStatusAvailable: boolean = false;
 
   /**
    * The values from a selected row
@@ -57,7 +60,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    * To be initialized with selected row values
    * Values for input text fields in the info pop-up
    */
-  selectedBug: BugView = {
+  selectedBug: BugView =  {
     id: 0,
     title: "",
     description: "",
@@ -69,12 +72,14 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     created_ID: "",
     assigned_ID: ""
   };
-
   /**
    * The dataTable used in form ( for dateFilter)
    */
   @ViewChild('dt', {static: true})
   dt: Table;
+
+  user: User;
+
 
   /**
    * Initializing the values for filters
@@ -114,11 +119,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     ];
 
     this.versionFilter = [
-      {label: 'All', value: ''}
+      {label: 'All', value: ""},
+      {label: 'No version assigned', value: ''}
     ];
 
     this.fixedVersionFilter = [
-      {label: 'All', value: ''}
+      {label: 'All', value: ''},
+      {label: 'No version assigned', value: ''}
     ];
 
     this.statusOpen = [
@@ -135,27 +142,29 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     ];
 
     this.statusRejected = [
-      {label: "[Select status]", value: ["Select status"]},
-      {label: 'Closed', value: 'CLOSED'}
+      {label: "[Bug can only be closed]", value: ["Bug can only be closed"]},
     ];
 
     this.statusFixed = [
       {label: "[Select status]", value: ["Select status"]},
       {label: 'Open', value: 'OPEN'},
-      {label: 'Closed', value: 'CLOSED'}
     ];
 
     this.statusInfoNeeded = [
       {label: "[Select status]", value: ["Select status"]},
       {label: 'In progress', value: 'IN_PROGRESS'}
     ];
+
   }
+
+  bugsViewList: BugViewList;
 
   ngAfterViewInit() {
 
     this.bugService.getAllBugs().subscribe(bugs => {
-      this.bugs = bugs;
-      console.log(bugs);
+      this.bugsViewList = bugs;
+      this.bugs = this.bugsViewList.bugDTOList;
+      this.users = this.bugsViewList.userDTOList;
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
           id: this.bugs[i].id,
@@ -171,13 +180,15 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         });
       }
 
+      for (let i = 0; i < this.users.length; i ++) {
+        this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
+      }
+
       this.constructVersionFilters(this.bugs);
-      this.constructUserFiler();
       this.constructDateFilter();
       this.dt.reset();
 
     });
-
   }
 
   getMaxVersion(bugList: Bug[]): [number, number]{
@@ -212,15 +223,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  constructUserFiler(){
-    this.userService.getAllUsers().subscribe(users => {
-      this.users = users;
-      for (let i = 0; i < users.length; i ++) {
-        this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
-      }
-    });
-  }
-
   constructDateFilter(){
     this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
 
@@ -245,7 +247,20 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   }
 
   bugAsString():void{
-    this.selectedBug = this.selectedBug1;
+    this.selectedBug=  {
+      id: 0,
+      title: "",
+      description: "",
+      version: "",
+      targetDate: "",
+      status: "",
+      fixedVersion: "",
+      severity: "",
+      created_ID: "",
+      assigned_ID: ""
+    };
+    this.selectedBug = this.selectedBug1
+    this.checkPermissionForBugClose();
   }
 
   selectStatus() {
@@ -258,7 +273,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }
 
     if (this.selectedBug.status === 'REJECTED') {
-      this.newStatusValues = this.statusRejected;
+      //this.newStatusValues = this.statusRejected;
+      this.noMoreStatusAvailable = true;
     }
 
     if (this.selectedBug.status === 'FIXED') {
@@ -270,25 +286,50 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     }
 
     if(this.selectedBug.status === 'CLOSED'){
-      this.newStatusValues = [];
+      this.noMoreStatusAvailable = true;;
     }
 
   }
 
   modifyBugStatus(newStatus) {
 
-    console.log("From modify: " + newStatus);
-
-    if (newStatus === "CLOSED") {
-      alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"))
-    } else {
+    if(this.selectedBug.status === "CLOSED"){
+      alert(this.translate.instant("UPDATE_STATUS.CLOSED_STATUS_ALERT"));
+    }
+    else if(this.selectedBug.status === "REJECTED"){
+      alert("This bug can only be closed(if you have permission)");
+    }
+    else if(this.selectedStatus == "Select status" || this.selectedStatus == "[No status available]" || this.selectedStatus == ""
+      || this.selectedStatus === undefined){
+      alert("Please select a status!");
+    }
+    else {
       this.bugService.updateBug(newStatus, this.selectedBug.id);
+      location.reload();
+    }
+  }
 
+  closeBug(){
+    this.bugService.closeBug(this.selectedBug.id);
+    this.visibleButton = false;
+    location.reload();
+  }
+
+  checkPermissionForBugClose(){
+
+    if(this.storageService.userHasPermission(PermissionType.BUG_CLOSE) &&
+        (this.selectedBug.status === "FIXED" || this.selectedBug.status === "REJECTED")){
+      this.visibleButton = true;
+    }
+    else{
+      this.visibleButton = false;
     }
   }
 
 
   showInfoModal(){
+
     this.displayInfoModal = true;
+    this.newStatusValues = [];
   }
 }
