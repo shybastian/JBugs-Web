@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
-import {User} from '../../user-management/models/user.model';
+import {PermissionType, User} from '../../user-management/models/user.model';
 import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';
@@ -10,19 +10,19 @@ import {BugView} from '../model/bug-view.model';
 import {TranslateService} from '@ngx-translate/core';
 import {BugEditComponent} from "../bug-edit/bug-edit.component";
 import {BugViewList} from "../model/bug-view-list.model";
+import {StorageService} from "../../user-management/login/services/storage.service";
 
 @Component({
   selector: 'app-bug-view',
   templateUrl: './bug-view.component.html',
   styleUrls: ['./bug-view.component.scss'],
-  providers: [DialogService]
-  styleUrls: ['./bug-view.component.scss'],
+  providers: [DialogService],
   styles: ['kendo-pdf-export { font-family: "DejaVu Sans", "Arial", sans-serif; font-size: 12px;}']
 })
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translate: TranslateService, private dialogService: DialogService) {
+              private translate: TranslateService, private storageService: StorageService,private dialogService: DialogService) {
 
   }
 
@@ -43,7 +43,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   fixedVersionFilter: SelectItem[];
 
   displayInfoModal = false;
-
   /**
    * The values from a selected row
    */
@@ -53,7 +52,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    * To be initialized with selected row values
    * Values for input text fields in the info pop-up
    */
-  selectedBug: BugView = {
+  selectedBug: BugView =  {
     id: 0,
     title: "",
     description: "",
@@ -65,12 +64,14 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     created_ID: "",
     assigned_ID: ""
   };
-
   /**
    * The dataTable used in form ( for dateFilter)
    */
   @ViewChild('dt', {static: true})
   dt: Table;
+
+  user: User;
+
 
   /**
    * Initializing the values for filters
@@ -110,11 +111,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     ];
 
     this.versionFilter = [
-      {label: 'All', value: ''}
+      {label: 'All', value: ""},
+      {label: 'No version assigned', value: ''}
     ];
 
     this.fixedVersionFilter = [
-      {label: 'All', value: ''}
+      {label: 'All', value: ''},
+      {label: 'No version assigned', value: ''}
     ];
   }
 
@@ -139,13 +142,15 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         });
       }
 
+      for (let i = 0; i < this.users.length; i ++) {
+        this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
+      }
+
       this.constructVersionFilters(this.bugs);
-      this.constructUserFiler();
       this.constructDateFilter();
       this.dt.reset();
 
     });
-
   }
 
   getMaxVersion(bugList: Bug[]): [number, number]{
@@ -180,15 +185,6 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   }
 
-  constructUserFiler(){
-    this.userService.getAllUsers().subscribe(users => {
-      this.users = users;
-      for (let i = 0; i < users.length; i ++) {
-        this.userFilter.push({label: this.users[i].username, value: this.users[i].username});
-      }
-    });
-  }
-
   constructDateFilter(){
     this.dt.filterConstraints['dateFilter'] = function inCollection(value: any, filter: any): boolean {
 
@@ -214,13 +210,27 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
   selectedId: number = 0;
   bugAsString():void{
-    this.selectedBug = this.selectedBug1;
+    this.selectedBug=  {
+      id: 0,
+      title: "",
+      description: "",
+      version: "",
+      targetDate: "",
+      status: "",
+      fixedVersion: "",
+      severity: "",
+      created_ID: "",
+      assigned_ID: ""
+    };
+    this.selectedBug = this.selectedBug1
+    //this.checkPermissionForBugClose();
     this.selectedId = this.selectedBug1.id;
   }
 
 
 
   showInfoModal(){
+
     this.displayInfoModal = true;
   }
 

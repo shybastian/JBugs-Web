@@ -82,7 +82,8 @@
      "SUCCESS_UPDATE": "The status update was successful!",
      "ERROR_UPDATE": "An error occurred while updating the bug!",
      "NO_GOOD_STATUS": "Please select a valid status!",
-     "HEADER": "Update bug info"
+     "HEADER": "Update bug info",
+     "NO_STATUS_CHANGE" : "No status change possible!"
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",

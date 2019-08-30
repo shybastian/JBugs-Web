@@ -56,7 +56,8 @@
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
     "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
     "NO_GOOD_STATUS": "Selectati un status valid, va rog!",
-    "HEADER": "Actualizare informatii bug"
+    "HEADER": "Actualizare informatii bug",
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
 
   },
   "ADD_USER": {

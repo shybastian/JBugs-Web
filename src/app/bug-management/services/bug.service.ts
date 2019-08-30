@@ -30,6 +30,7 @@ export class BugService {
     };
 
     this.http.post(this.baseUrl, wrapper, {responseType: 'text', headers: headers}).subscribe((response: any) => {
+      console.log("Response is: ", response);
       if (response === "OK") {
         alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
       } else if (response === "ERROR") {
@@ -64,5 +65,20 @@ export class BugService {
     console.log(JSON.stringify(wrapper));
     return this.http.put(this.baseUrl + "/update-bug/" + wrapper.bugDTO.ID, wrapper,
       {responseType: 'text', headers: headers})
+  }
+
+  closeBug(bugID: number){
+
+    let headers = {  'Authorization': 'Bearer ' + this.storageService.getToken(),
+      'Access-Control-Expose-Headers': 'Authorization' };
+
+    this.http.put(this.baseUrl + '/close-bug/' + bugID, {responseType: 'text', headers: headers})
+      .subscribe((response: any) =>{
+        if (response === "OK") {
+          alert("Close successful");
+        } else if (response === "ERROR") {
+          alert("Close Error");
+        } else alert(response);
+      })
   }
 }
