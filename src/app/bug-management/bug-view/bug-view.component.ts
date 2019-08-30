@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DialogService, SelectItem} from 'primeng/api';
 import {BugService} from '../services/bug.service';
 import {UserService} from '../../user-management/services/user.service';
-import {User} from '../../user-management/models/user.model';
+import {PermissionType, User} from '../../user-management/models/user.model';
 import {Bug, BugUpdate} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
 import {Table} from 'primeng/table';

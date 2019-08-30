@@ -52,6 +52,7 @@ import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.componen
 import {ToastModule} from "primeng/toast";
 import {VirtualScrollerModule} from "primeng/virtualscroller";
 import {DataViewModule} from "primeng/dataview";
+// import {NotifierComponent} from './notifications-management/services/notifier/notifier.component';
 
 
 // AoT requires an exported function for factories
