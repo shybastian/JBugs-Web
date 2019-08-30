@@ -162,5 +162,15 @@
   "BUG_UPDATE": {
     "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
     "Update": "Actualizeaza"
+  },
+  "NOTIFICATIONS": {
+    "WELCOME_NEW_USER": "Bun venit!",
+    "USER_UPDATED": "Utilizator actualizat!",
+    "USER_DELETED": "Utilizator sters!",
+    "USER_DEACTIVATED": "Utilizator dezactivat!",
+    "BUG_UPDATED": "Bug actualizat!",
+    "BUG_CLOSED": "Bug inchis!",
+    "BUG_STATUS_UPDATED": "Bug status actualizat!",
+    "ERROR": "Eroare la interogarea bazei de date!"
   }
 }

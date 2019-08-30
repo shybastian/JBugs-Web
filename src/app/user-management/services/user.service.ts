@@ -3,13 +3,14 @@ import {RoleWrapper, User, UserEditWrapper, UserInsertWrapper} from '../models/u
 import {Observable} from 'rxjs';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Notification} from "../../notifications-management/models/notification.model";
+import {StorageService} from "../login/services/storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private backendService: BackendService) {
+  constructor(private backendService: BackendService, private storageService: StorageService) {
   }
 
   /**
@@ -69,8 +70,11 @@ export class UserService {
    *    and returns an observable
    */
   editUser(user: UserEditWrapper): Observable<UserEditWrapper> {
-    debugger;
-    return this.backendService.put(' http://localhost:8080/jbugs/api/users/edit-user', user);
+    let body = {
+      "user": user,
+      "usernameUpdater": this.storageService.getUserWithoutIdRolesCounterStatusFromSessionStorage().username
+    }
+    return this.backendService.put(' http://localhost:8080/jbugs/api/users/edit-user', body);
   }
 
   /**
@@ -83,4 +87,11 @@ export class UserService {
     return this.backendService.get('http://localhost:8080/jbugs/api/users/' + username + '/notifications');
   }
 
+  getUserTodayNotifications(username: string): Observable<Notification[]> {
+    return this.backendService.get('http://localhost:8080/jbugs/api/users/' + username + '/notifications/day');
+  }
+
+  getUserNewNotifications(username: string, lastNotificationId: number): Observable<Notification[]> {
+    return this.backendService.get('http://localhost:8080/jbugs/api/users/' + username + '/notifications/' + lastNotificationId);
+  }
 }
