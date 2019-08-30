@@ -50,7 +50,8 @@
     "SEVERITY":"Severitate",
     "CREATED_BY": "Creat de",
     "ASSIGNED_TO": "Atribuit",
-    "ATTACHMENTS": "Atasamente"
+    "ATTACHMENTS": "Atasamente",
+    "BACK": "înapoi"
   },
   "UPDATE":{
     "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",

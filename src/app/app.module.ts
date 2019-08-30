@@ -44,11 +44,12 @@ import {UserPermissionGuard} from './authentication-guards/user-permission.guard
 import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
 import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
 import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
-import {ToastModule} from 'primeng/toast';
-import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {DataViewModule} from 'primeng/dataview';
 import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
+import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
+import {ToastModule} from "primeng/toast";
+import {VirtualScrollerModule} from "primeng/virtualscroller";
+import {DataViewModule} from "primeng/dataview";
 
 
 // AoT requires an exported function for factories
@@ -73,6 +74,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EditPermissionsComponent,
     BugViewComponent,
     UserEditComponent,
+    NotificationsViewComponent,
+    GetBugIdComponent,
     NotificationsViewComponent,
     BugEditComponent
   ],

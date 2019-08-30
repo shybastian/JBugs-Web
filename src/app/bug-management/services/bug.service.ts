@@ -44,17 +44,10 @@ export class BugService {
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
-  // updateBug(newStatus: string, bugID: number){
-  //   console.log("From update:" + newStatus);
-  //   console.log("From update:" + bugID);
-  //   this.http.put(this.baseUrl + "/update-bug-status/" + bugID, newStatus, {responseType: 'text'}).subscribe((response: any) => {
-  //     if (response === "OK") {
-  //       alert(this.translateService.instant("UPDATE_STATUS.SUCCESS_UPDATE"));
-  //     } else if (response === "ERROR") {
-  //       alert(this.translateService.instant("UPDATE_STATUS.ERROR_UPDATE"))
-  //     } else alert(response);
-  //   });
-  // }
+  getBugById(id: number): Observable<Bug> {
+    let token: String = StorageService.getToken();
+    return this.backendService.get('http://localhost:8080/jbugs/api/bugs/' + id, token);
+  }
 
   updateBug(wrapper: BugUpdateWrapper) {
     console.log("wrapper in service: ", wrapper);
