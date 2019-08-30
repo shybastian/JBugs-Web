@@ -11,7 +11,7 @@ export class BugCreateValidator {
    */
   static validateVersion(control: AbstractControl): ValidationErrors | null {
     const value: string = control.value;
-    const regexExpression = new RegExp('(([\\w][.]){1,2}[\\w])');
+    const regexExpression = new RegExp('(^[0-9a-zA-Z]{1,2}[.]{1}[0-9a-zA-Z]{1,2}){1}([.]{1}[0-9a-zA-Z]{0,2}){0,1}');
     if (value && !regexExpression.test(value)) {
       return {validateVersion: true};
     }

@@ -45,6 +45,7 @@ import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
 import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
 import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
 import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
+import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
 import {ToastModule} from "primeng/toast";
 import {VirtualScrollerModule} from "primeng/virtualscroller";
@@ -111,7 +112,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CodeHighlighterModule,
     VirtualScrollerModule,
     DataViewModule,
-    //PDFExportModule
+    PDFExportModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],
