@@ -18,29 +18,37 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   ButtonModule,
   CalendarModule,
+  CarouselModule,
+  CodeHighlighterModule,
   DialogModule,
   DropdownModule,
   InputTextModule,
   ListboxModule,
-  MultiSelectModule
+  MultiSelectModule,
+  TabViewModule
 } from 'primeng/primeng';
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {UsersViewComponent} from './user-management/users-view/users-view.component';
 import {NotificationComponent} from './notification/notification.component';
-import {BugViewComponent} from "./bug-management/bug-view/bug-view.component";
+import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
 import {UserEditComponent} from './user-management/user-edit/user-edit.component';
 
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
-import {UserCreateComponent} from "./user-management/user-create/user-create.component";
-import {EditPermissionsComponent} from "./permissions-management/edit-permissions/edit-permissions.component";
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 
-import {LoggedInGuard} from "./authentication-guards/logged-in.guard";
-import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
-import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
-import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
-import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
-import {BugEditComponent} from './bug-management/bug-edit/bug-edit.component';
+import {LoggedInGuard} from './authentication-guards/logged-in.guard';
+import {PermissionPermissionGuard} from './authentication-guards/permission-permission.guard';
+import {UserPermissionGuard} from './authentication-guards/user-permission.guard';
+import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
+import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
+import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
+import {ToastModule} from 'primeng/toast';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {DataViewModule} from 'primeng/dataview';
+import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -64,6 +72,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EditPermissionsComponent,
     BugViewComponent,
     UserEditComponent,
+    NotificationsViewComponent,
     BugEditComponent
   ],
   imports: [
@@ -90,7 +99,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CalendarModule,
     DynamicDialogModule,
     CalendarModule,
-    InputTextModule
+    InputTextModule,
+    ToastModule,
+    CarouselModule,
+    CommonModule,
+    ButtonModule,
+    TabViewModule,
+    CodeHighlighterModule,
+    VirtualScrollerModule,
+    DataViewModule,
+    PDFExportModule
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],

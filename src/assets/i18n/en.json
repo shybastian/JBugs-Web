@@ -26,7 +26,16 @@
     "Active": "Active",
     "Inactive": "Inactive",
     "NO_ROLE": "No role assigned",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "ID": "ID",
+    "USERNAME": "Username",
+    "STATUS": "Status",
+    "COUNTER": "Password tries",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ROLES": "Roles"
   },
   "ADD_USER": {
     "ID": "ID",
@@ -55,6 +64,9 @@
     "ALERT_FAIL_CREATED_USER": "Failed while creating user!"
   },
   "BUG_VIEW": {
+    "DOWNLOAD_TABLE": "Download table",
+    "DOWNLOAD": "Download",
+
     "TITLE": "Title",
     "DESCRIPTION": "Description",
     "VERSION": "Version",
@@ -87,7 +99,8 @@
     "NOTIFICATION": "Notification",
     "PERMISSION": "Permission",
     "EDIT_PERMISSION": "Edit Permission",
-    "LOG_OUT": "Log Out"
+    "LOG_OUT": "Log Out",
+    "NOTIFICATIONS_VIEW": "Notifications List"
   },
   "EDIT_USER": {
     "FIRST_NAME": "First name",
@@ -140,5 +153,12 @@
     "SeverityLow": "Low",
     "ALERT_BUG_ADDED": "The new Entry has been added successfully!",
     "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
+  },
+  "NOTIFICATIONS_VIEW": {
+    "TYPE": "Type",
+    "MESSAGE": "Message",
+    "DATE": "Date",
+    "BUG_URL": "Bug URL",
+    "ERROR": "Failed at retrieving notifications data from database!"
   }
 }

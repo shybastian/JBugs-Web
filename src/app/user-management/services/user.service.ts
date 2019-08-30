@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {RoleWrapper, User, UserEditWrapper, UserInsertWrapper} from '../models/user.model';
 import {Observable} from 'rxjs';
 import {BackendService} from '../../core/backend/services/backend.service';
+import {Notification} from "../../notifications-management/models/notification.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,12 @@ export class UserService {
   constructor(private backendService: BackendService) {
   }
 
+  /**
+   * This method reguests all the users from the database
+   *    from the server, sending a GET request
+   * It wraps the data returned in the response in a list of User objects
+   *    and returns an observable
+   */
   getAllUsers(): Observable<User[]> {
     return this.backendService.get(' http://localhost:8080/jbugs/api/users');
   }
@@ -43,7 +50,6 @@ export class UserService {
    *    and returns an observable
    */
   addUser(firstname: string, lastname: string, phone: string, mail: string, roleList: RoleWrapper[]): Observable<UserInsertWrapper> {
-    debugger;
     const user: UserInsertWrapper = {
       firstName: firstname,
       lastName: lastname,
@@ -63,5 +69,15 @@ export class UserService {
    */
   editUser(user: UserEditWrapper): Observable<UserEditWrapper> {
     return this.backendService.put(' http://localhost:8080/jbugs/api/users/edit-user', user);
+  }
+
+  /**
+   * This method reguests an array of notifications corresponding to the user having
+   *    the specified username from the server, sending a GET request
+   * It wraps the data returned in the response in a Notification object array
+   *    and returns an observable
+   */
+  getUserNotifications(username: string): Observable<Notification[]> {
+    return this.backendService.get('http://localhost:8080/jbugs/api/users/' + username + '/notifications');
   }
 }

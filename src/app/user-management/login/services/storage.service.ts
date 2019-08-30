@@ -30,9 +30,11 @@ export class StorageService {
   }
 
   getToken(): string {
+
     if (!this.isSomeoneLoggedIn()) {
       return '';
     }
+
     return sessionStorage.getItem('token');
   }
 

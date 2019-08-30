@@ -42,6 +42,11 @@ export class EditPermissionsComponent implements OnInit {
   constructor(private service: PermissionService) {
   }
 
+  /**
+   * When this component is initialized,
+   * this function is called.
+   * It initializes the values of the form components
+   */
   ngOnInit() {
     this.service.getRolePermissions(this.roles[0]).subscribe(permissions => {
       this.rolePermissions = permissions;
@@ -50,6 +55,10 @@ export class EditPermissionsComponent implements OnInit {
     this.permissions = this.adminPermissions;
   }
 
+  /**
+   * The method gets called when the user changes the permissions selections
+   *    and send the role permissions data to the services to be sent to the server
+   */
   handlePermissionChange(obj) {
     this.service.setRolePermissions(this.selectedRole, this.rolePermissions)
       .subscribe(data => {
@@ -57,6 +66,11 @@ export class EditPermissionsComponent implements OnInit {
       });
   }
 
+  /**
+   * The method gets called when the user changes the role selections
+   *    and updates the list of available permissions, also selects the permissions
+   *    corresponding to the selected role
+   */
   handleRoleChange($event: any) {
     if (this.selectedRole.id == 1) {
       this.permissions = this.adminPermissions;

@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
 import {Bug, BugUpdateWrapper} from '../model/bug.model';
-import {HttpClient} from "@angular/common/http";
-import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
-import {StorageService} from "../../user-management/login/services/storage.service";
-import {TranslateService} from "@ngx-translate/core";
+import {HttpClient} from '@angular/common/http';
+import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
+import {StorageService} from '../../user-management/login/services/storage.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'

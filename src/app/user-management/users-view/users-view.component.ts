@@ -4,8 +4,8 @@ import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {StorageService} from '../login/services/storage.service';
-import {UserEditComponent} from "../user-edit/user-edit.component";
-import {DialogService} from "primeng/api";
+import {UserEditComponent} from '../user-edit/user-edit.component';
+import {DialogService} from 'primeng/api';
 
 @Component({
   selector: 'app-users-view',
@@ -23,22 +23,24 @@ export class UsersViewComponent implements OnInit, DoCheck {
   users: User[];
   cols: any[];
 
-  constructor(private storageService: StorageService, private router: Router, private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
+  constructor(private storageService: StorageService, private router: Router,
+              private userService: UserService, private translate: TranslateService, public dialogService: DialogService) {
   }
 
   ngDoCheck(): void {
-    if (this.users !== undefined) {
+    if (this.users === undefined) {
       return;
     }
-    if (this.users !== null) {
+    if (this.users === null) {
       return;
     }
     // only if iterable, apply changes, i.e. after getUsers
     for (let user of this.users) {
+      // console.log('inside');
       if (user.status === UserStatusType.Active) {
-        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Active);
+        user.stringStatus = this.translate.instant('USERS.Active');
       } else {
-        user.stringStatus = this.translate.instant('USERS.' + UserStatusTypeSTRING.Inactive);
+        user.stringStatus = this.translate.instant('USERS.Inactive');
       }
     }
   }
@@ -48,9 +50,9 @@ export class UsersViewComponent implements OnInit, DoCheck {
       this.users = users;
       for (let user of this.users) {
         if (user.status === UserStatusType.Active) {
-          user.stringStatus = UserStatusTypeSTRING.Active;
+          user.stringStatus = this.translate.instant('USERS.Active');
         } else {
-          user.stringStatus = UserStatusTypeSTRING.Inactive;
+          user.stringStatus = this.translate.instant('USERS.Inactive');
         }
       }
     });
@@ -74,12 +76,6 @@ export class UsersViewComponent implements OnInit, DoCheck {
 
   ok() {
     this.displayDialog = false;
-  }
-
-  edit() {
-    this.displayDialog = false;
-
-    this.router.navigate(['dashboard/users/edit', this.selectedUser.id]).then();
   }
 
   onRowSelect() {
@@ -124,12 +120,11 @@ export class UsersViewComponent implements OnInit, DoCheck {
     //find the old user using id
     for (let tableUser of this.users) {
       if (tableUser.id == user.id) {
-        //it deletes the old user value and adds the new one at the end of the table
-        this.users.splice(this.users.indexOf(tableUser), 1);
+        //update user in table
+        let index = this.users.indexOf(tableUser);
         tableUser = user;
-
         tableUser.stringStatus = UserStatusTypeSTRING[UserStatusType[user.status]];
-        this.users.push(tableUser);
+        this.users[index] = tableUser;
       }
     }
   }
