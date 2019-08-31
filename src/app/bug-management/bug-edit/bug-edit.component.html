@@ -138,9 +138,9 @@
                 id="status"
                 name="status"
                 ngModel
-                optionLabel="label"
+                optionLabel="value"
                 #status="ngModel"
-                [(ngModel)]="bug.status"
+                [(ngModel)]="selectedStatus"
                 [options]="newStatusValues"
                 (onClick)="selectStatus()"
                 [disabled]="noStatusAvailable"
@@ -160,12 +160,10 @@
       ngModel
       #assigned_ID="ngModel"
       [(ngModel)]="bug.ASSIGNED_ID"
-      [value]="bug.ASSIGNED_ID.username"
-    >
+      [value]="bug.ASSIGNED_ID.username">
       <option
         class="form-group"
-        *ngFor="let user of listOfUsers" [ngValue]="user"
-      >
+        *ngFor="let user of listOfUsers" [ngValue]="user">
         {{user.username}}
       </option>
     </select>
@@ -175,8 +173,7 @@
     <button
       class="form-control"
       type="submit"
-      [disabled]="bugEditForm.invalid || !bugEditForm.touched"
-    >
+      [disabled]="bugEditForm.invalid || !bugEditForm.touched">
       {{'BUG_UPDATE.Update' | translate}}
     </button>
   </div>
