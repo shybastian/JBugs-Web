@@ -49,7 +49,8 @@
                       (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
           <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]=""
-                      [readonlyInput]="false" dateFormat="yy-MM-dd"
+                      [readonlyInput]="true" dateFormat="yy-MM-dd"
+                      (onClearClick)="dt.filter($event.target.value, col.field, 'contains');"
                       (onSelect)="dt.filter($event, col.field, 'dateFilter')">
 
           </p-calendar>
@@ -75,7 +76,7 @@
     {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
     {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
     {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
-    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
+    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}<br>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
     {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>

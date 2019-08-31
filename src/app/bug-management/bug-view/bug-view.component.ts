@@ -80,7 +80,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.userFilter = [
-      {label: 'All', value: null}
+      {label: 'No user assigned', value: null}
     ];
 
     this.columns = [
@@ -126,6 +126,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     this.bugService.getAllBugs().subscribe(bugs => {
       this.bugsViewList = bugs;
       this.bugs = this.bugsViewList.bugDTOList;
+      console.log(this.bugs);
       this.users = this.bugsViewList.userDTOList;
       for (let i = 0; i < this.bugs.length; i++) {
         this.bugsView.push({
@@ -137,8 +138,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           status: this.bugs[i].status,
           fixedVersion: this.bugs[i].fixedVersion,
           severity: this.bugs[i].severity,
-          created_ID: this.bugs[i].created_ID.username,
-          assigned_ID: this.bugs[i].assigned_ID.username
+          created_ID: this.bugs[i].created_ID.firstName + " " + this.bugs[i].created_ID.lastName,
+          assigned_ID: this.bugs[i].assigned_ID.firstName + " " + this.bugs[i].assigned_ID.lastName
         });
       }
 
@@ -234,7 +235,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   closeBug(){
     this.bugService.closeBug(this.selectedBug.id);
     this.visibleButton = false;
-    location.reload();
+    this.closeBugTable(this.selectedBug);
   }
 
   checkPermissionForBugClose(){
@@ -305,9 +306,23 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     this.displayInfoModal = false;
     ref.onClose.subscribe((bug: Bug) => {
       if (bug) {
+        //this.updateBug(bug);
       }
     }, error => {
       alert(error);
     });
+  }
+
+  closeBugTable(bug: BugView) {
+    for (let tableBug of this.bugsView) {
+      if (tableBug.id == bug.id) {
+        //update user in table
+        let index = this.bugsView.indexOf(tableBug);
+        tableBug = bug;
+        tableBug.status = "CLOSED";
+        //tableBug.stringStatus = UserStatusTypeSTRING[UserStatusType[user.status]];
+        this.bugsView[index] = tableBug;
+      }
+    }
   }
 }
