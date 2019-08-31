@@ -42,15 +42,15 @@ export class BugEditComponent implements OnInit {
 
     this.statusOpen = [
       {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'},
-      {label: 'Rejected', value: 'REJECTED'}
+      {label: 'IN_PROGRESS', value: 'IN_PROGRESS'},
+      {label: 'REJECTED', value: 'REJECTED'}
     ];
 
     this.statusInProgress = [
       {label: "[Select status]", value: ["Select status"]},
-      {label: 'Rejected', value: 'REJECTED'},
-      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
-      {label: 'Fixed', value: 'FIXED'}
+      {label: 'REJECTED', value: 'REJECTED'},
+      {label: 'INFO_NEEDED', value: 'INFO_NEEDED'},
+      {label: 'FIXED', value: 'FIXED'}
     ];
 
     this.statusRejected = [
@@ -59,12 +59,12 @@ export class BugEditComponent implements OnInit {
 
     this.statusFixed = [
       {label: "[Select status]", value: ["Select status"]},
-      {label: 'Open', value: 'OPEN'},
+      {label: 'OPEN', value: 'OPEN'},
     ];
 
     this.statusInfoNeeded = [
       {label: "[Select status]", value: ["Select status"]},
-      {label: 'In progress', value: 'IN_PROGRESS'}
+      {label: 'IN_PROGRESS', value: 'IN_PROGRESS'}
     ];
   }
 
@@ -78,8 +78,6 @@ export class BugEditComponent implements OnInit {
       token: this.storageService.getToken()
     };
 
-    console.log(this.bug.status);
-
     if(this.bug.status === "CLOSED"){
       alert("UPDATE.CLOSED_STATUS_ALERT");
     }
@@ -89,10 +87,10 @@ export class BugEditComponent implements OnInit {
     else {
       this.bugService.updateBug(wrapper).subscribe((data: any) => {
         if (data === "OK") {
-          alert(this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
+          alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_UPDATE"));
         }
         if (data === "ERROR") {
-          alert(this.translateService.instant("UPDATE.ERROR_UPDATE"));
+          alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
         }
         this.ref.close();
         location.reload();
