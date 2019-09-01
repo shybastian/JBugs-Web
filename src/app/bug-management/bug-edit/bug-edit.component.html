@@ -139,10 +139,11 @@
     <p-dropdown
       id="status"
       name="status"
-      optionLabel="label"
+                ngModel
+                optionLabel="value"
       #status="ngModel"
-      [options]="newStatusValues"
-      [(ngModel)]="bug.status"
+                [(ngModel)]="selectedStatus"
+                [options]="newStatusValues"
       (onClick)="selectStatus()"
       [disabled]="noStatusAvailable"
       [style]="{'width': '100%'}">
@@ -163,9 +164,7 @@
     >
       <option
         class="form-group"
-        [defaultSelected]="bug.ASSIGNED_ID"
-        *ngFor="let user of listOfUsers" [ngValue]="user"
-      >
+        *ngFor="let user of listOfUsers" [ngValue]="user">
         {{user.username}}
       </option>
     </select>
@@ -175,8 +174,7 @@
     <button
       class="form-control"
       type="submit"
-      [disabled]="bugEditForm.invalid || !bugEditForm.touched"
-    >
+      [disabled]="bugEditForm.invalid || !bugEditForm.touched">
       {{'BUG_UPDATE.Update' | translate}}
     </button>
   </div>
