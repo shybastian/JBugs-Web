@@ -110,34 +110,41 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
-            [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+  <p-dialog styleClass="modal-dialog modal-lg" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
+            [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
-
+    <p-header class="labelStyle">Info</p-header>
     <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
 
       <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
-    {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
-    {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
-    {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
-    {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
-    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}<br>
-    {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
-    {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
-    {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
-    {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
-    {{'BUG_VIEW.ATTACHMENTS' | translate}} : {{getAttachmentsForID(selectedBug.id)}}
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.TITLE' | translate}} : </label> <span class="labelStyle">{{selectedBug.title}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.DESCRIPTION' | translate}} :</label> <span class="labelStyle">{{selectedBug.description}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.VERSION' | translate}} : </label> <span class="labelStyle">{{selectedBug.version}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.TARGET_DATE' | translate}} : </label> <span class="labelStyle">{{selectedBug.targetDate}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.STATUS' | translate}} : </label> <span class="labelStyle">{{selectedBug.status}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.FIXED_VERSION' | translate}} : </label> <span class="labelStyle">{{selectedBug.fixedVersion}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.SEVERITY' | translate}} : </label> <span class="labelStyle">{{selectedBug.severity}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.CREATED_BY' | translate}} : </label> <span class="labelStyle">{{selectedBug.created_ID}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.ASSIGNED_TO' | translate}} :</label> <span class="labelStyle">{{selectedBug.assigned_ID}}</span><br>
+      <label class="badge badge-light; labelStyle">{{'BUG_VIEW.ATTACHMENTS' | translate}} : </label><span class="labelStyle">{{attachmentsString}}</span><br>
   <p class="text-style"></p>
 
     </kendo-pdf-export>
-  <p-footer>
+    <p-footer>
+      <div class="btn-group btn-group-lg" role="group">
 
-    <button kendo-button *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}} PDF</button>
-    <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
-    <button pButton icon="fa fa-plus"(click)="closeBug()" [disabled]="!visibleButton" >Close Bug</button>
-    <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>
+        <button role="group" class="btn btn-outline-info btn-sm" *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">PDF</button>
+
+        <button role="group" class="btn btn-outline-primary btn-sm" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
+
+        <button role="group" class="btn btn-outline-primary btn-sm" (click)="closeBug()" [disabled]="!visibleButton">Close Bug</button>
+
+        <button role="group" class="btn btn-outline-secondary btn-sm" (click)="displayInfoModal=false" >Exit</button>
+
+      </div>
+
   </p-footer>
 </p-dialog>
 </form>
-</body>>
+</body>
 

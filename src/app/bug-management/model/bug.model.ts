@@ -28,12 +28,6 @@ export interface BugModel {
   ASSIGNED_ID: User;
 }
 
-// BugWrapper
-export interface BugUpdateWrapper {
-  bugDTO: BugModel;
-  token: string;
-}
-
 // Bug-View to create BugUpdate
 export interface BugUpdate {
   title: string;
