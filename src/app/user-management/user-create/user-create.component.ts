@@ -5,6 +5,7 @@ import {RoleWrapper} from '../models/user.model';
 import {Role} from '../models/role';
 import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-user-create',
@@ -29,7 +30,7 @@ export class UserCreateComponent implements OnInit {
 
   showMultiselectRequiredMessage = true;
 
-  constructor(private service: UserService, public translate: TranslateService, private router: Router) {
+  constructor(private notifier: NotifierService, private service: UserService, public translate: TranslateService, private router: Router) {
   }
 
   ngOnInit() {
@@ -44,8 +45,9 @@ export class UserCreateComponent implements OnInit {
   addUser(userForm: NgForm) {
     this.service.addUser(this.firstNameValue, this.lastNameValue, this.phoneValue, this.emailValue, this.selectedRoles)
       .subscribe(data => {
+        this.notifier.notify("success", this.translate.instant('ADD_USER.ALERT_SUCCESS_CREATED_USER'));
         alert(this.translate.instant('ADD_USER.ALERT_SUCCESS_CREATED_USER'));
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/dashboard/users/view']);
       }, Error => {
         alert(this.translate.instant('ADD_USER.ALERT_FAIL_CREATED_USER'));
       });

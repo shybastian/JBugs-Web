@@ -6,6 +6,7 @@ import {BugModel, BugUpdateWrapper} from "../model/bug.model";
 import {NgForm} from "@angular/forms";
 import {StorageService} from "../../user-management/login/services/storage.service";
 import {User} from "../../user-management/models/user.model";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-bug-edit',
@@ -28,7 +29,7 @@ export class BugEditComponent implements OnInit {
 
   noStatusAvailable: boolean;
 
-  constructor(private bugService: BugService, private ref: DynamicDialogRef, private config: DynamicDialogConfig,
+  constructor(private notifier: NotifierService, private bugService: BugService, private ref: DynamicDialogRef, private config: DynamicDialogConfig,
               private translateService: TranslateService, private storageService: StorageService) {
   }
 
@@ -90,7 +91,7 @@ export class BugEditComponent implements OnInit {
     };
 
    if(this.selectedStatus.value === "[Select status]" || this.selectedStatus.value === "" || this.selectedStatus.value === undefined){
-      alert(this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
+     this.notifier.notify("error", this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
     }
     else {
      for(let s of this.statusTypes)
@@ -104,12 +105,12 @@ export class BugEditComponent implements OnInit {
       }
       this.bugService.updateBug(wrapper).subscribe((data: any) => {
         if (data === "OK") {
-          alert(this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
+          this.notifier.notify("success", this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
           this.newStatusValues = [];
           this.ref.close(wrapper.bugDTO);
         }
         if (data === "ERROR") {
-          alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
+          this.notifier.notify("error", this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
         }
         this.ref.close();
       })

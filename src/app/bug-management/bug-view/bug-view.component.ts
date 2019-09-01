@@ -372,6 +372,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         break;
       }
     }
+    this.displayInfoModal = false;
     const ref = this.dialogService.open(BugEditComponent, {
       data: [selectedBug, id, created, assigned, this.users],
       header: this.translate.instant('UPDATE.HEADER'),

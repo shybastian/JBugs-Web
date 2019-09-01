@@ -65,7 +65,6 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Download table",
-    "DOWNLOAD_ALL": "Download all bugs",
     "DOWNLOAD": "Download",
 
     "TITLE": "Title",
@@ -135,6 +134,7 @@
     "ALERT_PASSWORD_REQUIRED": "Password is required!",
     "ALERT_PASSWORD_DIMENSION": "Password is too long/short! Must be between 3 and 20 characters!",
     "ALERT_COUNTER_REQUIRED": "Counter is required!",
+    "ALERT_COUNTER_INCORRECT": "Counter is incorrect!",
     "HEADER": "Update user info"
   },
   "BUG-CREATE": {
@@ -181,6 +181,7 @@
   "BUG_UPDATE": {
     "NoStatusAvailable": "No status available for update",
     "Update": "Update",
+    "Closed_Success": "Closed successfully!",
     "Title": "Title",
     "Description": "Description",
     "Version": "Version",

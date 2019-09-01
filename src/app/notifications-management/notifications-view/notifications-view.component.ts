@@ -25,12 +25,17 @@ export class NotificationsViewComponent implements OnInit {
    * It initializes the values of the notifications in the table
    */
   ngOnInit() {
+    debugger;
     this.userService.getUserNotifications(this.storageService.getUserWithoutIdRolesCounterStatusFromSessionStorage().username)
       .subscribe(notifications => {
         this.notifications = notifications;
       }, Error => {
         alert(this.translate.instant("NOTIFICATIONS_VIEW.ERROR"));
       });
+  }
+
+  hasURL(notification: Notification) {
+    return notification.url != '';
   }
 
 }

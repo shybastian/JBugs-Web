@@ -96,6 +96,7 @@ export class NavigateMenuComponent implements OnInit {
 
   atLogout() {
     this.storageService.atLogout();
+    localStorage.setItem("instantiatedIntervalMethod", "true");
     this.router.navigate(['/login']);
   }
 
