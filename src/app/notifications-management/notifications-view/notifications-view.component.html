@@ -5,17 +5,20 @@
       <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
         <div class="ui-g-12 ui-md-8 car-details">
           <div class="ui-g">
-            <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.TYPE' | translate}}:</div>
-            <div class="ui-g-10 ui-sm-6"><b>{{notification.type}}</b></div>
 
-            <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.MESSAGE' | translate}}:</div>
-            <div class="ui-g-10 ui-sm-6"><b>{{notification.message}}</b></div>
-
-            <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.DATE' | translate}}:</div>
-            <div class="ui-g-10 ui-sm-6"><b>{{notification.date}}</b></div>
-
-            <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.BUG_URL' | translate}}:</div>
-            <div class="ui-g-10 ui-sm-6"><b>{{notification.url}}</b></div>
+            <ul>
+              <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.MESSAGE' | translate}}:</div>
+              <div class="ui-g-10 ui-sm-6"><b>{{notification.message}}</b></div>
+            </ul>
+            <ul>
+              <div class="ui-g-2 ui-sm-6">{{'NOTIFICATIONS_VIEW.DATE' | translate}}:</div>
+              <div class="ui-g-10 ui-sm-6"><b>{{notification.date}}</b></div>
+            </ul>
+            <ul>
+              <div class="ui-g-2 ui-sm-6" *ngIf="hasURL(notification)">{{'NOTIFICATIONS_VIEW.BUG_URL' | translate}}:
+              </div>
+              <div class="ui-g-10 ui-sm-6"><b>{{notification.url}}</b></div>
+            </ul>
           </div>
         </div>
       </div>
