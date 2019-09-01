@@ -100,7 +100,7 @@ export class BugCreateComponent implements OnInit {
   createAttachmentEntity(bug: BugModel): Attachment {
     let attachmentToCreate: Attachment = {
       ID: 0,
-      attContent: this.bugCreateForm.get('attachment').value,
+      attContent: this.bugCreateForm.get('attachment').value.toString().substr(12),
       bugID: bug
     };
     return attachmentToCreate

@@ -1,4 +1,4 @@
-<form #bugEditForm="ngForm" (ngSubmit)="editBug(bugEditForm)">
+<form #bugEditForm="ngForm">
   <div class="form-group">
     <label for="title">{{'BUG_UPDATE.Title' | translate}}</label>
     <input
@@ -171,10 +171,34 @@
   </div>
 
   <div class="form-group">
+    <label>{{'BUG-CREATE.Attachment' | translate}}</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        id="attachment"
+        name="attachment"
+        type="file"
+        accept="image/jpeg,image/jpg,image/png,.pdf,.doc,.odf,.xlsx,.xls"
+        size="25MB"
+        ngModel
+        #att
+        (ngModelChange)="log(att.value.toString().substr(12))"
+      >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div *ngFor="let att of bugAttachments">
+      {{att}} <button (click)="deleteAttachment(att)">Delete</button>
+    </div>
+  </div>
+
+  <div class="form-group">
     <button
       class="form-control"
       type="submit"
-      [disabled]="bugEditForm.invalid || !bugEditForm.touched">
+      [disabled]="bugEditForm.invalid || !bugEditForm.touched"
+      (click)="editBug(bugEditForm)">
       {{'BUG_UPDATE.Update' | translate}}
     </button>
   </div>

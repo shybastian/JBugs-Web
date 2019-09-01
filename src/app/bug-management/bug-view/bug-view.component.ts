@@ -11,7 +11,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {BugEditComponent} from '../bug-edit/bug-edit.component';
 import {BugViewList} from '../model/bug-view-list.model';
 import {StorageService} from '../../user-management/login/services/storage.service';
-import {Attachment} from "../model/attachment.model";
+import {Attachment, AttachmentView} from "../model/attachment.model";
+import {AttachmentService} from "../services/attachment.service";
 
 @Component({
   selector: 'app-bug-view',
@@ -22,16 +23,16 @@ import {Attachment} from "../model/attachment.model";
 })
 export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
-  constructor(private bugService: BugService, private userService: UserService, private datePipe: DatePipe,
-              private translate: TranslateService, private storageService: StorageService,private dialogService: DialogService) {
-
+  constructor(private bugService: BugService, private userService: UserService, private attachmentService: AttachmentService,
+              private datePipe: DatePipe, private translate: TranslateService, private storageService: StorageService,
+              private dialogService: DialogService) {
   }
 
   public bugsViewList: BugViewList;
   public bugsView: BugView[] = [];
   public bugs: Bug[] = [];
   public users: User[];
-  public attachments: Attachment[] = [];
+  public attachments: AttachmentView[] = [];
 
   columns: any[];
 
@@ -126,14 +127,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
     this.fixedVersionFilter = [
       {label: 'All', value: ''},
-      {label: 'No version assigned', value: ''}
+      {label: 'No version assigned', value: 'No version assigned'}
     ];
-
-    this.bugService.getAttachments().subscribe(atts => {
-      console.log(atts);
-      this.attachments = atts
-      console.log(this.attachments);
-    });
   }
 
   /**
@@ -161,14 +156,32 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           assigned = this.bugs[i].assigned_ID.firstName + " " + this.bugs[i].assigned_ID.lastName;
         }
 
+        let fixedVersion: string;
+        if(this.bugs[i].fixedVersion == null || this.bugs[i].fixedVersion === "")
+        {
+          fixedVersion = "No version assigned";
+        }
+        else
+        {
+          fixedVersion = this.bugs[i].fixedVersion;
+        }
+
+        let targetDate;
+        if(this.bugs[i].targetDate == null){
+          targetDate = "Not assigned";
+        }
+        else{
+          targetDate = this.datePipe.transform(new Date(this.bugs[i].targetDate), 'yyyy-MM-dd');
+        }
+
         this.bugsView.push({
           id: this.bugs[i].id,
           title: this.bugs[i].title,
           description: this.bugs[i].description,
           version: this.bugs[i].version,
-          targetDate: this.datePipe.transform(new Date(this.bugs[i].targetDate), 'yyyy-MM-dd'),
+          targetDate: targetDate,
           status: this.bugs[i].status,
-          fixedVersion: this.bugs[i].fixedVersion,
+          fixedVersion: fixedVersion,
           severity: this.bugs[i].severity,
           created_ID: this.bugs[i].created_ID.firstName + " " + this.bugs[i].created_ID.lastName,
           assigned_ID: assigned
@@ -181,6 +194,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         this.assignedToFilter.push({label: userString, value: userString});
       }
 
+      this.attachmentService.getAttachments().subscribe(atts => {
+        console.log(atts);
+        this.attachments = atts;
+        console.log(this.attachments);
+      });
+
+
       this.constructVersionFilters(this.bugs);
       this.constructDateFilter();
       this.dt.reset();
@@ -188,14 +208,12 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
     });
   }
 
-  getAttachmentsForID(bugID): string{
-    let attString: string = "";
+  getAttachmentsForID(bugID): string[]{
+    let attString: string[] = [];
     for(let i = 0; i < this.attachments.length; i++){
-      if(this.attachments[i].bugID == bugID)
-        attString += this.attachments[i].attContent.valueOf() + " ";
+      if(this.attachments[i].bugID.id === bugID)
+        attString.push(this.attachments[i].attContent);
     }
-
-    console.log("Att content",attString);
     return attString;
   }
 
@@ -272,6 +290,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
    * Saves the selected row into a variable to be displayed on the info pop-up.
    * Calls the functions that verify if the "Edit" and "Close bug" buttons should be disabled or not
    */
+  attachmentsString: string[] = [];
   bugAsString():void{
     this.selectedBug=  {
       id: 0,
@@ -286,6 +305,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       assigned_ID: ""
     };
     this.selectedBug = this.selectedBug1;
+    this.attachmentsString = this.getAttachmentsForID(this.selectedBug.id);
     this.checkPermissionForBugClose();
     this.checkStatusClosed();
     this.selectedId = this.selectedBug1.id;
@@ -336,6 +356,8 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
   showInfoModal(){
 
     this.displayInfoModal = true;
+    this.attachmentsString = [];
+   // this.attachmentsString = this.getAttachmentsForID(this.selectedId);
   }
 
   /**
@@ -372,12 +394,15 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
         break;
       }
     }
+    let bugAttachments = this.getAttachmentsForID(id);
     const ref = this.dialogService.open(BugEditComponent, {
-      data: [selectedBug, id, created, assigned, this.users],
+      data: [selectedBug, id, created, assigned, this.users, bugAttachments, this.attachments],
       header: this.translate.instant('UPDATE.HEADER'),
 
       width: '40%'
     });
+
+    this.displayInfoModal = false;
 
     ref.onClose.subscribe((bug: BugModel) => {
        if (bug) {
@@ -427,13 +452,29 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
           created_ID: bug.CREATED_ID.firstName + " " + bug.CREATED_ID.lastName,
           assigned_ID: assigned
         };
-        this.updateBugTable(bugView);
-
+         this.updateBugTable(bugView);
       }
+
+      this.attachmentService.getAttachments().subscribe(atts => {
+        console.log(atts);
+        this.attachments = atts;
+        console.log(this.attachments);
+      });
 
     }, error => {
       alert(error);
     });
+
+    ref.onClose.subscribe((att: Attachment) => {
+
+      console.log("close update", this.attachments)
+      this.attachmentService.getAttachments().subscribe(atts => {
+        console.log(atts);
+        this.attachments = atts;
+        console.log(this.attachments);
+      });
+
+    })
   }
 
   /**

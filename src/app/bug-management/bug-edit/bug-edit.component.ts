@@ -2,10 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {BugService} from "../services/bug.service";
 import {DynamicDialogConfig, DynamicDialogRef, SelectItem} from "primeng/api";
 import {TranslateService} from "@ngx-translate/core";
-import {BugModel, BugUpdateWrapper} from "../model/bug.model";
+import {BugModel} from "../model/bug.model";
 import {NgForm} from "@angular/forms";
 import {StorageService} from "../../user-management/login/services/storage.service";
 import {User} from "../../user-management/models/user.model";
+import {Attachment, AttachmentView} from "../model/attachment.model";
+import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
+import {AttachmentService} from "../services/attachment.service";
 
 @Component({
   selector: 'app-bug-edit',
@@ -17,19 +20,24 @@ export class BugEditComponent implements OnInit {
   private listOfUsers: User[];
   private todayDate = new Date();
   private selectedStatus: SelectItem={label:"", value:""};
+  private bugAttachments: string[];
+  private attachments: AttachmentView[];
 
   statusOpen: SelectItem[];
   statusInProgress: SelectItem[];
   statusRejected: SelectItem[];
   statusFixed: SelectItem[];
   statusInfoNeeded: SelectItem[];
-  newStatusValues: SelectItem[];
+  newStatusValues: SelectItem[] = [];
   statusTypes: SelectItem[];
+
+  attachment: Attachment;
 
   noStatusAvailable: boolean;
 
-  constructor(private bugService: BugService, private ref: DynamicDialogRef, private config: DynamicDialogConfig,
-              private translateService: TranslateService, private storageService: StorageService) {
+  constructor(private bugService: BugService, private attachmentService: AttachmentService, private ref: DynamicDialogRef,
+              private config: DynamicDialogConfig, private translateService: TranslateService,
+              private storageService: StorageService) {
   }
 
   /**
@@ -41,6 +49,8 @@ export class BugEditComponent implements OnInit {
     this.bug.CREATED_ID = this.config.data[2];
     this.bug.ASSIGNED_ID = this.config.data[3];
     this.listOfUsers = this.config.data[4];
+    this.bugAttachments = this.config.data[5];
+    this.attachments = this.config.data[6];
 
     this.statusTypes = [
       {label: 'Open', value: 'OPEN'},
@@ -83,13 +93,19 @@ export class BugEditComponent implements OnInit {
    * @param editBugForm - not used for anything, just there to submit the form.
    */
   editBug(editBugForm: NgForm) {
+
+    this.attachment = this.createAttachmentEntity();
+    console.log(this.attachment);
     console.log(this.bug);
-    let wrapper: BugUpdateWrapper = {
-      bugDTO: this.bug,
-      token: this.storageService.getToken()
+    let wrapperWithAtt: BugAttachmentWrapper = {
+      bug: this.bug,
+      attachment: this.attachment,
+      token: this.storageService.getToken(),
     };
 
-   if(this.selectedStatus.value === "[Select status]" || this.selectedStatus.value === "" || this.selectedStatus.value === undefined){
+    console.log(wrapperWithAtt)
+
+   if(this.selectedStatus.value === "[Select status]" ){
       alert(this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
     }
     else {
@@ -102,16 +118,16 @@ export class BugEditComponent implements OnInit {
         }
 
       }
-      this.bugService.updateBug(wrapper).subscribe((data: any) => {
+      this.bugService.updateBug(wrapperWithAtt).subscribe((data: any) => {
         if (data === "OK") {
           alert(this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
           this.newStatusValues = [];
-          this.ref.close(wrapper.bugDTO);
+          this.ref.close(wrapperWithAtt.bug);
         }
         if (data === "ERROR") {
           alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
         }
-        this.ref.close();
+        this.ref.close(wrapperWithAtt.attachment);
       })
     }
   }
@@ -141,6 +157,46 @@ export class BugEditComponent implements OnInit {
     if(this.bug.status === 'CLOSED'){
       this.noStatusAvailable = true;
     }
+  }
 
+  attContent: string;
+  createAttachmentEntity(): Attachment {
+    let attachmentToCreate: Attachment = {
+      ID: 0,
+      attContent: this.attContent,
+      bugID: this.bug
+    };
+    return attachmentToCreate
+  }
+
+  log(value){
+    this.attContent = value;
+  }
+
+  deleteAttachment(attachment){
+    console.log(attachment);
+    console.log(this.bugAttachments)
+    for(let att of this.attachments){
+      if(attachment == att.attContent && this.bug.ID == att.bugID.id)
+      {
+        console.log(att);
+        console.log(this.bug);
+        console.log(att.id);
+
+        let indexOfDeleted = this.bugAttachments.indexOf(attachment);
+        if(indexOfDeleted != -1){
+          this.bugAttachments.slice(indexOfDeleted, 1);
+        }
+
+        this.attachmentService.deleteAttachment(att.id).subscribe((data: any) => {
+          if(data === "OK"){
+            alert("Attachment deleted!");
+          }
+          else if (data === "ERROR") {
+            alert("Error");
+          }
+        })
+      }
+    }
   }
 }

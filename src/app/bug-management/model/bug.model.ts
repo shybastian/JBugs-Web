@@ -1,4 +1,5 @@
 import {User} from '../../user-management/models/user.model';
+import {Attachment} from "./attachment.model";
 
 // Bug View
 export interface Bug {
@@ -32,6 +33,12 @@ export interface BugModel {
 export interface BugUpdateWrapper {
   bugDTO: BugModel;
   token: string;
+}
+
+export interface BugUpdateWrapperWithAtt {
+  bugDTO: BugModel;
+  token: string;
+  attachment: Attachment;
 }
 
 // Bug-View to create BugUpdate
