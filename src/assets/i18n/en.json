@@ -102,9 +102,9 @@
     "BUGS": "Bugs",
     "CREATE_BUG": "Create Bug",
     "VIEW_BUG": "View Bugs",
-    "NOTIFICATION": "Notification",
-    "PERMISSION": "Permission",
-    "EDIT_PERMISSION": "Edit Permission",
+    "NOTIFICATION": "Notifications",
+    "PERMISSION": "Permissions",
+    "EDIT_PERMISSION": "Edit Permissions",
     "LOG_OUT": "Log Out",
     "NOTIFICATIONS_VIEW": "Notifications List"
   },
