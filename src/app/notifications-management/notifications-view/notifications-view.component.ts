@@ -1,22 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../user-management/login/services/storage.service";
-import {UserService} from "../../user-management/services/user.service";
-import {TranslateService} from "@ngx-translate/core";
-import {Notification} from "../models/notification.model";
-import {MessageService} from "primeng/api";
+import {StorageService} from '../../user-management/login/services/storage.service';
+import {UserService} from '../../user-management/services/user.service';
+import {TranslateService} from '@ngx-translate/core';
+import {Notification} from '../models/notification.model';
+import {DialogService, MessageService} from 'primeng/api';
+import {UserEditComponent} from '../../user-management/user-edit/user-edit.component';
 
 
 @Component({
   selector: 'app-notifications-view',
   templateUrl: './notifications-view.component.html',
   styleUrls: ['./notifications-view.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService, DialogService]
 })
 export class NotificationsViewComponent implements OnInit {
 
   notifications: Notification[] = [];
 
-  constructor(private storageService: StorageService, private userService: UserService, private translate: TranslateService) {
+  constructor(private storageService: StorageService, private userService: UserService,
+              private translate: TranslateService, private dialogService: DialogService) {
   }
 
   /**
@@ -38,4 +40,12 @@ export class NotificationsViewComponent implements OnInit {
     return notification.url != '';
   }
 
+  openBugIdDialog() {
+    const ref = this.dialogService.open(UserEditComponent, {
+      data: 1,
+      header: this.translate.instant('EDIT_USER.HEADER'),
+
+      width: '40%'
+    });
+  }
 }

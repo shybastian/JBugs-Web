@@ -108,6 +108,14 @@
         </td>
       </tr>
     </ng-template>
+
+    <ng-template pTemplate="summary" let-rowData>
+      <div style="text-align:left">
+        <button type="button" pButton icon="fa fa-plus" (click)="generate()"
+                label="{{'ADD_USER.ADD' | translate}}"></button>
+      </div>
+    </ng-template>
+
   </p-table>
 
   <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
@@ -138,6 +146,7 @@
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>
   </p-footer>
 </p-dialog>
+
 </form>
 </body>>
 

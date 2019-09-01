@@ -17,7 +17,7 @@
             <ul>
               <div class="ui-g-2 ui-sm-6" *ngIf="hasURL(notification)">{{'NOTIFICATIONS_VIEW.BUG_URL' | translate}}:
               </div>
-              <div class="ui-g-10 ui-sm-6"><b>{{notification.url}}</b></div>
+              <div class="ui-g-10 ui-sm-6"><b><a (click)="openBugIdDialog()">{{notification.url}}</a></b></div>
             </ul>
           </div>
         </div>
