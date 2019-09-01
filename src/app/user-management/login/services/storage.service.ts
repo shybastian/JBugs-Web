@@ -25,10 +25,6 @@ export class StorageService {
     return this.someoneIsLoggedIn;
   }
 
-  static getToken(): string {
-    return sessionStorage.getItem('token');
-  }
-
   getToken(): string {
     return sessionStorage.getItem('token');
   }

@@ -55,11 +55,13 @@
     "BACK": "înapoi"
   },
   "UPDATE":{
-    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
-    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "SUCCESS_UPDATE": "Actualizarea datelor a fost facuta cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la actualizarea datelor!",
     "NO_GOOD_STATUS": "Selectati un status valid, va rog!",
     "HEADER": "Actualizare informatii bug",
-    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!",
+    "CLOSE_BUG_SUCCESS": "Bug-ul a fost inchis cu success",
+    "CLOSE_BUG_ERROR": "A aparut o eroare la inchiderea bug-ului!"
 
   },
   "ADD_USER": {

@@ -16,6 +16,7 @@ export class BugEditComponent implements OnInit {
   private bug: BugModel;
   private listOfUsers: User[];
   private todayDate = new Date();
+  private selectedStatus: SelectItem={label:"", value:""};
 
   statusOpen: SelectItem[];
   statusInProgress: SelectItem[];
@@ -23,6 +24,7 @@ export class BugEditComponent implements OnInit {
   statusFixed: SelectItem[];
   statusInfoNeeded: SelectItem[];
   newStatusValues: SelectItem[];
+  statusTypes: SelectItem[];
 
   noStatusAvailable: boolean;
 
@@ -40,30 +42,38 @@ export class BugEditComponent implements OnInit {
     this.bug.ASSIGNED_ID = this.config.data[3];
     this.listOfUsers = this.config.data[4];
 
+    this.statusTypes = [
+      {label: 'Open', value: 'OPEN'},
+      {label: 'Rejected', value: 'REJECTED'},
+      {label: 'InfoNeeded', value: 'INFO_NEEDED'},
+      {label: 'Fixed', value: 'FIXED'},
+      {label: 'In progress', value: 'IN_PROGRESS'}
+    ];
+
     this.statusOpen = [
-      {label: "[Select status]", value: ["Select status"]},
+      {label: "[Select status]", value: "[Select status]"},
       {label: 'In progress', value: 'IN_PROGRESS'},
       {label: 'Rejected', value: 'REJECTED'}
     ];
 
     this.statusInProgress = [
-      {label: "[Select status]", value: ["Select status"]},
+      {label: "[Select status]", value: "[Select status]"},
       {label: 'Rejected', value: 'REJECTED'},
       {label: 'InfoNeeded', value: 'INFO_NEEDED'},
       {label: 'Fixed', value: 'FIXED'}
     ];
 
     this.statusRejected = [
-      {label: "[Select status]", value: ["Select status"]},
+      {label: "[Select status]", value: "[Select status]"},
     ];
 
     this.statusFixed = [
-      {label: "[Select status]", value: ["Select status"]},
+      {label: "[Select status]", value: "[Select status]"},
       {label: 'Open', value: 'OPEN'},
     ];
 
     this.statusInfoNeeded = [
-      {label: "[Select status]", value: ["Select status"]},
+      {label: "[Select status]", value: "[Select status]"},
       {label: 'In progress', value: 'IN_PROGRESS'}
     ];
   }
@@ -73,29 +83,35 @@ export class BugEditComponent implements OnInit {
    * @param editBugForm - not used for anything, just there to submit the form.
    */
   editBug(editBugForm: NgForm) {
+    console.log(this.bug);
     let wrapper: BugUpdateWrapper = {
       bugDTO: this.bug,
       token: this.storageService.getToken()
     };
 
-    console.log(this.bug.status);
-
-    if(this.bug.status === "CLOSED"){
-      alert("UPDATE.CLOSED_STATUS_ALERT");
-    }
-    else if(this.bug.status == "Select status" || this.bug.status == "[No status available]"){
-      alert("UPDATE.NO_GOOD_STATUS");
+   if(this.selectedStatus.value === "[Select status]" || this.selectedStatus.value === "" || this.selectedStatus.value === undefined){
+      alert(this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
     }
     else {
+     for(let s of this.statusTypes)
+      {
+        if(s.value === this.selectedStatus.value)
+        {
+          this.bug.status = s.value;
+          break;
+        }
+
+      }
       this.bugService.updateBug(wrapper).subscribe((data: any) => {
         if (data === "OK") {
           alert(this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
+          this.newStatusValues = [];
+          this.ref.close(wrapper.bugDTO);
         }
         if (data === "ERROR") {
           alert(this.translateService.instant("UPDATE.ERROR_UPDATE"));
         }
         this.ref.close();
-        location.reload();
       })
     }
   }
