@@ -4,7 +4,6 @@ import {UserService} from '../../user-management/services/user.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Notification} from '../models/notification.model';
 import {DialogService, MessageService} from 'primeng/api';
-import {UserEditComponent} from '../../user-management/user-edit/user-edit.component';
 
 
 @Component({
@@ -40,12 +39,4 @@ export class NotificationsViewComponent implements OnInit {
     return notification.url != '';
   }
 
-  openBugIdDialog() {
-    const ref = this.dialogService.open(UserEditComponent, {
-      data: 1,
-      header: this.translate.instant('EDIT_USER.HEADER'),
-
-      width: '40%'
-    });
-  }
 }
