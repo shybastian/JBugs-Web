@@ -109,7 +109,7 @@ export class BugEditComponent implements OnInit {
           this.ref.close(wrapper.bugDTO);
         }
         if (data === "ERROR") {
-          alert(this.translateService.instant("UPDATE.ERROR_UPDATE"));
+          alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
         }
         this.ref.close();
       })

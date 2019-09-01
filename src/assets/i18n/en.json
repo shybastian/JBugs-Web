@@ -180,7 +180,29 @@
   },
   "BUG_UPDATE": {
     "NoStatusAvailable": "No status available for update",
-    "Update": "Update"
+    "Update": "Update",
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "Target date",
+    "Status": "Status",
+    "FixedVersion": "Fixed In Version",
+    "Severity": "Severity",
+    "CreatedBy": "Created by",
+    "AssignedTo": "Assigned to user",
+    "Attachment": "Attachment",
+    "Submit": "Submit",
+    "MaxLength250": "The maximum allowed length is 250 characters.",
+    "NotBlank": "Can not be empty",
+    "VersionValidation": "Field must include 2 or 3 groups of atleast 2 alphanumerical characters split by dots.",
+    "DateValidation": "Must not be a date before today.",
+    "DateValidationInvalid": "Date not valid.",
+    "SeverityCritical": "Critical",
+    "SeverityHigh": "High",
+    "SeverityMedium": "Medium",
+    "SeverityLow": "Low",
+    "ALERT_BUG_UPDATE": "The new Entry has been added successfully!",
+    "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
   }
 }
 

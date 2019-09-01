@@ -1,6 +1,6 @@
 <form #bugEditForm="ngForm" (ngSubmit)="editBug(bugEditForm)">
   <div class="form-group">
-    <label for="title">{{'BUG_VIEW.TITLE' | translate}}</label>
+    <label for="title">{{'BUG_UPDATE.Title' | translate}}</label>
     <input
       required
       class="form-control"
@@ -9,14 +9,15 @@
       ngModel
       #title="ngModel"
       [(ngModel)]="bug.title"
+      maxlength="50"
     >
     <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-      <div *ngIf="title.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="title.errors.required">{{'BUG_UPDATE.NotBlank' | translate}}</div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="description">{{'BUG_VIEW.DESCRIPTION' | translate}}</label>
+    <label for="description">{{'BUG_UPDATE.Description' | translate}}</label>
     <input
       required
       class="form-control"
@@ -29,7 +30,7 @@
     >
     <div class="alert alert-danger"
          *ngIf="description.touched && description.invalid">
-      <div *ngIf="description.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="description.errors.required">{{'BUG_UPDATE.NotBlank' | translate}}</div>
       <div *ngIf="description.hasError('maxlength')">
         {{'BUG_CREATE.MaxLength250' | translate}}
       </div>
@@ -37,7 +38,7 @@
   </div>
 
   <div class="form-group">
-    <label for="version">{{'BUG_VIEW.VERSION' | translate}}</label>
+    <label for="version">{{'BUG_UPDATE.Version' | translate}}</label>
     <input
       required
       class="form-control"
@@ -47,18 +48,19 @@
       #version="ngModel"
       pattern="(^[0-9a-zA-Z]{1,2}[.]{1}[0-9a-zA-Z]{1,2}){1}([.]{1}[0-9a-zA-Z]{0,2}){0,1}"
       [(ngModel)]="bug.version"
+      maxlength="5"
     >
     <div class="alert alert-danger"
          *ngIf="version.touched && version.invalid">
-      <div *ngIf="version.errors.required">{{'BUG_CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="version.errors.required">{{'BUG_UPDATE.NotBlank' | translate}}</div>
       <div *ngIf="version.errors">
-        {{'BUG_CREATE.VersionValidation' | translate}}
+        {{'BUG_UPDATE.VersionValidation' | translate}}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="fixedVersion">{{'BUG_VIEW.FIXED_VERSION' | translate}}</label>
+    <label for="fixedVersion">{{'BUG_UPDATE.FixedVersion' | translate}}</label>
     <input
       class="form-control"
       id="fixedVersion"
@@ -67,17 +69,18 @@
       #fixedVersion="ngModel"
       pattern="(^[0-9a-zA-Z]{1,2}[.]{1}[0-9a-zA-Z]{1,2}){1}([.]{1}[0-9a-zA-Z]{0,2}){0,1}"
       [(ngModel)]="bug.fixedVersion"
+      maxlength="5"
     >
     <div class="alert alert-danger"
          *ngIf="fixedVersion.touched && fixedVersion.invalid">
       <div *ngIf="version.errors">
-        {{'BUG_CREATE.VersionValidation' | translate}}
+        {{'BUG_UPDATE.VersionValidation' | translate}}
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="targetDate">{{'BUG_VIEW.TARGET_DATE' | translate}}</label>
+    <label for="targetDate">{{'BUG_UPDATE.TargetDate' | translate}}</label>
     <input
       required
       type="date"
@@ -91,34 +94,34 @@
     >
     <div class="alert alert-danger"
          *ngIf="targetDate.touched && targetDate.invalid">
-      <div *ngIf="targetDate.errors.min">{{'BUG_CREATE.DateValidation' | translate}}</div>
+      <div *ngIf="targetDate.errors.min">{{'BUG_UPDATE.DateValidation' | translate}}</div>
+      <div *ngIf="targetDate.errors">{{'BUG_UPDATE.DateValidationInvalid' | translate}}</div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="severity">{{'BUG_VIEW.SEVERITY' | translate}}</label>
+    <label for="severity">{{'BUG_UPDATE.Severity' | translate}}</label>
     <select
       required
       class="form-control"
       id="severity"
       name="severity"
-      ngModel
       #severity="ngModel"
       [(ngModel)]="bug.severity"
     >
-      <option value="critical">{{'BUG-CREATE.SeverityCritical' | translate}}</option>
-      <option value="high">{{'BUG-CREATE.SeverityHigh' | translate}}</option>
-      <option value="medium">{{'BUG-CREATE.SeverityMedium' | translate}}M</option>
-      <option value="low">{{'BUG-CREATE.SeverityLow' | translate}}</option>
+      <option value="CRITICAL">{{'BUG_UPDATE.SeverityCritical' | translate}}</option>
+      <option value="HIGH">{{'BUG_UPDATE.SeverityHigh' | translate}}</option>
+      <option value="MEDIUM">{{'BUG_UPDATE.SeverityMedium' | translate}}</option>
+      <option value="LOW">{{'BUG_UPDATE.SeverityLow' | translate}}</option>
     </select>
     <div class="alert alert-danger"
          *ngIf="severity.touched && severity.invalid">
-      <div *ngIf="severity.errors">{{'BUG_CREATE.NotBlank' | translate}}</div>
+      <div *ngIf="severity.errors">{{'BUG_UPDATE.NotBlank' | translate}}</div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="CREATED_ID">{{'BUG_VIEW.CREATED_BY' | translate}}</label>
+    <label for="CREATED_ID">{{'BUG_UPDATE.CreatedBy' | translate}}</label>
     <input
       required
       class="form-control"
@@ -126,41 +129,39 @@
       name="CREATED_ID"
       disabled
       #created_ID="ngModel"
-      ngModel="{{bug.CREATED_ID.username}}"
-      [value]="bug.CREATED_ID.username"
+      [(ngModel)]="bug.CREATED_ID.username"
     >
   </div>
 
   <div class="form-group">
-    <label for="status">{{'BUG_VIEW.STATUS' | translate}}</label>
+    <label for="status">{{'BUG_UPDATE.Status' | translate}}</label>
     <br>
     <p-dropdown
-                id="status"
-                name="status"
+      id="status"
+      name="status"
                 ngModel
                 optionLabel="value"
-                #status="ngModel"
+      #status="ngModel"
                 [(ngModel)]="selectedStatus"
                 [options]="newStatusValues"
-                (onClick)="selectStatus()"
-                [disabled]="noStatusAvailable"
-                [style]="{'width': '100%'}">
+      (onClick)="selectStatus()"
+      [disabled]="noStatusAvailable"
+      [style]="{'width': '100%'}">
     </p-dropdown>
     <br>
     <p *ngIf="noStatusAvailable">{{'BUG_UPDATE.NoStatusAvailable' | translate}}</p>
   </div>
 
   <div class="form-group">
-    <label for="ASSIGNED_ID">{{'BUG_VIEW.ASSIGNED_TO' | translate}}</label><br>
+    <label for="ASSIGNED_ID">{{'BUG_UPDATE.AssignedTo' | translate}}</label><br>
     <select
       required
       class="form-group"
       id="ASSIGNED_ID"
       name="ASSIGNED_ID"
-      ngModel
-      #assigned_ID="ngModel"
       [(ngModel)]="bug.ASSIGNED_ID"
-      [value]="bug.ASSIGNED_ID.username">
+      [style]="{'width':'40%'}"
+    >
       <option
         class="form-group"
         *ngFor="let user of listOfUsers" [ngValue]="user">
