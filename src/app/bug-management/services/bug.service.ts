@@ -7,6 +7,7 @@ import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from '../../user-management/login/services/storage.service';
 import {TranslateService} from '@ngx-translate/core';
 import {BugViewList} from "../model/bug-view-list.model";
+import {Attachment} from "../model/attachment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,6 @@ export class BugService {
   }
 
   /**
-   *
    * @param wrapper is an {@link BugAttachmentWrapper} object that contains
    * both the {@link Bug} & {@link Attachment} objects.
    */
@@ -40,22 +40,27 @@ export class BugService {
   }
 
   getAllBugs(): Observable<BugViewList> {
-    let token: String = StorageService.getToken();
+    let token: string = this.storageService.getToken();
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
+  getAttachments(): Observable<Attachment[]> {
+    let token: string = this.storageService.getToken();
+    return this.backendService.get('http://localhost:8080/jbugs/api/bugs/get-att', token);
+  }
+
   getBugById(id: number): Observable<Bug> {
-    let token: String = StorageService.getToken();
+    let token: string = this.storageService.getToken();
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs/' + id, token);
   }
 
   updateBug(wrapper: BugUpdateWrapper) {
-    console.log("wrapper in service: ", wrapper);
+    //console.log("wrapper in service: ", wrapper);
     let headers = {
       'Authorization': 'Bearer ' + this.storageService.getToken(),
       'Access-Control-Expose-Headers': 'Authorization'
     };
-    console.log(JSON.stringify(wrapper));
+    //console.log(JSON.stringify(wrapper));
     return this.http.put(this.baseUrl + "/update-bug/" + wrapper.bugDTO.ID, wrapper,
       {responseType: 'text', headers: headers})
   }
@@ -64,14 +69,7 @@ export class BugService {
 
     let headers = {  'Authorization': 'Bearer ' + this.storageService.getToken(),
       'Access-Control-Expose-Headers': 'Authorization' };
-
-    this.http.put(this.baseUrl + '/close-bug/' + bugID, {responseType: 'text', headers: headers})
-      .subscribe((response: any) =>{
-        if (response === "OK") {
-          alert("Close successful");
-        } else if (response === "ERROR") {
-          alert("Close Error");
-        } else alert(response);
-      })
+    let token: string = this.storageService.getToken();
+    return this.http.put(this.baseUrl + '/close-bug/' + bugID, token, {responseType: 'text', headers: headers});
   }
 }

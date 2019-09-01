@@ -65,6 +65,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Download table",
+    "DOWNLOAD_ALL": "Download all bugs",
     "DOWNLOAD": "Download",
 
     "TITLE": "Title",
@@ -80,11 +81,14 @@
     "BACK": "Go Back"
   },
   "UPDATE":{
-     "SUCCESS_UPDATE": "The status update was successful!",
+     "SUCCESS_UPDATE": "The update was successful!",
      "ERROR_UPDATE": "An error occurred while updating the bug!",
      "NO_GOOD_STATUS": "Please select a valid status!",
      "HEADER": "Update bug info",
-     "NO_STATUS_CHANGE" : "No status change possible!"
+     "NO_STATUS_CHANGE" : "No status change possible!",
+     "CLOSE_BUG_SUCCESS": "The bug was closed!",
+     "CLOSE_BUG_ERROR": "An error occurred while closing the bug!"
+
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",
