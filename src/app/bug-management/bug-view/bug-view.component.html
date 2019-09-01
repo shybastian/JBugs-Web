@@ -8,8 +8,47 @@
       <div class="ui-helper-clearfix" style="text-align: right">
         <i style="margin:4px 4px 0 0">
           <button type="button" pButton icon="fa fa-file-o" iconPos="left"
-                  label="{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}}"
+                  label="{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}} CSV"
                   (click)="dt.exportCSV()" style="float:left"></button>
+
+          <button type="button" class="k-button" (click)="excelexport.save()">{{'BUG_VIEW.DOWNLOAD_ALL' | translate}}
+            XLSX
+          </button>
+          <kendo-excelexport [data]="dt._value" [collapsible]="true" fileName="bugs.xlsx" #excelexport>
+            <kendo-excelexport-column-group title="JBugs" [headerCellOptions]="{ textAlign: 'center' }">
+              <kendo-excelexport-column field="id"
+                                        title="ID">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="title"
+                                        title="{{'BUG_VIEW.TITLE' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="description"
+                                        title="{{'BUG_VIEW.DESCRIPTION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="version"
+                                        title="{{'BUG_VIEW.VERSION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="fixedVersion"
+                                        title="{{'BUG_VIEW.FIXED_VERSION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="severity"
+                                        title="{{'BUG_VIEW.SEVERITY' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="status"
+                                        title="{{'BUG_VIEW.STATUS' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="targetDate"
+                                        title="{{'BUG_VIEW.TARGET_DATE' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="created_ID"
+                                        title="{{'BUG_VIEW.CREATED_BY' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="assigned_ID"
+                                        title="{{'BUG_VIEW.ASSIGNED_TO' | translate}}">
+              </kendo-excelexport-column>
+            </kendo-excelexport-column-group>
+          </kendo-excelexport>
+
         </i>
       </div>
     </ng-template>
@@ -70,8 +109,10 @@
   <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
+
     <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-    <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
+
+      <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
     {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
     {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
     {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
@@ -83,10 +124,11 @@
     {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
     {{'BUG_VIEW.ATTACHMENTS' | translate}} :
   <p class="text-style"></p>
+
     </kendo-pdf-export>
   <p-footer>
 
-    <button kendo-button (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}}</button>
+    <button kendo-button *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}} PDF</button>
     <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
     <button pButton icon="fa fa-plus"(click)="closeBug()" [disabled]="!visibleButton" >Close Bug</button>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>
