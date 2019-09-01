@@ -8,6 +8,7 @@
       id="title"
       name="title"
       formControlName="title"
+      maxlength="50"
     >
     <div class="alert alert-danger" *ngIf="bugCreateForm.get('title').touched && bugCreateForm.get('title').invalid">
       <div *ngIf="bugCreateForm.get('title').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
@@ -39,6 +40,7 @@
       id="version"
       name="version"
       formControlName="version"
+      maxlength="5"
     >
     <div class="alert alert-danger"
          *ngIf="bugCreateForm.get('version').touched && bugCreateForm.get('version').invalid">
@@ -93,8 +95,8 @@
       <option value="low">{{'BUG-CREATE.SeverityLow' | translate}}</option>
     </select>
     <div class="alert alert-danger"
-         *ngIf="bugCreateForm.get('severity').touched || bugCreateForm.get('severity').invalid">
-      <div *ngIf="bugCreateForm.get('severity').errors">{{'BUG-CREATE.NotBlank' | translate}}</div>
+         *ngIf="bugCreateForm.get('severity').invalid">
+      <div *ngIf="bugCreateForm.get('severity').errors.required">{{'BUG-CREATE.NotBlank' | translate}}</div>
     </div>
   </div>
 
@@ -137,10 +139,6 @@
       </option>
     </select>
     <div class="form-group">
-      <!--      <div class="alert alert-danger"-->
-      <!--           *ngIf="bugCreateForm.get('ASSIGNED_ID').errors.required && bugCreateForm.get('ASSIGNED_ID').invalid">-->
-      <!--        {{'BUG-CREATE.NotBlank' | translate}}-->
-      <!--      </div>-->
     </div>
   </div>
 
@@ -152,7 +150,7 @@
         id="attachment"
         name="attachment"
         type="file"
-        accept=".pdf,.doc,.odf,.xlsx,.xls"
+        accept="image/jpeg,image/jpg,image/png,.pdf,.doc,.odf,.xlsx,.xls"
         formControlName="attachment"
       >
     </div>
@@ -160,7 +158,6 @@
 
   <div class="form-group">
     <button
-      class="form-control"
       class="btn btn-primary"
       type="submit"
       [disabled]="bugCreateForm.invalid"

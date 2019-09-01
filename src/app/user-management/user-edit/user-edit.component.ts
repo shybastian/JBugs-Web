@@ -61,7 +61,7 @@ export class UserEditComponent implements OnInit {
    *    alert him
    */
   editUser(editUserForm: NgForm) {
-    debugger;
+   // debugger;
     if (!this.user.status)
       this.user.status = 0;
     else

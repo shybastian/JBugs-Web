@@ -1,15 +1,58 @@
 <body>
 <form class="bugViewStyle" #bugViewForm='ngForm' ngForm
       [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
-  <p-table #dt [style]="{'width': '135%'}" [columns]="columns" [value]="bugsView" [paginator]="true" [rows]="25"
-           selectionMode="single" [(selection)]="selectedBug1" dataKey="title" exportFilename="bugs"
+  <p-table #dt [style]="{'width': '135%'}"
+           [columns]="columns"
+           [value]="bugsView"
+           [paginator]="true" [rows]="25"
+           selectionMode="single" [(selection)]="selectedBug1" dataKey="title" [metaKeySelection]="true"
+           exportFilename="bugs"
            csvSeparator=";">
     <ng-template pTemplate="caption">
       <div class="ui-helper-clearfix" style="text-align: right">
         <i style="margin:4px 4px 0 0">
           <button type="button" pButton icon="fa fa-file-o" iconPos="left"
-                  label="{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}}"
+                  label="{{'BUG_VIEW.DOWNLOAD_TABLE' | translate}} CSV"
                   (click)="dt.exportCSV()" style="float:left"></button>
+
+          <button type="button" class="k-button" (click)="excelexport.save()">{{'BUG_VIEW.DOWNLOAD_ALL' | translate}}
+            XLSX
+          </button>
+          <kendo-excelexport [data]="dt._value" [collapsible]="true" fileName="bugs.xlsx" #excelexport>
+            <kendo-excelexport-column-group title="JBugs" [headerCellOptions]="{ textAlign: 'center' }">
+              <kendo-excelexport-column field="id"
+                                        title="ID">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="title"
+                                        title="{{'BUG_VIEW.TITLE' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="description"
+                                        title="{{'BUG_VIEW.DESCRIPTION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="version"
+                                        title="{{'BUG_VIEW.VERSION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="fixedVersion"
+                                        title="{{'BUG_VIEW.FIXED_VERSION' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="severity"
+                                        title="{{'BUG_VIEW.SEVERITY' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="status"
+                                        title="{{'BUG_VIEW.STATUS' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="targetDate"
+                                        title="{{'BUG_VIEW.TARGET_DATE' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="created_ID"
+                                        title="{{'BUG_VIEW.CREATED_BY' | translate}}">
+              </kendo-excelexport-column>
+              <kendo-excelexport-column field="assigned_ID"
+                                        title="{{'BUG_VIEW.ASSIGNED_TO' | translate}}">
+              </kendo-excelexport-column>
+            </kendo-excelexport-column-group>
+          </kendo-excelexport>
+
         </i>
       </div>
     </ng-template>
@@ -39,9 +82,9 @@
                          (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
           <p-multiSelect *ngSwitchCase="'status'" [options]="statusFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
-          <p-multiSelect *ngSwitchCase="'created_ID'" [options]="userFilter" defaultLabel="All"
+          <p-multiSelect *ngSwitchCase="'created_ID'" [options]="createdByFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
-          <p-multiSelect *ngSwitchCase="'assigned_ID'" [options]="userFilter" defaultLabel="All"
+          <p-multiSelect *ngSwitchCase="'assigned_ID'" [options]="assignedToFilter" defaultLabel="All"
                          (onChange)="dt.filter($event.value, col.field, 'equals')"></p-multiSelect>
           <p-dropdown *ngSwitchCase="'version'" [options]="versionFilter"
                       (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
@@ -49,7 +92,8 @@
                       (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
           <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]=""
-                      [readonlyInput]="false" dateFormat="yy-MM-dd"
+                      [readonlyInput]="true" dateFormat="yy-MM-dd"
+                      (onClearClick)="dt.filter($event.target.value, col.field, 'contains');"
                       (onSelect)="dt.filter($event, col.field, 'dateFilter')">
 
           </p-calendar>
@@ -69,23 +113,26 @@
   <p-dialog header="Info" [(visible)]="displayInfoModal" [modal]="true" [responsive]="true"
             [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
             [maximizable]="true" [baseZIndex]="10000">
+
     <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-    <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
+
+      <p class="text-style">{{selectedBug1 ? bugAsString() : 'none'}} </p>
     {{'BUG_VIEW.TITLE' | translate}} : {{selectedBug.title}}<br>
     {{'BUG_VIEW.DESCRIPTION' | translate}} : {{selectedBug.description}}<br>
     {{'BUG_VIEW.VERSION' | translate}} : {{selectedBug.version}}<br>
     {{'BUG_VIEW.TARGET_DATE' | translate}} : {{selectedBug.targetDate}}<br>
-    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}
+    {{'BUG_VIEW.STATUS' | translate}} : {{selectedBug.status}}<br>
     {{'BUG_VIEW.FIXED_VERSION' | translate}} : {{selectedBug.fixedVersion}}<br>
     {{'BUG_VIEW.SEVERITY' | translate}} : {{selectedBug.severity}}<br>
     {{'BUG_VIEW.CREATED_BY' | translate}} : {{selectedBug.created_ID}}<br>
     {{'BUG_VIEW.ASSIGNED_TO' | translate}} : {{selectedBug.assigned_ID}}<br>
-    {{'BUG_VIEW.ATTACHMENTS' | translate}} :
+    {{'BUG_VIEW.ATTACHMENTS' | translate}} : {{getAttachmentsForID(selectedBug.id)}}
   <p class="text-style"></p>
+
     </kendo-pdf-export>
   <p-footer>
 
-    <button kendo-button (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}}</button>
+    <button kendo-button *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">{{'BUG_VIEW.DOWNLOAD' | translate}} PDF</button>
     <button pButton icon="fa fa-plus" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
     <button pButton icon="fa fa-plus"(click)="closeBug()" [disabled]="!visibleButton" >Close Bug</button>
     <button pButton icon="pi pi-close" (click)="displayInfoModal=false" class="ui-button-secondary">Exit</button>

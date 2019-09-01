@@ -39,6 +39,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD_ALL": "Descarca toate bugurile",
     "DOWNLOAD": "Descarca",
 
     "TITLE": "Titlu",
@@ -54,11 +55,13 @@
     "BACK": "înapoi"
   },
   "UPDATE":{
-    "SUCCESS_UPDATE": "Modificare statusului a fost terminata cu succes!",
-    "ERROR_UPDATE": "A aparut o eroare la modificarea statusului!",
+    "SUCCESS_UPDATE": "Actualizarea datelor a fost facuta cu succes!",
+    "ERROR_UPDATE": "A aparut o eroare la actualizarea datelor!",
     "NO_GOOD_STATUS": "Selectati un status valid, va rog!",
     "HEADER": "Actualizare informatii bug",
-    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!"
+    "NO_STATUS_CHANGE" : "Nu este posibila modificarea statusului!",
+    "CLOSE_BUG_SUCCESS": "Bug-ul a fost inchis cu success",
+    "CLOSE_BUG_ERROR": "A aparut o eroare la inchiderea bug-ului!"
 
   },
   "ADD_USER": {
@@ -143,7 +146,7 @@
     "Submit": "Creaza",
     "MaxLength250": "Limita maxima admisa este de 250 de caractere.",
     "NotBlank": "Nu poate sa fie gol.",
-    "VersionValidation": "Campul poate contine doar 2 sau 3 grupuri de cate cel putin 2 caractere alfanumerice despartite prin punct.",
+    "VersionValidation": "Trebuie sa contina cel putin 2 sau 3 grupuri, despartite prin punct, cu un caracter alfanumeric.",
     "DateValidation": "Nu se poate alege o data anterioara celei de astazi.",
     "DateValidationInvalid": "Data nu este valida.",
     "SeverityCritical": "Critic",
@@ -161,7 +164,29 @@
   },
   "BUG_UPDATE": {
     "NoStatusAvailable": "Nu exista status valabil pentru actualizare",
-    "Update": "Actualizeaza"
+    "Update": "Actualizeaza",
+    "Title": "Titlu",
+    "Description": "Descriere",
+    "Version": "Versiune",
+    "TargetDate": "Data Tina",
+    "Status": "Status",
+    "FixedVersion": "Fixat in Versiunea",
+    "Severity": "Severitate",
+    "CreatedBy": "Creat de",
+    "AssignedTo": "Userul asignat",
+    "Attachment": "Atasament",
+    "Submit": "Actualizeaza",
+    "MaxLength250": "Limita maxima admisa este de 250 de caractere.",
+    "NotBlank": "Nu poate sa fie gol.",
+    "VersionValidation": "Trebuie sa contina cel putin 2 sau 3 grupuri, despartite prin punct, cu un caracter alfanumeric.",
+    "DateValidation": "Nu trebuie sa fie o data inainte de cea de astazi.",
+    "DateValidationInvalid": "Data nu este valida",
+    "SeverityCritical": "Critic",
+    "SeverityHigh": "Inalt",
+    "SeverityMedium": "Mediu",
+    "SeverityLow": "Scazut",
+    "ALERT_BUG_UPDATE": "Entitate actualizata cu succes.",
+    "ALERT_BUG_ERROR": "Au fost intampinate probleme cu actualizarea entitatii. Va rugam incercati din nou."
   },
   "NOTIFICATIONS": {
     "WELCOME_NEW_USER": "Bun venit!",

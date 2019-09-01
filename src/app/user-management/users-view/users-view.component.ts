@@ -47,6 +47,7 @@ export class UsersViewComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => {
+
       this.users = users;
       for (let user of this.users) {
         if (user.status === UserStatusType.Active) {

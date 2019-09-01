@@ -65,6 +65,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Download table",
+    "DOWNLOAD_ALL": "Download all bugs",
     "DOWNLOAD": "Download",
 
     "TITLE": "Title",
@@ -80,11 +81,14 @@
     "BACK": "Go Back"
   },
   "UPDATE":{
-     "SUCCESS_UPDATE": "The status update was successful!",
+     "SUCCESS_UPDATE": "The update was successful!",
      "ERROR_UPDATE": "An error occurred while updating the bug!",
      "NO_GOOD_STATUS": "Please select a valid status!",
      "HEADER": "Update bug info",
-     "NO_STATUS_CHANGE" : "No status change possible!"
+     "NO_STATUS_CHANGE" : "No status change possible!",
+     "CLOSE_BUG_SUCCESS": "The bug was closed!",
+     "CLOSE_BUG_ERROR": "An error occurred while closing the bug!"
+
   },
   "EDIT_PERMISSIONS": {
     "PERMISSIONS": "Permissions",
@@ -176,7 +180,29 @@
   },
   "BUG_UPDATE": {
     "NoStatusAvailable": "No status available for update",
-    "Update": "Update"
+    "Update": "Update",
+    "Title": "Title",
+    "Description": "Description",
+    "Version": "Version",
+    "TargetDate": "Target date",
+    "Status": "Status",
+    "FixedVersion": "Fixed In Version",
+    "Severity": "Severity",
+    "CreatedBy": "Created by",
+    "AssignedTo": "Assigned to user",
+    "Attachment": "Attachment",
+    "Submit": "Submit",
+    "MaxLength250": "The maximum allowed length is 250 characters.",
+    "NotBlank": "Can not be empty",
+    "VersionValidation": "Field must include 2 or 3 groups of atleast 2 alphanumerical characters split by dots.",
+    "DateValidation": "Must not be a date before today.",
+    "DateValidationInvalid": "Date not valid.",
+    "SeverityCritical": "Critical",
+    "SeverityHigh": "High",
+    "SeverityMedium": "Medium",
+    "SeverityLow": "Low",
+    "ALERT_BUG_UPDATE": "The new Entry has been added successfully!",
+    "ALERT_BUG_ERROR": "There have been errors trying to add the Entry. Please try again!"
   }
 }
 
