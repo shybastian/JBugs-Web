@@ -214,6 +214,10 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       if(this.attachments[i].bugID.id === bugID)
         attString.push(this.attachments[i].attContent);
     }
+
+    if(attString.length == 0){
+      attString.push("No attachments");
+    }
     return attString;
   }
 
