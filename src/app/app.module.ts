@@ -49,9 +49,11 @@ import {NotificationsViewComponent} from './notifications-management/notificatio
 import {ToastModule} from 'primeng/toast';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {DataViewModule} from 'primeng/dataview';
-import {BugEditComponent} from "./bug-management/bug-edit/bug-edit.component";
+import {BugEditComponent} from './bug-management/bug-edit/bug-edit.component';
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
-import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
+import {ExcelExportModule} from '@progress/kendo-angular-excel-export';
+import {ExcelModule, FilterMenuModule, GridModule} from '@progress/kendo-angular-grid';
+import {GetBugIdComponent} from './bug-management/get-bug-id/get-bug-id.component';
 import {NotifierModule, NotifierOptions} from 'angular-notifier';
 import {NotifierComponent} from './notifications-management/services/notifier/notifier.component';
 
@@ -165,7 +167,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     VirtualScrollerModule,
     DataViewModule,
     NotifierModule.withConfig(customNotifierOptions),
-    PDFExportModule
+    PDFExportModule,
+    ExcelExportModule,
+    GridModule,
+    FilterMenuModule,
+    ExcelModule,
   ],
   providers: [DatePipe, LoggedInGuard, PermissionPermissionGuard, UserPermissionGuard, BugPermissionGuard, LoggedOutGuard],
   bootstrap: [AppComponent],

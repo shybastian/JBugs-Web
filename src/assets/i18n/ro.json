@@ -39,6 +39,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD_ALL": "Descarca toate bugurile",
     "DOWNLOAD": "Descarca",
 
     "TITLE": "Titlu",
