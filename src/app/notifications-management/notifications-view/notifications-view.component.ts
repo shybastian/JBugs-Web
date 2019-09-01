@@ -3,21 +3,21 @@ import {StorageService} from '../../user-management/login/services/storage.servi
 import {UserService} from '../../user-management/services/user.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Notification} from '../models/notification.model';
-import {DialogService, MessageService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
 
 
 @Component({
   selector: 'app-notifications-view',
   templateUrl: './notifications-view.component.html',
   styleUrls: ['./notifications-view.component.scss'],
-  providers: [MessageService, DialogService]
+  providers: [MessageService]
 })
 export class NotificationsViewComponent implements OnInit {
 
   notifications: Notification[] = [];
 
   constructor(private storageService: StorageService, private userService: UserService,
-              private translate: TranslateService, private dialogService: DialogService) {
+              private translate: TranslateService) {
   }
 
   /**
