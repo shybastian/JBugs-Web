@@ -39,6 +39,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Descarca tabelul",
+    "DOWNLOAD_ALL": "Descarca tot",
     "DOWNLOAD": "Descarca",
 
     "TITLE": "Titlu",
@@ -119,13 +120,13 @@
     "HEADER": "Actualizare informatii utilizator"
   },
   "DASHBOARD": {
-    "MENU": "Meniul",
+    "MENU": "Meniu",
     "USERS": "Utilizatori",
     "CREATE_USER": "Crează Utilizator",
-    "VIEW_USER": "Vizualizare Utilizator",
+    "VIEW_USER": "Vizualizare Utilizatori",
     "BUGS": "Bugs",
     "CREATE_BUG": "Crează Bug",
-    "VIEW_BUG": "Vizualizare Bug",
+    "VIEW_BUG": "Vizualizare Bugs",
     "NOTIFICATION": "Notificări",
     "PERMISSION": "Permisiuni",
     "EDIT_PERMISSION": "Editarea Permisiunii ",
