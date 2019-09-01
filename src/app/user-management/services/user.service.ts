@@ -11,6 +11,17 @@ import {StorageService} from "../login/services/storage.service";
 export class UserService {
 
   constructor(private backendService: BackendService, private storageService: StorageService) {
+    this._alreadyLoggedInUser = false;
+  }
+
+  private _alreadyLoggedInUser: boolean;
+
+  get alreadyLoggedInUser(): boolean {
+    return this._alreadyLoggedInUser;
+  }
+
+  set alreadyLoggedInUser(value: boolean) {
+    this._alreadyLoggedInUser = value;
   }
 
   /**
@@ -51,7 +62,6 @@ export class UserService {
    *    and returns an observable
    */
   addUser(firstname: string, lastname: string, phone: string, mail: string, roleList: RoleWrapper[]): Observable<UserInsertWrapper> {
-    debugger;
     const user: UserInsertWrapper = {
       firstName: firstname,
       lastName: lastname,

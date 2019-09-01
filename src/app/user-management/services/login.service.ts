@@ -12,7 +12,8 @@ import {catchError, retry} from "rxjs/operators";
 export class LoginService {
 
   constructor(private storageService: StorageService,
-              private backendService: BackendService, private http: HttpClient) {
+              private backendService: BackendService,
+              private http: HttpClient) {
   }
 
   loginGetUser(username: string, password: string): Observable<UserToSaveOnSession> {

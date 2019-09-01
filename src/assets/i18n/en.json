@@ -65,7 +65,7 @@
   },
   "BUG_VIEW": {
     "DOWNLOAD_TABLE": "Download table",
-    "DOWNLOAD_ALL": "Download all bugs",
+    "DOWNLOAD_ALL": "Download all",
     "DOWNLOAD": "Download",
 
     "TITLE": "Title",
@@ -98,13 +98,13 @@
     "MENU": "Menu",
     "USERS": "Users",
     "CREATE_USER": "Create User",
-    "VIEW_USER": "View User",
+    "VIEW_USER": "View Users",
     "BUGS": "Bugs",
     "CREATE_BUG": "Create Bug",
-    "VIEW_BUG": "View Bug",
-    "NOTIFICATION": "Notification",
-    "PERMISSION": "Permission",
-    "EDIT_PERMISSION": "Edit Permission",
+    "VIEW_BUG": "View Bugs",
+    "NOTIFICATION": "Notifications",
+    "PERMISSION": "Permissions",
+    "EDIT_PERMISSION": "Edit Permissions",
     "LOG_OUT": "Log Out",
     "NOTIFICATIONS_VIEW": "Notifications List"
   },
@@ -135,6 +135,7 @@
     "ALERT_PASSWORD_REQUIRED": "Password is required!",
     "ALERT_PASSWORD_DIMENSION": "Password is too long/short! Must be between 3 and 20 characters!",
     "ALERT_COUNTER_REQUIRED": "Counter is required!",
+    "ALERT_COUNTER_INCORRECT": "Counter is incorrect!",
     "HEADER": "Update user info"
   },
   "BUG-CREATE": {
@@ -181,6 +182,7 @@
   "BUG_UPDATE": {
     "NoStatusAvailable": "No status available for update",
     "Update": "Update",
+    "Closed_Success": "Closed successfully!",
     "Title": "Title",
     "Description": "Description",
     "Version": "Version",

@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/api";
 import {TranslateService} from '@ngx-translate/core';
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-user-edit',
@@ -22,6 +23,10 @@ export class UserEditComponent implements OnInit {
 
   showStatus = true;
 
+  isCounterNotValid: boolean;
+
+  isCounterNull: boolean;
+
   //available roles for user profile
   roles: RoleDTO[] = [
     {type: Role.ADMINISTRATOR},
@@ -31,7 +36,7 @@ export class UserEditComponent implements OnInit {
     {type: Role.TESTER}
   ];
 
-  constructor(private userService: UserService, private translate: TranslateService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(private notifier: NotifierService, private userService: UserService, private translate: TranslateService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
   }
 
   /**
@@ -43,6 +48,8 @@ export class UserEditComponent implements OnInit {
     this.user = this.config.data;
     this.user.password = "default";
     this.passwordWasEdited = false;
+    this.isCounterNotValid = false;
+    this.isCounterNull = false;
 
     //if the user can not be deactived the form won't offer the option
     //the userService send a reguest to check that
@@ -61,7 +68,6 @@ export class UserEditComponent implements OnInit {
    *    alert him
    */
   editUser(editUserForm: NgForm) {
-   // debugger;
     if (!this.user.status)
       this.user.status = 0;
     else
@@ -70,7 +76,7 @@ export class UserEditComponent implements OnInit {
       this.user.password = "";
     this.userService.editUser(this.user)
       .subscribe(data => {
-        alert(this.translate.instant('EDIT_USER.ALERT_SUCCESS_EDIT_USER'));
+        this.notifier.notify("success", this.translate.instant('EDIT_USER.ALERT_SUCCESS_EDIT_USER'));
         this.ref.close(data);
       }, Error => {
         alert(this.translate.instant('EDIT_USER.ALERT_FAIL_EDIT_USER'));
@@ -96,6 +102,17 @@ export class UserEditComponent implements OnInit {
       this.passwordWasEdited = true;
       this.user.password = "";
     }
+  }
+
+  validCounter() {
+    if (this.user.counter == null)
+      this.isCounterNull = true;
+    else
+      this.isCounterNull = false;
+    if (this.user.counter >= 0 && this.user.counter <= 5)
+      this.isCounterNotValid = false;
+    else
+      this.isCounterNotValid = true;
   }
 }
 

@@ -8,6 +8,7 @@ import {StorageService} from '../../user-management/login/services/storage.servi
 import {TranslateService} from '@ngx-translate/core';
 import {BugViewList} from "../model/bug-view-list.model";
 import {Attachment} from "../model/attachment.model";
+import {NotifierService} from "angular-notifier";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ import {Attachment} from "../model/attachment.model";
 export class BugService {
   private baseUrl = 'http://localhost:8080/jbugs/api/bugs';
 
-  constructor(private backendService: BackendService, private http: HttpClient, private storageService: StorageService,
+  constructor(private notifier: NotifierService, private backendService: BackendService, private http: HttpClient, private storageService: StorageService,
               private translateService: TranslateService) {
   }
 
@@ -32,7 +33,7 @@ export class BugService {
     this.http.post(this.baseUrl, wrapper, {responseType: 'text', headers: headers}).subscribe((response: any) => {
       console.log("Response is: ", response);
       if (response === "OK") {
-        alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
+        this.notifier.notify("success", this.translateService.instant("BUG-CREATE.ALERT_BUG_ADDED"));
       } else if (response === "ERROR") {
         alert(this.translateService.instant("BUG-CREATE.ALERT_BUG_ERROR"))
       } else alert(response);

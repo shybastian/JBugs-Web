@@ -6,6 +6,7 @@ import {BugModel} from "../model/bug.model";
 import {NgForm} from "@angular/forms";
 import {StorageService} from "../../user-management/login/services/storage.service";
 import {User} from "../../user-management/models/user.model";
+import {NotifierService} from "angular-notifier";
 import {Attachment, AttachmentView} from "../model/attachment.model";
 import {BugAttachmentWrapper} from "../model/BugAttachmentWrapper";
 import {AttachmentService} from "../services/attachment.service";
@@ -35,7 +36,7 @@ export class BugEditComponent implements OnInit {
 
   noStatusAvailable: boolean;
 
-  constructor(private bugService: BugService, private attachmentService: AttachmentService, private ref: DynamicDialogRef,
+  constructor(private notifier: NotifierService, private bugService: BugService, private attachmentService: AttachmentService, private ref: DynamicDialogRef,
               private config: DynamicDialogConfig, private translateService: TranslateService,
               private storageService: StorageService) {
   }
@@ -106,7 +107,7 @@ export class BugEditComponent implements OnInit {
     console.log(wrapperWithAtt)
 
    if(this.selectedStatus.value === "[Select status]" ){
-      alert(this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
+     this.notifier.notify("error", this.translateService.instant("UPDATE.NO_GOOD_STATUS"));
     }
     else {
      for(let s of this.statusTypes)
@@ -120,12 +121,12 @@ export class BugEditComponent implements OnInit {
       }
       this.bugService.updateBug(wrapperWithAtt).subscribe((data: any) => {
         if (data === "OK") {
-          alert(this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
+          this.notifier.notify("success", this.translateService.instant("UPDATE.SUCCESS_UPDATE"));
           this.newStatusValues = [];
           this.ref.close(wrapperWithAtt.bug);
         }
         if (data === "ERROR") {
-          alert(this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
+          this.notifier.notify("error", this.translateService.instant("BUG_UPDATE.ALERT_BUG_ERROR"));
         }
         this.ref.close(wrapperWithAtt.attachment);
       })

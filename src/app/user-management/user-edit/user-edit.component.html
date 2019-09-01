@@ -163,20 +163,23 @@
   <div class="form-group">
     <label for="counter">Wrong password counter</label>
     <input
-      required
       class="form-control"
       type="number"
       min="0"
       max="5"
       id="counter"
       name="counter"
+      (change)="validCounter()"
       ngModel
       #counter="ngModel"
       [(ngModel)]="user.counter"
     >
-    <div class="alert alert-danger" *ngIf="counter.touched && counter.invalid">
-      <div *ngIf="counter.errors.required">
+    <div class="alert alert-danger" *ngIf="counter.touched && (isCounterNotValid || isCounterNull)">
+      <div *ngIf="isCounterNull">
         {{'EDIT_USER.ALERT_COUNTER_REQUIRED' | translate}}
+      </div>
+      <div *ngIf="isCounterNotValid">
+        {{'EDIT_USER.ALERT_COUNTER_INCORRECT' | translate}}
       </div>
     </div>
 

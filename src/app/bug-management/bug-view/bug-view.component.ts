@@ -395,14 +395,13 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
       }
     }
     let bugAttachments = this.getAttachmentsForID(id);
+    this.displayInfoModal = false;
     const ref = this.dialogService.open(BugEditComponent, {
       data: [selectedBug, id, created, assigned, this.users, bugAttachments, this.attachments],
       header: this.translate.instant('UPDATE.HEADER'),
 
       width: '40%'
     });
-
-    this.displayInfoModal = false;
 
     ref.onClose.subscribe((bug: BugModel) => {
        if (bug) {
