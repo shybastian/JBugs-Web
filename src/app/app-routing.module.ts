@@ -89,7 +89,7 @@ const routes: Routes = [
           },
           {
             path: 'bugs/view/:bugID',
-            component: GetBugIdComponent
+            component: PageNotFoundComponent
           }
         ]
       }
