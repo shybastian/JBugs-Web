@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BackendService} from '../../core/backend/services/backend.service';
 import {Observable} from 'rxjs';
-import {Bug, BugUpdateWrapper} from '../model/bug.model';
+import {Bug} from '../model/bug.model';
 import {HttpClient} from '@angular/common/http';
 import {BugAttachmentWrapper} from '../model/BugAttachmentWrapper';
 import {StorageService} from '../../user-management/login/services/storage.service';
@@ -45,24 +45,19 @@ export class BugService {
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs', token);
   }
 
-  getAttachments(): Observable<Attachment[]> {
-    let token: string = this.storageService.getToken();
-    return this.backendService.get('http://localhost:8080/jbugs/api/bugs/get-att', token);
-  }
-
   getBugById(id: number): Observable<Bug> {
     let token: string = this.storageService.getToken();
     return this.backendService.get('http://localhost:8080/jbugs/api/bugs/' + id, token);
   }
 
-  updateBug(wrapper: BugUpdateWrapper) {
+  updateBug(wrapper: BugAttachmentWrapper) {
     //console.log("wrapper in service: ", wrapper);
     let headers = {
       'Authorization': 'Bearer ' + this.storageService.getToken(),
       'Access-Control-Expose-Headers': 'Authorization'
     };
     //console.log(JSON.stringify(wrapper));
-    return this.http.put(this.baseUrl + "/update-bug/" + wrapper.bugDTO.ID, wrapper,
+    return this.http.put(this.baseUrl + "/update-bug/" + wrapper.bug.ID, wrapper,
       {responseType: 'text', headers: headers})
   }
 

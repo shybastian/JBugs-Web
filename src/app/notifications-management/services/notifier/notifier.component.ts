@@ -96,7 +96,7 @@ export class NotifierComponent implements OnInit, OnDestroy {
    * It initializes the intervalsubscriptions and shows the notifications of the day for he current user
    */
   ngOnInit(): void {
-    debugger;
+    //debugger;
     const source = interval(5000);
     if (!(sessionStorage.getItem("alreadyLoggedInUser") === "true")) {
       sessionStorage.setItem("alreadyLoggedInUser", "true");
@@ -130,7 +130,7 @@ export class NotifierComponent implements OnInit, OnDestroy {
    * show them
    */
   private getNewNotifications() {
-    debugger;
+    //debugger;
     if (sessionStorage.getItem("alreadyLoggedInUser") === "true") {
       this.userService.getUserNewNotifications(this.storageService.getUserWithoutIdRolesCounterStatusFromSessionStorage().username, this.lastNotificationId)
         .subscribe(notifications => {
