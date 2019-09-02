@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {BugView} from "../model/bug-view.model";
-import {BugService} from "../services/bug.service";
-import {Bug} from "../model/bug.model";
-import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {BugView} from '../model/bug-view.model';
+import {BugService} from '../services/bug.service';
+import {Bug} from '../model/bug.model';
+import {DatePipe} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {StorageService} from '../../user-management/login/services/storage.service';
+import {PermissionType} from '../../user-management/models/user.model';
 
 @Component({
   selector: 'app-get-bug-id',
@@ -29,12 +31,13 @@ export class GetBugIdComponent implements OnInit {
     assigned_ID: ""
   };
 
-  constructor(private bugService: BugService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute) {
+  constructor(private storageService: StorageService, private bugService: BugService,
+              private datePipe: DatePipe, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(result => {
-      console.log("Result ", result);
+      //console.log("Result ", result);
       this.bugId = +result.get('bugID');
     });
 
@@ -66,4 +69,7 @@ export class GetBugIdComponent implements OnInit {
     ];
   }
 
+  currentUserHasBUG_EXPORT_PDF() {
+    return this.storageService.userHasPermission(PermissionType.BUG_EXPORT_PDF);
+  }
 }

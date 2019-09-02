@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../user-management/login/services/storage.service";
-import {UserService} from "../../user-management/services/user.service";
-import {TranslateService} from "@ngx-translate/core";
-import {Notification} from "../models/notification.model";
-import {MessageService} from "primeng/api";
+import {StorageService} from '../../user-management/login/services/storage.service';
+import {UserService} from '../../user-management/services/user.service';
+import {TranslateService} from '@ngx-translate/core';
+import {Notification} from '../models/notification.model';
+import {MessageService} from 'primeng/api';
 
 
 @Component({
@@ -16,7 +16,8 @@ export class NotificationsViewComponent implements OnInit {
 
   notifications: Notification[] = [];
 
-  constructor(private storageService: StorageService, private userService: UserService, private translate: TranslateService) {
+  constructor(private storageService: StorageService, private userService: UserService,
+              private translate: TranslateService) {
   }
 
   /**
