@@ -2,50 +2,41 @@
 <form class="getBugStyle" ngForm
       [style]="{'position' : 'relative','left': '0','top': '200', 'vertical-align': 'middle'}">
 
-  <table class="table table-hover ">
-    <tbody>
-    <tr>
-      <td>{{'BUG_VIEW.TITLE' | translate}}</td>
-      <td>{{returnedBug.title}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.DESCRIPTION' | translate}}</td>
-      <td>{{returnedBug.description}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.VERSION' | translate}}</td>
-      <td>{{returnedBug.version}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.TARGET_DATE' | translate}}</td>
-      <td>{{returnedBug.targetDate}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.STATUS' | translate}}</td>
-      <td>{{returnedBug.status}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.FIXED_VERSION' | translate}}</td>
-      <td>{{returnedBug.fixedVersion}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.SEVERITY' | translate}}</td>
-      <td>{{returnedBug.severity}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.CREATED_BY' | translate}} </td>
-      <td>{{returnedBug.created_ID}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.ASSIGNED_TO' | translate}} </td>
-      <td>{{returnedBug.assigned_ID}}</td>
-    </tr>
-    <tr>
-      <td>{{'BUG_VIEW.ATTACHMENTS' | translate}}</td>
-      <td></td>
-    </tr>
-    </tbody>
-  </table>
+  <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+
+    <p class="text-style"></p>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.TITLE' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.title}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.DESCRIPTION' | translate}} :</label> <span
+    class="labelStyle">{{returnedBug.description}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.VERSION' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.version}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.TARGET_DATE' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.targetDate}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.STATUS' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.status}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.FIXED_VERSION' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.fixedVersion}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.SEVERITY' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.severity}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.CREATED_BY' | translate}} : </label> <span
+    class="labelStyle">{{returnedBug.created_ID}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.ASSIGNED_TO' | translate}} :</label> <span
+    class="labelStyle">{{returnedBug.assigned_ID}}</span><br>
+    <label class="badge badge-light; labelStyle">{{'BUG_VIEW.ATTACHMENTS' | translate}} : </label><span
+    class="labelStyle"></span><br>
+    <p class="text-style"></p>
+
+  </kendo-pdf-export>
+
+  <div class="btn-group btn-group-lg" role="group">
+
+    <button role="group" class="btn btn-info btn-sm" *ngIf="currentUserHasBUG_EXPORT_PDF()"
+            (click)="pdf.saveAs('bug.pdf')">PDF
+    </button>
+
+  </div>
+
   <button class="btn btn-secondary"
           [routerLink]="['/dashboard/notifications/view']">{{'BUG_VIEW.BACK' | translate}}</button>
 

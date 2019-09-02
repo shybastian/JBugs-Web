@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {BugView} from "../model/bug-view.model";
-import {BugService} from "../services/bug.service";
-import {Bug} from "../model/bug.model";
-import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {BugView} from '../model/bug-view.model';
+import {BugService} from '../services/bug.service';
+import {Bug} from '../model/bug.model';
+import {DatePipe} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {PermissionType} from '../../user-management/models/user.model';
+import {StorageService} from '../../user-management/login/services/storage.service';
 
 @Component({
   selector: 'app-get-bug-id',
@@ -29,7 +31,8 @@ export class GetBugIdComponent implements OnInit {
     assigned_ID: ""
   };
 
-  constructor(private bugService: BugService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute) {
+  constructor(private bugService: BugService, private datePipe: DatePipe, private activatedRoute: ActivatedRoute,
+              private storageService: StorageService) {
   }
 
   ngOnInit() {
@@ -66,4 +69,7 @@ export class GetBugIdComponent implements OnInit {
     ];
   }
 
+  currentUserHasBUG_EXPORT_PDF() {
+    return this.storageService.userHasPermission(PermissionType.BUG_EXPORT_PDF);
+  }
 }
