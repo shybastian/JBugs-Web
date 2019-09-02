@@ -4,6 +4,7 @@ import {UserService} from '../../user-management/services/user.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Notification} from '../models/notification.model';
 import {MessageService} from 'primeng/api';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class NotificationsViewComponent implements OnInit {
   notifications: Notification[] = [];
 
   constructor(private storageService: StorageService, private userService: UserService,
-              private translate: TranslateService) {
+              private translate: TranslateService, private router: Router) {
   }
 
   /**
@@ -39,4 +40,7 @@ export class NotificationsViewComponent implements OnInit {
     return notification.url != '';
   }
 
+  goToBugId() {
+    this.router.navigate(['/dashboard/notifications/bugs/view/:bugID']);
+  }
 }

@@ -3,7 +3,7 @@ import {BugView} from '../model/bug-view.model';
 import {BugService} from '../services/bug.service';
 import {Bug} from '../model/bug.model';
 import {DatePipe} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {StorageService} from '../../user-management/login/services/storage.service';
 import {PermissionType} from '../../user-management/models/user.model';
 
@@ -32,7 +32,8 @@ export class GetBugIdComponent implements OnInit {
   };
 
   constructor(private storageService: StorageService, private bugService: BugService,
-              private datePipe: DatePipe, private activatedRoute: ActivatedRoute) {
+              private datePipe: DatePipe, private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -71,5 +72,9 @@ export class GetBugIdComponent implements OnInit {
 
   currentUserHasBUG_EXPORT_PDF() {
     return this.storageService.userHasPermission(PermissionType.BUG_EXPORT_PDF);
+  }
+
+  goToNotifications() {
+    this.router.navigate(['/dashboard/notifications/view']).then();
   }
 }
