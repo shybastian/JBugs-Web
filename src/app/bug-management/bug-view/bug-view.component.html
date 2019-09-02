@@ -133,11 +133,11 @@
     <p-footer>
       <div class="btn-group btn-group-lg" role="group">
 
-        <button role="group" class="btn btn-outline-info btn-sm" *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">PDF</button>
+        <button role="group" class="btn btn-info btn-sm" *ngIf="currentUserHasBUG_EXPORT_PDF()" (click)="pdf.saveAs('bug.pdf')">PDF</button>
 
-        <button role="group" class="btn btn-outline-primary btn-sm" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
+        <button role="group" class="btn btn-primary btn-sm" (click)="showEditBugDialog()" [disabled]="statusClosed">Edit</button>
 
-        <button role="group" class="btn btn-outline-primary btn-sm" (click)="closeBug()" [disabled]="!visibleButton">Close Bug</button>
+        <button role="group" class="btn btn-primary btn-sm" (click)="closeBug()" [disabled]="!visibleButton">Close Bug</button>
 
         <button role="group" class="btn btn-outline-secondary btn-sm" (click)="displayInfoModal=false" >Exit</button>
 
