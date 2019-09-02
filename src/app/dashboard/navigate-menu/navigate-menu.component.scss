@@ -1,23 +1,24 @@
 /* Navigation link styles */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 /* Fixed sidenav, full height */
-
 h2 {
-  color: #394499;
+  color: white;
   text-align: center;
 }
 
 .sidenav {
   height: 100%;
-  width: 130px;
+  width: 230px;
   position: fixed;
   z-index: 1;
-  top: 103px;
+  top: 8px;
   left: 0;
-  background: #3881bc;
+  background-image: linear-gradient(
+      black 0%,
+      #002a38 100%
+  );
   overflow-x: hidden;
-  padding-top: 20px;
-  border: 2px solid #394499;;
+  padding: 20px;
   border-radius: 4px;
 }
 
@@ -27,13 +28,18 @@ a {
   text-align: center;
   padding: 10px 8px 6px 16px;
   text-decoration: none;
-  font-size: 15px;
-  color: #394499;
+  font-size: 30px;
+  color: white;
   display: block;
   cursor: pointer;
   outline: none;
   border: 1px solid #FFFFFF;
   border-radius: 8px;
+  font: 700 30px 'Bitter'
+}
+
+button {
+  font-size: 30px;
 }
 
 a:hover {

@@ -1,97 +1,118 @@
-<body>
+<body class="background">
+<div class="log-in">
 <form class="loginStyling" id='loginForm' #loginForm='ngForm'>
-
-  <h1>
-    {{ 'LOGIN.MESSAGE' | translate }}
-  </h1>
-
-  <p></p>
-
-  <div>
-    <label for="username">{{ 'LOGIN.USERNAME' | translate }}</label>
-    <input
-      required
-      class="form-control"
-      type="text"
-      id="username"
-      name="username"
-      ngModel
-      #username="ngModel"
-    >
-    <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
-      <div *ngIf="username.errors.required">
-        {{'LOGIN.ALERT_USER' | translate}}
+  <div class="form-holder">
+    <div class="main">
+      <div class="shadow-wrapper">
+        <div class="shadow"></div>
+      </div>
+      <div class="dragon">
+        <div class="body"></div>
+        <div class="horn-left"></div>
+        <div class="horn-right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+        <div class="mouth"></div>
+        <div class="tail-sting"></div>
+      </div>
+      <div class="fire-wrapper">
+        <div class="fire"></div>
+      </div>
+      <div class="progress">
+        <div class="outer">
+          <div class="inner"></div>
+        </div>
       </div>
     </div>
 
-    <p></p>
 
-    <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
-    <input
-      required
-      class="form-control"
-      type="password"
-      id="password"
-      name="password"
-      ngModel
-      #password="ngModel"
-    >
-    <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
-      <div *ngIf="password.errors.required">
-        {{'LOGIN.ALERT_PASS' | translate}}
-      </div>
-    </div>
-
-  </div>
-
-  <p></p>
-
-  <!-- START CAPTCHA -->
-  <div class="capbox">
-
-    <div id="captchaDiv"></div>
-
-    <div class="capbox-inner">
-      {{ 'LOGIN.CAPTCHA' | translate }}<br>
-
+    <div>
+      <label for="username">{{ 'LOGIN.USERNAME' | translate }}</label>
       <input
-        type="hidden"
-        id="txtCaptcha"
-        name="txtCaptcha"
-        ngModel
-      >
-      <input
+        required
+        class="form-control"
         type="text"
-        name="captchaInput"
-        id="captchaInput"
+        id="username"
+        name="username"
         ngModel
-        (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
-        size="15"
+        #username="ngModel"
       >
-      <br>
+      <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+        <div *ngIf="username.errors.required">
+          {{'LOGIN.ALERT_USER' | translate}}
+        </div>
+      </div>
+
+      <p></p>
+
+      <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+      <input
+        required
+        class="form-control"
+        type="password"
+        id="password"
+        name="password"
+        ngModel
+        #password="ngModel"
+      >
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+        <div *ngIf="password.errors.required">
+          {{'LOGIN.ALERT_PASS' | translate}}
+        </div>
+      </div>
 
     </div>
-  </div>
-  <br><br>
-  <!-- END CAPTCHA -->
 
-  <p></p>
+    <p id="p1"></p>
 
-  <button class="btn btn-primary"
-          (click)="login(loginForm)"
-          [disabled]="loginForm.invalid">
-    {{ 'LOGIN.MESSAGE' | translate }}
-  </button>
+    <!-- START CAPTCHA -->
+    <div class="capbox">
 
-  <p></p>
+      <div id="captchaDiv"></div>
 
-  <div class="container" style="background-color:#f1f1f1">
+      <div class="capbox-inner">
+        {{ 'LOGIN.CAPTCHA' | translate }}<br>
+
+        <input
+          type="hidden"
+          id="txtCaptcha"
+          name="txtCaptcha"
+          ngModel
+        >
+        <input
+          type="text"
+          name="captchaInput"
+          id="captchaInput"
+          ngModel
+          (click)="captchaService.generateCaptchaUpdateForm(loginForm)"
+          size="15"
+        >
+        <br>
+
+      </div>
+    </div>
+    <!-- END CAPTCHA -->
+
+
+    <button class="myButton"
+            (click)="login(loginForm)"
+            [disabled]="loginForm.invalid">
+      {{ 'LOGIN.MESSAGE' | translate }}
+    </button>
+
+
+    <div class="forgot-password" style="background-color:#f1f1f1">
     <span class="psw">
       <label>{{'LOGIN.FORGOT' | translate }}</label>
       <a style="color: #039be5" (click)="alertForgotPass()">
       {{'LOGIN.PASS' | translate }}
       </a>
     </span>
+    </div>
+
   </div>
 </form>
+</div>
 </body>
