@@ -1,6 +1,5 @@
 <body>
-<h2>View User</h2>
-<form class="userViewStyle">
+<form class="container">
   <p-table #dt [columns]="cols" [value]="users" selectionMode="single" [(selection)]="selectedUser"
            (onRowSelect)="onRowSelect()" [paginator]="true" [rows]="15">
     <ng-template pTemplate="caption">
