@@ -7,14 +7,14 @@ import {UsersViewComponent} from './user-management/users-view/users-view.compon
 import {BugCreateComponent} from './bug-management/bug-create/bug-create.component';
 import {EditPermissionsComponent} from './permissions-management/edit-permissions/edit-permissions.component';
 import {BugViewComponent} from './bug-management/bug-view/bug-view.component';
-import {PermissionPermissionGuard} from "./authentication-guards/permission-permission.guard";
-import {BugPermissionGuard} from "./authentication-guards/bug-permission.guard";
-import {UserPermissionGuard} from "./authentication-guards/user-permission.guard";
-import {LoggedOutGuard} from "./authentication-guards/logged-out.guard";
-import {LoginComponent} from "./user-management/login/login.component";
-import {UserCreateComponent} from "./user-management/user-create/user-create.component";
-import {NotificationsViewComponent} from "./notifications-management/notifications-view/notifications-view.component";
-import {GetBugIdComponent} from "./bug-management/get-bug-id/get-bug-id.component";
+import {PermissionPermissionGuard} from './authentication-guards/permission-permission.guard';
+import {BugPermissionGuard} from './authentication-guards/bug-permission.guard';
+import {UserPermissionGuard} from './authentication-guards/user-permission.guard';
+import {LoggedOutGuard} from './authentication-guards/logged-out.guard';
+import {LoginComponent} from './user-management/login/login.component';
+import {UserCreateComponent} from './user-management/user-create/user-create.component';
+import {NotificationsViewComponent} from './notifications-management/notifications-view/notifications-view.component';
+import {GetBugIdComponent} from './bug-management/get-bug-id/get-bug-id.component';
 
 
 const routes: Routes = [
@@ -86,6 +86,10 @@ const routes: Routes = [
           {
             path: 'view',
             component: NotificationsViewComponent
+          },
+          {
+            path: 'bugs/view/:bugID',
+            component: GetBugIdComponent
           }
         ]
       }
