@@ -174,6 +174,10 @@ export class BugEditComponent implements OnInit {
     this.attContent = value;
   }
 
+  verifyAttachment(): boolean{
+    return this.bugAttachments[0] === "No attachments";
+  }
+
   deleteAttachment(attachment){
     console.log(attachment);
     console.log(this.bugAttachments)
