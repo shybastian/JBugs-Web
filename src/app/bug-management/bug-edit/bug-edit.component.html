@@ -146,14 +146,17 @@
                 [options]="newStatusValues"
       (onClick)="selectStatus()"
       [disabled]="noStatusAvailable"
-      [style]="{'width': '100%'}">
+      [style]="{'width': '100%'}"
+      placeholder="{{bug.status}}"
+      >
     </p-dropdown>
     <br>
     <p *ngIf="noStatusAvailable">{{'BUG_UPDATE.NoStatusAvailable' | translate}}</p>
   </div>
 
   <div class="form-group">
-    <label for="ASSIGNED_ID">{{'BUG_UPDATE.AssignedTo' | translate}}</label><br>
+    <label for="ASSIGNED_ID">{{'BUG_UPDATE.AssignedTo' | translate}} : {{bug.ASSIGNED_ID.username}}</label><br>
+    <label>Reassign:   </label>
     <select
       required
       class="form-group"
@@ -187,7 +190,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" *ngIf="!verifyAttachment()">
     <div *ngFor="let att of bugAttachments">
       {{att}} <button (click)="deleteAttachment(att)">Delete</button>
     </div>

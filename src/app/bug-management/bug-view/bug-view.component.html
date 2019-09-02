@@ -91,7 +91,7 @@
           <p-dropdown *ngSwitchCase="'fixedVersion'" [options]="fixedVersionFilter"
                       (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
-          <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%'}" *ngSwitchCase="'targetDate'" [defaultDate]=""
+          <p-calendar #cal=ngModel ngModel name="calendar" id="calendar" [style]="{'width': '200%','align': 'center'}" *ngSwitchCase="'targetDate'" [defaultDate]=""
                       [readonlyInput]="true" dateFormat="yy-MM-dd"
                       (onClearClick)="dt.filter($event.target.value, col.field, 'contains');"
                       (onSelect)="dt.filter($event, col.field, 'dateFilter')">

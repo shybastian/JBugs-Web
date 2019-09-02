@@ -35,84 +35,88 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="{{'USERS.DETAILED_USER' | translate}}" [(visible)]="displayDialog" [responsive]="true"
-            showEffect="fade" [modal]="true"
-            [style]="{width: '300px'}">
+  <p-dialog styleClass="modal-dialog modal-sm" [(visible)]="displayDialog" [responsive]="true"
+            showEffect="fade"
+            [modal]="true"
+            [minY]="70"
+            [maximizable]="true" [baseZIndex]="10000"
+            [style]="{'width':'600px'}">
+    <p-header class="labelStyle">{{'USERS.DETAILED_USER' | translate}}</p-header>
     <div class="ui-g ui-fluid" *ngIf="selectedUser">
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="id">{{'USERS.ID' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="id">{{'USERS.ID' | translate}} :</label>
         </div>
         <div class="ui-g-8">
-          <label id="id">{{selectedUser.id}}</label>
+          <label class="labelStyle" id="id">{{selectedUser.id}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="firstName">{{'USERS.FIRST_NAME' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="firstName">{{'USERS.FIRST_NAME' | translate}}</label>
         </div>
         <div class="ui-g-8">
-          <label id="firstName">{{selectedUser.firstName}}</label>
+          <label class="labelStyle" id="firstName">{{selectedUser.firstName}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="lastName">{{'USERS.LAST_NAME' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="lastName">{{'USERS.LAST_NAME' | translate}} : </label>
         </div>
         <div class="ui-g-8">
-          <label id="lastName">{{selectedUser.lastName}}</label>
+          <label class="labelStyle" id="lastName">{{selectedUser.lastName}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="username">{{'USERS.USERNAME' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="username">{{'USERS.USERNAME' | translate}} : </label>
         </div>
         <div class="ui-g-8">
-          <label id="username">{{selectedUser.username}}</label>
+          <label class="labelStyle" id="username">{{selectedUser.username}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="email">{{'USERS.EMAIL' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="email">{{'USERS.EMAIL' | translate}} : </label>
         </div>
         <div class="ui-g-8">
-          <label id="email">{{selectedUser.email}}</label>
+          <label class="labelStyle" id="email">{{selectedUser.email}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="mobileNumber">{{'USERS.PHONE' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="mobileNumber">{{'USERS.PHONE' | translate}} :</label>
         </div>
         <div class="ui-g-8">
-          <label id="mobileNumber">{{selectedUser.mobileNumber}}</label>
+          <label class="labelStyle" id="mobileNumber">{{selectedUser.mobileNumber}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="status">{{'USERS.STATUS' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="status">{{'USERS.STATUS' | translate}} : </label>
         </div>
         <div class="ui-g-8">
-          <label id="status">{{selectedUser.stringStatus}}</label>
+          <label class="labelStyle" id="status">{{selectedUser.stringStatus}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="counter">{{'USERS.COUNTER' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="counter">{{'USERS.COUNTER' | translate}} : </label>
         </div>
         <div class="ui-g-8">
-          <label id="counter">{{selectedUser.counter}}</label>
+          <label class="labelStyle" id="counter">{{selectedUser.counter}}</label>
         </div>
       </div>
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <label for="roles">{{'USERS.ROLES' | translate}}</label>
+          <label class="badge badge-light; labelStyle" for="roles">{{'USERS.ROLES' | translate}} : </label>
         </div>
         <div class="ui-g-8" *ngIf="selectedUser.roles.length === 0">
-          <label id="no_role">({{'USERS.NO_ROLE' | translate}})</label>
+          <label class="labelStyle" id="no_role">({{'USERS.NO_ROLE' | translate}})</label>
         </div>
         <div class="ui-g-8">
           <div *ngFor="let role of selectedUser.roles">
-            <label id="roles">{{role.type}}</label>
+            <label class="labelStyle" id="roles">{{role.type}}</label>
           </div>
         </div>
       </div>
@@ -120,9 +124,11 @@
 
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa fa-plus" (click)="showEditUserDialog()"
-              label="{{'EDIT_USER.EDIT' | translate}}" [disabled]="displayUpdateDialog"></button>
-        <button type="button" pButton icon="fa fa-close" (click)="ok()" label="OK"></button>
+        <div class="btn-group btn-group-lg" role="group">
+        <button role="group" class="btn btn-primary btn-sm" (click)="showEditUserDialog()"
+              [disabled]="displayUpdateDialog">{{'EDIT_USER.EDIT' | translate}}</button>
+        <button role="group" class="btn btn-outline-secondary btn-sm" (click)="ok()">OK</button>
+        </div>
       </div>
     </p-footer>
   </p-dialog>

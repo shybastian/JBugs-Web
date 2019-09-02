@@ -435,7 +435,7 @@ export class BugViewComponent implements AfterViewInit, OnInit, AfterViewInit {
 
 
         let assigned: string = "";
-        if(bug.ASSIGNED_ID.firstName == null)
+        if(bug.ASSIGNED_ID == undefined || bug.ASSIGNED_ID.firstName == null)
         {
           assigned = "Not assigned";
         }
